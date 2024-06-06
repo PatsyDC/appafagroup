@@ -1,0 +1,138 @@
+.footer {
+    background-color: #2c7bfe;
+    color: white;
+    padding: 40px 0;
+  }
+  .footer a {
+    color: white;
+    text-decoration: none;
+  }
+  .footer a:hover {
+    color: #d1d1d1;
+  }
+  .footer .icon-wrapper {
+    font-size: 1.5rem;
+    margin-right: 10px;
+  }
+  .footer .social-icons a {
+    font-size: 1.5rem;
+    margin-right: 15px;
+  }
+  .footer .social-icons a:hover {
+    color: #d1d1d1;
+  }
+  .footer .section-title {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+  }
+  
+  .footer .section-titleEnc {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+    margin-top: 71px;
+  }
+  .footer .section-title-Tc {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+  }
+  .footer .section-title-Tc.with-margin {
+    margin-top: 140px; /* Ajusta este valor según sea necesario */
+  }
+  
+  .footer .section-title-At {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+  }
+  .footer .section-title-At.with-margin {
+    margin-top: 140px; /* Ajusta este valor según sea necesario */
+  }
+  .footer-logo{
+    width: 170px;
+    height: 70px;
+  }
+  
+  @media (max-width: 768px) {
+    .footer .section-title {
+      margin-top: 40px;
+    }
+    .footer .section-titleEnc {
+      margin-top: 40px;
+    }
+    .footer .section-title-Tc.with-margin {
+      margin-top: 40px;
+    }
+    .footer .section-title-At.with-margin {
+      margin-top: 40px;
+    }
+  
+    .footer .footer-logo {
+        margin: 0 auto; /* Esto centrará la imagen horizontalmente */
+        display: block; /* Esto asegura que la imagen ocupe todo el ancho disponible */
+      }
+  }
+  
+  .footer .section-title {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+    position: relative;
+  }
+  
+  .footer .section-title:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Ajusta este valor según sea necesario para el grosor de la línea */
+    width: 170px;
+    height: 2px; /* Grosor de la línea */
+    background-color: white; /* Color de la línea */
+  }
+  
+  .footer .section-titleEnc {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+    position: relative;
+  }
+  
+  .footer .section-titleEnc:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Ajusta este valor según sea necesario para el grosor de la línea */
+    width: 200px;
+    height: 2px; /* Grosor de la línea */
+    background-color: white; /* Color de la línea */
+  }
+  
+  .footer .section-title-Tc {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+    position: relative;
+  }
+  
+  .footer .section-title-Tc:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Ajusta este valor según sea necesario para el grosor de la línea */
+    width: 230px;
+    height: 2px; /* Grosor de la línea */
+    background-color: white; /* Color de la línea */
+  }
+  
+  .footer .section-title-At {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+    position: relative;
+  }
+  
+  .footer .section-title-At:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Ajusta este valor según sea necesario para el grosor de la línea */
+    width: 320px;
+    height: 2px; /* Grosor de la línea */
+    background-color: white; /* Color de la línea */
+  }
+  
+  

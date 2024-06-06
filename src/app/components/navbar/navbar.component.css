@@ -1,0 +1,247 @@
+/* General Reset and Styling */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #6C6A74;
+  text-align: left;
+  background-color: #fff;
+}
+
+a {
+  color: #326DE7 !important;
+  text-decoration: none !important;
+  background-color: transparent !important;
+}
+
+a:hover {
+  color: #0C3FAB;
+  text-decoration: underline;
+}
+
+/* Navbar Styling */
+.navbar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+}
+
+.navbar-brand {
+  display: inline-block;
+  padding-top: 0.3125rem;
+  padding-bottom: 0.3125rem;
+  margin-right: 1rem;
+  font-size: 1.25rem;
+  line-height: inherit;
+  white-space: nowrap;
+}
+
+.navbar-nav {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.nav-item {
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+}
+
+.navbar-nav .nav-item .nav-link {
+  color: #326DE7;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar-toggler {
+  padding: 0.25rem 0.75rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+.navbar-toggler-icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+  content: "";
+  background: no-repeat center center;
+  background-size: 100% 100%;
+}
+
+/* Asegúrate de que el menú se oculte por defecto */
+.dropdown-menu {
+  display: none;
+}
+
+/* Mostrar el menú cuando tiene la clase 'show' */
+.show {
+  display: block;
+}
+
+/* Responsive Behavior */
+@media (max-width: 991.98px) {
+  .navbar-expand-lg .navbar-collapse {
+    display: none;
+  }
+
+  .navbar-expand-lg .navbar-collapse.collapse {
+    display: flex;
+  }
+
+  .navbar-expand-lg .navbar-collapse.collapsing {
+    height: auto;
+    overflow: hidden;
+    display: flex;
+  }
+
+  .navbar-expand-lg .navbar-toggler {
+    display: block;
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-nav {
+    flex-direction: row;
+  }
+
+  .navbar-expand-lg .navbar-collapse {
+    flex-basis: auto;
+  }
+
+  .navbar-expand-lg .navbar-toggler {
+    display: none !important;
+  }
+}
+
+/* Additional Styles for Small Screens */
+@media (max-width: 991.98px) {
+  .navbar-toggler {
+    border-color: #fff; /* Change border color */
+    color: #000; /* Change text color */
+  }
+
+  .navbar-collapse {
+    padding: 1rem; /* Add padding around navbar elements */
+    border-radius: 0.5rem; /* Add rounded borders to navbar */
+  }
+
+  .navbar-nav .nav-item {
+    padding: 0.5rem 0; /* Adjust space between navbar items */
+  }
+
+  .navbar-nav .nav-link {
+    padding: 0.5rem 0; /* Adjust space around navbar links */
+  }
+}
+
+/* Hide the checkbox input */
+.navbar-toggler.visually-hidden {
+  display: none;
+}
+
+.navbar-toggler-icon {
+  cursor: pointer;
+}
+
+/* Hide the navbar in small screens when the checkbox is not checked */
+@media (max-width: 991.98px) {
+  #toggleNavbar:not(:checked) ~ .collapse.navbar-collapse {
+    display: none;
+  }
+
+  #toggleNavbar:checked ~ .collapse.navbar-collapse {
+    display: block;
+  }
+
+  .collapse.navbar-collapse {
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+
+  .navbar-nav .nav-item {
+    padding: 0.5rem 0;
+  }
+
+  .navbar-nav .nav-link {
+    padding: 0.5rem 0;
+  }
+}
+
+/* Navbar container styling */
+.container-fluid.navbar-container {
+  background-color: transparent;
+}
+
+/* Navbar links */
+.navbar-nav .nav-link {
+  border-bottom: none;
+}
+
+/* Transparent background for navbar on large screens */
+@media (min-width: 992px) {
+  .navbar-expand-lg.bg-light {
+    background-color: transparent;
+  }
+}
+
+/* Transparent background for navbar on small screens */
+@media (max-width: 991.98px) {
+  .navbar-expand-lg.bg-light .navbar-collapse {
+    background-color: transparent;
+  }
+}
+
+.navbar-nav .nav-link {
+  border-bottom: none;
+}
+
+@media (min-width: 992px) {
+  .navbar.navbar-expand-lg:not(.bg-light) .navbar-toggler {
+    display: none;
+  }
+}
+
+/* Hide the hamburger button on large screens */
+@media (min-width: 992px) {
+  .navbar-toggler {
+    display: none !important;
+  }
+}
+
+/* Navbar links on small screens */
+@media (max-width: 991.98px) {
+  .navbar-nav .nav-link {
+    text-align: center;
+    padding: 0.5rem 0;
+    color: #326DE7 !important;
+    transition: color 0.3s ease;
+  }
+
+  .navbar-nav .nav-link:hover {
+    color: white !important;
+    text-decoration: underline;
+    background-color: #326DE7 !important;
+  }
+}
