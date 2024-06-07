@@ -3,13 +3,13 @@ import { IProducto } from 'app/core/models/producto.model';
 import { ProductosService } from 'app/core/services/productos.service';
 
 @Component({
-  selector: 'app-parts-list',
+  selector: 'app-repuestos',
   standalone: true,
   imports: [],
-  templateUrl: './parts-list.component.html',
-  styleUrl: './parts-list.component.css'
+  templateUrl: './repuestos.component.html',
+  styleUrl: './repuestos.component.css'
 })
-export class PartsListComponent {
+export class RepuestosComponent {
   productos?: IProducto[] = [];
   public listaProductos:IProducto[] = [];
 
