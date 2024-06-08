@@ -1,7 +1,6 @@
 <div class="container">
   <div class="card">
     <div class="content">
-      <!-- Utilizamos *ngFor para iterar sobre la lista de productos -->
       @for (catalogo of productos; track $index) {
         <div>
         <img [src]="catalogo.img" alt="">
@@ -16,11 +15,10 @@
           </div>
           <p>{{ catalogo.descripcion }}</p>
           <p>{{ catalogo.precio }}</p>
+          <a [routerLink]="['/parts-list', catalogo.id]" class="btn btn-info">Ver Ficha</a>
         </div>
       </div>
       }
-
-      <!-- Fin del bucle *ngFor -->
     </div>
   </div>
 </div>

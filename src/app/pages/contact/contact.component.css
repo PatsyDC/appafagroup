@@ -1,0 +1,7 @@
+.btn-rect {
+  border-radius: 0; /* Elimina los bordes redondeados para que los botones sean rectangulares */
+  margin: 0; /* Elimina el margen para que los botones estén pegados */
+}
+.tt .btn + .btn {
+  margin-left: -1px; /* Ajusta el margen izquierdo negativo para eliminar el espacio entre los botones */
+}

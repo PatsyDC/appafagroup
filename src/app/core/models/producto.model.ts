@@ -1,6 +1,6 @@
 export interface IProducto
 {
-  _id?: string;
+  id?: string;
   img?: string;
   nombre?: string;
   descripcion?: string;

@@ -53,3 +53,22 @@
       </div>
     </div>
   </div>
+
+  <div class="container">
+    <div class="d-flex flex-column align-items-center">
+      <div class="tt mb-3 d-flex">
+        <button class="btn btn-primary btn-rect" (click)="setCenter(-8.1487078, -79.040944)">Sede Trujillo</button>
+        <button class="btn btn-primary btn-rect" (click)="setCenter(-8.1714148, -79.008936)">Sede Moche</button>
+        <button class="btn btn-primary btn-rect" (click)="setCenter(-6.7714616, -79.8387175)">Sede Chiclayo</button>
+        <button class="btn btn-primary btn-rect" (click)="setCenter(-6.034721374511719, -76.97469329833984)">Sede Ica</button>
+        <button class="btn btn-primary btn-rect" (click)="setCenter(-12.0621065, -77.0365256)">Sede Lima</button>
+      </div>
+      <google-map height="400px" width="800px" [center]="center" [zoom]="zoom" style="margin-bottom: 20px;">
+        <map-heatmap-layer [data]="heatmapData" [options]="heatmapOptions"></map-heatmap-layer>
+      </google-map>
+    </div>
+  </div>
+
+
+
+
