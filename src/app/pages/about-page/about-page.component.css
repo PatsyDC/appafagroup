@@ -33,7 +33,7 @@
     margin: 0;
     box-sizing: border-box;
   }
-  
+
   body {
     margin: 0;
     font-family: "Poppins", sans-serif;
@@ -48,19 +48,19 @@
     margin: 30px;
     padding: 5px;
   }
-  
+
   .about-1 h1 {
     text-align: center;
     color: #326DE7;
     font-weight: lighter;
   }
-  
+
   .about-1 p {
     text-align: center;
     padding: 3px;
     color: #fff;
   }
-  
+
   .about-item {
     margin-bottom: 20px;
     margin-top: 20px;
@@ -68,65 +68,65 @@
     padding: 30px;
     box-shadow: 0 0 9px rgba(0, 0, 0, 0.6);
   }
-  
+
   .about-item h3 {
     font-size: 20px;
     margin-bottom: 10px;
   }
-  
+
   .about-item hr {
     width: 46px;
     height: 3px;
     background-color: #003eb9;
     margin: 0 auto;
-  
+
     border: none;
   }
-  
+
   .about-item p {
     margin-top: 20px;
   }
-  
+
   .about-item:hover {
     background-color: #326DE7;
     color: white;
   }
-  
+
   .about-item:hover i,
   .about-item:hover h3,
   .about-item:hover p {
     color: #fff;
   }
-  
+
   .about-item:hover hr {
     background-color: #fff;
   }
-  
+
   .about-item:hover i {
     transform: translateY(-20px);
   }
-  
+
   .about-item:hover i,
   .about-item:hover h3,
   .about-item:hover hr {
     transition: all 600ms ease-in-out;
   }
-  
-  
-  
+
+
+
   .icon {
     font-size: 30px;
     color: #326DE7;
     padding-bottom: 1.5rem;
   }
-  
+
   .card-container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 100px;
+    margin-top: 23px;
   }
-  
+
   .card {
     width: 270px;
     background-color: white;
@@ -135,16 +135,16 @@
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
     margin: 10px;
   }
-  
+
   .card img {
     width: 100%;
     height: auto;
   }
-  
+
   .card-content {
     padding: 20px;
   }
-  
+
   .card-content h3 {
     font-size: 18px;
     margin-bottom: 8px;
@@ -152,7 +152,7 @@
     text-align: center;
     font-family: 'Poppins', sans-serif;
   }
-  
+
   .card-content p {
     color: #666;
     font-size: 12px;
@@ -165,41 +165,41 @@
         width: calc(33.33% - 20px);
         margin: 10px;
     }
-  
+
     .card-content {
         padding: 20px;
     }
-  
+
     .card-content h3 {
         font-size: 18px;
     }
-  
+
     .card-content p {
         font-size: 12px;
     }
   }
-  
+
   /* Media query para dispositivos móviles */
   @media (max-width: 576px) {
     .card {
         width: calc(50% - 20px);
     }
-  
+
     .card-content {
         padding: 15px;
     }
-  
+
     .card-content h3 {
         font-size: 16px;
     }
-  
+
     .card-content p {
         font-size: 11px;
     }
   }
-  
-  
-  
+
+
+
   @media (max-width: 768px) {
     .about-item {
         padding: 20px;
@@ -211,7 +211,7 @@
         font-size: 24px;
     }
   }
-  
+
   @media (max-width: 576px) {
     .about-item {
         padding: 15px;
@@ -223,9 +223,25 @@
         font-size: 20px;
     }
   }
-  
-  
-  
-  
-  
-  
+
+  .container h2 {
+    position: relative;
+    display: inline-block; /* Asegura que el pseudo-elemento ::after se posicione correctamente */
+    margin-bottom: 20px; /* Añade espacio adicional debajo del h2 si es necesario */
+}
+
+.container h2::after {
+    content: '';
+    position: absolute;
+    
+    left: 50%;
+    bottom: -5px; /* Ajusta este valor según sea necesario para el grosor de la línea */
+    width: 230px;
+    height: 2px; /* Grosor de la línea */
+    background-color: #007bff; /* Color de la línea */
+    transform: translateX(-50%); /* Centra la línea debajo del texto */
+}
+
+
+
+
