@@ -71,6 +71,21 @@ a:hover {
   background-color: transparent;
 }
 
+.mat-menu-content .mat-menu-item {
+  color: #326DE7; /* Color del texto */
+  text-decoration: none; /* Sin subrayado */
+  background-color: transparent; /* Fondo transparente */
+  padding: 10px 20px; /* Espaciado interno */
+  font-size: 16px; /* Tamaño de fuente */
+  font-family: Arial, sans-serif; /* Fuente */
+}
+
+.mat-menu-content .mat-menu-item:hover {
+  background-color: #F0F0F0; /* Color de fondo al pasar el mouse */
+  color: #000; /* Cambio de color de texto al pasar el mouse */
+}
+
+
 .navbar-toggler {
   padding: 0.25rem 0.75rem;
   font-size: 1.25rem;
