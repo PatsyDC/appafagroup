@@ -138,7 +138,7 @@
 
   .card img {
     width: 100%;
-    height: auto;
+    height: 300px;
   }
 
   .card-content {
@@ -224,24 +224,30 @@
     }
   }
 
-  .container h2 {
-    position: relative;
-    display: inline-block; /* Asegura que el pseudo-elemento ::after se posicione correctamente */
-    margin-bottom: 20px; /* Añade espacio adicional debajo del h2 si es necesario */
+
+
+
+
+  .e-lineas {
+    text-align: center;
+    margin: 20px;
+  }
+
+  .e-lineas h2 {
+    font-weight: 300; /* Usar un valor numérico para un peso más delgado */
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .e-lineas .line {
+    width: 60px;
+    height: 3px;
+    background-color: #007bff;
+    margin: 0 auto 20px auto;
+  }
+
+  .e-lineas p {
+    font-weight: 300; /* Usar un valor numérico para un peso más delgado */
+    font-size: 16px;
+    color: #555;
 }
-
-.container h2::after {
-    content: '';
-    position: absolute;
-    
-    left: 50%;
-    bottom: -5px; /* Ajusta este valor según sea necesario para el grosor de la línea */
-    width: 230px;
-    height: 2px; /* Grosor de la línea */
-    background-color: #007bff; /* Color de la línea */
-    transform: translateX(-50%); /* Centra la línea debajo del texto */
-}
-
-
-
-

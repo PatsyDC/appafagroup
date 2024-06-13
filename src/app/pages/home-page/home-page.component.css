@@ -181,6 +181,84 @@
   .controls button:hover {
     background-color: #555;
   }
+/* Media queries para hacer el slider responsive */
+
+/* Tablets y dispositivos móviles */
+@media (max-width: 991.98px) {
+  .slide-text {
+    right: 0; /* Alinear el texto a la derecha en dispositivos más pequeños */
+    left: 5%; /* Dar un pequeño espacio a la izquierda para el texto */
+    text-align: left; /* Alinear el texto a la izquierda */
+  }
+}
+
+/* Smartphones y dispositivos más pequeños */
+@media (max-width: 575.98px) {
+  .slide-text {
+    padding-right: 20px; /* Reducir el padding derecho del texto */
+    right: 0; /* Alinear el texto completamente a la derecha */
+    left: 5%; /* Dar espacio a la izquierda del texto */
+  }
+
+  .slide-text h2 {
+    font-size: 30px; /* Reducir el tamaño de la fuente del título */
+  }
+
+  .slide-text h2 span {
+    font-size: 60px; /* Reducir el tamaño de la fuente del span */
+    padding: 5px 10px; /* Reducir el padding del span */
+    border-radius: 20px; /* Reducir el radio de borde del span */
+  }
+
+  .controls {
+    top: 50%; /* Alinear los controles más en el centro */
+  }
+}
+
+/* Media queries para hacer el slider responsive */
+
+/* Tablets y dispositivos móviles */
+@media (max-width: 991.98px) {
+  .slide-text {
+    right: 0; /* Alinear el texto a la derecha en dispositivos más pequeños */
+    left: 5%; /* Dar un pequeño espacio a la izquierda para el texto */
+    text-align: left; /* Alinear el texto a la izquierda */
+  }
+
+  .slide-text h2 {
+    font-size: 4vw; /* Tamaño del título proporcional al tamaño de la pantalla */
+  }
+
+  .slide-text h2 span {
+    font-size: 6vw; /* Tamaño del span proporcional al tamaño de la pantalla */
+    padding: 2vw 4vw; /* Padding proporcional */
+    border-radius: 2vw; /* Radio de borde proporcional */
+  }
+}
+
+/* Smartphones y dispositivos más pequeños */
+@media (max-width: 575.98px) {
+  .slide-text {
+    padding-right: 20px; /* Reducir el padding derecho del texto */
+    right: 100%; /* Alinear el texto completamente a la derecha */
+    left: 50%; /* Dar espacio a la izquierda del texto */
+  }
+
+  .slide-text h2 {
+    font-size: 6vw; /* Tamaño del título proporcional al tamaño de la pantalla */
+  }
+
+  .slide-text h2 span {
+    font-size: 10vw; /* Tamaño del span proporcional al tamaño de la pantalla */
+    padding: 1.5vw 3vw; /* Padding proporcional */
+    border-radius: 1.5vw; /* Radio de borde proporcional */
+  }
+
+  .controls {
+    top: 50%; /* Alinear los controles más en el centro */
+  }
+}
+
 
   /*  */
 
@@ -315,16 +393,31 @@
 
   /* marcas registradas */
 
-  .p-lineas {
-    font-family: 'poppins', sans-serif;
+  .e-lineas {
     text-align: center;
-    padding-bottom: 3rem;
-  }
+    margin: 20px;
+}
 
-  .h-lineas {
-    font-family: 'poppins', sans-serif;
-    text-align: center;
-  }
+.e-lineas h2 {
+    font-weight: 300; /* Usar un valor numérico para un peso más delgado */
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.e-lineas .line {
+    width: 60px;
+    height: 3px;
+    background-color: #007bff;
+    margin: 0 auto 20px auto;
+}
+
+.e-lineas p {
+    font-weight: 300; /* Usar un valor numérico para un peso más delgado */
+    font-size: 16px;
+    color: #555;
+}
+
+
 
   .container-lineas {
     display: flex;
@@ -531,7 +624,7 @@
     align-items: center; /* Para alinear verticalmente el contenido */
     padding: 40px 30px;
     margin: 50px auto;
-    max-width: 700px;
+    max-width: 800px;
     width: 100%;
     box-shadow: 0 0 20px #CCCCCC;
     border-radius: 20px;
@@ -675,6 +768,11 @@
   /*  */
 
   /* Noticias*/
+
+  a{
+    text-decoration: none;
+  }
+
   .containernoticia {
     background: #fafafa;
     display: flex;

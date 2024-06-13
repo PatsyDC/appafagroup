@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
   const slides = document.querySelectorAll('.slide');
   const nextBtn = document.querySelector('.next-btn');
   const prevBtn = document.querySelector('.prev-btn');
@@ -37,14 +37,19 @@ document.addEventListener('DOMContentLoaded', function () {
   showSlide(currentSlide);
   startSlideInterval();
 
-  // Manejar los eventos de clic para los botones
-  nextBtn.addEventListener('click', () => {
-      nextSlide();
-      stopSlideInterval(); // Detener el intervalo cuando se hace clic en siguiente
-  });
+  // Verificar que los botones nextBtn y prevBtn existan antes de agregar eventos
+  if (nextBtn && prevBtn) {
+      // Manejar los eventos de clic para los botones
+      nextBtn.addEventListener('click', function() {
+          nextSlide();
+          stopSlideInterval(); // Detener el intervalo cuando se hace clic en siguiente
+      });
 
-  prevBtn.addEventListener('click', () => {
-      prevSlide();
-      stopSlideInterval(); // Detener el intervalo cuando se hace clic en anterior
-  });
+      prevBtn.addEventListener('click', function() {
+          prevSlide();
+          stopSlideInterval(); // Detener el intervalo cuando se hace clic en anterior
+      });
+  } else {
+      console.error('No se encontraron los elementos next-btn o prev-btn.');
+  }
 });

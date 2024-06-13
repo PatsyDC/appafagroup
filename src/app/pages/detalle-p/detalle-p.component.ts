@@ -8,22 +8,26 @@ import { ProductosService } from 'app/core/services/productos.service';
   standalone: true,
   imports: [],
   templateUrl: './detalle-p.component.html',
-  styleUrl: './detalle-p.component.css'
+  styleUrls: ['./detalle-p.component.css']
 })
-export class DetallePComponent implements OnInit{
+export class DetallePComponent implements OnInit {
   producto?: IProducto;
 
   constructor(
-    private router: ActivatedRoute,
+    private route: ActivatedRoute,
     private service: ProductosService
-  ){}
+  ) {}
 
   ngOnInit(): void {
-    const id = this.router.snapshot.paramMap.get('id');
-    this.service.getProductoById(id).subscribe((data) =>{
-      this.producto = data;
-      console.log(data);
-    })
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      const idNumber = parseInt(id, 10);
+      this.service.getProductoById(idNumber).subscribe((data: IProducto) => {
+        this.producto = data;
+        console.log(data);
+      });
+    } else {
+      console.error('Invalid ID');
+    }
   }
-
 }

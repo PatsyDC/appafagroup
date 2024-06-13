@@ -1,11 +1,11 @@
 <div class="container">
   <div class="half-screen">
-    <img src="{{producto?.img}}" alt="">
+    <img src="{{ producto?.img }}" alt="{{ producto?.nombre }}" class="product-image">
   </div>
   <div class="details">
-    <h1>Producto: {{producto?.nombre}}</h1>
-    <h2>Descripción: {{producto?.descripcion}}</h2>
-    <h2>Precio: {{producto?.precio}}</h2>
+    <h1>{{ producto?.nombre }}</h1>
+    <p class="description">{{ producto?.descripcion }}</p>
+    <p class="price">Precio: {{ producto?.precio }}</p>
+    
   </div>
 </div>
-
