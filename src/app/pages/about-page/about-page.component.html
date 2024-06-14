@@ -23,7 +23,7 @@
             <p>Nuestra historia inicia en setiembre del año 2012 con el ingenio y perseverancia que  caracteriza a nuestro líder y Gerente General. AFA GROUP nace con la finalidad de atender toda  necesidad, de romper barreras y potenciar el agro con tecnología y calidad. A lo largo de estos años hemos conectado con nuestros clientes al brindar soluciones a medida  y acompañando de forma integral sus proyectos agrícolas, convirtiéndonos en aliados del agro.  Pues tenemos claro que crecemos en la misma proporción que nuestros clientes avanzan. Hemos concentrado esfuerzos para contar con un gran equipo de trabajo que hace posible día  a día posicionarnos como una empresa reconocida en el mercado.  Practicamos la mejora continua en nuestras áreas y procesos. Nos reinventamos y adaptamos  al cambio de forma constante para brindar soluciones disruptivas y ágiles.
                 <br><br>¡Hoy es el futuro! <br><br><br></p>
             <div class="row">
-                
+
                 <div class="col-sm-6 mb-4">
                     <h1 class="text-secondaryy" data-toggle="counter-up">39</h1>
                     <h5 class="font-weight-bold">Trabajadores Expertos</h5>
@@ -118,41 +118,15 @@
 </div>
 
 <div class="card-container" style="margin-bottom: 30px;">
-<div class="card">
-    <img src="img/equipo3.png" alt="">
-    <div class="card-content">
-        <h3>Tonny Rodriguez Pascual</h3>
-        <p>CEO & FOUNDER en AFA GROUP</p>
+  @for (trabajador of trabajadores; track $index){
+    <div class="card">
+      <img [src]="trabajador.img" alt="">
+      <div class="card-content">
+        <h3>{{ trabajador.nombre}}</h3>
+        <p>{{trabajador.cargo}}</p>
+      </div>
     </div>
-</div>
-<div class="card">
-    <img src="img/equipo1.png" alt="">
-    <div class="card-content">
-        <h3>Randy Urquiaga Castillo</h3>
-        <p>JEFE DE PRODUCCIÓN</p>
-    </div>
-</div>
-<div class="card">
-    <img src="img/equipo2.png" alt="">
-    <div class="card-content">
-        <h3>Yvan Romero Acosta</h3>
-        <p>JEFE DE MANTENIMIENTO</p>
-    </div>
-</div>
-<div class="card">
-    <img src="img/equipo4.png" alt="">
-    <div class="card-content">
-        <h3>Darwin Mendoza Pascual </h3>
-        <p>JEFE COMERCIAL</p>
-    </div>
-</div>
-<div class="card">
-    <img src="img/equipo5.png" alt="">
-    <div class="card-content">
-        <h3>Felix Torres Gilmer</h3>
-        <p>ASISTENCIA MECÁNICA</p>
-    </div>
-</div>
+  }
 </div>
 
 </body>
