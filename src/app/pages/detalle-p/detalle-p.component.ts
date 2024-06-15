@@ -22,12 +22,17 @@ export class DetallePComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       const idNumber = parseInt(id, 10);
-      this.service.getProductoById(idNumber).subscribe((data: IProducto) => {
-        this.producto = data;
-        console.log(data);
+      this.service.allProductosWithCategories().subscribe((productosConCategorias: IProducto[]) => {
+        const producto = productosConCategorias.find(p => p.id === idNumber);
+        if (producto) {
+          this.producto = producto;
+          console.log(this.producto);
+        } else {
+          console.error('Producto no encontrado');
+        }
       });
     } else {
-      console.error('Invalid ID');
+      console.error('ID inválido');
     }
   }
 }

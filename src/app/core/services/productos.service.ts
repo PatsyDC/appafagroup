@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { forkJoin, map, Observable, Subject } from 'rxjs';
 import { IProducto } from './../models/producto.model';
+import { ICategoriaP } from './../models/categoria.model'; // Asegúrate de importar ICategoriaP si aún no lo has hecho
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +13,30 @@ export class ProductosService {
     return this._refresh$;
   }
 
-  private url: string = 'http://localhost:3000/productosP';
+  private urlProductos: string = 'http://localhost:3000/productosP';
+  private urlCategorias: string = 'http://localhost:3000/categorias';
+
   constructor(private http: HttpClient) {}
 
   allProductos(): Observable<IProducto[]> {
-    return this.http.get<IProducto[]>(this.url);
+    return this.http.get<IProducto[]>(this.urlProductos);
+  }
+
+  allCategorias(): Observable<ICategoriaP[]> {
+    return this.http.get<ICategoriaP[]>(this.urlCategorias);
+  }
+
+  allProductosWithCategories(): Observable<IProducto[]> {
+    return forkJoin([this.allProductos(), this.allCategorias()])
+     .pipe(map(([productos, categorias]) => {
+        return productos.map(producto => ({
+         ...producto,
+          categoria: categorias.find(categoria => categoria.id === producto.categoria_id)
+        }));
+      }));
   }
 
   getProductoById(id: number): Observable<IProducto> {
-    return this.http.get<IProducto>(`${this.url}/${id}`);
+    return this.http.get<IProducto>(`${this.urlProductos}/${id}`);
   }
 }
