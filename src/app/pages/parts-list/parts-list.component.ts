@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { IProducto } from 'app/core/models/producto.model';
-import { ProductosService } from 'app/core/services/productos.service';
+import { IRepuesto } from 'app/core/models/repuesto.model';
+import { RepuestoService } from 'app/core/services/repuesto.service';
 
 @Component({
   selector: 'app-parts-list',
@@ -11,14 +11,14 @@ import { ProductosService } from 'app/core/services/productos.service';
   styleUrl: './parts-list.component.css'
 })
 export class PartsListComponent {
-  productos?: IProducto[] = [];
-  public listaProductos:IProducto[] = [];
+  productos?: IRepuesto[] = [];
+  public listaProductos:IRepuesto[] = [];
 
-  constructor(private productoService: ProductosService) {
+  constructor(private repuestoService: RepuestoService) {
   }
 
   ngOnInit(): void {
-    this.productoService.allProductos().subscribe((data) => {
+    this.repuestoService.allRepuestos().subscribe((data) => {
       console.log('data: ',data);
       this.productos = data;
     });

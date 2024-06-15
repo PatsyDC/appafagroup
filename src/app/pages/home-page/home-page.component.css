@@ -68,6 +68,10 @@
     outline: 0 !important;
   }
 
+  /* #content {
+    padding-top: 45px; // Ajusta este valor sumando la altura del spinner y el padding-top deseado
+  } */
+
   hr {
     box-sizing: content-box;
     height: 0;

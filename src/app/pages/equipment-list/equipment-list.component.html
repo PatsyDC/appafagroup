@@ -1,1 +1,64 @@
-<p>equipment-list works!</p>
+<div class="title-categoria">
+  <h2> EQUIPOS DE ARRASTRE</h2>
+</div>
+<div class="container">
+  <div *ngFor="let producto of productosFiltradosCategoria4" class="card">
+    <div class="content">
+      <img [src]="producto.img" alt="">
+    </div>
+    <div class="text">
+      <h3>{{ producto.nombre }}</h3>
+      <p>{{ producto.descripcion }}</p>
+      <div class="btn-group">
+        <a [routerLink]="['/detalle', producto.id]" class="btn btn-info">Ver Ficha</a>
+      </div>
+    </div>
+  </div>
+
+  <h1>EQUIPOS DE UTOPROPULSADAS</h1>
+
+  <div *ngFor="let producto of productosFiltradosCategoria5" class="card">
+    <div class="content">
+      <img [src]="producto.img" alt="">
+    </div>
+    <div class="text">
+      <h3>{{ producto.nombre }}</h3>
+      <p>{{ producto.descripcion }}</p>
+      <div class="btn-group">
+        <a [routerLink]="['/detalle', producto.id]" class="btn btn-info">Ver Ficha</a>
+      </div>
+    </div>
+  </div>
+
+  <h1>EQUIPOS MANUALES</h1>
+
+  <div *ngFor="let producto of productosFiltradosCategoria6" class="card">
+    <div class="content">
+      <img [src]="producto.img" alt="">
+    </div>
+    <div class="text">
+      <h3>{{ producto.nombre }}</h3>
+      <p>{{ producto.descripcion }}</p>
+      <div class="btn-group">
+        <a [routerLink]="['/detalle', producto.id]" class="btn btn-info">Ver Ficha</a>
+      </div>
+    </div>
+  </div>
+
+  <h1>TRACTORES</h1>
+  <div *ngFor="let producto of productosFiltradosCategoria7" class="card">
+    <div class="content">
+      <img [src]="producto.img" alt="">
+    </div>
+    <div class="text">
+      <h3>{{ producto.nombre }}</h3>
+      <p>{{ producto.descripcion }}</p>
+      <div class="btn-group">
+        <a [routerLink]="['/detalle', producto.id]" class="btn btn-info">Ver Ficha</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

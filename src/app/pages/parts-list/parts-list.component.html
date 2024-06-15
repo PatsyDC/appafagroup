@@ -1,19 +1,16 @@
 <div class="container">
-  <!-- Utilizamos *ngFor para iterar sobre la lista de productos -->
   @for (catalogo of productos; track $index) {
     <div class="card">
       <div class="content">
         <img [src]="catalogo.img" alt="">
         <div class="text">
           <h3>{{ catalogo.nombre }}</h3>
-          <p>{{ catalogo.descripcion }}</p>
+          <p>{{ catalogo.description }}</p>
           <div class="btn-group">
-            <a [routerLink]="['/parts-list', catalogo.id]" class="btn btn-info">Ver Ficha</a>
-            <a href="https://drive.google.com/file/d/1pqvwU1we_Pu_7u4cTaX4_CtpIn29fKWT/view" class="btn btn-info">Descargar PDF</a>
+            <a [routerLink]="['/detalle', catalogo.id]" class="btn btn-info">Ver Ficha</a>
           </div>
         </div>
       </div>
     </div>
   }
-  <!-- Fin del bucle *ngFor -->
 </div>

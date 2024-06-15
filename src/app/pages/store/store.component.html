@@ -1,1 +1,36 @@
-<p>store works!</p>
+<div class="container">
+  <h2>Repuestos</h2>
+  @for (repuesto of repuesto; track $index) {
+    <div class="card">
+      <div class="content">
+        <img [src]="repuesto.img" alt="">
+        <div class="text">
+          <h3>{{ repuesto.nombre }}</h3>
+          <p>{{ repuesto.description }}</p>
+          <div class="btn-group">
+            <a [routerLink]="['/detalle', repuesto.id]" class="btn btn-info">Ver Ficha</a>
+            <a href="https://drive.google.com/file/d/1pqvwU1we_Pu_7u4cTaX4_CtpIn29fKWT/view" class="btn btn-info">Descargar PDF</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>
+<div class="container">
+  <h3>Equipos</h3>
+  @for (catalogo of producto; track $index) {
+    <div class="card">
+      <div class="content">
+        <img [src]="catalogo.img" alt="">
+        <div class="text">
+          <h3>{{ catalogo.nombre }}</h3>
+          <p>{{ catalogo.descripcion }}</p>
+          <div class="btn-group">
+            <a [routerLink]="['/detalle', catalogo.id]" class="btn btn-info">Ver Ficha</a>
+            <a href="https://drive.google.com/file/d/1pqvwU1we_Pu_7u4cTaX4_CtpIn29fKWT/view" class="btn btn-info">Descargar PDF</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>
