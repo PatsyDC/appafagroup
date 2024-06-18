@@ -61,16 +61,7 @@
               <a routerLink="/about-us" class="nav-item nav-link">Nosotros</a>
               <a routerLink="/parts-list" class="nav-item nav-link">Repuestos</a>
               <a routerLink="/equipment-list" class="nav-item nav-link">Equipos</a>
-              <button mat-button [matMenuTriggerFor]="servicesMenu">Servicios</button>
-              <mat-menu #servicesMenu="matMenu">
-                @for (service of services; track $index) {
-                  <ng-container>
-                    <button mat-menu-item (click)="onSelectionChange(service)">
-                      {{ service.viewValue }}
-                    </button>
-                  </ng-container>
-                }
-              </mat-menu>
+              <a routerLink="/services" class="nav-item nav-link">Servicios</a>
               <a routerLink="/store" class="nav-item nav-link">Tienda</a>
               <a routerLink="/blog" class="nav-item nav-link">Blog</a>
               <a routerLink="/contact" class="nav-item nav-link">Contacto</a>

@@ -89,144 +89,109 @@
   }
 
   /* slider */
+  /* Estilos generales */
+.slider-container {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  height: 85vh; /* Altura normal del slider */
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.5s ease; /* Transición suave para desplazamientos */
+  height: 100%;
+  width: 100%;
+}
+
+.slide {
+  position: relative;
+  flex: 0 0 100%;
+  height: 100%;
+}
+
+.slide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 0;
+}
+
+.slide-text {
+  display: block;
+  padding-right: 5%;
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+  color: white;
+  text-align: right;
+  z-index: 2;
+}
+
+.slide-text h2 {
+  font-size: 5vw; /* Tamaño del título proporcional al tamaño de la pantalla */
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.slide-text h2 span {
+  font-size: 8vw; /* Tamaño del span proporcional al tamaño de la pantalla */
+  padding: 1.5vw 3vw; /* Padding proporcional */
+  border-radius: 2vw; /* Radio de borde proporcional */
+  font-family: 'Poppins', sans-serif;
+}
+
+.controls {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  z-index: 3;
+}
+
+.controls button {
+  padding: 10px 20px;
+  font-size: 18px;
+  border: none;
+  background-color: #0F6FF5;
+  color: #fff;
+  cursor: pointer;
+}
+
+.controls button:hover {
+  background-color: #555;
+}
+
+/* Media queries para hacer el slider responsive */
+
+/* Tablets y dispositivos móviles */
+@media (max-width: 991.98px) {
   .slider-container {
-    position: relative;
-    width: 100%;
-    margin: 0 auto;
-    overflow: hidden;
-    height: 85vh;
-    margin-bottom: 0;
+    height: 70vh; /* Altura reducida del slider en tablets */
   }
 
-  .slider {
-    display: flex;
-    transition: transform 0.2s ease;
-    height: 100%;
-    width: 100%;
-    margin-bottom: 0;
-  }
-
-  .slide {
-    position: relative;
-    flex: 0 0 100%;
-    height: 100%;
-  }
-
-  .slide::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
-  }
-
-  .slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: relative;
-    z-index: 0;
-  }
-
-  .slide-text {
-    display: block;
-    padding-right: 50px;
-    position: absolute;
-    top: 50%;
-    right: 5%;
-    transform: translateY(-50%);
-    color: white;
-    text-align: right;
-
-    z-index: 2;
-  }
-
-  .slide-text h2 {
-    font-size: 2em;
-    margin: 0;
-    padding: 0;
-    font-size: 50px;
-    font-family: poppins;
-    color: white;
-  }
-
-  .slide-text h2 span {
-    font-size: 90px;
-    background-color: #0F6FF5;
-    color: white;
-    font-style: italic;
-    padding: 10px 20px 10px 20px;
-    border-radius: 40px;
-    font-family: poppins;
-  }
-
-  .controls {
-    position: absolute;
-    top: 40%;
-    transform: translateY(-50%);
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    z-index: 3;
-  }
-
-  .controls button {
-    padding: 10px 20px;
-    font-size: 18px;
-    border: none;
-    background-color: #0F6FF5;
-    color: #fff;
-    cursor: pointer;
-  }
-
-  .controls button:hover {
-    background-color: #555;
-  }
-/* Media queries para hacer el slider responsive */
-
-/* Tablets y dispositivos móviles */
-@media (max-width: 991.98px) {
   .slide-text {
     right: 0; /* Alinear el texto a la derecha en dispositivos más pequeños */
     left: 5%; /* Dar un pequeño espacio a la izquierda para el texto */
     text-align: left; /* Alinear el texto a la izquierda */
-  }
-}
-
-/* Smartphones y dispositivos más pequeños */
-@media (max-width: 575.98px) {
-  .slide-text {
-    padding-right: 20px; /* Reducir el padding derecho del texto */
-    right: 0; /* Alinear el texto completamente a la derecha */
-    left: 5%; /* Dar espacio a la izquierda del texto */
-  }
-
-  .slide-text h2 {
-    font-size: 30px; /* Reducir el tamaño de la fuente del título */
-  }
-
-  .slide-text h2 span {
-    font-size: 60px; /* Reducir el tamaño de la fuente del span */
-    padding: 5px 10px; /* Reducir el padding del span */
-    border-radius: 20px; /* Reducir el radio de borde del span */
-  }
-
-  .controls {
-    top: 50%; /* Alinear los controles más en el centro */
-  }
-}
-
-/* Media queries para hacer el slider responsive */
-
-/* Tablets y dispositivos móviles */
-@media (max-width: 991.98px) {
-  .slide-text {
-    right: 0; /* Alinear el texto a la derecha en dispositivos más pequeños */
-    left: 5%; /* Dar un pequeño espacio a la izquierda para el texto */
-    text-align: left; /* Alinear el texto a la izquierda */
+    padding-right: 10px; /* Reducir el padding derecho del texto */
   }
 
   .slide-text h2 {
@@ -235,17 +200,21 @@
 
   .slide-text h2 span {
     font-size: 6vw; /* Tamaño del span proporcional al tamaño de la pantalla */
-    padding: 2vw 4vw; /* Padding proporcional */
+    padding: 1.5vw 3vw; /* Padding proporcional */
     border-radius: 2vw; /* Radio de borde proporcional */
   }
 }
 
 /* Smartphones y dispositivos más pequeños */
 @media (max-width: 575.98px) {
+  .slider-container {
+    height: 60vh; /* Altura reducida del slider en smartphones */
+  }
+
   .slide-text {
-    padding-right: 20px; /* Reducir el padding derecho del texto */
-    right: 100%; /* Alinear el texto completamente a la derecha */
-    left: 50%; /* Dar espacio a la izquierda del texto */
+    padding-right: 5px; /* Reducir aún más el padding derecho del texto */
+    right: 0; /* Alinear el texto completamente a la derecha */
+    left: 5%; /* Dar espacio a la izquierda del texto */
   }
 
   .slide-text h2 {
@@ -255,7 +224,7 @@
   .slide-text h2 span {
     font-size: 10vw; /* Tamaño del span proporcional al tamaño de la pantalla */
     padding: 1.5vw 3vw; /* Padding proporcional */
-    border-radius: 1.5vw; /* Radio de borde proporcional */
+    border-radius: 2vw; /* Radio de borde proporcional */
   }
 
   .controls {
@@ -387,6 +356,7 @@
     }
     span.num {
       font-size: 2.2em;
+      transform: scale(1.2); /* Escalado al hacer hover */
     }
     span.text {
       font-size: 0.8em;
@@ -567,6 +537,7 @@
     flex-direction: column;
     background: #fff;
     margin: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
   }
   .card-o i{

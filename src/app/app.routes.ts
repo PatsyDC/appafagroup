@@ -21,8 +21,8 @@ export const routes: Routes = [
   { path: 'store', component: StoreComponent },
   { path: 'blog', component: BlogComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'fabricacion', component: FabricacionComponent },
   { path:'detalle/:id', component: DetallePComponent},
   { path: 'carrito', component: CarritoComponent},
+  { path: 'fabricacion', component: ServicesComponent},
   { path: '**', redirectTo: 'home', pathMatch: 'full' }, //FINALLL
 ];
