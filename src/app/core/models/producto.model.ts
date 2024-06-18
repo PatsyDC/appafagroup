@@ -5,7 +5,7 @@ export interface IProducto {
   id: number;
   nombre: string;
   descripcion: string;
-  precio: string;
+  precio: number;
   img: string;
   categoria_id: number;
   categoria?: ICategoriaP; // Añade esta línea

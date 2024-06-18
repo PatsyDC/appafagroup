@@ -8,7 +8,6 @@ body {
 .container {
   display: flex;
   flex-wrap: wrap;
-
   align-items: center;
   justify-content: center;
 }
@@ -32,7 +31,7 @@ body {
 }
 
 .p-4 {
-  padding: 1rem; /* Reducido el padding para hacer el formulario más compacto */
+  padding: 1rem;
 }
 
 .w-100 {
@@ -40,17 +39,17 @@ body {
 }
 
 .max-w-4xl {
-  max-width: 40rem; /* Ajustado el ancho máximo del contenedor principal */
+  max-width: 40rem;
 }
 
 /* Formulario */
 .form-control {
   width: 100%;
-  padding: 10px; /* Ajustado el padding para mejorar la legibilidad y la interacción */
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 6px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  font-size: 1rem; /* Ajustado el tamaño de fuente para una mejor legibilidad */
+  font-size: 1rem;
 }
 
 .form-control:focus {
@@ -64,11 +63,11 @@ body {
 }
 
 .btn {
-  padding: 10px 20px; /* Ajustado el padding del botón para hacerlo más agradable visualmente */
+  padding: 10px 20px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 1rem; /* Ajustado el tamaño de fuente del botón para una mejor legibilidad */
+  font-size: 1rem;
   font-weight: bold;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
@@ -85,4 +84,43 @@ body {
 .btn-primary:active {
   background-color: #2b5a84;
   transform: scale(0.98);
+}
+
+/* Estilos Responsive */
+@media (max-width: 992px) {
+  .shadow {
+    flex-direction: column;
+    width: 90%; /* Ajusta el ancho para pantallas medianas */
+  }
+
+  .rounded-start, .rounded-end {
+    border-radius: 10px; /* Ajusta el borde para pantallas más pequeñas */
+  }
+
+  .d-none.d-lg-flex {
+    display: none; /* Esconde la imagen en pantallas medianas */
+  }
+}
+
+@media (max-width: 576px) {
+  .p-4 {
+    padding: 0.5rem; /* Ajusta el padding para pantallas pequeñas */
+  }
+
+  .max-w-4xl {
+    max-width: 100%; /* Ajusta el ancho máximo del contenedor principal para pantallas pequeñas */
+  }
+
+  .form-control {
+    font-size: 0.875rem; /* Ajusta el tamaño de fuente para pantallas pequeñas */
+  }
+
+  .btn {
+    padding: 8px 16px; /* Ajusta el padding del botón para pantallas pequeñas */
+    font-size: 0.875rem; /* Ajusta el tamaño de fuente del botón para pantallas pequeñas */
+  }
+
+  .d-flex.flex-wrap.align-items-center.justify-content-center.rounded-end.bg-white.w-100.p-4 {
+    height: auto; /* Ajusta la altura del formulario para pantallas pequeñas */
+  }
 }
