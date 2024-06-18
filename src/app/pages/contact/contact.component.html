@@ -20,32 +20,32 @@
         <!-- Encabezado -->
         <h1 class="h5 font-weight-semibold">Contáctenos</h1>
         <!-- Formulario -->
-        <form class="mt-2">
+        <form [formGroup]="formContacto" (ngSubmit)="save()" class="mt-2">
           <div class="row mb-2">
             <div class="col-md-6 mb-2">
               <label class="mb-1 d-block text-xs font-weight-semibold">Nombre y Apellidos</label>
-              <input type="text" placeholder="Nombre y Apellidos" class="form-control custom-focus-ring">
+              <input type="text" placeholder="Nombre y Apellidos" class="form-control custom-focus-ring" formControlName="nombre">
             </div>
             <div class="col-md-6 mb-2">
               <label class="mb-1 d-block text-xs font-weight-semibold">Email</label>
-              <input type="email" placeholder="Enter your email" class="form-control custom-focus-ring">
+              <input type="email" placeholder="Enter your email" class="form-control custom-focus-ring" formControlName="email">
             </div>
           </div>
 
           <div class="row mb-2">
             <div class="col-md-6 mb-2">
               <label class="mb-1 d-block text-xs font-weight-semibold">Celular</label>
-              <input type="text" placeholder="Celular" class="form-control custom-focus-ring">
+              <input type="text" placeholder="Celular" class="form-control custom-focus-ring" formControlName="celular">
             </div>
             <div class="col-md-6 mb-2">
               <label class="mb-1 d-block text-xs font-weight-semibold">Ciudad</label>
-              <input type="text" placeholder="Ciudad" class="form-control custom-focus-ring">
+              <input type="text" placeholder="Ciudad" class="form-control custom-focus-ring" formControlName="ciudad">
             </div>
           </div>
 
           <div class="mb-2">
             <label class="mb-1 d-block text-xs font-weight-semibold">Mensaje</label>
-            <textarea placeholder="Mensaje" class="form-control custom-focus-ring" rows="4"></textarea>
+            <textarea placeholder="Mensaje" class="form-control custom-focus-ring" rows="4" formControlName="mensaje"></textarea>
           </div>
 
           <div class="mb-2">
