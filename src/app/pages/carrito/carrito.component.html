@@ -1,23 +1,28 @@
-<table>
-  <thead>
-    <tr>
-      <th>Imagen</th>
-      <th>Nombre</th>
-      <th>Precio</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      @for (catalogo of cartItems; track $index) {
-      <td><img [src]="catalogo.img_product" alt=""></td>
-      <td>{{ catalogo.nombre_product }}</td>
-      <td>{{ catalogo.precio_product }}</td>
-      <td>
-        <button (click)="removeFromCart(catalogo.id)">Eliminar</button>
-      </td>
-    }
-    </tr>
-  </tbody>
-</table>
+<div class="container">
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Imagen</th>
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let catalogo of cartItems; let i = index">
+          <td><img [src]="catalogo.img_product" alt="Producto" class="product-image"></td>
+          <td>{{ catalogo.nombre_product }}</td>
+          <td>{{ catalogo.precio_product | currency : 'USD' }}</td>
+          <td>{{catalogo.cantidad}}</td>
+          <td>
+            <button (click)="removeFromCart(catalogo.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
 

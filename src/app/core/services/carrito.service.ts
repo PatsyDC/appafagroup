@@ -11,16 +11,14 @@ export class CarritoService {
   get refresh$() {
     return this._refresh$;
   }
-  private urlRepuestos: string = 'http://localhost:3000/productosP'
-  private urlEquipos: string = 'http://localhost:3000/repuestos'
+  private urlCarrito = 'http://localhost:3000/carrito';
+  private urlRepuestos: string = 'http://localhost:3000/productosP';
+  private urlEquipos: string = 'http://localhost:3000/repuestos';
 
   constructor(private http: HttpClient) { }
 
   allCarrito(): Observable<ICarrito[]> {
-    return forkJoin([
-      this.http.get<ICarrito[]>(this.urlRepuestos),
-      this.http.get<ICarrito[]>(this.urlEquipos)
-    ]).pipe(map(([repuestos, equipos]) => [...repuestos,...equipos]));
+    return this.http.get<ICarrito[]>(this.urlCarrito);
   }
 
   getCarritoById(id: number, tipoProducto: 'repuesto' | 'equipo'): Observable<ICarrito> {
@@ -39,12 +37,11 @@ export class CarritoService {
   }
 
   addProductToCart(product: ICarrito): Observable<ICarrito> {
-    return this.http.post<ICarrito>(`${this.urlRepuestos}/carrito`, product);
+    return this.http.post<ICarrito>(`${this.urlRepuestos}/carrito`, product); // Cambiar aquí
   }
 
   removeProductFromCart(productId: number): Observable<void> {
     return this.http.delete<void>(`${this.urlRepuestos}/carrito/${productId}`);
+  }
 }
 
-
-}

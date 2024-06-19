@@ -26,11 +26,11 @@ export class StoreComponent {
 
   ngOnInit(): void {
     this.repuestoService.allRepuestos().subscribe((data) => {
-      console.log('data: ',data);
+      console.log('data: ', data);
       this.repuesto = data;
     });
     this.productoService.allProductos().subscribe((data) => {
-      console.log('data: ',data);
+      console.log('data: ', data);
       this.producto = data;
     });
   }
@@ -46,9 +46,14 @@ export class StoreComponent {
       cantidad: 1
     };
 
-    this.carritoService.addProductToCart(product).subscribe(() => {
-      this.carritoService.refresh$.next(); // Emite un evento para actualizar el carrito
-      console.log('Producto agregado al carrito:', item);
-    });
+    this.carritoService.addProductToCart(product).subscribe(
+      () => {
+        this.carritoService.refresh$.next();
+        console.log('Producto agregado al carrito:', item);
+      },
+      (error) => {
+        console.error('Error adding product to cart:', error);
+      }
+    );
   }
 }
