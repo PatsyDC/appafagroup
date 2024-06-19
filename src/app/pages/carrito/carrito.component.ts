@@ -39,6 +39,36 @@ export class CarritoComponent {
     });
   }
 
+  // En carrito.ts
+
+// En tu componente, cuando quieras incrementar o decrementar la cantidad
+
+incrementQuantity(productId: number): void {
+  const currentItem = this.cartItems.find(item => item.id === productId);
+  if (currentItem) {
+    this.carritoService.incrementProductQuantity(productId, currentItem.cantidad).subscribe(updatedItem => {
+      const index = this.cartItems.findIndex(item => item.id === productId);
+      if (index > -1) {
+        this.cartItems[index] = updatedItem;
+      }
+    });
+  }
+}
+
+decrementQuantity(productId: number): void {
+  const currentItem = this.cartItems.find(item => item.id === productId);
+  if (currentItem && currentItem.cantidad > 1) {
+    this.carritoService.decrementProductQuantity(productId, currentItem.cantidad).subscribe(updatedItem => {
+      const index = this.cartItems.findIndex(item => item.id === productId);
+      if (index > -1) {
+        this.cartItems[index] = updatedItem;
+      }
+    });
+  }
+}
+
+
+
   removeFromCart(productId: number): void {
     this.carritoService.removeProductFromCart(productId).subscribe(() => {
       this.cartItems = this.cartItems.filter(item => item.id !== productId);

@@ -1,0 +1,31 @@
+<div class="container py-5">
+  <h1 class="category-title">Últimas noticias del mundo automotriz</h1>
+  <div class="row">
+    <ng-container *ngIf="articulos.length > 0">
+      <div class="col-lg-4 col-md-6 mb-4" *ngFor="let articulo of articulos.slice(0, 6)">
+        <div class="card border-0 shadow-sm h-100">
+          <img class="card-img-top" [src]="articulo.urlToImage" [alt]="articulo.title">
+          <div class="card-body position-relative">
+            <a [href]="articulo.url" class="stretched-link"></a>
+            <h5 class="card-title mt-3 mb-3">{{ articulo.title }}</h5>
+            <p class="card-text">{{ articulo.description }}</p>
+            <div class="card-meta">
+              <div class="d-flex align-items-center">
+                <i class="fa fa-user text-secondary mr-1"></i>
+                <small class="text-secondary">{{ articulo.author }}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <div *ngIf="articulos.length === 0" class="col-12">
+      <div class="card border-0 shadow-sm bg-light mb-4">
+        <div class="card-body">
+          <p class="m-0">No se encontraron artículos relacionados con Tesla.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

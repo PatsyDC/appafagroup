@@ -40,6 +40,26 @@ export class CarritoService {
     return this.http.post<ICarrito>(`${this.urlRepuestos}/carrito`, product); // Cambiar aquí
   }
 
+  // En carrito.service.ts
+  // En carrito.service.ts
+
+updateProductQuantity(productId: number, quantity: number): Observable<ICarrito> {
+  // No necesitas acceder a cartItems aquí, solo necesitas el ID del producto y la nueva cantidad
+  return this.http.put<ICarrito>(`${this.urlCarrito}/${productId}`, { quantity });
+}
+
+
+
+  // En carrito.service.ts
+
+  incrementProductQuantity(productId: number, currentQuantity: number): Observable<ICarrito> {
+    return this.updateProductQuantity(productId, currentQuantity + 1);
+  }
+
+  decrementProductQuantity(productId: number, currentQuantity: number): Observable<ICarrito> {
+    return this.updateProductQuantity(productId, Math.max(currentQuantity - 1, 0)); // Asegura que la cantidad no sea negativa
+  }
+
   removeProductFromCart(productId: number): Observable<void> {
     return this.http.delete<void>(`${this.urlRepuestos}/carrito/${productId}`);
   }

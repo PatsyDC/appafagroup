@@ -15,7 +15,12 @@
           <td><img [src]="catalogo.img_product" alt="Producto" class="product-image"></td>
           <td>{{ catalogo.nombre_product }}</td>
           <td>{{ catalogo.precio_product | currency : 'USD' }}</td>
-          <td>{{catalogo.cantidad}}</td>
+          <!-- Dentro de la etiqueta <td> donde se muestra la cantidad -->
+          <td>
+            <button (click)="decrementQuantity(catalogo.id)">-</button>
+            {{catalogo.cantidad}}
+            <button (click)="incrementQuantity(catalogo.id)">+</button>
+          </td>
           <td>
             <button (click)="removeFromCart(catalogo.id)">Eliminar</button>
           </td>
