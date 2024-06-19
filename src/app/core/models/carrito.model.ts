@@ -4,5 +4,5 @@ export interface ICarrito{
   img_product: string;
   nombre_product: string;
   precio_product: number;
-  total_product: number
+  cantidad: number
 }

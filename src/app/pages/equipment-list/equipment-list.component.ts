@@ -24,8 +24,8 @@ export class EquipmentListComponent {
     this.productoService.allProductosWithCategories().subscribe((productosConCategorias) => {
       this.productosFiltradosCategoria4 = productosConCategorias.filter(producto => producto.categoria_id === 4);
       this.productosFiltradosCategoria5 = productosConCategorias.filter(producto => producto.categoria_id === 5);
-      this.productosFiltradosCategoria6 = productosConCategorias.filter(producto => producto.categoria_id === 6);
-      this.productosFiltradosCategoria7 = productosConCategorias.filter(producto => producto.categoria_id === 7);
+      this.productosFiltradosCategoria6 = productosConCategorias.filter(producto => producto.categoria_id === 7);
+      this.productosFiltradosCategoria7 = productosConCategorias.filter(producto => producto.categoria_id === 6);
     });
   }
 }

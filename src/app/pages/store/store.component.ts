@@ -43,7 +43,7 @@ export class StoreComponent {
       img_product: item.img,
       nombre_product: item.nombre,
       precio_product: item.precio, // Asegúrate de que tu modelo de producto tenga el precio
-      total_product: 1
+      cantidad: 1
     };
 
     this.carritoService.addProductToCart(product).subscribe(() => {

@@ -1,3 +1,4 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IRepuesto } from 'app/core/models/repuesto.model';
@@ -6,7 +7,7 @@ import { RepuestoService } from 'app/core/services/repuesto.service';
 @Component({
   selector: 'app-detalle-r',
   standalone: true,
-  imports: [],
+  imports: [CurrencyPipe],
   templateUrl: './detalle-r.component.html',
   styleUrl: './detalle-r.component.css'
 })

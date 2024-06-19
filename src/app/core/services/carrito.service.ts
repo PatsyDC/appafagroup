@@ -11,7 +11,6 @@ export class CarritoService {
   get refresh$() {
     return this._refresh$;
   }
-
   private urlRepuestos: string = 'http://localhost:3000/productosP'
   private urlEquipos: string = 'http://localhost:3000/repuestos'
 

@@ -24,7 +24,9 @@
 .product-image {
   width: 100%; /* Imagen ocupa todo el espacio disponible */
   display: block; /* Elimina espacio adicional debajo de la imagen */
-  border-radius: 8px; /* Bordes redondeados para la imagen */
+  border-radius: 8px;/* Bordes redondeados para la imagen */
+  max-width: 500px;
+  max-height: 900px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
   transition: transform 0.3s ease; /* Transición para la animación */
 }
