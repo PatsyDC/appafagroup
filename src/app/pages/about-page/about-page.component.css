@@ -49,6 +49,16 @@
     padding: 5px;
   }
 
+  h1{
+    color: #326DE7;
+  }
+  .text-secondaryy{
+    color: #326DE7;
+  }
+  .bg-secondaryy {
+  background-color: #326DE7;
+  }
+
   .about-1 h1 {
     text-align: center;
     color: #326DE7;

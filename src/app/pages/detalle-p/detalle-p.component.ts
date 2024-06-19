@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IProducto } from 'app/core/models/producto.model';
+import { IRepuesto } from 'app/core/models/repuesto.model';
 import { ProductosService } from 'app/core/services/productos.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { ProductosService } from 'app/core/services/productos.service';
   styleUrls: ['./detalle-p.component.css']
 })
 export class DetallePComponent implements OnInit {
-  producto?: IProducto;
+  producto?: IProducto
 
   constructor(
     private route: ActivatedRoute,

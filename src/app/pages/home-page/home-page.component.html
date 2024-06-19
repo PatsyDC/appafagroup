@@ -1,31 +1,24 @@
 <body>
     <!-- Carousel Start -->
-    <div class="slider-container">
-        <div class="slider">
-            <div class="slide">
-                <img src="/img/slider1.png" alt="Slide 1">
-                <div class="slide-text">
-                    <h2>NO HAY <br> <br><span>TERRENO</span><br> <br> DIFICIL</h2>
-                </div>
-            </div>
-            <div class="slide">
-                <img src="/img/slider2.jpg" alt="Slide 2">
-                <div class="slide-text">
-                    <h2>NO HAY <br><br><span>TERRENO</span><br> <br> DIFICIL</h2>
-                </div>
-            </div>
-            <div class="slide">
-                <img src="/img/slider3.png" alt="Slide 3">
-                <div class="slide-text">
-                    <h2>NO HAY <br> <br><span>TERRENO</span><br><br> DIFICIL</h2>
-                </div>
-            </div>
-        </div>
-        <div class="controls">
-            <button class="prev-btn">&lt;</button>
-            <button class="next-btn">&gt;</button>
-        </div>
+<!-- Carousel Start -->
+<div class="slider-container">
+  <div class="slider">
+    <div *ngFor="let slide of sliders; let i = index" class="slide" [ngClass]="{'active': i === currentSlide}">
+      <img [src]="slide.img" [alt]="'Slide ' + (i + 1)">
+      <div class="slide-text">
+        <h2>{{slide.texto1}} <br> <br><span>{{slide.texto_central}}</span><br> <br> {{slide.texto2}}</h2>
+      </div>
     </div>
+  </div>
+  <!-- <div class="controls">
+    <button class="prev-btn" (click)="prevSlide()">&lt;</button>
+    <button class="next-btn" (click)="nextSlide()">&gt;</button>
+  </div> -->
+</div>
+
+
+
+
     <!-- Carousel End -->
 
     <!-- empresas -->

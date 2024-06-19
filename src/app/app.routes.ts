@@ -4,6 +4,7 @@ import { BlogComponent } from '@pages/blog/blog.component';
 import { CarritoComponent } from '@pages/carrito/carrito.component';
 import { ContactComponent } from '@pages/contact/contact.component';
 import { DetallePComponent } from '@pages/detalle-p/detalle-p.component';
+import { DetalleRComponent } from '@pages/detalle-r/detalle-r.component';
 import { EquipmentListComponent } from '@pages/equipment-list/equipment-list.component';
 import { FabricacionComponent } from '@pages/fabricacion/fabricacion.component';
 import { HomePageComponent } from '@pages/home-page/home-page.component';
@@ -24,5 +25,6 @@ export const routes: Routes = [
   { path:'detalle/:id', component: DetallePComponent},
   { path: 'carrito', component: CarritoComponent},
   { path: 'fabricacion', component: ServicesComponent},
+  { path: 'detalleRepuesto/:id', component: DetalleRComponent},
   { path: '**', redirectTo: 'home', pathMatch: 'full' }, //FINALLL
 ];

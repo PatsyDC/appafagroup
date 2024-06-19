@@ -1,13 +1,12 @@
 <div class="container">
-  @for (catalogo of productos; track $index) {
+  @for (catalogo of repuesto; track $index) {
     <div class="card">
       <div class="content">
         <img [src]="catalogo.img" alt="">
         <div class="text">
           <h3>{{ catalogo.nombre }}</h3>
-          <p>{{ catalogo.description }}</p>
           <div class="btn-group">
-            <a [routerLink]="['/detalle', catalogo.id]" class="btn btn-info">Ver Ficha</a>
+            <a [routerLink]="['/detalleRepuesto', catalogo.id]" class="btn btn-info">Ver Ficha</a>
           </div>
         </div>
       </div>

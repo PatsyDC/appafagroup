@@ -1,15 +1,22 @@
 /* Estilos Generales */
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Poppins", sans-serif;
   margin: 0;
-  background-color: #f7f7f7;
 }
-
+.custom-focus-ring:focus {
+  outline: none;
+  border-color: #326DE7; /* Actualiza el borde al color deseado */
+  box-shadow: 0 0 0 3px rgba(50, 109, 231, 0.5); /* Añade un anillo de enfoque */
+}
 .container {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+}
+
+h1{
+  font-family: "Poppins", sans-serif;
 }
 
 .shadow {
@@ -50,6 +57,7 @@ body {
   border-radius: 6px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   font-size: 1rem;
+  font-family: "Poppins", sans-serif;
 }
 
 .form-control:focus {

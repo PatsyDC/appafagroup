@@ -7,10 +7,11 @@
           <img [src]="repuesto.img" alt="">
           <div class="text">
             <h3>{{ repuesto.nombre }}</h3>
-            <p>{{ repuesto.description }}</p>
+            <p>{{ repuesto.descripcion }}</p>
             <div class="btn-group">
-              <a [routerLink]="['/detalle', repuesto.id]" class="btn btn-info">Ver Ficha</a>
-              <a href="https://drive.google.com/file/d/1pqvwU1we_Pu_7u4cTaX4_CtpIn29fKWT/view" class="btn btn-info">Descargar PDF</a>
+              <a [routerLink]="['/detalleRepuesto', repuesto.id]" class="btn btn-info">Ver Ficha</a>
+              <a (click)="addToCart($event, repuesto)" class="btn btn-info">Agregar al carro</a>
+
             </div>
           </div>
         </div>
@@ -20,7 +21,7 @@
 </div>
 
 <div class="section">
-  <h2>Equipos de Arrastre</h2>
+  <h2>Equipos</h2>
   <div class="container">
     @for (catalogo of producto; track $index) {
       <div class="card">
@@ -31,7 +32,8 @@
             <p>{{ catalogo.descripcion }}</p>
             <div class="btn-group">
               <a [routerLink]="['/detalle', catalogo.id]" class="btn btn-info">Ver Ficha</a>
-              <a href="https://drive.google.com/file/d/1pqvwU1we_Pu_7u4cTaX4_CtpIn29fKWT/view" class="btn btn-info">Descargar PDF</a>
+              <a (click)="addToCart($event, catalogo)" class="btn btn-info">Agregar al carro</a>
+              <a href="https://drive.google.com/file/d/1pqvwU1we_Pu_7u4cTaX4_CtpIn29fKWT/view" class="btn btn-info"> Ver PDF</a>
             </div>
           </div>
         </div>
@@ -40,44 +42,3 @@
   </div>
 </div>
 
-<div class="section">
-  <h2>Equipos de Utropropulsadas</h2>
-  <div class="container">
-    @for (catalogo of producto; track $index) {
-      <div class="card">
-        <div class="content">
-          <img [src]="catalogo.img" alt="">
-          <div class="text">
-            <h3>{{ catalogo.nombre }}</h3>
-            <p>{{ catalogo.descripcion }}</p>
-            <div class="btn-group">
-              <a [routerLink]="['/detalle', catalogo.id]" class="btn btn-info">Ver Ficha</a>
-              <a href="https://drive.google.com/file/d/1pqvwU1we_Pu_7u4cTaX4_CtpIn29fKWT/view" class="btn btn-info">Descargar PDF</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    }
-  </div>
-</div>
-
-<div class="section">
-  <h2>Equipos Manuales</h2>
-  <div class="container">
-    @for (catalogo of producto; track $index) {
-      <div class="card">
-        <div class="content">
-          <img [src]="catalogo.img" alt="">
-          <div class="text">
-            <h3>{{ catalogo.nombre }}</h3>
-            <p>{{ catalogo.descripcion }}</p>
-            <div class="btn-group">
-              <a [routerLink]="['/detalle', catalogo.id]" class="btn btn-info">Ver Ficha</a>
-              <a href="https://drive.google.com/file/d/1pqvwU1we_Pu_7u4cTaX4_CtpIn29fKWT/view" class="btn btn-info">Descargar PDF</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    }
-  </div>
-</div>

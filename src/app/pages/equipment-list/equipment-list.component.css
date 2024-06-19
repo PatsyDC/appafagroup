@@ -28,6 +28,7 @@ body {
   margin: 40px 0 20px 0;
   border-bottom: 2px solid #ccc;
   position: relative;
+  font-family: "Poppins", sans-serif;
 }
 
 .category-title::after {
@@ -80,6 +81,7 @@ body {
   font-size: 1.3rem;
   color: #444;
   font-weight: 500;
+  font-family: "Poppins", sans-serif;
 }
 
 .text p {
@@ -87,12 +89,14 @@ body {
   color: #777;
   font-size: 0.95rem;
   line-height: 1.4;
+  font-family: "Poppins", sans-serif;
 }
 
 .btn-group {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "Poppins", sans-serif;
 }
 
 .btn {

@@ -57,6 +57,7 @@ body {
   font-size: 1.3rem;
   color: #444;
   font-weight: 500;
+  font-family: "Poppins", sans-serif;
 }
 
 .text p {
@@ -69,7 +70,8 @@ body {
 .btn-group {
   display: flex;
   justify-content: center;
-  align-items: center; /* Alinear verticalmente los botones */
+  align-items: center;
+  font-family: "Poppins", sans-serif;
 }
 
 .btn {

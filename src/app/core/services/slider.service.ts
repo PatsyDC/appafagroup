@@ -18,4 +18,8 @@ export class SliderService {
   allSlider(): Observable<ISlider[]>{
     return this.http.get<ISlider[]>(this.url)
   }
+
+  getSliderById(id: number): Observable<ISlider> {
+    return this.http.get<ISlider>(`${this.url}/${id}`);
+  }
 }

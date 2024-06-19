@@ -28,9 +28,9 @@ export class ProductosService {
 
   allProductosWithCategories(): Observable<IProducto[]> {
     return forkJoin([this.allProductos(), this.allCategorias()])
-     .pipe(map(([productos, categorias]) => {
+    .pipe(map(([productos, categorias]) => {
         return productos.map(producto => ({
-         ...producto,
+        ...producto,
           categoria: categorias.find(categoria => categoria.id === producto.categoria_id)
         }));
       }));

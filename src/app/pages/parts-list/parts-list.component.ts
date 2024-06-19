@@ -11,7 +11,7 @@ import { RepuestoService } from 'app/core/services/repuesto.service';
   styleUrl: './parts-list.component.css'
 })
 export class PartsListComponent {
-  productos?: IRepuesto[] = [];
+  repuesto?: IRepuesto[] = [];
   public listaProductos:IRepuesto[] = [];
 
   constructor(private repuestoService: RepuestoService) {
@@ -20,7 +20,7 @@ export class PartsListComponent {
   ngOnInit(): void {
     this.repuestoService.allRepuestos().subscribe((data) => {
       console.log('data: ',data);
-      this.productos = data;
+      this.repuesto = data;
     });
   }
 
