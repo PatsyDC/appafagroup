@@ -28,7 +28,6 @@
           <img [src]="catalogo.img" alt="">
           <div class="text">
             <h3>{{ catalogo.nombre }}</h3>
-            <p>{{ catalogo.descripcion }}</p>
             <div class="btn-group">
               <a [routerLink]="['/detalle', catalogo.id]" class="btn btn-info">Ver Ficha</a>
               <a (click)="addToCart($event, catalogo)" class="btn btn-info">Agregar al carro</a>

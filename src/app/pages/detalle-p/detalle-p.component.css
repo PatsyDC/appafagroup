@@ -27,6 +27,7 @@
   border-radius: 8px; /* Bordes redondeados para la imagen */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
   transition: transform 0.3s ease; /* Transición para la animación */
+  height: 300px;
   max-height: 300px;
 }
 

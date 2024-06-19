@@ -7,7 +7,7 @@
   border-radius: 10px; /* Bordes redondeados */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
   max-width: 800px;
-  max-height: 400px;/* Ancho máximo del contenedor */
+  max-height: 350px;/* Ancho máximo del contenedor */
   margin: 0 auto; /* Centrar en la página */
   padding-bottom: 5rem;
   margin-top: 20px;
@@ -27,6 +27,7 @@
   border-radius: 8px;/* Bordes redondeados para la imagen */
   max-width: 500px;
   max-height: 900px;
+  height: 300px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
   transition: transform 0.3s ease; /* Transición para la animación */
 }
