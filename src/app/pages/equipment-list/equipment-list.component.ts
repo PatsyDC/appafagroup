@@ -12,20 +12,20 @@ import { ProductosService } from 'app/core/services/productos.service';
   styleUrls: ['./equipment-list.component.css']
 })
 export class EquipmentListComponent {
-  productosFiltradosCategoria4?: IProducto[] = [];
-  productosFiltradosCategoria5?: IProducto[] = [];
-  productosFiltradosCategoria6?: IProducto[] = [];
-  productosFiltradosCategoria7?: IProducto[] = [];
+  productosFiltradosCategoria1?: IProducto[] = [];
+  productosFiltradosCategoria2?: IProducto[] = [];
+  productosFiltradosCategoria3?: IProducto[] = [];
+
   public listaProductos: IProducto[] = [];
 
   constructor(private productoService: ProductosService) {}
 
   ngOnInit(): void {
     this.productoService.allProductosWithCategories().subscribe((productosConCategorias) => {
-      this.productosFiltradosCategoria4 = productosConCategorias.filter(producto => producto.categoria_id === 4);
-      this.productosFiltradosCategoria5 = productosConCategorias.filter(producto => producto.categoria_id === 5);
-      this.productosFiltradosCategoria6 = productosConCategorias.filter(producto => producto.categoria_id === 7);
-      this.productosFiltradosCategoria7 = productosConCategorias.filter(producto => producto.categoria_id === 6);
+      this.productosFiltradosCategoria1 = productosConCategorias.filter(producto => producto.categoria_id === 1);
+      this.productosFiltradosCategoria2 = productosConCategorias.filter(producto => producto.categoria_id === 2);
+      this.productosFiltradosCategoria3 = productosConCategorias.filter(producto => producto.categoria_id === 3);
+      
     });
   }
 }

@@ -1,15 +1,162 @@
+
 <div class="container">
-  @for (catalogo of repuesto; track $index) {
-    <div class="card">
-      <div class="content">
-        <img [src]="catalogo.img" alt="">
-        <div class="text">
-          <h3>{{ catalogo.nombre }}</h3>
-          <div class="btn-group">
-            <a [routerLink]="['/detalleRepuesto', catalogo.id]" class="btn btn-info">Ver Ficha</a>
-          </div>
-        </div>
+
+
+  <h1 class="category-title">BOQUILLAS Y ACCESORIOS</h1>
+  <div *ngFor="let producto of productosFiltradosCategoria4" class="card">
+    <div class="content">
+      <img [src]="producto.img" alt="">
+    </div>
+    <div class="text">
+      <h3>{{ producto.nombre }}</h3>
+      <p>{{ producto.descripcion }}</p>
+      <div class="btn-group">
+        <a [routerLink]="['/detalle', producto.id]" class="btn btn-info">Ver Detalle</a>
       </div>
     </div>
-  }
+  </div>
+
+  <h1 class="category-title">ACCESORIOS DE FUMIGACIÓN</h1>
+  <div *ngFor="let producto of productosFiltradosCategoria5" class="card">
+    <div class="content">
+      <img [src]="producto.img" alt="">
+    </div>
+    <div class="text">
+      <h3>{{ producto.nombre }}</h3>
+      <p>{{ producto.descripcion }}</p>
+      <div class="btn-group">
+        <a [routerLink]="['/detalle', producto.id]" class="btn btn-info">Ver Detalle</a>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <h1 class="category-title">BOMBAS Y ACCESORIOS</h1>
+  <div *ngFor="let producto of productosFiltradosCategoria6" class="card">
+    <div class="content">
+      <img [src]="producto.img" alt="">
+    </div>
+    <div class="text">
+      <h3>{{ producto.nombre }}</h3>
+      <p>{{ producto.descripcion }}</p>
+      <div class="btn-group">
+        <a [routerLink]="['/detalle', producto.id]" class="btn btn-info">Ver Detalle</a>
+      </div>
+    </div>
+  </div>
+
+  <h1 class="category-title">CARDANES Y ACCESORIOS</h1>
+  <div *ngFor="let producto of productosFiltradosCategoria7" class="card">
+    <div class="content">
+      <img [src]="producto.img" alt="">
+    </div>
+    <div class="text">
+      <h3>{{ producto.nombre }}</h3>
+      <p>{{ producto.descripcion }}</p>
+      <div class="btn-group">
+        <a [routerLink]="['/detalle', producto.id]" class="btn btn-info">Ver Detalle</a>
+      </div>
+    </div>
+  </div>
+
+
+  <h1 class="category-title">GRUPOS DE AIRE Y CAJAS DE TRANSMISIÓN</h1>
+  <div *ngFor="let producto of productosFiltradosCategoria8" class="card">
+    <div class="content">
+      <img [src]="producto.img" alt="">
+    </div>
+    <div class="text">
+      <h3>{{ producto.nombre }}</h3>
+      <p>{{ producto.descripcion }}</p>
+      <div class="btn-group">
+        <a [routerLink]="['/detalle', producto.id]" class="btn btn-info">Ver Detalle</a>
+      </div>
+    </div>
+  </div>
+
+
+  <h1 class="category-title">MANGUERAS Y ACCESORIOS</h1>
+  <div *ngFor="let producto of productosFiltradosCategoria9" class="card">
+    <div class="content">
+      <img [src]="producto.img" alt="">
+    </div>
+    <div class="text">
+      <h3>{{ producto.nombre }}</h3>
+      <p>{{ producto.descripcion }}</p>
+      <div class="btn-group">
+        <a [routerLink]="['/detalle', producto.id]" class="btn btn-info">Ver Detalle</a>
+      </div>
+    </div>
+  </div>
+
+
+  <h1 class="category-title">TANQUES AGRÍCOLAS</h1>
+  <div *ngFor="let producto of productosFiltradosCategoria10" class="card">
+    <div class="content">
+      <img [src]="producto.img" alt="">
+    </div>
+    <div class="text">
+      <h3>{{ producto.nombre }}</h3>
+      <p>{{ producto.descripcion }}</p>
+      <div class="btn-group">
+        <a [routerLink]="['/detalle', producto.id]" class="btn btn-info">Ver Detalle</a>
+      </div>
+    </div>
+  </div>
+
+
+
+  <h1 class="category-title">NEUMÁTICOS Y PARTES</h1>
+  <div *ngFor="let producto of productosFiltradosCategoria11" class="card">
+    <div class="content">
+      <img [src]="producto.img" alt="">
+    </div>
+    <div class="text">
+      <h3>{{ producto.nombre }}</h3>
+      <p>{{ producto.descripcion }}</p>
+      <div class="btn-group">
+        <a [routerLink]="['/detalle', producto.id]" class="btn btn-info">Ver Detalle</a>
+      </div>
+    </div>
+  </div>
+
+
+  <h1 class="category-title">COMPONENTES HIDRÁULICOS</h1>
+  <div *ngFor="let producto of productosFiltradosCategoria12" class="card">
+    <div class="content">
+      <img [src]="producto.img" alt="">
+    </div>
+    <div class="text">
+      <h3>{{ producto.nombre }}</h3>
+      <p>{{ producto.descripcion }}</p>
+      <div class="btn-group">
+        <a [routerLink]="['/detalle', producto.id]" class="btn btn-info">Ver Detalle</a>
+      </div>
+    </div>
+  </div>
+
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

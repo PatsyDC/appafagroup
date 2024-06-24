@@ -60,12 +60,13 @@ body {
 
 .content {
   position: relative;
+  height: 180px; /* Mantén la altura del contenedor de la imagen */
 }
 
 .content img {
   width: 100%;
-  height: 180px;
-  object-fit: cover;
+  height: 100%;
+  object-fit: cover; /* Ajusta las imágenes para que cubran todo el contenedor */
   display: block;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
