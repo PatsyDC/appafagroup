@@ -1,0 +1,75 @@
+/* Sidebar */
+.left-sidebar {
+  position: absolute;
+  width: 250px; /* Asegúrate de definir esta variable en tu SCSS */
+  height: 100%;
+  top: 0px;
+  z-index: 99;
+  padding-top: 64px;
+  background: #f8f9fa; /* Asegúrate de definir esta variable en tu SCSS */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Asegúrate de definir esta variable en tu SCSS */
+  transition: 0.2s ease-in;
+}
+
+/* Sidebar navigation */
+.sidebar-nav {
+  ul {
+    margin: 0px;
+    padding: 0px;
+    li {
+      list-style: none;
+    }
+  }
+
+  ul {
+    .sidebar-item {
+      width: 100%;
+      .sidebar-link {
+        color: #495057; /* Asegúrate de definir esta variable en tu SCSS */
+        padding: 14px 15px;
+        display: flex;
+        white-space: nowrap;
+        align-items: center;
+        line-height: 25px;
+        opacity: 0.6;
+
+        i {
+          font-style: normal;
+          width: 35px;
+          line-height: 25px;
+          font-size: 18px;
+          color: #6c757d; /* Asegúrate de definir esta variable en tu SCSS */
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        &.active,
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      &.active > .sidebar-link {
+        background: #17a2b8; /* Asegúrate de definir esta variable en tu SCSS */
+        opacity: 1;
+        color: #ffffff; /* Asegúrate de definir esta variable en tu SCSS */
+        border-radius: 4px;
+      }
+    }
+  }
+}
+
+/* Common m-p removed */
+.sidebar-nav ul {
+  margin: 0px;
+  padding: 0px;
+
+  li {
+    list-style: none;
+  }
+}
+
+.collapse.in {
+  display: block;
+}
