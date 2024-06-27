@@ -237,27 +237,333 @@
 
 
 
-
-  .e-lineas {
+  .team-section {
     text-align: center;
     margin: 20px;
   }
 
-  .e-lineas h2 {
+  .team-title {
     font-weight: 300; /* Usar un valor numérico para un peso más delgado */
     font-size: 24px;
     margin-bottom: 10px;
   }
 
-  .e-lineas .line {
+  .team-content .team-line {
     width: 60px;
     height: 3px;
     background-color: #007bff;
     margin: 0 auto 20px auto;
   }
 
-  .e-lineas p {
+  .team-content p {
     font-weight: 300; /* Usar un valor numérico para un peso más delgado */
     font-size: 16px;
     color: #555;
+  }
+
+/*Imagenes*/
+
+:root {
+    --blue: #007bff;
+    --indigo: #6610f2;
+    --purple: #6f42c1;
+    --pink: #e83e8c;
+    --red: #dc3545;
+    --orange: #fd7e14;
+    --yellow: #ffc107;
+    --green: #28a745;
+    --teal: #20c997;
+    --cyan: #17a2b8;
+    --white: #fff;
+    --gray: #6c757d;
+    --gray-dark: #343a40;
+    --primary: #326DE7;
+    --secondary: #F2F1F8;
+    --success: #28a745;
+    --info: #17a2b8;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --light: #FFFFFF;
+    --dark: #44425A;
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+    --font-family-sans-serif: "Poppins", sans-serif;
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #6C6A74;
+    text-align: left;
+    background-color: #fff;
+  }
+  .about-1 {
+    margin: 30px;
+    padding: 5px;
+  }
+
+  h1{
+    color: #326DE7;
+  }
+  .text-secondaryy{
+    color: #326DE7;
+  }
+  .bg-secondaryy {
+  background-color: #326DE7;
+  }
+
+  .about-1 h1 {
+    text-align: center;
+    color: #326DE7;
+    font-weight: lighter;
+  }
+
+  .about-1 p {
+    text-align: center;
+    padding: 3px;
+    color: #fff;
+  }
+
+  .about-item {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    background-color: white;
+    padding: 30px;
+    box-shadow: 0 0 9px rgba(0, 0, 0, 0.6);
+  }
+
+  .about-item h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .about-item hr {
+    width: 46px;
+    height: 3px;
+    background-color: #003eb9;
+    margin: 0 auto;
+
+    border: none;
+  }
+
+  .about-item p {
+    margin-top: 20px;
+  }
+
+  .about-item:hover {
+    background-color: #326DE7;
+    color: white;
+  }
+
+  .about-item:hover i,
+  .about-item:hover h3,
+  .about-item:hover p {
+    color: #fff;
+  }
+
+  .about-item:hover hr {
+    background-color: #fff;
+  }
+
+  .about-item:hover i {
+    transform: translateY(-20px);
+  }
+
+  .about-item:hover i,
+  .about-item:hover h3,
+  .about-item:hover hr {
+    transition: all 600ms ease-in-out;
+  }
+
+
+
+  .icon {
+    font-size: 30px;
+    color: #326DE7;
+    padding-bottom: 1.5rem;
+  }
+
+  .card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 23px;
+  }
+
+  .card {
+    width: 270px;
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+  }
+
+  .card img {
+    width: 100%;
+    height: 300px;
+  }
+
+  .card-content {
+    padding: 20px;
+  }
+
+  .card-content h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .card-content p {
+    color: #666;
+    font-size: 12px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+  }
+  /* Media query para tabletas */
+  @media (max-width: 768px) {
+    .card {
+        width: calc(33.33% - 20px);
+        margin: 10px;
+    }
+
+    .card-content {
+        padding: 20px;
+    }
+
+    .card-content h3 {
+        font-size: 18px;
+    }
+
+    .card-content p {
+        font-size: 12px;
+    }
+  }
+
+  /* Media query para dispositivos móviles */
+  @media (max-width: 576px) {
+    .card {
+        width: calc(50% - 20px);
+    }
+
+    .card-content {
+        padding: 15px;
+    }
+
+    .card-content h3 {
+        font-size: 16px;
+    }
+
+    .card-content p {
+        font-size: 11px;
+    }
+  }
+
+
+
+  @media (max-width: 768px) {
+    .about-item {
+        padding: 20px;
+    }
+    .about-item h3 {
+        font-size: 18px;
+    }
+    .icon {
+        font-size: 24px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .about-item {
+        padding: 15px;
+    }
+    .about-item h3 {
+        font-size: 16px;
+    }
+    .icon {
+        font-size: 20px;
+    }
+  }
+
+
+
+
+
+/*Imagenes*/
+
+.custom-slider {
+  width: 75vw;
+  height: auto;
+  margin: auto;
+  overflow: hidden;
+  padding-top: 7rem;
+}
+
+.custom-slider .custom-slide-track {
+  display: flex;
+  animation: custom-scroll 40s linear infinite;
+  -webkit-animation: custom-scroll 40s linear infinite;
+  width: calc((200px + 20px) * 14);
+  gap: 20px;
+}
+
+.custom-slider .custom-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.custom-slider .custom-slide {
+  width: 200px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes custom-scroll {
+  0% {
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+  }
+  100% {
+      -webkit-transform: translateX(calc(-1 * (200px + 20px) * 7));
+      transform: translateX(calc(-1 * (200px + 20px) * 7));
+  }
+}
+/* marcas registradas */
+.subtitle {
+  font-family: poppins;
+  font-size: 24px;
+  font-weight: 300;
+  color: #757474;
+  text-align: center;
+  position: relative;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+}
+
+.subtitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 3px;
+  background-color: #4285f4;
 }

@@ -150,96 +150,148 @@ p {
 }
 
 /* slider */
-/* Estilos generales */
+/* Slider Container */
 .slider-container {
-position: relative;
-width: 100%;
-margin: 0 auto;
-overflow: hidden;
-height: 85vh; /* Altura normal del slider */
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  height: 100vh;
 }
 
+/* Slider */
 .slider {
-display: flex;
-transition: transform 0.5s ease; /* Transición suave para desplazamientos */
-height: 100%;
-width: 100%;
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  height: 80%;
+  width: 100%;
 }
 
+/* Slide */
 .slide {
-position: relative;
-flex: 0 0 100%;
-height: 100%;
+  position: relative;
+  flex: 0 0 100%;
+  height: 100%;
 }
 
+/* Overlay */
 .slide::before {
-content: '';
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background-color: rgba(0, 0, 0, 0.5);
-z-index: 1;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 }
 
+/* Slide Image */
 .slide img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-position: relative;
-z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 0;
 }
 
+/* Slide Text */
 .slide-text {
-display: block;
-padding-right: 5%;
-position: absolute;
-top: 50%;
-right: 5%;
-transform: translateY(-50%);
-color: white;
-text-align: right;
-z-index: 2;
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+  color: white;
+  text-align: right;
+  z-index: 2;
 }
 
 .slide-text h2 {
-font-size: 5vw; /* Tamaño del título proporcional al tamaño de la pantalla */
-margin: 0;
-color: white;
-padding: 0;
-font-family: 'Poppins', sans-serif;
+  font-size: 2em;
+  margin: 0;
+  padding: 0;
+  font-size: 50px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .slide-text h2 span {
-font-size: 8vw; /* Tamaño del span proporcional al tamaño de la pantalla */
-padding: 1.5vw 3vw; /* Padding proporcional */
-border-radius: 2vw; /* Radio de borde proporcional */
-font-family: 'Poppins', sans-serif;
+  font-size: 90px;
+  background-color: #0F6FF5;
+  color: white;
+  font-style: italic;
+  padding: 10px 20px;
+  border-radius: 40px;
+  font-family: 'Poppins', sans-serif;
 }
 
+/* Controls */
 .controls {
-position: absolute;
-top: 40%;
-transform: translateY(-50%);
-width: 100%;
-display: flex;
-justify-content: space-between;
-z-index: 3;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  z-index: 3;
+  transform: translateY(-50%);
 }
 
 .controls button {
-padding: 10px 20px;
-font-size: 18px;
-border: none;
-background-color: #0F6FF5;
-color: #fff;
-cursor: pointer;
+  padding: 10px 20px;
+  font-size: 18px;
+  border: none;
+  background-color: #0F6FF5;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .controls button:hover {
-background-color: #555;
+  background-color: #555;
 }
+
+/* Media Queries */
+@media (max-width: 1200px) {
+  .slider-container {
+      height: 80vh;
+  }
+  .slide-text h2 {
+      font-size: 40px;
+  }
+  .slide-text h2 span {
+      font-size: 70px;
+  }
+}
+
+@media (max-width: 768px) {
+  .slider-container {
+      height: 60vh;
+  }
+  .slide-text {
+      right: 10%;
+  }
+  .slide-text h2 {
+      font-size: 30px;
+  }
+  .slide-text h2 span {
+      font-size: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slider-container {
+      height: 40vh;
+  }
+  .slide-text {
+      right: 5%;
+  }
+  .slide-text h2 {
+      font-size: 20px;
+  }
+  .slide-text h2 span {
+      font-size: 30px;
+  }
+}
+
 
 /* Media queries para hacer el slider responsive */
 
@@ -428,29 +480,26 @@ span.text {
 /*  */
 
 /* marcas registradas */
-
-.e-lineas {
-  text-align: center;
-  margin: 20px;
-}
-
-.e-lineas h2 {
-  font-weight: 300; /* Usar un valor numérico para un peso más delgado */
+.subtitle {
+  font-family: poppins;
   font-size: 24px;
-  margin-bottom: 10px;
+  font-weight: 300;
+  color: #757474;
+  text-align: center;
+  position: relative;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
 }
 
-.e-lineas .line {
-  width: 60px;
+.subtitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
   height: 3px;
-  background-color: #007bff;
-  margin: 0 auto 20px auto;
-}
-
-.e-lineas p {
-  font-weight: 300; /* Usar un valor numérico para un peso más delgado */
-  font-size: 16px;
-  color: #555;
+  background-color: #4285f4;
 }
 
 

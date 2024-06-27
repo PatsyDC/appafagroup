@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="half-screen">
     <img src="{{ producto?.img }}" alt="{{ producto?.nombre }}" class="product-image">
   </div>
@@ -7,6 +7,10 @@
     <p class="description">{{ producto?.descripcion }}</p>
     <p class="description">Categoria: {{producto?.categoria?.nombre}}</p>
     <p class="price">Precio: {{ producto?.precio | currency : 'USD' }}</p>
-    <!-- En detalle-p.component.html -->
+
+
   </div>
-</div>
+</div> -->
+<img src="{{ producto?.ficha_p }}" alt="{{ producto?.ficha_p }}" class="product-image">
+
+<a href="{{ producto?.pdf }}">Descargue el PDF</a>

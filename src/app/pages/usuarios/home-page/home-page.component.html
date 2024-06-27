@@ -1,20 +1,25 @@
 <body>
     <!-- Carousel Start -->
-<!-- Carousel Start -->
-<div class="slider-container">
-  <div class="slider">
-    <div *ngFor="let slide of sliders; let i = index" class="slide" [ngClass]="{'active': i === currentSlide}">
-      <img [src]="slide.img" [alt]="'Slide ' + (i + 1)">
-      <div class="slide-text">
-        <h2>{{slide.texto1}} <br> <br><span>{{slide.texto_central}}</span><br> <br> {{slide.texto2}}</h2>
+    <div class="slider-container">
+      <div class="slider">
+          <div class="slide">
+              <img src="img/slider1.png" alt="Slide 1">
+
+          </div>
+          <div class="slide">
+              <img src="img/slider2.jpg" alt="Slide 2">
+
+          </div>
+          <div class="slide">
+              <img src="img/slider3.png" alt="Slide 3">
+
+          </div>
       </div>
-    </div>
+      <div class="controls">
+          <button class="prev-btn">&lt;</button>
+          <button class="next-btn">&gt;</button>
+      </div>
   </div>
-  <!-- <div class="controls">
-    <button class="prev-btn" (click)="prevSlide()">&lt;</button>
-    <button class="next-btn" (click)="nextSlide()">&gt;</button>
-  </div> -->
-</div>
 
 
 
@@ -25,12 +30,9 @@
     <div class="container-fluid py-3" style="margin-top: 1rem;">
         <div class="container py-5">
             <div class="row align-items-center">
-              <div class="e-lineas">
-                <h2 class="e-lineas ">Nuestras marcas registradas</h2>
-                <div class="line"></div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse amet illo eos eligendi
-                    nobis nam aspernatur placeat.</p>
-              </div>
+
+              <h3 class="subtitle">NUESTRAS MARCAS REGISTRADAS</h3>
+
                 <div class="container-lineas">
                     <div class="row">
                         <div class="col-md-6 col-lg-3">
@@ -52,12 +54,7 @@
             <br>
         </div>
 
-        <div class="e-lineas">
-          <h2 class="e-lineas "> Porque elegirnos</h2>
-          <div class="line"></div>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse amet illo eos eligendi
-              nobis nam aspernatur placeat.</p>
-        </div>
+        <h3 class="subtitle">PORQUE ELEGIRNOS</h3>
 
         <div class="container-caja">
 
@@ -95,12 +92,8 @@
 
     <!-- Te ofrecemos -->
     <div class="wrapper-o">
-      <div class="e-lineas">
-        <h2 class="e-lineas ">  Te ofrecemos</h2>
-        <div class="line"></div>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse amet illo eos eligendi
-            nobis nam aspernatur placeat.</p>
-    </div>
+      <h3 class="subtitle">TE OFRECEMOS</h3>
+
         <div class="content-box">
             <div class="card-o">
                 <i class="bx bx-bar-chart-alt bx-md"></i>
@@ -175,7 +168,8 @@
     <div class="container-visita">
         <div class="cont-all-visita">
             <div class="container-texto-visita">
-                <h1 class="titulo-visita">Agenda tu visita en fundo</h1>
+              <h3 class="subtitle" style="color: rgb(66, 66, 66);">Agenda tu visita a fundo</h3>
+
                 <p class="p-visita">Ponemos a tu disposición la
                   posibilidad de agendar una
                   visita gratuita en tu fundo.
@@ -220,7 +214,7 @@
 
         <div class="container-k" style="margin-top: 50px; margin-bottom: 50px;">
             <i class="fas fa-calendar-alt"></i>
-            <span class="num" data-val="280">12</span>
+            <span class="num" data-val="12">12</span>
             <span class="text">Años de experiencia</span>
         </div>
     </div>
@@ -230,11 +224,8 @@
 
     <!-- Certificados -->
     <br><br><br><br>
-    <div class="e-lineas">
-      <h2 class="e-lineas "> Certificados y reconocimientos</h2>
-      <div class="line"></div>
-      <p>Nuestros logros obtenidos</p>
-    </div>
+    <h3 class="subtitle">CERTIFICADOS Y RECONOCIMIENTOS</h3>
+
     <div class="allcertificado">
         <div class="containercerti">
             <h3 class="h3-certi">Certificado de Homologación</h3>
@@ -267,11 +258,8 @@
     <!-- certificados -->
 
     <!-- Noticias -->
-    <div class="e-lineas">
-      <h2 class="e-lineas "> Nuestras últimas noticias</h2>
-      <div class="line"></div>
-      <p>Nuestros logros obtenidos</p>
-    </div>
+    <h3 class="subtitle">NUESTRAS ÚLTIMAS NOTICIAS</h3>
+
     <div class="containernoticia">
       <a  href="/blog">
         <div class="noticia">
