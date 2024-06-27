@@ -10,7 +10,7 @@
       <p>{{ producto.descripcion }}</p>
       <div class="btn-group">
         <a [routerLink]="['/detalle', producto.id]" class="btn btn-info">Ver Detalle</a>
-        <a href="https://drive.google.com/file/d/1pqvwU1we_Pu_7u4cTaX4_CtpIn29fKWT/view" class="btn btn-info"> Ver PDF</a>
+        <a href="{{ producto?.pdf }}" class="btn btn-info"> Ver PDF</a>
       </div>
     </div>
   </div>
@@ -25,7 +25,7 @@
       <p>{{ producto.descripcion }}</p>
       <div class="btn-group">
         <a [routerLink]="['/detalle', producto.id]" class="btn btn-info">Ver Detalle</a>
-        <a href="https://drive.google.com/file/d/1pqvwU1we_Pu_7u4cTaX4_CtpIn29fKWT/view" class="btn btn-info"> Ver PDF</a>
+        <a href="{{ producto?.pdf }}" class="btn btn-info"> Ver PDF</a>
       </div>
     </div>
   </div>
@@ -40,7 +40,7 @@
       <p>{{ producto.descripcion }}</p>
       <div class="btn-group">
         <a [routerLink]="['/detalle', producto.id]" class="btn btn-info">Ver Detalle</a>
-        <a href="https://drive.google.com/file/d/1pqvwU1we_Pu_7u4cTaX4_CtpIn29fKWT/view" class="btn btn-info"> Ver PDF</a>
+        <a href="{{ producto?.pdf }}" class="btn btn-info"> Ver PDF</a>
       </div>
     </div>
   </div>

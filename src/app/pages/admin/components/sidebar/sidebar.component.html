@@ -1,16 +1,31 @@
-<nav class="sidebar-nav">
-  <ul id="sidebarnav" class="p-3">
-      <!-- First level menu -->
-      @for (item of menu; track $index) {
-        <li class="nav-item">
-            <a class="nav-link sidebar-item" routerLink="{{item.url}}" routerLinkActive="item-active">
-                <i>{{item.icon}}</i>
-                <span class="title-link">{{item.title}}</span>
-            </a>
-        </li>
-      }
-      <li class="text-center p-3 upgrade-btn">
-          <a href="https://www.wrappixel.com/templates/adminpro-angular-dashboard/" class="btn d-block w-100 btn-danger">Upgrade to Pro</a>
-      </li>
-  </ul>
+<nav class="sidebar">
+  <div class="logo">
+      <img src="/img/lg.png" width="40px" alt="Logo" class="icon-md">
+      <span>AFA GROUP</span>
+  </div>
+  <div class="menu-section">
+      <h3>HOME</h3>
+      <ul>
+          <li routerLink="/admin/inicio" routerLinkActive="active"><i class="fas fa-chart-line"></i> Analítica</li>
+          <li routerLink="" routerLinkActive="active"><i class="fas fa-globe custom-icon"></i> Página Web</li>
+      </ul>
+  </div>
+  <div class="menu-section">
+      <h3>SECTIONS</h3>
+      <ul>
+          <li routerLink="/admin/categoriasA" routerLinkActive="active"><i class="fas fa-th-list custom-icon"></i> Categorías</li>
+          <li routerLink="/admin/repuestosA" routerLinkActive="active"><i class="fas fa-box-open custom-icon"></i> Repuestos</li>
+          <li routerLink="/admin/equiposA" routerLinkActive="active"><i class="fas fa-truck-monster custom-icon"></i> Equipos</li>
+          <li routerLink="/admin/tiendaA" routerLinkActive="active"><i class="fas fa-store"></i> Tienda</li>
+
+      </ul>
+  </div>
+  <button class="logout-btn">Cerrar sesión</button> <!-- Botón de cerrar sesión -->
+  <div class="user-profile">
+      <img src="img/lg.png" width="40px" alt="User" class="avatar-md">
+      <div>
+          <span class="user-name">Afa Group</span>
+          <span class="user-role">Admin</span>
+      </div>
+  </div>
 </nav>

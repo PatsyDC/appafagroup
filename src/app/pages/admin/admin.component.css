@@ -1,0 +1,18 @@
+.cont-todo {
+  display: flex; /* Utilizamos flexbox para alinear los elementos en fila */
+}
+
+.app-sidebar {
+  /* Estilos para el sidebar, ajusta según tus necesidades */
+  width: 250px; /* Ancho del sidebar */
+  background-color: #f0f0f0;
+  padding: 20px;
+  box-sizing: border-box; /* Ajusta el padding dentro del ancho especificado */
+}
+
+.main-content {
+  /* Estilos para el contenido principal */
+  flex-grow: 1; /* Permite que este contenido ocupe el espacio restante */
+  padding: 20px;
+  box-sizing: border-box; /* Ajusta el padding dentro del espacio disponible */
+}

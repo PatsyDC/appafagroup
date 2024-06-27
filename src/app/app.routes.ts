@@ -16,6 +16,10 @@ import { ServicesComponent } from '@pages/usuarios/services/services.component';
 import { StoreComponent } from '@pages/usuarios/store/store.component';
 import { UsuariosComponent } from '@pages/usuarios/usuarios.component';
 import { InicioComponent } from '@pages/admin/inicio/inicio.component';
+import { RepuestosComponent } from '@pages/admin/repuestos/repuestos.component';
+import { CategoriasComponent } from '@pages/admin/categorias/categorias.component';
+import { TiendaComponent } from '@pages/admin/tienda/tienda.component';
+import { LoginComponent } from './auth/login/login.component';
 
 export const routes: Routes = [
   { path: '', component: UsuariosComponent,
@@ -39,9 +43,15 @@ export const routes: Routes = [
   { path: 'admin', component: AdminComponent,
     children: [
       {path: '', redirectTo: 'inicio', pathMatch: 'full'},
-      {path: 'equiposA', component: EquiposComponent},
       {path: 'inicio', component: InicioComponent},
+      {path: 'categoriasA', component: CategoriasComponent},
+      {path: 'repuestosA', component: RepuestosComponent},
+      {path: 'equiposA', component: EquiposComponent},
+      {path: 'tiendaA', component: TiendaComponent}
+
+
     ]
   },
+  { path: 'login', component: LoginComponent,},
   { path: '**', redirectTo: 'home', pathMatch: 'full' }, //FINALLL
 ];

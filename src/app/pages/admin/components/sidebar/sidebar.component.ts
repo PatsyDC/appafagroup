@@ -18,8 +18,8 @@ interface menuSidebar{
 export class SidebarComponent {
 
   menu: menuSidebar[] = [
-    {url: '/admin/inicio', title: 'Inicio', icon: "fa fa-"},
-    {url: '/admin/equiposA', title: 'Equipos', icon: "fa fa-"}
+    { url: '/admin/inicio', title: 'Inicio', icon: "fas fa-home" },
+    { url: '/admin/equiposA', title: 'Equipos', icon: "fas fa-truck-monster" }
   ]
 
 }

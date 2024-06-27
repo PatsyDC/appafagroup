@@ -1,75 +1,103 @@
-/* Sidebar */
-.left-sidebar {
-  position: absolute;
-  width: 250px; /* Asegúrate de definir esta variable en tu SCSS */
-  height: 100%;
-  top: 0px;
-  z-index: 99;
-  padding-top: 64px;
-  background: #f8f9fa; /* Asegúrate de definir esta variable en tu SCSS */
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Asegúrate de definir esta variable en tu SCSS */
-  transition: 0.2s ease-in;
+.sidebar {
+  width: 270px;
+  background-color: #ffffff;
+  height: 100vh;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
 }
 
-/* Sidebar navigation */
-.sidebar-nav {
-  ul {
-    margin: 0px;
-    padding: 0px;
-    li {
-      list-style: none;
-    }
-  }
-
-  ul {
-    .sidebar-item {
-      width: 100%;
-      .sidebar-link {
-        color: #495057; /* Asegúrate de definir esta variable en tu SCSS */
-        padding: 14px 15px;
-        display: flex;
-        white-space: nowrap;
-        align-items: center;
-        line-height: 25px;
-        opacity: 0.6;
-
-        i {
-          font-style: normal;
-          width: 35px;
-          line-height: 25px;
-          font-size: 18px;
-          color: #6c757d; /* Asegúrate de definir esta variable en tu SCSS */
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        &.active,
-        &:hover {
-          opacity: 1;
-        }
-      }
-
-      &.active > .sidebar-link {
-        background: #17a2b8; /* Asegúrate de definir esta variable en tu SCSS */
-        opacity: 1;
-        color: #ffffff; /* Asegúrate de definir esta variable en tu SCSS */
-        border-radius: 4px;
-      }
-    }
-  }
+/* Estilos para el botón de cerrar sesión */
+.logout-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-/* Common m-p removed */
-.sidebar-nav ul {
-  margin: 0px;
-  padding: 0px;
-
-  li {
-    list-style: none;
-  }
+.logout-btn:hover {
+  background-color: #d32f2f;
 }
 
-.collapse.in {
-  display: block;
+/* Resto de estilos de la barra lateral (previamente proporcionados) */
+.logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.logo img {
+  margin-right: 10px;
+}
+
+.menu-section {
+  margin-bottom: 30px;
+}
+
+.menu-section h3 {
+  font-size: 12px;
+  color: #8c9cad;
+  margin-bottom: 10px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar li {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.sidebar li:hover {
+  background-color: #f0f4f7;
+}
+
+.sidebar li.active {
+  background-color: #e6f2ff;
+  color: #5d87ff;
+}
+
+.sidebar li i {
+  margin-right: 12px;
+  width: 20px;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+.sidebar li.active i {
+  color: #5d87ff;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+  background-color: #f6f9fc;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.user-profile img {
+  margin-right: 10px;
+}
+
+.user-name {
+  font-weight: bold;
+}
+
+.user-role {
+  font-size: 12px;
+  color: #8c9cad;
 }

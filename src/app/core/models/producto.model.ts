@@ -10,5 +10,5 @@ export interface IProducto {
   categoria_id: number;
   categoria?: ICategoriaP; // Añade esta línea
   ficha_p: string;
-  pdf: string;
+  pdf: String;
 }

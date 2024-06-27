@@ -1,7 +1,8 @@
+<p>categorias works!</p>
 
 <!--FORM-->
 <div class="form-container">
-  <h2>Agregue un nuevo equipo</h2>
+  <h2>Agregue una nueva categroría</h2>
   <form class="ticket-form">
     <div class="form-group">
       <label for="title">Nombre</label>
@@ -11,32 +12,14 @@
       <label for="description">Descripción</label>
       <textarea id="description" name="description" rows="3"></textarea>
     </div>
-    <div class="form-group">
-      <label for="assigned-to">Categoría</label>
-      <select id="assigned-to" name="assigned-to">
-        <option value="">Seleccione una categoría</option>
-        <option value="alice">Atomizador</option>
-        <option value="bob">Pulverizador</option>
-        <option value="charlie">Nebulizador</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="ficha">Ficha</label>
-      <input type="file" id="ficha" name="ficha" accept="image/*">
-    </div>
-    <div class="form-group">
-      <label for="pdf">PDF</label>
-      <input type="url" id="pdf" name="pdf" placeholder="Ingrese la URL">
-    </div>
-    <button type="submit" class="submit-button">Agregar Equipo</button>
+    <button type="submit" class="submit-button">Agregar categoría</button>
   </form>
 </div>
 <br>
 <!--BUSCADOR-->
 <div class="ticket-controls">
   <div class="search-container">
-    <input type="text" placeholder="Buscar equipo" class="search-input">
+    <input type="text" placeholder="Buscar categoría" class="search-input">
     <button class="search-button">
       <i class="fas fa-search"></i>
     </button>
@@ -49,24 +32,16 @@
   <thead>
     <tr>
       <th>Id</th>
-      <th>Nombre</th>
-      <th>Categoría</th>
-      <th>Ficha</th>
-      <th>PDF</th>
       <th>Action</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>1</td>
       <td>
         <div class="title">Katrina 2000</div>
         <div class="subtitle">Equipo espacializado para cultivos de
         </div>
       </td>
-      <td><span class="status in-progress">1</span></td>
-      <td>subir IMG</td>
-      <td>URL</td>
       <td class="action-icons">
         <i class="fas fa-edit"></i>
         <i class="fas fa-trash"></i>
