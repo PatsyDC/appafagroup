@@ -24,4 +24,8 @@ export class ContactoService {
     }));
   }
 
+  allContacto(): Observable<IContacto[]> {
+    return this.http.get<IContacto[]>(this.url);
+  }
+
 }

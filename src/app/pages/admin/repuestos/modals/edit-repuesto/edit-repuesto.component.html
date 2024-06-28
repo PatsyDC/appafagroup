@@ -1,0 +1,38 @@
+<div class="form-container">
+  <h2>Editar equipo</h2>
+  <form class="ticket-form" [formGroup]="formEditRepuesto" (ngSubmit)="save()" enctype="multipart/form-data">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" formControlName="nombre" id="nombre" name="nombre" required>
+      </div>
+      <div class="form-group">
+        <label for="precio">Precio</label>
+        <input type="text" formControlName="precio" id="precio" name="precio" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="codigo">Código</label>
+      <input type="text" formControlName="codigo" id="codigo" name="codigo" required>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="descripcion">Descripción</label>
+        <textarea id="descripcion" formControlName="descripcion" name="descripcion" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="categoria_id">Categoría</label>
+        <select id="categoria_id" formControlName="categoria_id" name="categoria_id" required>
+          <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nombre }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="img">IMG</label>
+        <input type="file" id="img" (change)="onFileChange($event, 'img')">
+      </div>
+    </div>
+    <button type="submit" class="submit-button" [disabled]="!formEditRepuesto.valid">Guardar Cambios</button>
+  </form>
+</div>

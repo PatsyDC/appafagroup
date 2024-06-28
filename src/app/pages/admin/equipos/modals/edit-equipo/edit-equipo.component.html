@@ -1,1 +1,42 @@
-<p>edit-equipo works!</p>
+<div class="form-container">
+  <h2>Editar equipo</h2>
+  <form class="ticket-form" [formGroup]="formEditProducto" (ngSubmit)="save()" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="title">Nombre</label>
+      <input type="text" formControlName="nombre" id="nombre" name="nombre" required>
+    </div>
+    <div class="form-group">
+      <label for="description">Descripción</label>
+      <textarea id="description" formControlName="descripcion" name="descripcion" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="title">Precio</label>
+      <input type="text" formControlName="precio" id="precio" name="precio" required>
+    </div>
+
+    <div class="form-group">
+      <label for="categoria_id">Categoría</label>
+      <select id="categoria_id" formControlName="categoria_id" name="categoria_id" required>
+        <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nombre }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="img">IMG</label>
+      <input type="file" id="img" (change)="onFileChange($event, 'img')">
+    </div>
+
+    <div class="form-group">
+      <label for="ficha_p">Ficha</label>
+      <input type="file" id="ficha_p" (change)="onFileChange($event, 'ficha_p')">
+    </div>
+
+    <div class="form-group">
+      <label for="pdf">PDF</label>
+      <input type="url" formControlName="pdf" id="pdf" name="pdf" required placeholder="Ingrese la URL">
+    </div>
+    <button type="submit" class="submit-button" [disabled]="!formEditProducto.valid">Guardar Cambios</button>
+  </form>
+</div>
+<br>
+

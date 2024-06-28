@@ -12,3 +12,4 @@ export interface IProducto {
   ficha_p: string;
   pdf: String;
 }
+

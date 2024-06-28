@@ -82,7 +82,7 @@
       <td>{{equipo.pdf}}</td>
       <td>{{equipo.precio}}</td>
       <td class="action-icons">
-        <i class="fas fa-edit"></i>
+        <i class="fas fa-edit" (click)="openDialogEdit(equipo)"></i>
         <i class="fas fa-trash" (click)="deleteProducto(equipo.id)"></i>
       </td>
     </tr>

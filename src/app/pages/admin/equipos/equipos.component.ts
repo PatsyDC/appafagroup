@@ -1,11 +1,12 @@
 import { NgFor } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ICategoriaP } from 'app/core/models/categoria.model';
 import { IProducto } from 'app/core/models/producto.model';
 import { ProductosService } from 'app/core/services/productos.service';
+import { EditEquipoComponent } from './modals/edit-equipo/edit-equipo.component';
 
 @Component({
   selector: 'app-equipos',
@@ -15,6 +16,8 @@ import { ProductosService } from 'app/core/services/productos.service';
   styleUrl: './equipos.component.css'
 })
 export class EquiposComponent {
+
+  readonly dialog = inject(MatDialog);
 
   equipos: IProducto[] = [];
   categorias: ICategoriaP[] = [];
@@ -95,6 +98,18 @@ export class EquiposComponent {
     } else {
       console.error('Formulario inválido:', this.formEquipo); // Muestra errores de validación
     }
+  }
+
+  openDialogEdit(equipos: IProducto) {
+    const dialogRefEdit = this.dialog.open(EditEquipoComponent, {
+      data: equipos
+    });
+
+    dialogRefEdit.afterClosed().subscribe(result => {
+      if (result) {
+        this.getProductos();
+      }
+    });
   }
 
   deleteProducto(id: number) {

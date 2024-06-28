@@ -1,39 +1,42 @@
-
-<!--FORM-->
+<!-- FORM -->
 <div class="form-container">
   <h2>Agregue un nuevo repuesto</h2>
-  <form class="ticket-form">
+  <form class="ticket-form" [formGroup]="formRepuesto" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
     <div class="form-group">
-      <label for="title">Nombre</label>
-      <input type="text" id="title" name="title" required>
+      <label for="nombre">Nombre</label>
+      <input type="text" formControlName="nombre" id="nombre" name="nombre" required>
     </div>
     <div class="form-group">
-      <label for="description">Descripción</label>
-      <textarea id="description" name="description" rows="3"></textarea>
+      <label for="descripcion">Descripción</label>
+      <textarea id="descripcion" formControlName="descripcion" name="descripcion" rows="3"></textarea>
     </div>
     <div class="form-group">
-      <label for="assigned-to">Categoría</label>
-      <select id="assigned-to" name="assigned-to">
-        <option value="">Seleccione una categoría</option>
-        <option value="alice">Atomizador</option>
-        <option value="bob">Pulverizador</option>
-        <option value="charlie">Nebulizador</option>
+      <label for="title">Código</label>
+      <input type="text" formControlName="codigo" id="codigo" name="codigo" required>
+    </div>
+    <div class="form-group">
+      <label for="precio">Precio</label>
+      <input type="text" formControlName="precio" id="precio" name="precio" required>
+    </div>
+    <div class="form-group">
+      <label for="categoria_id">Categoría</label>
+      <select id="categoria_id" formControlName="categoria_id" name="categoria_id" required>
+        <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nombre }}</option>
       </select>
     </div>
-
     <div class="form-group">
-      <label for="ficha">Ficha</label>
-      <input type="file" id="ficha" name="ficha" accept="image/*">
+      <label for="img">IMG</label>
+      <input type="file" formControlName="img" id="img" name="img" required accept="image/*">
     </div>
     <div class="form-group">
       <label for="pdf">PDF</label>
-      <input type="url" id="pdf" name="pdf" placeholder="Ingrese la URL">
+      <input type="url" formControlName="pdf" id="pdf" name="pdf" required placeholder="Ingrese la URL">
     </div>
-    <button type="submit" class="submit-button">Agregar Repuesto</button>
+    <button type="submit" class="submit-button" cdkFocusInitial [disabled]="!formRepuesto.valid">Agregar repuesto</button>
   </form>
 </div>
 <br>
-<!--BUSCADOR-->
+<!-- BUSCADOR -->
 <div class="ticket-controls">
   <div class="search-container">
     <input type="text" placeholder="Buscar repuesto" class="search-input">
@@ -41,49 +44,49 @@
       <i class="fas fa-search"></i>
     </button>
   </div>
-  <!-- <button class="add-ticket-button">Add Ticket</button> -->
 </div>
-<!--TABLA DE BD-->
-
+<!-- TABLA DE BD -->
 <table class="task-table">
   <thead>
     <tr>
       <th>Id</th>
       <th>Nombre</th>
+      <th>Codigo</th>
       <th>Categoría</th>
-      <th>Ficha</th>
+      <th>Imagen</th>
       <th>PDF</th>
       <th>Action</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <td>4</td>
-      <td>
-        <div class="title">Katrina 2000</div>
-        <div class="subtitle">Equipo espacializado para cultivos de
-        </div>
-      </td>
-      <td><span class="status in-progress">1</span></td>
-      <td>subir IMG</td>
-      <td>URL</td>
-      <td class="action-icons">
-        <i class="fas fa-edit"></i>
-        <i class="fas fa-trash"></i>
-      </td>
-    </tr>
-    <!-- Repite este bloque para cada fila, cambiando los datos según corresponda -->
-  </tbody>
+
+  @for (repuesto of repuesto; track $index){
+    <tbody>
+      <tr>
+        <td>{{repuesto.id}}</td>
+        <td>
+          <div class="title">{{repuesto.nombre}}</div>
+          <div class="subtitle">{{repuesto.descripcion}}
+          </div>
+        </td>
+        <td>
+          <div class="title">{{repuesto.codigo}}</div>
+        </td>
+        <td>
+          <img width="100px" src="http://localhost:3000{{repuesto.img}}" alt="Imagen de {{repuesto.nombre}}" class="small-img">
+        </td>
+        <td>
+          <span class="status in-progress">{{repuesto.categoria_id}}</span>
+        </td>
+
+        <td>
+          <div class="title">{{repuesto.precio}}</div>
+        </td>
+        <td class="action-icons">
+          <i class="fas fa-edit" (click)="openDialogEdit(repuesto)"></i>
+          <i class="fas fa-trash" (click)="deleteRepuesto(repuesto.id)"></i>
+        </td>
+      </tr>
+      <!-- Repite este bloque para cada fila, cambiando los datos según corresponda -->
+    </tbody>
+    }
 </table>
-
-
-<!-- <div class="pagination">
-  <span>Items per page:</span>
-  <select>
-    <option>5</option>
-  </select>
-  <span>1 - 5 of 10</span>
-  <button disabled>&lt;</button>
-  <button>&gt;</button>
-  <button>&gt;|</button>
-</div> -->

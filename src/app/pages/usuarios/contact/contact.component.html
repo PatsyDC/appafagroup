@@ -1,74 +1,58 @@
-
-<body>
-  <div class="container d-flex flex-wrap min-vh-100 align-items-center justify-content-center">
-    <!-- Contenido -->
-    <div class="shadow w-100 max-w-4xl mx-auto d-flex flex-wrap align-items-center justify-content-center">
-      <!-- Imagen a la izquierda en pantallas grandes -->
-      <div class="d-none d-lg-flex align-items-center justify-content-center rounded-start" style="flex: 0 0 35%; height: 30rem;">
-        <img class="w-100 h-100 bg-center bg-no-repeat bg-cover rounded-start" src="img/contactenos.jpeg" alt="Contact Image">
-      </div>
+<div class="ccontainer-contact">
+  <!-- Contenido -->
+  <!-- Imagen a la izquierda en pantallas grandes -->
+  <img class="img-contact" src="img/1.1.png" alt="Contact Image">
+  <!-- Formulario -->
+  <div class="d-flex flex-wrap align-items-center justify-content-center rounded-end bg-white p-4 form-container">
+    <div class="w-100">
+      <!-- Encabezado -->
+      <h1 class="h5 font-weight-semibold">Contáctenos</h1>
       <!-- Formulario -->
-      <div class="d-flex flex-wrap align-items-center justify-content-center rounded-end bg-white w-100 p-4" style="flex: 1; max-width: 65%; height: 30rem;">
-        <div class="w-100">
-          <!-- Encabezado -->
-          <h1 class="h5 font-weight-semibold">Contáctenos</h1>
-          <!-- Formulario -->
-          <form [formGroup]="formContacto" (ngSubmit)="save()" class="mt-2">
-            <div class="row mb-2">
-              <div class="col-md-6 mb-2">
-                <label class="mb-1 d-block text-xs font-weight-semibold">Nombre y Apellidos</label>
-                <input type="text" placeholder="Nombre y Apellidos" class="form-control custom-focus-ring" formControlName="nombre">
-              </div>
-              <div class="col-md-6 mb-2">
-                <label class="mb-1 d-block text-xs font-weight-semibold">Email</label>
-                <input type="email" placeholder="Enter your email" class="form-control custom-focus-ring" formControlName="email">
-              </div>
-            </div>
-
-            <div class="row mb-2">
-              <div class="col-md-6 mb-2">
-                <label class="mb-1 d-block text-xs font-weight-semibold">Celular</label>
-                <input type="text" placeholder="Celular" class="form-control custom-focus-ring" formControlName="celular">
-              </div>
-              <div class="col-md-6 mb-2">
-                <label class="mb-1 d-block text-xs font-weight-semibold">Ciudad</label>
-                <input type="text" placeholder="Ciudad" class="form-control custom-focus-ring" formControlName="ciudad">
-              </div>
-            </div>
-
-            <div class="mb-2">
-              <label class="mb-1 d-block text-xs font-weight-semibold">Mensaje</label>
-              <textarea placeholder="Mensaje" class="form-control custom-focus-ring" rows="4" formControlName="mensaje"></textarea>
-            </div>
-
-            <div class="mb-2">
-              <button class="mb-2 w-100 btn text-white bg-primary custom-focus-ring">Enviar</button>
-            </div>
-          </form>
+      <form [formGroup]="formContacto" (ngSubmit)="save()" class="mt-2">
+        <div class="row mb-2">
+          <div class="col-md-6 mb-2">
+            <label class="mb-1 d-block text-xs font-weight-semibold">Nombre y Apellidos</label>
+            <input type="text" placeholder="Nombre y Apellidos" class="form-control custom-focus-ring" formControlName="nombre">
+          </div>
+          <div class="col-md-6 mb-2">
+            <label class="mb-1 d-block text-xs font-weight-semibold">Email</label>
+            <input type="email" placeholder="Enter your email" class="form-control custom-focus-ring" formControlName="email">
+          </div>
         </div>
-      </div>
+        <div class="row mb-2">
+          <div class="col-md-6 mb-2">
+            <label class="mb-1 d-block text-xs font-weight-semibold">Celular</label>
+            <input type="text" placeholder="Celular" class="form-control custom-focus-ring" formControlName="celular">
+          </div>
+          <div class="col-md-6 mb-2">
+            <label class="mb-1 d-block text-xs font-weight-semibold">Ciudad</label>
+            <input type="text" placeholder="Ciudad" class="form-control custom-focus-ring" formControlName="ciudad">
+          </div>
+        </div>
+        <div class="mb-2">
+          <label class="mb-1 d-block text-xs font-weight-semibold">Mensaje</label>
+          <textarea placeholder="Mensaje" class="form-control custom-focus-ring" rows="4" formControlName="mensaje"></textarea>
+        </div>
+        <div class="mb-2">
+          <button class="mb-2 w-100 btn btn-primary custom-focus-ring">Enviar</button>
+        </div>
+      </form>
     </div>
   </div>
 
-
-
-    <div class="container">
-      <div class="d-flex flex-column align-items-center">
-        <div class="tt mb-3 d-flex">
-          <button class="btn btn-primary btn-rect" (click)="setCenter(-8.1487078, -79.040944)">Sede Trujillo</button>
-          <button class="btn btn-primary btn-rect" (click)="setCenter(-8.1714148, -79.008936)">Sede Moche</button>
-          <button class="btn btn-primary btn-rect" (click)="setCenter(-6.7714616, -79.8387175)">Sede Chiclayo</button>
-          <button class="btn btn-primary btn-rect" (click)="setCenter(-6.034721374511719, -76.97469329833984)">Sede Ica</button>
-          <button class="btn btn-primary btn-rect" (click)="setCenter(-12.0621065, -77.0365256)">Sede Lima</button>
-        </div>
-        <google-map height="400px" width="800px" [center]="center" [zoom]="zoom" style="margin-bottom: 20px;">
-          <map-heatmap-layer [data]="heatmapData" [options]="heatmapOptions"></map-heatmap-layer>
-        </google-map>
+  <!-- Contenedor para botones y mapa -->
+  <div class="container">
+    <div class="d-flex flex-column align-items-center">
+      <div class="tt mb-3 d-flex">
+        <button class="btn-contact " (click)="setCenter(-8.1215553, -79.028494)">Sede Trujillo</button>
+        <button class="btn-contact " (click)="setCenter(-8.157510, -79.011420)">Sede Moche</button>
+        <button class="btn-contact " (click)="setCenter(-6.827070, -79.829150)">Sede Chiclayo</button>
+        <button class="btn-contact " (click)="setCenter(-14.025890, -75.760060)">Sede Subtanjalla</button>
+        <button class="btn-contact " (click)="setCenter(-12.07138, -77.03713)">Sede Lima</button>
       </div>
+      <google-map height="400px" width="800px" [center]="center" [zoom]="zoom" style="margin-bottom: 20px;">
+        <map-heatmap-layer [data]="heatmapData" [options]="heatmapOptions"></map-heatmap-layer>
+      </google-map>
     </div>
-</body>
-<!-- Contenedor principal -->
-
-
-
-
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<table class="task-table">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Celular</th>
+      <th>Email</th>
+      <th>Ciudad</th>
+      <th>Mensaje</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Ejemplo de bucle @for en Angular -->
+    @for (contactos of contacto; track $index) {
+      <tr>
+        <td>
+          <div class="title">{{ contactos.nombre }}</div>
+        </td>
+        <td>
+          <div class="subtitle">{{ contactos.celular }}</div>
+        </td>
+        <td>
+          <div class="subtitle">{{ contactos.email }}</div>
+        </td>
+        <td>
+          <div class="subtitle">{{ contactos.ciudad }}</div>
+        </td>
+        <td>
+          <div class="subtitle">{{ contactos.mensaje }}</div>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

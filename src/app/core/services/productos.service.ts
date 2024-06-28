@@ -52,8 +52,9 @@ export class ProductosService {
     return this.http.delete<number>(`${this.urlProductos}/${id}`)
   }
 
-  putProducto(producto: IProducto, id:any): Observable<IProducto>{
-    return this.http.put<IProducto>(`${this.urlProductos}/${id}`, producto);
+  putProducto(formData: FormData, id: number): Observable<IProducto> {
+    return this.http.put<IProducto>(`${this.urlProductos}/${id}`, formData);
   }
+
 
 }

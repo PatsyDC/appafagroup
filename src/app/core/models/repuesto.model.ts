@@ -8,4 +8,5 @@ export interface IRepuesto {
   descripcion: string;
   precio: number;
   categoria?: ICategoriaP;
+  codigo:String;
 }

@@ -49,11 +49,11 @@ export class ContactComponent implements OnInit, OnDestroy{
   zoom = 15;
   heatmapOptions = {radius: 15};
   heatmapData = [
-    {lat: -8.1487078, lng: -79.040944},
-    {lat: -8.1714148, lng: -79.008936},
-    {lat: -6.7714616, lng: -79.8387175},
-    {lat: -6.034721374511719, lng: -76.97469329833984},
-    {lat: -12.0621065, lng: -77.0365256},
+    {lat: -8.1215553, lng: -79.028494},
+    {lat: -8.157510, lng: -79.011420},
+    {lat: -6.827070, lng: -79.829150},
+    {lat: -14.025890, lng: -75.760060},
+    {lat: -12.07138, lng: -77.03713},
   ];
 
   setCenter(lat: number, lng: number) {

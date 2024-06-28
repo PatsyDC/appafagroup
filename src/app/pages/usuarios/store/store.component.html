@@ -4,7 +4,7 @@
     @for (repuesto of repuesto; track $index) {
       <div class="card">
         <div class="content">
-          <img [src]="repuesto.img" alt="">
+          <img src="http://localhost:3000{{repuesto.img}}" alt="Imagen de {{repuesto.nombre}}" class="small-img">
           <div class="text">
             <h3>{{ repuesto.nombre }}</h3>
             <div class="btn-group">
