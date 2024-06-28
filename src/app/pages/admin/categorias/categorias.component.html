@@ -1,18 +1,17 @@
-<p>categorias works!</p>
 
 <!--FORM-->
 <div class="form-container">
   <h2>Agregue una nueva categroría</h2>
-  <form class="ticket-form">
+  <form class="ticket-form" [formGroup]="formCategoria" (ngSubmit)="save()">
     <div class="form-group">
       <label for="title">Nombre</label>
-      <input type="text" id="title" name="title" required>
+      <input type="text" formControlName="nombre" id="nombre" name="nombre" required>
     </div>
     <div class="form-group">
       <label for="description">Descripción</label>
-      <textarea id="description" name="description" rows="3"></textarea>
+      <textarea id="description" formControlName="descripcion" name="descripcion" rows="3"></textarea>
     </div>
-    <button type="submit" class="submit-button">Agregar categoría</button>
+    <button type="submit"  class="submit-button" cdkFocusInitial type="submit" [disabled]="!formCategoria.valid">Agregar categoría</button>
   </form>
 </div>
 <br>
@@ -35,22 +34,22 @@
       <th>Action</th>
     </tr>
   </thead>
+  @for (categorias of categoria; track $index){
   <tbody>
     <tr>
       <td>
-        <div class="title">Katrina 2000</div>
-        <div class="subtitle">Equipo espacializado para cultivos de
-        </div>
+        <div class="title">{{categorias.nombre}}</div>
+        <div class="subtitle">{{categorias.descripcion}}</div>
       </td>
       <td class="action-icons">
-        <i class="fas fa-edit"></i>
-        <i class="fas fa-trash"></i>
+        <i class="fas fa-edit" (click)="openDialogEdit(categorias)"></i>
+        <i class="fas fa-trash" (click)="deleteCategoria(categorias.id)"></i>
       </td>
     </tr>
-    <!-- Repite este bloque para cada fila, cambiando los datos según corresponda -->
-  </tbody>
-</table>
 
+  </tbody>
+  }
+</table>
 
 <!-- <div class="pagination">
   <span>Items per page:</span>

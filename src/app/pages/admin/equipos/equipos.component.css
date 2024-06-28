@@ -27,6 +27,12 @@
   font-size: 0.9em;
 }
 
+.small-img {
+  width: 50px; /* Ajusta el ancho según tus necesidades */
+  height: auto; /* Mantiene la proporción de la imagen */
+}
+
+
 .assigned-to {
   display: flex;
   align-items: center;

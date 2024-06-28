@@ -1,38 +1,47 @@
-
 <!--FORM-->
 <div class="form-container">
   <h2>Agregue un nuevo equipo</h2>
-  <form class="ticket-form">
+  <form class="ticket-form" [formGroup]="formEquipo" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
     <div class="form-group">
       <label for="title">Nombre</label>
-      <input type="text" id="title" name="title" required>
+      <input type="text" formControlName="nombre" id="nombre" name="nombre" required>
     </div>
     <div class="form-group">
       <label for="description">Descripción</label>
-      <textarea id="description" name="description" rows="3"></textarea>
+      <textarea id="description" formControlName="descripcion" name="descripcion" rows="3"></textarea>
     </div>
     <div class="form-group">
-      <label for="assigned-to">Categoría</label>
-      <select id="assigned-to" name="assigned-to">
-        <option value="">Seleccione una categoría</option>
-        <option value="alice">Atomizador</option>
-        <option value="bob">Pulverizador</option>
-        <option value="charlie">Nebulizador</option>
+      <label for="title">Precio</label>
+      <input type="text" formControlName="precio" id="precio" name="precio" required>
+    </div>
+
+    <div class="form-group">
+      <label for="categoria_id">Categoría</label>
+      <select id="categoria_id" formControlName="categoria_id" name="categoria_id" required>
+        <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nombre }}</option>
       </select>
     </div>
 
     <div class="form-group">
-      <label for="ficha">Ficha</label>
-      <input type="file" id="ficha" name="ficha" accept="image/*">
+      <label for="ficha">IMG</label>
+      <input type="file" formControlName="img" id="img" name="img" required accept="image/*">
     </div>
+
+    <div class="form-group">
+      <label for="ficha">Ficha </label>
+      <input type="file" formControlName="ficha_p" id="ficha_p" name="ficha_p" required accept="image/*">
+    </div>
+
     <div class="form-group">
       <label for="pdf">PDF</label>
-      <input type="url" id="pdf" name="pdf" placeholder="Ingrese la URL">
+      <input type="url" formControlName="pdf" id="pdf" name="pdf" required placeholder="Ingrese la URL">
     </div>
-    <button type="submit" class="submit-button">Agregar Equipo</button>
+    <button type="submit" class="submit-button" cdkFocusInitial type="submit" [disabled]="!formEquipo.valid">Agregar Equipo</button>
   </form>
 </div>
 <br>
+
+
 <!--BUSCADOR-->
 <div class="ticket-controls">
   <div class="search-container">
@@ -53,27 +62,33 @@
       <th>Categoría</th>
       <th>Ficha</th>
       <th>PDF</th>
+      <th>Precio</th>
       <th>Action</th>
     </tr>
   </thead>
+  @for (equipo of equipos; track $index){
   <tbody>
     <tr>
-      <td>1</td>
+      <td>{{equipo.id}}</td>
       <td>
-        <div class="title">Katrina 2000</div>
-        <div class="subtitle">Equipo espacializado para cultivos de
+        <div class="title">{{equipo.nombre}}</div>
+        <div class="subtitle">{{equipo.descripcion}}
         </div>
       </td>
-      <td><span class="status in-progress">1</span></td>
-      <td>subir IMG</td>
-      <td>URL</td>
+      <td><span class="status in-progress">{{equipo.categoria_id}}</span></td>
+      <td>
+        <img src="http://localhost:3000{{equipo.img}}" alt="Imagen de {{equipo.nombre}}" class="small-img">
+      </td>
+      <td>{{equipo.pdf}}</td>
+      <td>{{equipo.precio}}</td>
       <td class="action-icons">
         <i class="fas fa-edit"></i>
-        <i class="fas fa-trash"></i>
+        <i class="fas fa-trash" (click)="deleteProducto(equipo.id)"></i>
       </td>
     </tr>
     <!-- Repite este bloque para cada fila, cambiando los datos según corresponda -->
   </tbody>
+  }
 </table>
 
 

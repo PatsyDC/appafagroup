@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { forkJoin, map, Observable, Subject } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { forkJoin, map, Observable, Subject, tap } from 'rxjs';
 import { IProducto } from './../models/producto.model';
 import { ICategoriaP } from './../models/categoria.model'; // Asegúrate de importar ICategoriaP si aún no lo has hecho
 
@@ -39,4 +39,21 @@ export class ProductosService {
   getProductoById(id: number): Observable<IProducto> {
     return this.http.get<IProducto>(`${this.urlProductos}/${id}`);
   }
+
+  postProducto(producto: FormData): Observable<any> {
+    const headers = new HttpHeaders({
+      'enctype': 'multipart/form-data'
+    });
+
+    return this.http.post<any>(`${this.urlProductos}`, producto , { headers });
+  }
+
+  deleteProducto(id: number): Observable<any> {
+    return this.http.delete<number>(`${this.urlProductos}/${id}`)
+  }
+
+  putProducto(producto: IProducto, id:any): Observable<IProducto>{
+    return this.http.put<IProducto>(`${this.urlProductos}/${id}`, producto);
+  }
+
 }

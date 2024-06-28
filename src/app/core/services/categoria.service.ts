@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, tap } from 'rxjs';
 import { ICategoriaP } from '../models/categoria.model';
 
 @Injectable({
@@ -23,4 +23,21 @@ export class CategoriaService {
   getCategoriaById(id: number): Observable<ICategoriaP> {
     return this.http.get<ICategoriaP>(`${this.url}/${id}`);
   }
+
+  postCategoria(categoria: ICategoriaP): Observable<ICategoriaP>{
+    return this.http.post<ICategoriaP>(this.url, categoria)
+    .pipe(
+      tap(() => {
+        this._refresh$.next();
+      }));
+  }
+
+  deleteCategoria(id: number): Observable<any> {
+    return this.http.delete<number>(`${this.url}/${id}`)
+  }
+
+  putCategoria(mascota: ICategoriaP, id:any): Observable<ICategoriaP>{
+    return this.http.put<ICategoriaP>(`${this.url}/${id}`, mascota);
+  }
+
 }
