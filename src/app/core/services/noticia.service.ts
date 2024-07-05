@@ -1,18 +1,18 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { Inoticia } from '../models/noticia.model'; // Asumiendo que el archivo se llama noticia.model.ts
+import { Inoticia } from '../models/noticia.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BlogService {
+export class NoticiaService {
   private _refresh$ = new Subject<void>();
   get refresh$() {
     return this._refresh$;
   }
 
-  private urlNoticias: string = 'http://localhost:3000/noticias'; // Cambia la URL base si es necesario
+  private urlNoticias: string = 'http://localhost:3000/noticias';
 
   constructor(private http: HttpClient) {}
 
@@ -39,4 +39,5 @@ export class BlogService {
   putNoticia(formData: FormData, id: number): Observable<Inoticia> {
     return this.http.put<Inoticia>(`${this.urlNoticias}/${id}`, formData);
   }
+
 }

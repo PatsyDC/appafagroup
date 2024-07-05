@@ -42,7 +42,7 @@ export class EditEquipoComponent {
       categoria_id: this.data.categoria_id.toString(),
       img: null, // Considera manejar esto adecuadamente
       ficha_p: null, // Considera manejar esto adecuadamente
-      pdf: '', // Asumiendo que no necesitas actualizarlo aquí
+      pdf: this.data.pdf, // Asumiendo que no necesitas actualizarlo aquí
     });
   }
 
@@ -56,15 +56,12 @@ export class EditEquipoComponent {
 
 
   ngOnInit(): void {
-    this.formEditProducto.patchValue(this.data);
 
     this.equiposService.allCategorias().subscribe((data) => {
       console.log('categorias :', data);
       this.categorias = data;
     });
 
-    // Agregar un log para ver los valores actuales del formulario
-    console.log('Form values:', this.formEditProducto.value);
   }
 
 

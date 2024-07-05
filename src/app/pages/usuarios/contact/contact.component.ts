@@ -12,22 +12,14 @@ import { ContactoService } from 'app/core/services/contacto.service';
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css'
 })
-export class ContactComponent implements OnInit, OnDestroy{
+export class ContactComponent {
 
-  contacto: IContacto = {
-    id: 0,
-    nombre: '',
-    email: '',
-    celular: '',
-    ciudad: '',
-    mensaje: ''
-  };
+  contacto: IContacto[] = [];
   formContacto: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private contactoService: ContactoService,
-    private router: Router,
   ){
     this.formContacto = this.formBuilder.group({
       nombre: ['', [Validators.required]],
@@ -37,13 +29,6 @@ export class ContactComponent implements OnInit, OnDestroy{
       mensaje: ['', [Validators.required]],
     });
   }
-  ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
-  }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
-
 
   center = {lat: -8.1487078, lng: -79.040944};
   zoom = 15;
@@ -60,21 +45,17 @@ export class ContactComponent implements OnInit, OnDestroy{
     this.center = {lat, lng};
   }
 
-  save(): void {
+  save() {
     if (this.formContacto.valid) {
       const value = this.formContacto.value;
-      this.contacto = this.formContacto.value;
-      this.contactoService.saveContacto(this.contacto).subscribe(res => {
+      this.contactoService.saveContacto(value).subscribe(res => {
         if (res) {
-          console.log("Mensaje guardado: ", res);
-          alert("Envío exitoso");
-          this.formContacto.reset(); // Limpiar el formulario después de éxito
+          console.log("Categoria guardada: ", res);
+          this.formContacto.reset();
         }
       }, error => {
-        console.error("Error al enviar:", error);
+        console.error("Error al guardar categoria:", error);
       });
-    } else {
-      alert("Por favor, completa todos los campos obligatorios.");
     }
   }
 

@@ -31,9 +31,9 @@ export class EquiposComponent {
       nombre: ['', [Validators.required]],
       descripcion: ['', [Validators.required]],
       precio: ['', [Validators.required]],
-      img: [null, [Validators.required]],
+      img: ['', [Validators.required]],
       categoria_id: ['', [Validators.required]],
-      ficha_p: [null, [Validators.required]],
+      ficha_p: ['', [Validators.required]],
       pdf: ['', [Validators.required]],
     })
   }
@@ -125,7 +125,5 @@ export class EquiposComponent {
       );
     }
   }
-
-
 
 }

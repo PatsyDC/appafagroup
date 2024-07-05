@@ -4,72 +4,17 @@
         <!-- Blog Grid Start -->
         <div class="col-md-6 mb-2">
             <div class="bg-light mb-4">
+              @for (noticias of noticia; track $index) {
                 <div class="position-relative">
-                    <img class="img-fluid w-100" src="/img/not1.jpg" alt="">
-                    <a href="https://www.infocampo.com.ar/maquinaria-agricola-las-multinacionales-valoran-el-rumbo-economico-pero-piden-menor-carga-fiscal/" class="position-absolute w-100 h-100 d-flex flex-column align-items-center justify-content-center text-decoration-none p-4" target="_blank" style="top: 0; left: 0; background: rgba(0, 0, 0, .4);">
-                        <h4 class="text-center text-white font-weight-medium mb-3">Maquinaria agrícola: las multinacionales valoran el rumbo económico, pero piden menor carga fiscal</h4>
+                  <img src="http://localhost:3000{{noticias.img}}" alt="Imagen de {{noticias.titulo}}" class="img-fluid w-100">
+                    <a href="{{ noticias.link }}" class="position-absolute w-100 h-100 d-flex flex-column align-items-center justify-content-center text-decoration-none p-4" target="_blank" style="top: 0; left: 0; background: rgba(0, 0, 0, .4);">
+                        <h4 class="text-center text-white font-weight-medium mb-3">{{ noticias.titulo }}</h4>
                     </a>
                 </div>
-                <p class="m-0 p-4">Ante funcionarios del Gobierno, la Asociación que nuclea a las firmas de capitales internacionales que operan en el país describió un panorama de alerta para el sector, más allá de coincidir en el trabajo que se está haciendo en la macro.</p>
-            </div>
+                <p class="m-0 p-4">{{ noticias.texto_corto }}</p>
+              }
+              </div>
         </div>
-        <!-- Repite el mismo bloque de código para cada noticia -->
-        <div class="col-md-6 mb-2">
-            <div class="bg-light mb-4">
-                <div class="position-relative">
-                    <img class="img-fluid w-100" src="/img/not2.jpg" alt="">
-                    <a href="https://news.agrofy.com.ar/noticia/209425/reducen-aranceles-importacion-maquinaria-agricola" class="position-absolute w-100 h-100 d-flex flex-column align-items-center justify-content-center text-decoration-none p-4" style="top: 0; left: 0; background: rgba(0, 0, 0, .4);">
-                        <h4 class="text-center text-white font-weight-medium mb-3">Reducen aranceles para la importación de maquinaria agrícola</h4>
-                    </a>
-                </div>
-                <p class="m-0 p-4">El Gobierno redujo los aranceles a la importación de piezas de maquinaria a través del Decreto 384/2024. La medida alcanza también a fertilizantes y herbicidas.</p>
-            </div>
-        </div>
-        <div class="col-md-6 mb-2">
-            <div class="bg-light mb-4">
-                <div class="position-relative">
-                    <img class="img-fluid w-100" src="/img/not3.jpg" alt="">
-                    <a href="https://www.infobae.com/inhouse/2024/03/11/maquinaria-agricola-como-son-los-nuevos-tractores-fruteros-de-baja-potencia-que-se-pueden-adquirir-con-creditos-accesibles/" class="position-absolute w-100 h-100 d-flex flex-column align-items-center justify-content-center text-decoration-none p-4" style="top: 0; left: 0; background: rgba(0, 0, 0, .4);">
-                        <h4 class="text-center text-white font-weight-medium mb-3">Maquinaria agrícola: cómo son los nuevos tractores fruteros de baja potencia que se pueden adquirir con créditos accesibles</h4>
-                    </a>
-                </div>
-                <p class="m-0 p-4">Líder mundial en diseño, fabricación y distribución de equipos para el agro, Massey Ferguson estuvo presente en la principal muestra de los agronegocios argentinos y de la región con un espacio de 2.500 m2. </p>
-            </div>
-        </div>
-        <div class="col-md-6 mb-2">
-            <div class="bg-light mb-4">
-                <div class="position-relative">
-                    <img class="img-fluid w-100" src="/img/not4.jpg" alt="">
-                    <a href="https://www.elconfidencial.com/empresas/2024-06-26/farming-agricola-reestructuracion-impugnacion_3910745/" class="position-absolute w-100 h-100 d-flex flex-column align-items-center justify-content-center text-decoration-none p-4" style="top: 0; left: 0; background: rgba(0, 0, 0, .4);">
-                        <h4 class="text-center text-white font-weight-medium mb-3">Santander, Caixa, Abanca y BBVA se libran de una reestructuración de 20 millones por trato injusto</h4>
-                    </a>
-                </div>
-                <p class="m-0 p-4">Un juzgado de Palencia dicta la primera estimación de una oposición a una solicitud de homologación de un plan de reestructuración con contradicción previa. Es la primera resolución tras los fallidos intentos de Celsa y Transbiaga</p>
-            </div>
-        </div>
-        <div class="col-md-6 mb-2">
-            <div class="bg-light mb-4">
-                <div class="position-relative">
-                    <img class="img-fluid w-100" src="/img/not5.jpeg" alt="">
-                    <a href="" class="position-absolute w-100 h-100 d-flex flex-column align-items-center justify-content-center text-decoration-none p-4" style="top: 0; left: 0; background: rgba(0, 0, 0, .4);">
-                        <h4 class="text-center text-white font-weight-medium mb-3">GORE recibe donación de maquinaria y tecnología agrícola del IILA</h4>
-                    </a>
-                </div>
-                <p class="m-0 p-4">Equipos permitirán dar una óptima preparación, capacitación y entrenamiento en la agricultura de precisión, a más de 2 mil pequeños productores del Bajo Piura y a los alumnos de la UNP.</p>
-            </div>
-        </div>
-        <div class="col-md-6 mb-2">
-            <div class="bg-light mb-4">
-                <div class="position-relative">
-                    <img class="img-fluid w-100" src="/img/not5.jpg" alt="">
-                    <a href="https://www.latribunadeciudadreal.es/noticia/z7a4cde15-ba78-ae60-668c419897638df3/202406/vox-reclama-ayudas-urgentes-para-renovar-maquinaria-agricola" class="position-absolute w-100 h-100 d-flex flex-column align-items-center justify-content-center text-decoration-none p-4" style="top: 0; left: 0; background: rgba(0, 0, 0, .4);">
-                        <h4 class="text-center text-white font-weight-medium mb-3">Vox reclama ayudas urgentes para renovar maquinaria agrícola</h4>
-                    </a>
-                </div>
-                <p class="m-0 p-4">El diputado en las Cortes regionales Luis Blázquez alerta ante "la amenaza" de la Agenda 2030 para el campo</p>
-            </div>
-        </div>
-
     </div>
 </div>
 </body>

@@ -56,5 +56,4 @@ export class ProductosService {
     return this.http.put<IProducto>(`${this.urlProductos}/${id}`, formData);
   }
 
-
 }
