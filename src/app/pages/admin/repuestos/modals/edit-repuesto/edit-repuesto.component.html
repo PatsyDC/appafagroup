@@ -1,38 +1,58 @@
-<div class="form-container">
-  <h2>Editar equipo</h2>
-  <form class="ticket-form" [formGroup]="formEditRepuesto" (ngSubmit)="save()" enctype="multipart/form-data">
-    <div class="form-row">
-      <div class="form-group">
-        <label for="nombre">Nombre</label>
-        <input type="text" formControlName="nombre" id="nombre" name="nombre" required>
-      </div>
-      <div class="form-group">
-        <label for="precio">Precio</label>
-        <input type="text" formControlName="precio" id="precio" name="precio" required>
-      </div>
+<form [formGroup]="formEditRepuesto" (ngSubmit)="save()">
+  <div>
+    <label for="nombre">Nombre:</label>
+    <input id="nombre" formControlName="nombre" type="text">
+    <div *ngIf="formEditRepuesto.get('nombre')?.invalid && formEditRepuesto.get('nombre')?.touched">
+      <small>Nombre es requerido.</small>
     </div>
-    <div class="form-group">
-      <label for="codigo">Código</label>
-      <input type="text" formControlName="codigo" id="codigo" name="codigo" required>
+  </div>
+
+  <div>
+    <label for="descripcion">Descripción:</label>
+    <textarea id="descripcion" formControlName="descripcion"></textarea>
+    <div *ngIf="formEditRepuesto.get('descripcion')?.invalid && formEditRepuesto.get('descripcion')?.touched">
+      <small>Descripción es requerida.</small>
     </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label for="descripcion">Descripción</label>
-        <textarea id="descripcion" formControlName="descripcion" name="descripcion" rows="3"></textarea>
-      </div>
-      <div class="form-group">
-        <label for="categoria_id">Categoría</label>
-        <select id="categoria_id" formControlName="categoria_id" name="categoria_id" required>
-          <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nombre }}</option>
-        </select>
-      </div>
+  </div>
+
+  <div>
+    <label for="precio">Precio:</label>
+    <input id="precio" formControlName="precio" type="number">
+    <div *ngIf="formEditRepuesto.get('precio')?.invalid && formEditRepuesto.get('precio')?.touched">
+      <small>Precio es requerido.</small>
     </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label for="img">IMG</label>
-        <input type="file" id="img" (change)="onFileChange($event, 'img')">
-      </div>
+  </div>
+
+  <div>
+    <label for="img">Imagen:</label>
+    <input id="img" type="file" (change)="onFileChange($event, 'img')">
+    <div *ngIf="formEditRepuesto.get('img')?.invalid && formEditRepuesto.get('img')?.touched">
+      <small>Imagen es requerida.</small>
     </div>
-    <button type="submit" class="submit-button" [disabled]="!formEditRepuesto.valid">Guardar Cambios</button>
-  </form>
-</div>
+  </div>
+
+  <div>
+    <label for="categoria_id">Categoría:</label>
+    <select id="categoria_id" formControlName="categoria_id">
+      <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nombre }}</option>
+    </select>
+    <div *ngIf="formEditRepuesto.get('categoria_id')?.invalid && formEditRepuesto.get('categoria_id')?.touched">
+      <small>Categoría es requerida.</small>
+    </div>
+  </div>
+
+
+
+  <div>
+    <label for="codigo">Código:</label>
+    <input id="codigo" formControlName="codigo" type="text">
+    <div *ngIf="formEditRepuesto.get('codigo')?.invalid && formEditRepuesto.get('codigo')?.touched">
+      <small>Código es requerido.</small>
+    </div>
+  </div>
+
+  <div>
+    <button type="submit" [disabled]="formEditRepuesto.invalid">Guardar</button>
+    <button type="button" (click)="dialogRef.close()">Cancelar</button>
+  </div>
+</form>

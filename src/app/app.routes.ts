@@ -21,6 +21,8 @@ import { CategoriasComponent } from '@pages/admin/categorias/categorias.componen
 import { TiendaComponent } from '@pages/admin/tienda/tienda.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ContactoComponent } from '@pages/admin/contacto/contacto.component';
+import { NoticiaComponent } from '@pages/admin/noticia/noticia.component';
+
 
 export const routes: Routes = [
   { path: '', component: UsuariosComponent,
@@ -50,6 +52,7 @@ export const routes: Routes = [
       {path: 'equiposA', component: EquiposComponent},
       {path: 'tiendaA', component: TiendaComponent},
       {path: 'contactoA', component: ContactoComponent},
+      {path: 'noticiaA', component: NoticiaComponent},
 
 
     ]

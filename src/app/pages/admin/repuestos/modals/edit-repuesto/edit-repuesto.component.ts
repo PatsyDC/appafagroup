@@ -30,8 +30,6 @@ export class EditRepuestoComponent {
       precio: ['', [Validators.required]],
       img: [null],
       categoria_id: ['', [Validators.required]],
-      ficha_p: [null],
-      pdf: ['', [Validators.required]],
       codigo: ['', [Validators.required]],
     });
 
@@ -42,8 +40,6 @@ export class EditRepuestoComponent {
       precio: ['', [Validators.required]],
       img: [null], // Asegúrate de manejar esto adecuadamente
       categoria_id: ['', [Validators.required]],
-      ficha_p: [null], // Asegúrate de manejar esto adecuadamente
-      pdf: ['', [Validators.required]],
       codigo: ['', [Validators.required]],
     });
 
@@ -93,18 +89,23 @@ export class EditRepuestoComponent {
           if (file instanceof File) {
             formData.append(key, file, file.name);
           } else {
-            formData.append(key, file); // Aquí puedes ajustar según sea necesario
+            formData.append(key, file); // Adjust as necessary
           }
         } else {
           formData.append(key, repuestoData[key]);
         }
       });
 
-      // Usa this.data.id para obtener el ID del producto a editar
+      // Log the formData for debugging
+      formData.forEach((value, key) => {
+        console.log(`${key}: ${value}`);
+      });
+
+      // Use this.data.id to get the ID of the product to edit
       this.equiposService.putRepuesto(formData, this.data.id).subscribe({
         next: (response) => {
           console.log('Producto editado exitosamente:', response);
-          this.dialogRef.close(true); // Cierra el diálogo indicando éxito
+          this.dialogRef.close(true); // Close the dialog indicating success
         },
         error: (err: HttpErrorResponse) => {
           console.error('Error al editar el producto:', err);
@@ -114,4 +115,5 @@ export class EditRepuestoComponent {
       console.error('Formulario inválido:', this.formEditRepuesto);
     }
   }
+
 }

@@ -31,12 +31,16 @@
   <thead>
     <tr>
       <th>Id</th>
+      <th>Nombre</th>
       <th>Action</th>
     </tr>
   </thead>
   @for (categorias of categoria; track $index){
   <tbody>
     <tr>
+      <td>
+        <div class="title">{{categorias.id}}</div>
+      </td>
       <td>
         <div class="title">{{categorias.nombre}}</div>
         <div class="subtitle">{{categorias.descripcion}}</div>
