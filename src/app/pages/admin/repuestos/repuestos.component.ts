@@ -28,12 +28,12 @@ export class RepuestosComponent {
     private formBuilder: FormBuilder
   ) {
     this.formRepuesto = this.formBuilder.group({
+      img: ['', [Validators.required]],
       nombre: ['', [Validators.required]],
       descripcion: ['', [Validators.required]],
       codigo:['', [Validators.required]],
       precio: ['', [Validators.required]],
       categoria_id: ['', [Validators.required]], // Agregar el control categoria_id
-      img: ['', [Validators.required]],
       pdf: ['', [Validators.required]]
     });
   }

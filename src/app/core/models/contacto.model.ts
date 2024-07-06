@@ -4,5 +4,6 @@ export interface IContacto{
   email: string;
   celular: string;
   ciudad: string;
-  mensaje: string
+  mensaje: string;
+  fecha: Date
 }

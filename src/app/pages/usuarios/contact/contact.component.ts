@@ -48,6 +48,7 @@ export class ContactComponent {
   save() {
     if (this.formContacto.valid) {
       const value = this.formContacto.value;
+      value.fecha = new Date();
       this.contactoService.saveContacto(value).subscribe(res => {
         if (res) {
           console.log("Categoria guardada: ", res);

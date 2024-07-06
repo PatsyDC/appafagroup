@@ -6,6 +6,7 @@
       <th>Email</th>
       <th>Ciudad</th>
       <th>Mensaje</th>
+      <th>Fecha de Registro</th>
     </tr>
   </thead>
   <tbody>
@@ -26,6 +27,9 @@
         </td>
         <td>
           <div class="subtitle">{{ contactos.mensaje }}</div>
+        </td>
+        <td>
+          <div class="subtitle">{{ formatDate(contactos.fecha) }}</div>
         </td>
       </tr>
     }
