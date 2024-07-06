@@ -34,23 +34,15 @@ export class EditRepuestoComponent {
     });
 
     // Inicializa el formulario con los datos del producto a editar
-    this.formEditRepuesto = this.formBuilder.group({
-      nombre: ['', [Validators.required]],
-      descripcion: ['', [Validators.required]],
-      precio: ['', [Validators.required]],
-      img: [null], // Asegúrate de manejar esto adecuadamente
-      categoria_id: ['', [Validators.required]],
-      codigo: ['', [Validators.required]],
+    this.formEditRepuesto.patchValue({
+      nombre: this.data.nombre,
+      descripcion: this.data.descripcion,
+      precio: this.data.precio,
+      img: null, // Asegúrate de manejar esto adecuadamente
+      categoria_id: this.data.categoria_id,
+      codigo: this.data.codigo,
     });
 
-  }
-
-  onFileChange(event: Event, controlName: string): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      const file = input.files[0];
-      this.formEditRepuesto.patchValue({ [controlName]: file });
-    }
   }
 
   ngOnInit(): void {
@@ -60,60 +52,43 @@ export class EditRepuestoComponent {
       console.log('categorias :', data);
       this.categorias = data;
     });
-
-
   }
 
-  // loadImageFromServer(url: string, controlName: string): void {
-  //   if (url) {
-  //     const fullUrl = `http://localhost:3000/${url}`;
-  //     this.http.get(fullUrl, { responseType: 'blob' }).subscribe(blob => {
-  //       const file = new File([blob], url.split('/').pop()!, { type: blob.type });
-  //       this.formEditRepuesto.patchValue({ [controlName]: file });
-  //       if (controlName === 'img') {
-  //         this.imgFile = file;
-  //         this.imgFileURL = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(file));
-  //       }
-  //     });
-  //   }
-  // }
 
-  save(): void {
-    if (this.formEditRepuesto.valid) {
-      const formData = new FormData();
-      const repuestoData = this.formEditRepuesto.value;
-
-      Object.keys(repuestoData).forEach(key => {
-        if (key === 'img') {
-          const file = repuestoData[key];
-          if (file instanceof File) {
-            formData.append(key, file, file.name);
-          } else {
-            formData.append(key, file); // Adjust as necessary
-          }
-        } else {
-          formData.append(key, repuestoData[key]);
-        }
-      });
-
-      // Log the formData for debugging
-      formData.forEach((value, key) => {
-        console.log(`${key}: ${value}`);
-      });
-
-      // Use this.data.id to get the ID of the product to edit
-      this.equiposService.putRepuesto(formData, this.data.id).subscribe({
-        next: (response) => {
-          console.log('Producto editado exitosamente:', response);
-          this.dialogRef.close(true); // Close the dialog indicating success
-        },
-        error: (err: HttpErrorResponse) => {
-          console.error('Error al editar el producto:', err);
-        }
-      });
-    } else {
-      console.error('Formulario inválido:', this.formEditRepuesto);
-    }
+onFileChange(event: Event, controlName: string): void {
+  const input = event.target as HTMLInputElement;
+  if (input.files && input.files.length > 0) {
+    const file = input.files[0];
+    this.formEditRepuesto.patchValue({ [controlName]: file });
   }
+}
+
+save(): void {
+  if (this.formEditRepuesto.valid) {
+    const formData = new FormData();
+    const repuestoData = this.formEditRepuesto.value;
+
+    Object.keys(repuestoData).forEach(key => {
+      if (key === 'img' && repuestoData[key] instanceof File) {
+        formData.append(key, repuestoData[key], repuestoData[key].name);
+      } else {
+        formData.append(key, repuestoData[key]);
+      }
+    });
+
+    this.equiposService.putRepuesto(formData, this.data.id).subscribe({
+      next: (response) => {
+        console.log('Producto editado exitosamente:', response);
+        this.dialogRef.close(true);
+      },
+      error: (err: HttpErrorResponse) => {
+        console.error('Error al editar el producto:', err);
+      }
+    });
+  } else {
+    console.error('Formulario inválido:', this.formEditRepuesto);
+  }
+}
+
 
 }

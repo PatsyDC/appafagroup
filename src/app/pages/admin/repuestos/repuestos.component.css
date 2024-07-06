@@ -22,6 +22,11 @@
   margin-bottom: 4px;
 }
 
+.small-img {
+  width: 50px; /* Ajusta el ancho según tus necesidades */
+  height: auto; /* Mantiene la proporción de la imagen */
+}
+
 .subtitle {
   color: #666;
   font-size: 0.9em;

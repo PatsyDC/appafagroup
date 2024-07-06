@@ -23,12 +23,9 @@
     </div>
   </div>
 
-  <div>
-    <label for="img">Imagen:</label>
-    <input id="img" type="file" (change)="onFileChange($event, 'img')">
-    <div *ngIf="formEditRepuesto.get('img')?.invalid && formEditRepuesto.get('img')?.touched">
-      <small>Imagen es requerida.</small>
-    </div>
+  <div class="form-group">
+    <label for="img">IMG</label>
+    <input type="file" id="img" (change)="onFileChange($event, 'img')">
   </div>
 
   <div>
@@ -40,8 +37,6 @@
       <small>Categoría es requerida.</small>
     </div>
   </div>
-
-
 
   <div>
     <label for="codigo">Código:</label>
