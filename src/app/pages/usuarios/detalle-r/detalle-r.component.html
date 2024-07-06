@@ -4,8 +4,9 @@
   </div>
   <div class="details">
     <h1>{{ repuesto?.nombre }}</h1>
+    <p class="description">CÓDIGO: {{ repuesto?.codigo }}</p>
+    <p class="description">CATEGORÍA: {{repuesto?.categoria?.nombre}}</p>
     <p class="description">{{ repuesto?.descripcion }}</p>
-    <p class="description">Categoria: {{repuesto?.categoria?.nombre}}</p>
     <!-- <p class="price">Precio: {{ repuesto?.precio | currency : 'USD'}}</p> -->
   </div>
 </div>

@@ -1,10 +1,26 @@
+<header class="header-container">
+  <div class="header-content">
+      <div class="header-title">
+          <h1 class="linea">LINEA AFA PARTS</h1>
+          <p class="subtitle">REPUESTOS PARA MAQUINARIA AGRÍCOLA</p>
+      </div>
+      <div class="header-logo">
+          <img src="/img/afa_parts.png" alt="AFA Parts Logo">
+          <a target="_blank" href="https://drive.google.com/file/d/1pqvwU1we_Pu_7u4cTaX4_CtpIn29fKWT/view" class="catalog-link">Descargar Catálogo</a>
+      </div>
+  </div>
+  <div class="header-line"></div>
+</header>
+
+
+
 <div class="container">
 
 
   <h1 class="category-title">BOQUILLAS Y ACCESORIOS</h1>
   <div *ngFor="let producto of productosFiltradosCategoria4" class="card">
     <div class="content">
-      <img [src]="producto.img" alt="">
+      <img src="http://localhost:3000{{producto.img}}" alt="Imagen de {{producto.nombre}}" class="small-img">
     </div>
     <div class="text">
       <h3>{{ producto.nombre }}</h3>
@@ -18,7 +34,7 @@
   <h1 class="category-title">ACCESORIOS DE FUMIGACIÓN</h1>
   <div *ngFor="let producto of productosFiltradosCategoria5" class="card">
     <div class="content">
-      <img [src]="producto.img" alt="">
+      <img src="http://localhost:3000{{producto.img}}" alt="Imagen de {{producto.nombre}}" class="small-img">
     </div>
     <div class="text">
       <h3>{{ producto.nombre }}</h3>
@@ -35,7 +51,7 @@
   <h1 class="category-title">BOMBAS Y ACCESORIOS</h1>
   <div *ngFor="let producto of productosFiltradosCategoria6" class="card">
     <div class="content">
-      <img [src]="producto.img" alt="">
+      <img src="http://localhost:3000{{producto.img}}" alt="Imagen de {{producto.nombre}}" class="small-img">
     </div>
     <div class="text">
       <h3>{{ producto.nombre }}</h3>
@@ -49,7 +65,7 @@
   <h1 class="category-title">CARDANES Y ACCESORIOS</h1>
   <div *ngFor="let producto of productosFiltradosCategoria7" class="card">
     <div class="content">
-      <img [src]="producto.img" alt="">
+      <img src="http://localhost:3000{{producto.img}}" alt="Imagen de {{producto.nombre}}" class="small-img">
     </div>
     <div class="text">
       <h3>{{ producto.nombre }}</h3>
@@ -64,7 +80,7 @@
   <h1 class="category-title">GRUPOS DE AIRE Y CAJAS DE TRANSMISIÓN</h1>
   <div *ngFor="let producto of productosFiltradosCategoria8" class="card">
     <div class="content">
-      <img [src]="producto.img" alt="">
+      <img src="http://localhost:3000{{producto.img}}" alt="Imagen de {{producto.nombre}}" class="small-img">
     </div>
     <div class="text">
       <h3>{{ producto.nombre }}</h3>
@@ -79,7 +95,7 @@
   <h1 class="category-title">MANGUERAS Y ACCESORIOS</h1>
   <div *ngFor="let producto of productosFiltradosCategoria9" class="card">
     <div class="content">
-      <img [src]="producto.img" alt="">
+      <img src="http://localhost:3000{{producto.img}}" alt="Imagen de {{producto.nombre}}" class="small-img">
     </div>
     <div class="text">
       <h3>{{ producto.nombre }}</h3>
@@ -94,7 +110,7 @@
   <h1 class="category-title">TANQUES AGRÍCOLAS</h1>
   <div *ngFor="let producto of productosFiltradosCategoria10" class="card">
     <div class="content">
-      <img [src]="producto.img" alt="">
+      <img src="http://localhost:3000{{producto.img}}" alt="Imagen de {{producto.nombre}}" class="small-img">
     </div>
     <div class="text">
       <h3>{{ producto.nombre }}</h3>
@@ -110,7 +126,7 @@
   <h1 class="category-title">NEUMÁTICOS Y PARTES</h1>
   <div *ngFor="let producto of productosFiltradosCategoria11" class="card">
     <div class="content">
-      <img [src]="producto.img" alt="">
+      <img src="http://localhost:3000{{producto.img}}" alt="Imagen de {{producto.nombre}}" class="small-img">
     </div>
     <div class="text">
       <h3>{{ producto.nombre }}</h3>
@@ -125,7 +141,7 @@
   <h1 class="category-title">COMPONENTES HIDRÁULICOS</h1>
   <div *ngFor="let producto of productosFiltradosCategoria12" class="card">
     <div class="content">
-      <img [src]="producto.img" alt="">
+      <img src="http://localhost:3000{{producto.img}}" alt="Imagen de {{producto.nombre}}" class="small-img">
     </div>
     <div class="text">
       <h3>{{ producto.nombre }}</h3>

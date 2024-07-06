@@ -1,15 +1,34 @@
+<header class="header-container">
+  <div class="header-content">
+      <div class="header-title">
+          <h1 class="linea">LINEA AFA TRAC</h1>
+          <p class="subtitle">REPUESTOS PARA MAQUINARIA AGRÍCOLA</p>
+      </div>
+      <div class="header-logo">
+          <img src="/img/afa_trac.png" alt="AFA Trac Logo">
+          <a target="_blank" href="https://drive.google.com/file/d/1Fzrqr6YsughtT2Ubz3DUdYm2IqaPCXd2/view" class="catalog-link">Descargar Catálogo</a>
+      </div>
+  </div>
+  <div class="header-line"></div>
+</header>
+
+
+
+
+
 
 <div class="container">
   <h1 class="category-title">ATOMIZADORES</h1>
   <div *ngFor="let producto of productosFiltradosCategoria1" class="card">
     <div class="content">
-      <img [src]="producto.img" alt="">
+      <img src="http://localhost:3000{{producto.img}}" alt="Imagen de {{producto.nombre}}" class="small-img">
     </div>
     <div class="text">
       <h3>{{ producto.nombre }}</h3>
       <p>{{ producto.descripcion }}</p>
       <div class="btn-group">
         <a [routerLink]="['/detalle', producto.id]" class="btn btn-info">Ver Detalle</a>
+
         <a href="{{ producto?.pdf }}" class="btn btn-info"> Ver PDF</a>
       </div>
     </div>
@@ -18,7 +37,7 @@
   <h1 class="category-title">PULVERIZADORES</h1>
   <div *ngFor="let producto of productosFiltradosCategoria2" class="card">
     <div class="content">
-      <img [src]="producto.img" alt="">
+      <img src="http://localhost:3000{{producto.img}}" alt="Imagen de {{producto.nombre}}" class="small-img">
     </div>
     <div class="text">
       <h3>{{ producto.nombre }}</h3>
@@ -33,7 +52,7 @@
   <h1 class="category-title">NEBULIZADORES</h1>
   <div *ngFor="let producto of productosFiltradosCategoria3" class="card">
     <div class="content">
-      <img [src]="producto.img" alt="">
+      <img src="http://localhost:3000{{producto.img}}" alt="Imagen de {{producto.nombre}}" class="small-img">
     </div>
     <div class="text">
       <h3>{{ producto.nombre }}</h3>
