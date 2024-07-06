@@ -11,7 +11,7 @@ import { EditRepuestoComponent } from './modals/edit-repuesto/edit-repuesto.comp
 @Component({
   selector: 'app-repuestos',
   standalone: true,
-  imports: [ReactiveFormsModule, MatDialogModule],
+  imports: [ReactiveFormsModule, MatDialogModule, NgFor],
   templateUrl: './repuestos.component.html',
   styleUrls: ['./repuestos.component.css']
 })
