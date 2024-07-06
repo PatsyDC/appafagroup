@@ -1,93 +1,82 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
-  margin: 0;
-  padding: 0;
+/* Container for centering the form */
+.login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+
 }
 
-.login-container {
+/* Form styling */
+.login-form {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
-}
-
-.login-card {
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  padding: 40px;
   text-align: center;
 }
 
-.logo {
-  width: 120px;
-  height: auto;
+/* Form header styling */
+.login-form h2 {
   margin-bottom: 20px;
-}
-
-h2 {
   color: #333;
-  margin-bottom: 30px;
 }
 
-.login-form {
-  display: flex;
-  flex-direction: column;
-}
-
+/* Form group styling */
 .form-group {
-  position: relative;
   margin-bottom: 20px;
+  text-align: left;
 }
 
-.form-group label {
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #999;
+/* Label styling */
+.login-form label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+  font-weight: bold;
 }
 
-.form-group input {
+/* Input styling */
+.login-form input {
   width: 100%;
-  padding: 12px 20px 12px 45px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
   font-size: 16px;
-  transition: border-color 0.3s;
 }
 
-.form-group input:focus {
-  border-color: #4285f4;
-  outline: none;
-}
-
-.login-button {
-  background-color: #4285f4;
-  color: white;
+/* Button styling */
+.btn-submit {
+  width: 100%;
+  padding: 10px;
+  background-color: #326DE7;
   border: none;
-  padding: 12px;
-  border-radius: 4px;
+  border-radius: 5px;
+  color: #fff;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
-.login-button:hover {
-  background-color: #3367d6;
+.btn-submit:hover {
+  background-color: #326DE7;
 }
 
-.forgot-password {
-  display: inline-block;
-  margin-top: 20px;
-  color: #4285f4;
-  text-decoration: none;
-  font-size: 14px;
+/* Add success class for the visual effect */
+.login-form.success {
+  border-color: #28a745;
+  animation: success-animation 0.5s forwards;
 }
 
-.forgot-password:hover {
-  text-decoration: underline;
+/* Define the animation */
+@keyframes success-animation {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
 }

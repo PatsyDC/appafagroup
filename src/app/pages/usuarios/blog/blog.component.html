@@ -1,20 +1,21 @@
 <body>
-  <div class="container py-5">
-    <div class="row">
-        <!-- Blog Grid Start -->
-        <div class="col-md-6 mb-2">
-            <div class="bg-light mb-4">
-              @for (noticias of noticia; track $index) {
-                <div class="position-relative">
-                  <img src="http://localhost:3000{{noticias.img}}" alt="Imagen de {{noticias.titulo}}" class="img-fluid w-100">
-                    <a href="{{ noticias.link }}" class="position-absolute w-100 h-100 d-flex flex-column align-items-center justify-content-center text-decoration-none p-4" target="_blank" style="top: 0; left: 0; background: rgba(0, 0, 0, .4);">
-                        <h4 class="text-center text-white font-weight-medium mb-3">{{ noticias.titulo }}</h4>
-                    </a>
-                </div>
-                <p class="m-0 p-4">{{ noticias.texto_corto }}</p>
-              }
-              </div>
+  <div class="news-container">
+    <!-- Blog Grid Start -->
+    @for (noticias of noticia; track $index) {
+      <div class="news-item">
+        <div class="news-content">
+          <div class="news-image">
+            <img src="http://localhost:3000{{noticias.img}}" alt="Imagen de {{noticias.titulo}}" class="news-img">
+          </div>
+          <div class="news-overlay">
+            <a href="{{ noticias.link }}" class="news-link" target="_blank">
+              <h4 class="news-title">{{ noticias.titulo }}</h4>
+            </a>
+          </div>
+          <p class="news-description">{{ noticias.texto_corto }}</p>
         </div>
-    </div>
-</div>
+      </div>
+    }
+    <!-- Blog Grid End -->
+  </div>
 </body>

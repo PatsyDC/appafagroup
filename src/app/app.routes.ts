@@ -1,3 +1,5 @@
+// routes.ts
+
 import { Routes } from '@angular/router';
 import { AboutPageComponent } from '@pages/usuarios/about-page/about-page.component';
 import { AdminComponent } from '@pages/admin/admin.component';
@@ -22,11 +24,13 @@ import { TiendaComponent } from '@pages/admin/tienda/tienda.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ContactoComponent } from '@pages/admin/contacto/contacto.component';
 import { NoticiaComponent } from '@pages/admin/noticia/noticia.component';
-
+import { AuthGuard } from './auth.guard';
 
 export const routes: Routes = [
-  { path: '', component: UsuariosComponent,
-    children:[
+  {
+    path: '',
+    component: UsuariosComponent,
+    children: [
       { path: '', component: HomePageComponent },
       { path: 'about-us', component: AboutPageComponent },
       { path: 'parts-list', component: PartsListComponent },
@@ -37,26 +41,28 @@ export const routes: Routes = [
       { path: 'contact', component: ContactComponent },
       { path:'detalle/:id', component: DetallePComponent},
       { path: 'carrito', component: CarritoComponent},
-      { path: 'fabricacion', component: ServicesComponent},
+      { path: 'fabricacion', component: FabricacionComponent}, // Asegúrate de tener el componente correcto aquí
       { path: 'detalleRepuesto/:id', component: DetalleRComponent},
       { path: 'blog', component: ArticuloComponent},
+      { path: 'login', component: LoginComponent },
     ],
   },
 
-  { path: 'admin', component: AdminComponent,
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AuthGuard],
     children: [
-      {path: '', redirectTo: 'inicio', pathMatch: 'full'},
-      {path: 'inicio', component: InicioComponent},
-      {path: 'categoriasA', component: CategoriasComponent},
-      {path: 'repuestosA', component: RepuestosComponent},
-      {path: 'equiposA', component: EquiposComponent},
-      {path: 'tiendaA', component: TiendaComponent},
-      {path: 'contactoA', component: ContactoComponent},
-      {path: 'noticiaA', component: NoticiaComponent},
-
-
+      { path: '', redirectTo: 'inicio', pathMatch: 'full' },
+      { path: 'inicio', component: InicioComponent },
+      { path: 'categoriasA', component: CategoriasComponent },
+      { path: 'repuestosA', component: RepuestosComponent },
+      { path: 'equiposA', component: EquiposComponent },
+      { path: 'tiendaA', component: TiendaComponent },
+      { path: 'contactoA', component: ContactoComponent },
+      { path: 'noticiaA', component: NoticiaComponent },
     ]
   },
-  { path: 'login', component: LoginComponent,},
-  { path: '**', redirectTo: 'home', pathMatch: 'full' }, //FINALLL
+
+  { path: '**', redirectTo: '/login', pathMatch: 'full' }, // Redirige al login si la ruta no es válida
 ];
