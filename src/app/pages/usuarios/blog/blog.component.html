@@ -1,11 +1,11 @@
-<body>
+
   <div class="news-container">
     <!-- Blog Grid Start -->
     @for (noticias of noticia; track $index) {
       <div class="news-item">
         <div class="news-content">
           <div class="news-image">
-            <img src="http://localhost:3000{{noticias.img}}" alt="Imagen de {{noticias.titulo}}" class="news-img">
+            <img src="http://localhost:3000{{noticias.img}}" alt="Imagen de {{noticias.titulo}}" class="news-img" >
           </div>
           <div class="news-overlay">
             <a href="{{ noticias.link }}" class="news-link" target="_blank">
@@ -18,4 +18,5 @@
     }
     <!-- Blog Grid End -->
   </div>
-</body>
+
+

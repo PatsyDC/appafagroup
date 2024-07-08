@@ -171,6 +171,27 @@
   }
   /* Media query para tabletas */
   @media (max-width: 768px) {
+    .subtitle {
+      font-family: poppins;
+      font-size: 14px;
+      font-weight: 300;
+      color: #757474;
+      text-align: center;
+      position: relative;
+      padding-bottom: 10px;
+      margin-bottom: 30px;
+    }
+
+    .subtitle::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 3px;
+      background-color: #4285f4;
+    }
     .card {
         width: calc(33.33% - 20px);
         margin: 10px;
@@ -191,6 +212,27 @@
 
   /* Media query para dispositivos móviles */
   @media (max-width: 576px) {
+    .subtitle {
+      font-family: poppins;
+      font-size: 14px;
+      font-weight: 300;
+      color: #757474;
+      text-align: center;
+      position: relative;
+      padding-bottom: 10px;
+      margin-bottom: 30px;
+    }
+
+    .subtitle::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 3px;
+      background-color: #4285f4;
+    }
     .card {
         width: calc(50% - 20px);
     }
@@ -211,6 +253,27 @@
 
 
   @media (max-width: 768px) {
+    .subtitle {
+      font-family: poppins;
+      font-size: 14px;
+      font-weight: 300;
+      color: #757474;
+      text-align: center;
+      position: relative;
+      padding-bottom: 10px;
+      margin-bottom: 30px;
+    }
+
+    .subtitle::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 3px;
+      background-color: #4285f4;
+    }
     .about-item {
         padding: 20px;
     }
