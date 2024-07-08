@@ -1,60 +1,60 @@
-.mat-dialog-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
+/* editar-categoria.component.css */
+
+/* General */
+.mat-dialog-content {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
 }
 
-.mat-dialog-content {
+/* Formulario */
+form {
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
-.form-control {
-  width: 100%;
-  padding: 0.5rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 1rem;
-}
-
+/* Etiquetas */
 label {
   font-weight: bold;
-  margin-bottom: 0.5rem;
-  display: block;
+  margin-bottom: 5px;
 }
 
-.mb-3 {
-  margin-bottom: 1rem;
+.custom-description {
+  width: 100%;
+  height: 50px;
 }
 
-.row {
-  display: flex;
-  justify-content: space-between;
+
+/* Campos de entrada */
+input[type="text"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease-in-out;
 }
 
-.col-6 {
-  width: 48%;
+input[type="text"]:focus {
+  border-color: #007bff;
 }
 
-.mat-dialog-actions {
-  margin-top: 1rem;
+/* Botones */
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease-in-out;
 }
 
-button[mat-button] {
-  font-size: 1rem;
-  margin-right: 0.5rem;
-}
-
-button[mat-button]:first-child {
-  margin-right: auto;
-}
-
-button[cdkFocusInitial] {
+button:hover {
   background-color: #007bff;
   color: white;
 }
 
-button[cdkFocusInitial]:hover {
-  background-color: #0056b3;
+button[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
 }

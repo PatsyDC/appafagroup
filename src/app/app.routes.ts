@@ -44,7 +44,6 @@ export const routes: Routes = [
       { path: 'fabricacion', component: FabricacionComponent}, // Asegúrate de tener el componente correcto aquí
       { path: 'detalleRepuesto/:id', component: DetalleRComponent},
       { path: 'blog', component: ArticuloComponent},
-      { path: 'login', component: LoginComponent },
     ],
   },
 
@@ -63,6 +62,7 @@ export const routes: Routes = [
       { path: 'noticiaA', component: NoticiaComponent },
     ]
   },
+  { path: 'login', component: LoginComponent },
 
   { path: '**', redirectTo: '/login', pathMatch: 'full' }, // Redirige al login si la ruta no es válida
 ];
