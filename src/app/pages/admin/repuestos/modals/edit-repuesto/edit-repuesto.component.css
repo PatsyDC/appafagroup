@@ -1,87 +1,82 @@
-.form-container {
+/* General container styling for form */
+form {
   max-width: 600px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 20px;
   background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.form-container h2 {
-  font-size: 1.8rem;
+form div {
+  margin-bottom: 15px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
   font-weight: bold;
-  margin-bottom: 1rem;
-  text-align: center;
+}
+
+form input,
+form textarea,
+form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
   color: #333;
 }
 
-.ticket-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.form-group {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem;
-}
-
-.form-group label {
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  color: #555;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
-  padding: 0.75rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: border-color 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
+form input:focus,
+form textarea:focus,
+form select:focus {
   border-color: #007bff;
   outline: none;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-.form-group textarea {
-  resize: vertical;
+form input[type="file"] {
+  padding: 0;
 }
 
-.submit-button {
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  margin-top: 1rem;
-  border-radius: 4px;
-  background-color: #007bff;
-  color: white;
+form small {
+  color: red;
+  font-size: 12px;
+}
+
+form button[type="submit"],
+form button[type="button"] {
+  padding: 10px 20px;
   border: none;
+  border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
 }
 
-.submit-button:disabled {
+form button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+}
+
+form button[type="submit"]:disabled {
   background-color: #ccc;
-  color: #666;
   cursor: not-allowed;
 }
 
-.submit-button:hover:not(:disabled) {
+form button[type="submit"]:hover:not(:disabled) {
   background-color: #0056b3;
-  transform: translateY(-2px);
+}
+
+form button[type="button"] {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+form button[type="button"]:hover {
+  background-color: #5a6268;
 }

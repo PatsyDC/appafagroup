@@ -20,7 +20,6 @@ import { UsuariosComponent } from '@pages/usuarios/usuarios.component';
 import { InicioComponent } from '@pages/admin/inicio/inicio.component';
 import { RepuestosComponent } from '@pages/admin/repuestos/repuestos.component';
 import { CategoriasComponent } from '@pages/admin/categorias/categorias.component';
-import { TiendaComponent } from '@pages/admin/tienda/tienda.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ContactoComponent } from '@pages/admin/contacto/contacto.component';
 import { NoticiaComponent } from '@pages/admin/noticia/noticia.component';
@@ -57,7 +56,6 @@ export const routes: Routes = [
       { path: 'categoriasA', component: CategoriasComponent },
       { path: 'repuestosA', component: RepuestosComponent },
       { path: 'equiposA', component: EquiposComponent },
-      { path: 'tiendaA', component: TiendaComponent },
       { path: 'contactoA', component: ContactoComponent },
       { path: 'noticiaA', component: NoticiaComponent },
     ]
