@@ -6,17 +6,16 @@
             <input type="text" formControlName="nombre" class="form-control">
         </div>
         <div class="row">
-            <div class="col-6">
               <div class="mb-3">
                 <label>Descripcion:</label>
                 <input type="text" formControlName="descripcion" class="form-control custom-description">
-              </div>
             </div>
         </div>
 
     </mat-dialog-content>
-    <mat-dialog-actions align="end">
-        <button mat-button mat-dialog-close>Cancelar</button>
-        <button mat-button [mat-dialog-close]="true" cdkFocusInitial type="submit" [disabled]="!formEditCategoria.valid">Guardar</button>
-    </mat-dialog-actions>
+    <mat-dialog-actions align="end" class="dialog-actions-container">
+      <button mat-button mat-dialog-close class="cancel-btn">Cancelar</button>
+      <button mat-button [mat-dialog-close]="true" cdkFocusInitial type="submit" [disabled]="!formEditCategoria.valid" class="save-btn">Guardar</button>
+  </mat-dialog-actions>
+
 </form>

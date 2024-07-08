@@ -20,7 +20,6 @@ export class LoginComponent {
 
   login(): void {
     if (this.authService.login(this.username, this.password)) {
-      // Add a simple visual effect on successful login
       const formElement = document.querySelector('.login-form');
       if (formElement) {
         formElement.classList.add('success');

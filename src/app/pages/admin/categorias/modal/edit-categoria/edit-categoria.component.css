@@ -58,3 +58,13 @@ button[disabled] {
   background-color: #ccc;
   cursor: not-allowed;
 }
+
+.dialog-actions-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cancel-btn, .save-btn {
+  margin-right: 10px; /* Ajusta este valor según la cantidad de separación deseada */
+}
