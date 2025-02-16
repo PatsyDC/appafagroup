@@ -23,8 +23,8 @@ export class EditCategoriaComponent {
     @Inject(MAT_DIALOG_DATA) public data: ICategoriaP
   ) {
     this.formEditCategoria = this.formBuilder.group({
-      nombre: ['', [Validators.required]],
-      descripcion: [[], [Validators.required]]
+      categoria_name: ['', [Validators.required]],
+      description: [[], [Validators.required]]
     });
   }
 
@@ -35,7 +35,7 @@ export class EditCategoriaComponent {
   save(): void {
     if (this.formEditCategoria.valid) {
       const categoria: ICategoriaP = this.formEditCategoria.value;
-      this.categoriaService.putCategoria(categoria, this.data.id).subscribe(
+      this.categoriaService.putCategoria(categoria, this.data.categoria_id).subscribe(
         (res) => {
           console.log("Categoria actualizada:", res);
           this.dialogRef.close(res);

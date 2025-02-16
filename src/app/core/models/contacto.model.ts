@@ -1,9 +1,10 @@
 export interface IContacto{
-  id: number;
-  nombre: string;
-  email: string;
-  celular: string;
-  ciudad: string;
+  contacto_id: number;
+  nombre_usuario: string;
+  correo_usuario: string;
+  numero_usuario: string;
+  ciudad_usuario: string;
   mensaje: string;
+  ciudad: string;
   fecha: Date
 }

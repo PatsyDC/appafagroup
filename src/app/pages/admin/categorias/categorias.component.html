@@ -5,11 +5,11 @@
   <form class="ticket-form" [formGroup]="formCategoria" (ngSubmit)="save()">
     <div class="form-group">
       <label for="title">Nombre</label>
-      <input type="text" formControlName="nombre" id="nombre" name="nombre" required>
+      <input type="text" formControlName="categoria_name" id="categoria_name" name="categoria_name" required>
     </div>
     <div class="form-group">
       <label for="description">Descripción</label>
-      <textarea id="description" formControlName="descripcion" name="descripcion" rows="3"></textarea>
+      <textarea id="description" formControlName="description" name="description" rows="3"></textarea>
     </div>
     <button type="submit"  class="submit-button" cdkFocusInitial type="submit" [disabled]="!formCategoria.valid">Agregar categoría</button>
   </form>
@@ -39,15 +39,15 @@
   <tbody>
     <tr>
       <td>
-        <div class="title">{{categorias.id}}</div>
+        <div class="title">{{categorias.categoria_id}}</div>
       </td>
       <td>
-        <div class="title">{{categorias.nombre}}</div>
-        <div class="subtitle">{{categorias.descripcion}}</div>
+        <div class="title">{{categorias.categoria_name}}</div>
+        <div class="subtitle">{{categorias.description}}</div>
       </td>
       <td class="action-icons">
         <i class="fas fa-edit" (click)="openDialogEdit(categorias)"></i>
-        <i class="fas fa-trash" (click)="deleteCategoria(categorias.id)"></i>
+        <i class="fas fa-trash" (click)="deleteCategoria(categorias.categoria_id)"></i>
       </td>
     </tr>
 

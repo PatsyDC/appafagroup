@@ -22,10 +22,10 @@ export class ContactComponent {
     private contactoService: ContactoService,
   ){
     this.formContacto = this.formBuilder.group({
-      nombre: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      celular: ['', [Validators.required]],
-      ciudad: ['', [Validators.required]],
+      nombre_usuario: ['', [Validators.required]],
+      correo_usuario: ['', [Validators.required]],
+      numero_usuario: ['', [Validators.required]],
+      ciudad_usuario: ['', [Validators.required]],
       mensaje: ['', [Validators.required]],
     });
   }

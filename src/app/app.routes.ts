@@ -24,6 +24,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { ContactoComponent } from '@pages/admin/contacto/contacto.component';
 import { NoticiaComponent } from '@pages/admin/noticia/noticia.component';
 import { AuthGuard } from './auth.guard';
+import { CotizacionComponent } from '@pages/admin/cotizacion/cotizacion.component';
 
 export const routes: Routes = [
   {
@@ -58,6 +59,7 @@ export const routes: Routes = [
       { path: 'equiposA', component: EquiposComponent },
       { path: 'contactoA', component: ContactoComponent },
       { path: 'noticiaA', component: NoticiaComponent },
+      {path: 'cotizacion', component: CotizacionComponent}
     ]
   },
   { path: 'login', component: LoginComponent },

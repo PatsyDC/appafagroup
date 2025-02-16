@@ -1,5 +1,5 @@
 export interface ICategoriaP{
-  id: number,
-  nombre: string,
-  descripcion: string
+  categoria_id: number,
+  categoria_name: string,
+  description: string
 }
