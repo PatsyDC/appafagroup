@@ -31,7 +31,7 @@ export class ProductosService {
     .pipe(map(([productos, categorias]) => {
         return productos.map(producto => ({
         ...producto,
-          categoria: categorias.find(categoria => categoria.id === producto.categoria_id)
+          categoria: categorias.find(categoria => categoria.categoria_id  === producto.categoria_id)
         }));
       }));
   }

@@ -31,7 +31,7 @@ export class RepuestoService {
     .pipe(map(([repuesto, categorias]) => {
         return repuesto.map(repuesto => ({
         ...repuesto,
-          categoria: categorias.find(categoria => categoria.id === repuesto.categoria_id)
+          categoria: categorias.find(categoria => categoria.categoria_id === repuesto.categoria_id)
         }));
       }));
   }

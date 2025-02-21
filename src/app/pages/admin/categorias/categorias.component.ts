@@ -25,7 +25,7 @@ export class CategoriasComponent {
   ){
     this.formCategoria = this.formBuilder.group({
       categoria_name: ['', [Validators.required]],
-      descripcion: ['', [Validators.required]]
+      description: ['', [Validators.required]]
     });
   }
 
