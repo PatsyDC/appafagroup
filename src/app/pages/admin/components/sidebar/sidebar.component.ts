@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 interface menuSidebar{
@@ -11,15 +11,25 @@ interface menuSidebar{
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [RouterLink, NgClass, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, NgClass],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
 
+  isSidebarOpen = true;
+
+  @Output() sidebarToggled = new EventEmitter<boolean>();
+
   menu: menuSidebar[] = [
     { url: '/admin/inicio', title: 'Inicio', icon: "fas fa-home" },
     { url: '/admin/equiposA', title: 'Equipos', icon: "fas fa-truck-monster" }
   ]
+
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+    this.sidebarToggled.emit(this.isSidebarOpen);
+  }
+
 
 }

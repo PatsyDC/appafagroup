@@ -1,6 +1,6 @@
 <div class="cont-todo">
-  <app-sidebar></app-sidebar>
-  <div class="main-content">
-      <router-outlet></router-outlet>
+  <app-sidebar #sidebar (sidebarToggled)="onSidebarToggle($event)"></app-sidebar>
+  <div class="main-content" [ngClass]="{'sidebar-collapsed': !isSidebarOpen}">
+    <router-outlet></router-outlet>
   </div>
 </div>

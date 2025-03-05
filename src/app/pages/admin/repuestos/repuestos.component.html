@@ -1,16 +1,17 @@
 <!-- FORM -->
 <div class="form-container">
-  <h2>Agregue un nuevo repuesto</h2>
+  <h2>Agregue un nuevo Producto</h2>
+
   <form class="ticket-form" [formGroup]="formP" (ngSubmit)="save()" enctype="multipart/form-data">
+
+    <div class="form-group">
+      <label for="nombre_producto">Nombre del producto</label>
+      <input type="text" formControlName="nombre_producto" id="nombre_producto" required>
+    </div>
 
     <div class="form-group">
       <label for="categoria_id">Categoría</label>
       <input type="text" formControlName="categoria_id" id="categoria_id" required>
-    </div>
-
-    <div class="form-group">
-      <label for="nombre_producto">Nombre</label>
-      <input type="text" formControlName="nombre_producto" id="nombre_producto" required>
     </div>
 
     <div class="form-group">

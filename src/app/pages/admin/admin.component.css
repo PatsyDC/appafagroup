@@ -1,18 +1,23 @@
 .cont-todo {
-  display: flex; /* Utilizamos flexbox para alinear los elementos en fila */
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.app-sidebar {
-  /* Estilos para el sidebar, ajusta según tus necesidades */
-  width: 250px; /* Ancho del sidebar */
-  background-color: #f0f0f0;
-  padding: 20px;
-  box-sizing: border-box; /* Ajusta el padding dentro del ancho especificado */
+app-sidebar {
+  flex-shrink: 0;
+  transition: width 0.3s ease;
 }
 
 .main-content {
-  /* Estilos para el contenido principal */
-  flex-grow: 1; /* Permite que este contenido ocupe el espacio restante */
+  flex-grow: 1;
   padding: 20px;
-  box-sizing: border-box; /* Ajusta el padding dentro del espacio disponible */
+  margin-left: 270px; /* Ancho de sidebar extendido */
+  transition: margin-left 0.3s ease;
+  overflow-y: auto;
+  background-color: #f4f6f9;
+}
+
+.main-content.sidebar-collapsed {
+  margin-left: 80px; /* Ancho de sidebar colapsado */
 }
