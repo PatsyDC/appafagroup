@@ -1,17 +1,16 @@
-import { NgFor } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { IRepuesto } from 'app/core/models/repuesto.model';
-import { RepuestoService } from 'app/core/services/repuesto.service';
+import { ProductoAGService } from 'app/core/services/productoAG.service';
 import { ICategoriaP } from 'app/core/models/categoria.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { EditRepuestoComponent } from './modals/edit-repuesto/edit-repuesto.component';
+import { IProductoAG } from 'app/core/models/productoAG.model';
 
 @Component({
   selector: 'app-repuestos',
   standalone: true,
-  imports: [ReactiveFormsModule, MatDialogModule, NgFor],
+  imports: [ReactiveFormsModule, MatDialogModule],
   templateUrl: './repuestos.component.html',
   styleUrls: ['./repuestos.component.css']
 })
@@ -19,110 +18,112 @@ export class RepuestosComponent {
 
   readonly dialog = inject(MatDialog);
 
-  repuesto: IRepuesto[] = [];
+  producto: IProductoAG[] = [];
   categorias: ICategoriaP[] = [];
-  formRepuesto: FormGroup;
+  formP: FormGroup;
+  selectedFile: File | null = null;
 
   constructor(
-    private RepuestoService: RepuestoService,
+    private service: ProductoAGService,
     private formBuilder: FormBuilder
   ) {
-    this.formRepuesto = this.formBuilder.group({
-      img: ['', [Validators.required]],
-      nombre: ['', [Validators.required]],
-      descripcion: ['', [Validators.required]],
-      codigo:['', [Validators.required]],
-      precio: ['', [Validators.required]],
-      categoria_id: ['', [Validators.required]], // Agregar el control categoria_id
-      pdf: ['', [Validators.required]]
+    this.formP = this.formBuilder.group({
+      categoria_id: ['', [Validators.required]],
+      nombre_producto: ['', [Validators.required]],
+      codigo_sunat: ['', [Validators.required]],
+      tipo_producto:['', [Validators.required]],
+      tipo_existencia: ['', [Validators.required]],
+      compra: ['', [Validators.required]],
+      kardex: ['', [Validators.required]],
+      nombre_comercial: ['', [Validators.required]],
+      stock_minimo: [0, [Validators.required]],
+      stock_maximo: [0, [Validators.required]],
+      peso: [0, [Validators.required]],
+      imagen_url: [null]
     });
   }
 
   ngOnInit(): void {
-    this.RepuestoService.allRepuestos().subscribe((data) => {
-      console.log('data :', data);
-      this.repuesto = data;
-    });
-
-    this.RepuestoService.allCategorias().subscribe((data) => {
-      console.log('categorias :', data);
-      this.categorias = data;
-    });
+    this.service.allProductos().subscribe((data) => {
+      console.log('data :' ,data);
+      this.producto = data;
+    })
   }
 
-  getRepuesto() {
-    this.RepuestoService.allRepuestos().subscribe(repuesto => this.repuesto = repuesto);
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0] as File;
   }
 
-  onSubmit(): void {
-    if (this.formRepuesto.valid) {
+  isFormValid(): boolean {
+    return this.formP.valid && this.selectedFile !== null;
+  }
+
+  save() {
+    if (this.formP.valid && this.selectedFile) {
       const formData = new FormData();
-      const repuestoData = this.formRepuesto.value; // Obtiene los valores del formulario
 
-      // Agregar cada campo al FormData
-      Object.keys(repuestoData).forEach(key => {
-        if (key === 'img') { // Manejo especial para campos de archivo
-          const fileInput = document.getElementById(key) as HTMLInputElement;
-          const file = fileInput.files ? fileInput.files[0] : null;
-          if (file) {
-            formData.append(key, file, file.name); // Agregar archivo con su nombre
-          }
-        } else {
-          const value = repuestoData[key];
-          if (typeof value === 'object' && value !== null) {
-            formData.append(key, JSON.stringify(value)); // Convertir objetos a JSON
-          } else {
-            formData.append(key, value); // Agregar otros campos
-          }
-        }
+      // Agregar los valores del formulario al FormData
+      formData.append('categoria_id', this.formP.get('categoria_id')?.value || '');
+      formData.append('nombre_producto', this.formP.get('nombre_producto')?.value || '');
+      formData.append('codigo_sunat', this.formP.get('codigo_sunat')?.value || '');
+      formData.append('tipo_producto', this.formP.get('tipo_producto')?.value || '');
+      formData.append('tipo_existencia', this.formP.get('tipo_existencia')?.value || '');
+      formData.append('compra', this.formP.get('compra')?.value || '');
+      formData.append('kardex', this.formP.get('kardex')?.value || '');
+      formData.append('nombre_comercial', this.formP.get('nombre_comercial')?.value || '');
+      formData.append('stock_minimo', this.formP.get('stock_minimo')?.value || '');
+      formData.append('stock_maximo', this.formP.get('stock_maximo')?.value || '');
+      formData.append('peso', this.formP.get('peso')?.value || '');
+
+      // Agregar la imagen al FormData
+      formData.append('imagen_url', this.selectedFile, this.selectedFile.name);
+
+      // Mostrar los datos en consola usando formData.forEach
+      formData.forEach((value, key) => {
+        console.log(`${key}:`, value);
       });
 
-      console.log('FormData a enviar:', formData); // Muestra todo el contenido
-
-      // Llamar al servicio para enviar el formData al backend
-      this.RepuestoService.postRepuestos(formData).subscribe({
-        next: (response) => {
-          console.log('Producto creado exitosamente:', response);
-          this.getRepuesto();
-          this.formRepuesto.reset();
-        },
-        error: (err: HttpErrorResponse) => {
-          console.error('Error al crear el producto:', err);
-          console.error('Código de estado:', err.status);
-          console.error('Mensaje de error:', err.message);
-          console.error('Respuesta del servidor:', err.error);
-          // Aquí puedes mostrar mensajes de error específicos al usuario
-          // basados en la respuesta del servidor (err.error)
-        }
-      });
-    } else {
-      console.error('Formulario inválido:', this.formRepuesto); // Muestra errores de validación
-    }
-  }
-
-  openDialogEdit(repuesto: IRepuesto) {
-    const dialogRefEdit = this.dialog.open(EditRepuestoComponent, {
-      data: repuesto
-    });
-
-    dialogRefEdit.afterClosed().subscribe(result => {
-      if (result) {
-        this.getRepuesto();
-      }
-    });
-  }
-
-  deleteRepuesto(id: number) {
-    if (confirm('¿Estás seguro de que quieres eliminar este repuesto?')) {
-      this.RepuestoService.deleteRepuesto(id).subscribe(
-        () => {
-          console.log('Repuesto eliminado correctamente');
-          this.getRepuesto(); // Recargar la lista después de eliminar
+      this.service.postProducto(formData).subscribe(
+        res => {
+          console.log("Producto creado correctamente:", res);
+          this.formP.reset();
+          this.selectedFile = null; // Restablecer la imagen seleccionada
         },
         error => {
-          console.error('Error al eliminar el repuesto:', error);
+          console.error('Error al crear el producto:', error);
         }
       );
+    } else {
+      console.warn("Formulario inválido o falta la imagen.");
     }
   }
+
+
+
+
+  // openDialogEdit(repuesto: IRepuesto) {
+  //   const dialogRefEdit = this.dialog.open(EditRepuestoComponent, {
+  //     data: repuesto
+  //   });
+
+  //   dialogRefEdit.afterClosed().subscribe(result => {
+  //     if (result) {
+  //       this.getRepuesto();
+  //     }
+  //   });
+  // }
+
+  // deleteRepuesto(id: number) {
+  //   if (confirm('¿Estás seguro de que quieres eliminar este repuesto?')) {
+  //     this.RepuestoService.deleteRepuesto(id).subscribe(
+  //       () => {
+  //         console.log('Repuesto eliminado correctamente');
+  //         this.getRepuesto(); // Recargar la lista después de eliminar
+  //       },
+  //       error => {
+  //         console.error('Error al eliminar el repuesto:', error);
+  //       }
+  //     );
+  //   }
+  // }
 }

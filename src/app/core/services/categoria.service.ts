@@ -37,7 +37,7 @@ export class CategoriaService {
   }
 
   deleteCategoria(categoria_id: number): Observable<any> {
-    return this.http.delete<number>(`${this.url}${categoria_id}`)
+    return this.http.delete<number>(`${this.url}${categoria_id}/`)
   }
 
   putCategoria(mascota: ICategoriaP, categoria_id:any): Observable<ICategoriaP>{

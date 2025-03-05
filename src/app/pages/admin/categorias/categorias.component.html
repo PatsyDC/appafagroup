@@ -1,4 +1,3 @@
-
 <!--FORM-->
 <div class="form-container">
   <h2>Agregue una nueva categroría</h2>
@@ -30,20 +29,19 @@
 <table class="task-table">
   <thead>
     <tr>
-      <th>Id</th>
       <th>Nombre</th>
-      <th>Action</th>
+      <th>Descripción </th>
+      <th>Acciones</th>
     </tr>
   </thead>
   @for (categorias of categoria; track $index){
   <tbody>
     <tr>
       <td>
-        <div class="title">{{categorias.categoria_id}}</div>
+        <div class="title">{{categorias.categoria_name}}</div>
       </td>
       <td>
-        <div class="title">{{categorias.categoria_name}}</div>
-        <div class="subtitle">{{categorias.description}}</div>
+        <div class="title">{{categorias.description}}</div>
       </td>
       <td class="action-icons">
         <i class="fas fa-edit" (click)="openDialogEdit(categorias)"></i>
