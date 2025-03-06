@@ -1,110 +1,37 @@
-<!-- FORM -->
-<div class="form-container">
-  <h2>Agregue un nuevo Producto</h2>
-
-  <form class="ticket-form" [formGroup]="formP" (ngSubmit)="save()" enctype="multipart/form-data">
-
-    <div class="form-group">
-      <label for="nombre_producto">Nombre del producto</label>
-      <input type="text" formControlName="nombre_producto" id="nombre_producto" required>
-    </div>
-
-    <div class="form-group">
-      <label for="categoria_id">Categoría</label>
-      <input type="text" formControlName="categoria_id" id="categoria_id" required>
-    </div>
-
-    <div class="form-group">
-      <label for="nombre_comercial">Nombre Comercial</label>
-      <input type="text" formControlName="nombre_comercial" id="nombre_comercial">
-    </div>
-
-    <div class="form-group">
-      <label for="codigo_sunat">Código Sunat</label>
-      <input type="text" formControlName="codigo_sunat" id="codigo_sunat" required>
-    </div>
-
-    <div class="form-group">
-      <label for="tipo_producto">Tipo de Producto</label>
-      <input type="text" formControlName="tipo_producto" id="tipo_producto" required>
-    </div>
-
-    <div class="form-group">
-      <label for="tipo_existencia">Tipo de Existencia</label>
-      <input type="text" formControlName="tipo_existencia" id="tipo_existencia" required>
-    </div>
-
-    <div class="form-group">
-      <label for="compra">Precio de Compra</label>
-      <input type="number" formControlName="compra" id="compra" required>
-    </div>
-
-    <div class="form-group">
-      <label for="kardex">Kardex</label>
-      <input type="text" formControlName="kardex" id="kardex" required>
-    </div>
-
-    <div class="form-group">
-      <label for="stock_minimo">Stock Mínimo</label>
-      <input type="number" formControlName="stock_minimo" id="stock_minimo" required>
-    </div>
-
-    <div class="form-group">
-      <label for="stock_maximo">Stock Máximo</label>
-      <input type="number" formControlName="stock_maximo" id="stock_maximo" required>
-    </div>
-
-    <div class="form-group">
-      <label for="peso">Peso</label>
-      <input type="number" formControlName="peso" id="peso" required>
-    </div>
-
-    <!-- <div class="form-group">
-      <label for="categoria_id">Categoría</label>
-      <select id="categoria_id" formControlName="categoria_id" required>
-        <option *ngFor="let categoria of categorias" [value]="categoria.categoria_id">
-          {{ categoria.categoria_name }}
-        </option>
-      </select>
-    </div> -->
-
-    <div class="form-group">
-      <label for="img">Imagen</label>
-      <input type="file" id="imagen_url" (change)="onFileSelected($event)" accept="image/*" required>
-    </div>
-
-    <button type="submit" class="submit-button" cdkFocusInitial [disabled]="!isFormValid()">Agregar repuesto</button>
-  </form>
+<div class="hero-section">
+  <h1>Registro de productos</h1>
 </div>
 
-<br>
-<!-- BUSCADOR -->
-<div class="ticket-controls">
-  <div class="search-container">
-    <input type="text" placeholder="Buscar repuesto" class="search-input">
-    <button class="search-button">
-      <i class="fas fa-search"></i>
+<div class="agregar">
+  <div class="titulo-boton">
+    <h1>Agregar productos</h1>
+    <button class="btn-celeste" (click)="openDialogAdd()">
+      <i class="fas fa-plus"></i>
     </button>
   </div>
 </div>
-<!-- TABLA DE BD -->
+
 <table class="task-table">
   <thead>
     <tr>
-      <th>Id</th>
-      <th>Nombre</th>
-      <th>Codigo</th>
-      <th>Categoría</th>
-      <th>Imagen</th>
-      <th>PDF</th>
-      <th>Action</th>
+      <th>Producto</th>
+      <th>Codigo Sunat</th>
+      <th>Tipo </th>
+      <th>Tipo 2</th>
+      <th>Compra</th>
+      <th>Kardex</th>
+      <th>Nombre comercial</th>
+      <th>Stock Min.</th>
+      <th>Stock Max.</th>
+      <th>Peso</th>
+      <th>Imagen </th>
+      <th>Acciones</th>
     </tr>
   </thead>
 
   @for (repuesto of producto; track $index){
     <tbody>
       <tr>
-        <td>{{repuesto.producto_id}}</td>
         <td>
           <div class="title">{{repuesto.nombre_producto}}</div>
           <div class="subtitle">{{repuesto.categoria_id}}
@@ -113,20 +40,40 @@
         <td>
           <div class="subtitle">{{repuesto.codigo_sunat}}</div>
         </td>
-
         <td>
-          <span class="status in-progress">{{repuesto.categoria_id}}</span>
+          <span class="subtitle">{{repuesto.tipo_producto}}</span>
         </td>
-
         <td>
-          <div class="title">{{repuesto.codigo_sunat}}</div>
+          <span class="subtitle">{{repuesto.tipo_existencia}}</span>
         </td>
-        <!-- <td class="action-icons">
-          <i class="fas fa-edit" (click)="openDialogEdit(repuesto)"></i>
-          <i class="fas fa-trash" (click)="deleteRepuesto(repuesto.id)"></i>
-        </td> -->
+        <td>
+          <div class="subtitle">{{repuesto.compra}}</div>
+        </td>
+        <td>
+          <div class="subtitle">{{repuesto.kardex}}</div>
+        </td>
+        <td>
+          <div class="subtitle">{{repuesto.nombre_comercial}}</div>
+        </td>
+        <td>
+          <div class="subtitle">{{repuesto.stock_minimo}}</div>
+        </td>
+        <td>
+          <div class="subtitle">{{repuesto.stock_maximo}}</div>
+        </td>
+        <td>
+          <div class="subtitle">{{repuesto.peso}}</div>
+        </td>
+        <td>
+          <img class="img-tabla" [src]="repuesto.imagen_url" alt="Imagen del producto">
+        </td>
+        <td>
+          <div style="display: flex; justify-content: center; gap: 15px; align-items: center;">
+            <i class="fas fa-edit" style="color: #326DE7; font-size: 20px; cursor: pointer;"></i>
+            <i class="fas fa-trash" style="color: red; font-size: 20px; cursor: pointer;" (click)="onDelete(repuesto.producto_id)"></i>
+          </div>
+        </td>
       </tr>
-      <!-- Repite este bloque para cada fila, cambiando los datos según corresponda -->
     </tbody>
     }
 </table>

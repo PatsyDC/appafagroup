@@ -1,5 +1,5 @@
 export interface IProductoAG {
-  producto_id?: string;  // Opcional porque podría generarse automáticamente
+  producto_id: number;  // Opcional porque podría generarse automáticamente
   categoria_id: string;
   nombre_producto: string;
   codigo_sunat: string;

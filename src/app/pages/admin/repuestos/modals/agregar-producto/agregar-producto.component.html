@@ -1,0 +1,74 @@
+<div class="form-container">
+  <h2>Agregue un nuevo Producto</h2>
+
+  <form class="ticket-form" [formGroup]="formP" (ngSubmit)="save()" enctype="multipart/form-data">
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="nombre_producto">Nombre del producto</label>
+        <input type="text" formControlName="nombre_producto" id="nombre_producto" required>
+      </div>
+
+      <div class="form-group">
+        <label for="categoria_id">Categoría</label>
+        <input type="text" formControlName="categoria_id" id="categoria_id" required>
+      </div>
+
+      <div class="form-group">
+        <label for="nombre_comercial">Nombre Comercial</label>
+        <input type="text" formControlName="nombre_comercial" id="nombre_comercial">
+      </div>
+
+      <div class="form-group">
+        <label for="codigo_sunat">Código Sunat</label>
+        <input type="text" formControlName="codigo_sunat" id="codigo_sunat" required>
+      </div>
+
+      <div class="form-group">
+        <label for="tipo_producto">Tipo de Producto</label>
+        <input type="text" formControlName="tipo_producto" id="tipo_producto" required>
+      </div>
+
+      <div class="form-group">
+        <label for="tipo_existencia">Tipo de Existencia</label>
+        <input type="text" formControlName="tipo_existencia" id="tipo_existencia" required>
+      </div>
+
+      <div class="form-group">
+        <label for="compra">Precio de Compra</label>
+        <input type="number" formControlName="compra" id="compra" required>
+      </div>
+
+      <div class="form-group">
+        <label for="kardex">Kardex</label>
+        <input type="text" formControlName="kardex" id="kardex" required>
+      </div>
+
+      <div class="form-group">
+        <label for="stock_minimo">Stock Mínimo</label>
+        <input type="number" formControlName="stock_minimo" id="stock_minimo" required>
+      </div>
+
+      <div class="form-group">
+        <label for="stock_maximo">Stock Máximo</label>
+        <input type="number" formControlName="stock_maximo" id="stock_maximo" required>
+      </div>
+
+      <div class="form-group">
+        <label for="peso">Peso</label>
+        <input type="number" formControlName="peso" id="peso" required>
+      </div>
+
+      <div class="form-group">
+        <label for="imagen_url">Imagen</label>
+        <input type="file" id="imagen_url" (change)="onFileSelected($event)" accept="image/*" required>
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button type="submit" class="submit-button" cdkFocusInitial [disabled]="!isFormValid()">Agregar repuesto</button>
+      <button type="button" class="cancel-button" (click)="cancelar()">Cancelar</button>
+    </div>
+
+  </form>
+</div>
