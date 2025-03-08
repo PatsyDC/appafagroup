@@ -1,29 +1,16 @@
-<!--FORM-->
-<div class="form-container">
-  <h2>Agregue una nueva categroría</h2>
-  <form class="ticket-form" [formGroup]="formCategoria" (ngSubmit)="save()">
-    <div class="form-group">
-      <label for="title">Nombre</label>
-      <input type="text" formControlName="categoria_name" id="categoria_name" name="categoria_name" required>
-    </div>
-    <div class="form-group">
-      <label for="description">Descripción</label>
-      <textarea id="description" formControlName="description" name="description" rows="3"></textarea>
-    </div>
-    <button type="submit"  class="submit-button" cdkFocusInitial type="submit" [disabled]="!formCategoria.valid">Agregar categoría</button>
-  </form>
+<div class="hero-section">
+  <h1>Registro de Categorías</h1>
 </div>
-<br>
-<!--BUSCADOR-->
-<div class="ticket-controls">
-  <div class="search-container">
-    <input type="text" placeholder="Buscar categoría" class="search-input">
-    <button class="search-button">
-      <i class="fas fa-search"></i>
+
+<div class="agregar">
+  <div class="titulo-boton">
+    <h1>Agregar categorías</h1>
+    <button class="btn-celeste" (click)="openDialogCreate()">
+      <i class="fas fa-plus"></i>
     </button>
   </div>
-  <!-- <button class="add-ticket-button">Add Ticket</button> -->
 </div>
+
 <!--TABLA DE BD-->
 
 <table class="task-table">

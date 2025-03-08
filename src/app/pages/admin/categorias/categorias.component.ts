@@ -1,14 +1,14 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ICategoriaP } from 'app/core/models/categoria.model';
 import { CategoriaService } from 'app/core/services/categoria.service';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { EditCategoriaComponent } from './modal/edit-categoria/edit-categoria.component';
+import { CreateCategoriaComponent } from './modal/create-categoria/create-categoria.component';
 
 @Component({
   selector: 'app-categorias',
   standalone: true,
-  imports: [ReactiveFormsModule, MatDialogModule],
+  imports: [MatDialogModule],
   templateUrl: './categorias.component.html',
   styleUrl: './categorias.component.css'
 })
@@ -17,17 +17,10 @@ export class CategoriasComponent {
   readonly dialog = inject(MatDialog);
 
   categoria: ICategoriaP[] = [];
-  formCategoria: FormGroup;
 
   constructor(
     private categoriaService: CategoriaService,
-    private formBuilder: FormBuilder
-  ){
-    this.formCategoria = this.formBuilder.group({
-      categoria_name: ['', [Validators.required]],
-      description: ['', [Validators.required]]
-    });
-  }
+  ){}
 
   ngOnInit(): void{
     this.categoriaService.allCategorias().subscribe((data) => {
@@ -40,21 +33,6 @@ export class CategoriasComponent {
     this.categoriaService.allCategorias().subscribe(categoria => this.categoria = categoria);
   }
 
-  save() {
-    if (this.formCategoria.valid) {
-      const value = this.formCategoria.value;
-      this.categoriaService.postCategoria(value).subscribe(res => {
-        if (res) {
-          console.log("Categoria guardada: ", res);
-          this.getCategorias();
-          this.formCategoria.reset();
-        }
-      }, error => {
-        console.error("Error al guardar categoria:", error);
-      });
-    }
-  }
-
   openDialogEdit(categoria: ICategoriaP) {
     const dialogRefEdit = this.dialog.open(EditCategoriaComponent, {
       data: categoria
@@ -64,6 +42,11 @@ export class CategoriasComponent {
       if (result) {
         this.getCategorias();
       }
+    });
+  }
+
+  openDialogCreate(): void {
+    const dialogRefEdit = this.dialog.open(CreateCategoriaComponent, {
     });
   }
 
@@ -80,6 +63,5 @@ export class CategoriasComponent {
       );
     }
   }
-
 
 }

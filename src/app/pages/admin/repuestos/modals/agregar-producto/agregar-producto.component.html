@@ -26,12 +26,22 @@
 
       <div class="form-group">
         <label for="tipo_producto">Tipo de Producto</label>
-        <input type="text" formControlName="tipo_producto" id="tipo_producto" required>
+        <select formControlName="tipo_producto" id="tipo_producto" required>
+          <option value="" disabled selected>Seleccione un tipo</option>
+          <option value="Existencia">Existencia</option>
+          <option value="Servicio/Gasto">Servicio/Gasto</option>
+          <option value="Activo Fijo">Activo Fijo</option>
+        </select>
       </div>
 
       <div class="form-group">
         <label for="tipo_existencia">Tipo de Existencia</label>
-        <input type="text" formControlName="tipo_existencia" id="tipo_existencia" required>
+        <select formControlName="tipo_existencia" id="tipo_existencia" required>
+          <option value="" disabled selected>Seleccione un tipo</option>
+          <option value="Mercadería/Mat.Prima">Mercadería/Mat.Prima </option>
+          <option value="Semi-Terminado">Semi-Terminado</option>
+          <option value="Producto terminado">Producto terminado</option>
+        </select>
       </div>
 
       <div class="form-group">

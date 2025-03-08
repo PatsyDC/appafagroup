@@ -1,4 +1,8 @@
 /* General container styling for form */
+body {
+  font-family: sans-serif;
+}
+
 form {
   max-width: 600px;
   margin: 0 auto;
@@ -28,6 +32,7 @@ form select {
   border-radius: 5px;
   font-size: 16px;
   color: #333;
+  font-family: sans-serif;
 }
 
 form input:focus,
