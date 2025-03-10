@@ -15,6 +15,7 @@
   <thead>
     <tr>
       <th>Producto</th>
+      <th>Categoría</th>
       <th>Codigo Sunat</th>
       <th>Tipo Producto </th>
       <th>Tipo Existencia</th>
@@ -32,42 +33,43 @@
   @for (repuesto of producto; track $index){
     <tbody>
       <tr>
-        <td>
-          <div class="title">{{repuesto.nombre_producto}}</div>
-          <div class="subtitle">{{repuesto.categoria_id}}
-          </div>
+        <td data-label="Producto">
+          <div class="subtitle">{{repuesto.nombre_producto}}</div>
         </td>
-        <td>
+        <td data-label="Categoría">
+          <div class="subtitle">{{repuesto.categoria_id}}</div>
+        </td>
+        <td data-label="Codigo Sunat">
           <div class="subtitle">{{repuesto.codigo_sunat}}</div>
         </td>
-        <td>
+        <td data-label="Tipo Producto">
           <span class="subtitle">{{repuesto.tipo_producto}}</span>
         </td>
-        <td>
+        <td data-label="Tipo Existencia">
           <span class="subtitle">{{repuesto.tipo_existencia}}</span>
         </td>
-        <td>
+        <td data-label="Compra">
           <div class="subtitle">{{repuesto.compra}}</div>
         </td>
-        <td>
+        <td data-label="Kardex">
           <div class="subtitle">{{repuesto.kardex}}</div>
         </td>
-        <td>
+        <td data-label="Nombre comercial">
           <div class="subtitle">{{repuesto.nombre_comercial}}</div>
         </td>
-        <td>
+        <td data-label="Stock Min.">
           <div class="subtitle">{{repuesto.stock_minimo}}</div>
         </td>
-        <td>
+        <td data-label="Stock Max.">
           <div class="subtitle">{{repuesto.stock_maximo}}</div>
         </td>
-        <td>
+        <td data-label="Peso">
           <div class="subtitle">{{repuesto.peso}}</div>
         </td>
-        <td>
+        <td data-label="Imagen">
           <img class="img-tabla" [src]="repuesto.imagen_url" alt="Imagen del producto">
         </td>
-        <td>
+        <td data-label="Acciones">
           <div style="display: flex; justify-content: center; gap: 15px; align-items: center;">
             <i class="fas fa-edit" style="color: #326DE7; font-size: 20px; cursor: pointer;"></i>
             <i class="fas fa-trash" style="color: red; font-size: 20px; cursor: pointer;" (click)="onDelete(repuesto.producto_id)"></i>
