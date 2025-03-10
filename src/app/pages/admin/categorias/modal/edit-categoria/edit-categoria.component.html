@@ -1,21 +1,17 @@
-<h2 mat-dialog-title>Editar Categoria</h2>
-<form [formGroup]="formEditCategoria" (ngSubmit)="save()">
-    <mat-dialog-content class="mat-typography">
-        <div class="mb-3">
-            <label>Nombre:</label>
-            <input type="text" formControlName="categoria_name" class="form-control">
-        </div>
-        <div class="row">
-              <div class="mb-3">
-                <label>Descripcion:</label>
-                <textarea  type="text" formControlName="description" class="form-control custom-description"></textarea>
-            </div>
-        </div>
+<div class="form-container">
+  <h2>Editar Categoria</h2>
+  <button class="close-button" (click)="closeDialog()">×</button>
+  <form class="ticket-form" [formGroup]="formEditCategoria" (ngSubmit)="save()">
+    <div class="form-group">
+      <label for="title">Nombre:</label>
+      <input type="text" formControlName="categoria_name" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="title">Descripcion:</label>
+      <textarea  type="text" formControlName="description" class="form-control custom-description" rows="3"></textarea>
+    </div>
 
-    </mat-dialog-content>
-    <mat-dialog-actions align="end" class="dialog-actions-container">
-      <button mat-button mat-dialog-close class="cancel-btn">Cancelar</button>
-      <button mat-button [mat-dialog-close]="true" cdkFocusInitial type="submit" [disabled]="!formEditCategoria.valid" class="save-btn">Guardar</button>
-  </mat-dialog-actions>
+    <button type="submit"  class="submit-button" [disabled]="!formEditCategoria.valid">Guardar</button>
+  </form>
+</div>
 
-</form>

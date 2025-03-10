@@ -47,4 +47,8 @@ export class EditCategoriaComponent {
     }
   }
 
+  closeDialog() {
+    this.dialogRef.close(); // Asegúrate de inyectar MatDialogRef en el constructor
+  }
+
 }

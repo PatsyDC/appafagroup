@@ -96,3 +96,41 @@
 .mat-dialog-content .form-container * {
   font-family: sans-serif !important;
 }
+
+/* Estilos mejorados para el botón de cierre (x) */
+.close-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: #326DE7;
+  border: 1px solid #e1e4e8;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  height: 28px;
+  width: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  outline: none;
+  padding: 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+
+/* Agregar espacio adicional al título para que no se superponga con el botón */
+.form-container h2 {
+  color: #326DE7;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  font-size: 1.5rem;
+  border-bottom: 2px solid rgba(50, 109, 231, 0.2);
+  padding-bottom: 0.5rem;
+  padding-right: 40px; /* Añadir espacio a la derecha */
+  font-family: sans-serif;
+  position: relative;
+}

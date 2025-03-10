@@ -44,9 +44,13 @@ export class CategoriasComponent {
       }
     });
   }
-
   openDialogCreate(): void {
-    const dialogRefEdit = this.dialog.open(CreateCategoriaComponent, {
+    const dialogRefCreate = this.dialog.open(CreateCategoriaComponent);
+
+    dialogRefCreate.afterClosed().subscribe(result => {
+      if (result) {
+        this.getCategorias();
+      }
     });
   }
 

@@ -12,41 +12,30 @@
 </div>
 
 <!--TABLA DE BD-->
-
 <table class="task-table">
   <thead>
     <tr>
       <th>Nombre</th>
-      <th>Descripción </th>
+      <th>Descripción</th>
       <th>Acciones</th>
     </tr>
   </thead>
   @for (categorias of categoria; track $index){
   <tbody>
     <tr>
-      <td>
+      <td data-label="Nombre">
         <div class="title">{{categorias.categoria_name}}</div>
       </td>
-      <td>
+      <td data-label="Descripción">
         <div class="title">{{categorias.description}}</div>
       </td>
-      <td class="action-icons">
-        <i class="fas fa-edit" (click)="openDialogEdit(categorias)"></i>
-        <i class="fas fa-trash" (click)="deleteCategoria(categorias.categoria_id)"></i>
+      <td data-label="Acciones">
+        <div class="action-icons">
+          <i class="fas fa-edit" style="color: #326DE7; font-size: 20px; cursor: pointer;" (click)="openDialogEdit(categorias)"></i>
+          <i class="fas fa-trash" style="color: red; font-size: 20px; cursor: pointer;" (click)="deleteCategoria(categorias.categoria_id)"></i>
+        </div>
       </td>
     </tr>
-
   </tbody>
   }
 </table>
-
-<!-- <div class="pagination">
-  <span>Items per page:</span>
-  <select>
-    <option>5</option>
-  </select>
-  <span>1 - 5 of 10</span>
-  <button disabled>&lt;</button>
-  <button>&gt;</button>
-  <button>&gt;|</button>
-</div> -->

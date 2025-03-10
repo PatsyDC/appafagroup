@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { ICategoriaP } from 'app/core/models/categoria.model';
 import { CategoriaService } from 'app/core/services/categoria.service';
 
@@ -16,18 +16,19 @@ export class CreateCategoriaComponent {
 
   readonly dialog = inject(MatDialog);
 
-    categoria: ICategoriaP[] = [];
-    formCategoria: FormGroup;
+  categoria: ICategoriaP[] = [];
+  formCategoria: FormGroup;
 
-    constructor(
-      private categoriaService: CategoriaService,
-      private formBuilder: FormBuilder
-    ){
-      this.formCategoria = this.formBuilder.group({
-        categoria_name: ['', [Validators.required]],
-        description: ['', [Validators.required]]
-      });
-    }
+  constructor(
+    private categoriaService: CategoriaService,
+    private formBuilder: FormBuilder,
+    private dialogRef: MatDialogRef<CreateCategoriaComponent>
+  ){
+    this.formCategoria = this.formBuilder.group({
+    categoria_name: ['', [Validators.required]],
+    description: ['', [Validators.required]]
+    });
+  }
 
     save() {
       if (this.formCategoria.valid) {
@@ -35,7 +36,7 @@ export class CreateCategoriaComponent {
         this.categoriaService.postCategoria(value).subscribe(res => {
           if (res) {
             console.log("Categoria guardada: ", res);
-            this.formCategoria.reset();
+            this.dialogRef.close(res);
           }
         }, error => {
           console.error("Error al guardar categoria:", error);
@@ -43,4 +44,7 @@ export class CreateCategoriaComponent {
       }
     }
 
+  closeDialog() {
+    this.dialogRef.close(); // Asegúrate de inyectar MatDialogRef en el constructor
+  }
 }

@@ -260,3 +260,108 @@ body {
   padding: 2px;
 }
 
+/* Vista móvil para task-table - con sección de Acciones */
+@media (max-width: 768px) {
+  .task-table {
+    display: block;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: transparent;
+    margin-top: 15px;
+  }
+
+  .task-table thead {
+    display: none;
+  }
+
+  .task-table tbody {
+    display: block;
+  }
+
+  .task-table tr {
+    display: block;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .task-table tbody td {
+    display: flex;
+    padding: 12px 15px;
+    border: none;
+    border-bottom: 1px solid #f0f0f0;
+    align-items: flex-start; 
+    word-break: break-word; /* Permite que las palabras se rompan si son muy largas */
+  }
+
+  .task-table tbody td:before {
+    content: attr(data-label);
+    font-weight: 600;
+    width: 120px;
+    min-width: 120px;
+    color: var(--text-dark);
+  }
+
+  .task-table .title {
+    margin-bottom: 0;
+    font-weight: normal;
+    flex: 1;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal; /* Permite que el texto se divida en varias líneas */
+    width: calc(100% - 120px); /* Ajuste del ancho */
+  }
+
+  .action-icons {
+    position: static;
+    display: flex;
+    padding: 0;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .action-icons i {
+    margin-left: 15px;
+    margin-right: 0;
+    padding: 8px;
+    font-size: 1.1rem;
+  }
+
+  .action-icons i.fa-edit {
+    color: var(--primary);
+  }
+
+  .action-icons i.fa-trash {
+    color: #dc3545;
+  }
+
+  .agregar {
+    padding: 10px 0;
+    margin-bottom: 10px;
+    border-bottom: none;
+  }
+
+  .titulo-boton {
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 15px;
+  }
+
+  .titulo-boton h1 {
+    font-size: 20px;
+    margin: 0;
+  }
+
+  .btn-celeste {
+    width: 36px;
+    height: 36px;
+  }
+
+  .hero-section {
+    height: 120px;
+  }
+}
