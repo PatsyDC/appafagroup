@@ -1,14 +1,16 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { ICategoriaP } from 'app/core/models/categoria.model';
 import { IProductoAG } from 'app/core/models/productoAG.model';
+import { CategoriaService } from 'app/core/services/categoria.service';
 import { ProductoAGService } from 'app/core/services/productoAG.service';
 
 @Component({
   selector: 'app-agregar-producto',
   standalone: true,
-  imports: [ReactiveFormsModule, MatDialogModule],
+  imports: [ReactiveFormsModule, MatDialogModule, CommonModule],
   templateUrl: './agregar-producto.component.html',
   styleUrl: './agregar-producto.component.css'
 })
@@ -23,7 +25,9 @@ export class AgregarProductoComponent {
 
     constructor(
       private service: ProductoAGService,
-      private formBuilder: FormBuilder
+      private formBuilder: FormBuilder,
+      private categoriaService: CategoriaService,
+      private dialogRef: MatDialogRef<AgregarProductoComponent>
     ) {
       this.formP = this.formBuilder.group({
         categoria_id: ['', [Validators.required]],
@@ -41,6 +45,10 @@ export class AgregarProductoComponent {
       });
     }
 
+    ngOnInit() {
+      this.cargarCategorias();
+    }
+
     onFileSelected(event: any) {
       this.selectedFile = event.target.files[0] as File;
     }
@@ -53,7 +61,6 @@ export class AgregarProductoComponent {
       if (this.formP.valid && this.selectedFile) {
         const formData = new FormData();
 
-        // Agregar los valores del formulario al FormData
         formData.append('categoria_id', this.formP.get('categoria_id')?.value || '');
         formData.append('nombre_producto', this.formP.get('nombre_producto')?.value || '');
         formData.append('codigo_sunat', this.formP.get('codigo_sunat')?.value || '');
@@ -66,10 +73,8 @@ export class AgregarProductoComponent {
         formData.append('stock_maximo', this.formP.get('stock_maximo')?.value || '');
         formData.append('peso', this.formP.get('peso')?.value || '');
 
-        // Agregar la imagen al FormData
         formData.append('imagen_url', this.selectedFile, this.selectedFile.name);
 
-        // Mostrar los datos en consola usando formData.forEach
         formData.forEach((value, key) => {
           console.log(`${key}:`, value);
         });
@@ -78,7 +83,8 @@ export class AgregarProductoComponent {
           res => {
             console.log("Producto creado correctamente:", res);
             this.formP.reset();
-            this.selectedFile = null; // Restablecer la imagen seleccionada
+            this.selectedFile = null;
+            this.dialogRef.close(res); 
           },
           error => {
             console.error('Error al crear el producto:', error);
@@ -89,8 +95,13 @@ export class AgregarProductoComponent {
       }
     }
 
-    cancelar() {
-      // Lógica para cancelar la acción
-      this.formP.reset(); // Esto limpia el formulario
-    }
+  cargarCategorias() {
+    this.categoriaService.allCategorias().subscribe(data => {
+      this.categorias = data;
+    });
+  }
+
+  closeDialog() {
+    this.dialogRef.close();
+  }
 }

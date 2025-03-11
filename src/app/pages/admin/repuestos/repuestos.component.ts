@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ProductoAGService } from 'app/core/services/productoAG.service';
 import { ICategoriaP } from 'app/core/models/categoria.model';
@@ -31,15 +31,13 @@ export class RepuestosComponent {
   }
 
   openDialogAdd(): void{
-    const dialogReAdd = this.dialog.open(AgregarProductoComponent, {
-      // disableClose: true
+    const dialogReAdd = this.dialog.open(AgregarProductoComponent);
+
+    dialogReAdd.afterClosed().subscribe(result => {
+      if(result){
+        this.ngOnInit();
+      }
     });
-    // dialogReAdd.componentInstance.dataSaved.subscribe((success: boolean) => {
-    //   if (success) {
-    //     dialogReAdd.close();
-    //     this.ngOnInit;
-    //   }
-    // })
   }
 
   onDelete(producto_id: number): void {
