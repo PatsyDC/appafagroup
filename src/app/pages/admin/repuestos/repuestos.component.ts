@@ -5,6 +5,8 @@ import { ProductoAGService } from 'app/core/services/productoAG.service';
 import { ICategoriaP } from 'app/core/models/categoria.model';
 import { IProductoAG } from 'app/core/models/productoAG.model';
 import { AgregarProductoComponent } from './modals/agregar-producto/agregar-producto.component';
+import { CategoriaService } from 'app/core/services/categoria.service';
+import { EditRepuestoComponent } from './modals/edit-repuesto/edit-repuesto.component';
 
 @Component({
   selector: 'app-repuestos',
@@ -21,13 +23,24 @@ export class RepuestosComponent {
   categorias: ICategoriaP[] = [];
 
   constructor(
-    private service: ProductoAGService) {}
+    private service: ProductoAGService,
+    private serviceCategoria: CategoriaService) {}
 
   ngOnInit(): void {
     this.service.allProductos().subscribe((data) => {
       console.log('data :' ,data);
       this.producto = data;
-    })
+    });
+
+    this.serviceCategoria.allCategorias().subscribe((data) => {
+      console.log('Categorías:', data);
+      this.categorias = data;
+    });
+  }
+
+  getCategoriaNombre(categoria_id: number): string {
+    const categoria = this.categorias.find(cat => cat.categoria_id === categoria_id);
+    return categoria ? categoria.categoria_name : 'Desconocido';
   }
 
   openDialogAdd(): void{
@@ -51,31 +64,16 @@ export class RepuestosComponent {
     });
   }
 
+  openDialogEdit(repuesto: IProductoAG) {
+    const dialogRefEdit = this.dialog.open(EditRepuestoComponent, {
+      data: repuesto
+    });
 
+    dialogRefEdit.afterClosed().subscribe(result => {
+      if (result) {
+        this.ngOnInit();
+      }
+    });
+  }
 
-  // openDialogEdit(repuesto: IRepuesto) {
-  //   const dialogRefEdit = this.dialog.open(EditRepuestoComponent, {
-  //     data: repuesto
-  //   });
-
-  //   dialogRefEdit.afterClosed().subscribe(result => {
-  //     if (result) {
-  //       this.getRepuesto();
-  //     }
-  //   });
-  // }
-
-  // deleteRepuesto(id: number) {
-  //   if (confirm('¿Estás seguro de que quieres eliminar este repuesto?')) {
-  //     this.RepuestoService.deleteRepuesto(id).subscribe(
-  //       () => {
-  //         console.log('Repuesto eliminado correctamente');
-  //         this.getRepuesto(); // Recargar la lista después de eliminar
-  //       },
-  //       error => {
-  //         console.error('Error al eliminar el repuesto:', error);
-  //       }
-  //     );
-  //   }
-  // }
 }

@@ -1,6 +1,6 @@
 export interface IProductoAG {
   producto_id: number;
-  categoria_id: string;
+  categoria_id: number;
   nombre_producto: string;
   codigo_sunat: string;
   tipo_producto: string;
@@ -11,6 +11,6 @@ export interface IProductoAG {
   stock_minimo: number;
   stock_maximo: number;
   peso: number;
-  imagen_url?: string; 
+  imagen_url?: string;
 }
 

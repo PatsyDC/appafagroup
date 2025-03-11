@@ -37,7 +37,7 @@
           <div class="subtitle">{{repuesto.nombre_producto}}</div>
         </td>
         <td data-label="Categoría">
-          <div class="subtitle">{{repuesto.categoria_id}}</div>
+          <div class="subtitle">{{ getCategoriaNombre(repuesto.categoria_id) }}</div>
         </td>
         <td data-label="Codigo Sunat">
           <div class="subtitle">{{repuesto.codigo_sunat}}</div>
@@ -71,7 +71,7 @@
         </td>
         <td data-label="Acciones">
           <div style="display: flex; justify-content: center; gap: 15px; align-items: center;">
-            <i class="fas fa-edit" style="color: #326DE7; font-size: 20px; cursor: pointer;"></i>
+            <i class="fas fa-edit" style="color: #326DE7; font-size: 20px; cursor: pointer;" (click)="openDialogEdit(repuesto)"></i>
             <i class="fas fa-trash" style="color: red; font-size: 20px; cursor: pointer;" (click)="onDelete(repuesto.producto_id)"></i>
           </div>
         </td>

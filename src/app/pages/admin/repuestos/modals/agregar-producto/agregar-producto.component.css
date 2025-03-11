@@ -7,6 +7,31 @@
   background: #ffffff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+  /* Añadir scroll si es necesario */
+  max-height: 85vh; /* Altura máxima relativa a la ventana */
+  overflow-y: auto; /* Scroll vertical */
+  position: relative;
+}
+
+/* Añadir estilo de scroll personalizado */
+.form-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.form-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.form-container::-webkit-scrollbar-thumb {
+  background: #326DE7;
+  border-radius: 4px;
+}
+
+.form-container::-webkit-scrollbar-thumb:hover {
+  background: #2857c0;
 }
 
 .form-container h2 {
@@ -20,11 +45,18 @@
   padding-right: 40px;
   font-family: sans-serif;
   position: relative;
+  /* Mantener el título visible al hacer scroll */
+  position: sticky;
+  top: 0;
+  background: #ffffff;
+  z-index: 5;
+  padding-top: 0.5rem;
 }
 
 .ticket-form {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 /* Mantener el diseño en 3 columnas */
@@ -58,6 +90,7 @@
   transition: all 0.3s ease;
   width: 100%;
   box-sizing: border-box;
+  font-size: 16px; /* Evita el zoom en iOS */
 }
 
 .form-group input:focus,
@@ -73,16 +106,80 @@
   cursor: pointer;
 }
 
-/* Diseño responsivo */
+/* Diseño responsivo mejorado */
 @media (max-width: 900px) {
   .form-grid {
     grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas medianas */
+  }
+
+  .form-container {
+    padding: 0.8rem;
   }
 }
 
 @media (max-width: 600px) {
   .form-grid {
     grid-template-columns: 1fr; /* 1 columna en pantallas pequeñas */
+  }
+
+  .form-container {
+    padding: 0.6rem;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    max-height: 90vh; /* Aumentar altura máxima en móviles */
+  }
+
+  .form-container h2 {
+    font-size: 1.3rem;
+    /* Asegurar que el título se mantiene visible en scroll */
+    top: 0;
+  }
+
+  .form-group {
+    margin-bottom: 0.8rem;
+  }
+
+  .form-group label {
+    font-size: 0.9rem;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    padding: 0.6rem;
+  }
+
+  /* Ajustar botones en móvil */
+  .button-group {
+    flex-direction: column;
+    /* Hacer que los botones se queden fijos en la parte inferior */
+    position: sticky;
+    bottom: 0;
+    background: white;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    z-index: 5;
+  }
+
+  .submit-button,
+  .cancel-button {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    padding: 0.8rem;
+  }
+}
+
+/* Para pantallas muy pequeñas */
+@media (max-width: 320px) {
+  .form-container {
+    padding: 0.4rem;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    padding: 0.5rem;
   }
 }
 
@@ -91,6 +188,7 @@
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+  width: 100%;
 }
 
 .submit-button,
@@ -142,6 +240,8 @@
   box-shadow: none;
   margin: 0;
   width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
 }
 
 /* Asegurar que la fuente se aplica incluso con alta especificidad */
@@ -171,6 +271,6 @@
   transition: all 0.2s ease;
   outline: none;
   padding: 0;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   z-index: 10;
 }

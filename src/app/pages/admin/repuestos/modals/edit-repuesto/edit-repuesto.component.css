@@ -1,87 +1,282 @@
-/* General container styling for form */
-body {
+/* Contenedor del formulario */
+.form-container {
+  padding: 1rem;
   font-family: sans-serif;
-}
-
-form {
-  max-width: 600px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 20px;
-  background-color: #f9f9f9;
+  background: #ffffff;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-}
-
-form div {
-  margin-bottom: 15px;
-}
-
-form label {
-  display: block;
-  margin-bottom: 5px;
-  color: #555;
-  font-weight: bold;
-}
-
-form input,
-form textarea,
-form select {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  color: #333;
+  box-sizing: border-box;
+  /* Añadir scroll si es necesario */
+  max-height: 85vh; /* Altura máxima relativa a la ventana */
+  overflow-y: auto; /* Scroll vertical */
+  position: relative;
+}
+
+/* Añadir estilo de scroll personalizado */
+.form-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.form-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.form-container::-webkit-scrollbar-thumb {
+  background: #326DE7;
+  border-radius: 4px;
+}
+
+.form-container::-webkit-scrollbar-thumb:hover {
+  background: #2857c0;
+}
+
+.form-container h2 {
+  color: #326DE7;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  font-size: 1.5rem;
+  border-bottom: 2px solid rgba(50, 109, 231, 0.2);
+  padding-bottom: 0.5rem;
+  padding-right: 40px;
+  font-family: sans-serif;
+  position: relative;
+  /* Mantener el título visible al hacer scroll */
+  position: sticky;
+  top: 0;
+  background: #ffffff;
+  z-index: 5;
+  padding-top: 0.5rem;
+}
+
+.ticket-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Mantener el diseño en 3 columnas */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #444;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
   font-family: sans-serif;
 }
 
-form input:focus,
-form textarea:focus,
-form select:focus {
-  border-color: #007bff;
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: 0.7rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: sans-serif;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 16px; /* Evita el zoom en iOS */
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
   outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  border-color: #326DE7;
+  box-shadow: 0 0 0 3px rgba(50, 109, 231, 0.2);
 }
 
-form input[type="file"] {
-  padding: 0;
+.form-group select {
+  background-color: white;
+  cursor: pointer;
 }
 
-form small {
-  color: red;
-  font-size: 12px;
+/* Diseño responsivo mejorado */
+@media (max-width: 900px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas medianas */
+  }
+
+  .form-container {
+    padding: 0.8rem;
+  }
 }
 
-form button[type="submit"],
-form button[type="button"] {
-  padding: 10px 20px;
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr; /* 1 columna en pantallas pequeñas */
+  }
+
+  .form-container {
+    padding: 0.6rem;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    max-height: 90vh; /* Aumentar altura máxima en móviles */
+  }
+
+  .form-container h2 {
+    font-size: 1.3rem;
+    /* Asegurar que el título se mantiene visible en scroll */
+    top: 0;
+  }
+
+  .form-group {
+    margin-bottom: 0.8rem;
+  }
+
+  .form-group label {
+    font-size: 0.9rem;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    padding: 0.6rem;
+  }
+
+  /* Ajustar botones en móvil */
+  .button-group {
+    flex-direction: column;
+    /* Hacer que los botones se queden fijos en la parte inferior */
+    position: sticky;
+    bottom: 0;
+    background: white;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    z-index: 5;
+  }
+
+  .submit-button,
+  .cancel-button {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    padding: 0.8rem;
+  }
+}
+
+/* Para pantallas muy pequeñas */
+@media (max-width: 320px) {
+  .form-container {
+    padding: 0.4rem;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    padding: 0.5rem;
+  }
+}
+
+/* Botones */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.submit-button,
+.cancel-button {
+  background-color: #326DE7;
+  color: white;
   border: none;
-  border-radius: 5px;
-  font-size: 16px;
+  padding: 0.7rem 1rem;
+  font-weight: 500;
+  border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-right: 10px;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-family: sans-serif;
 }
 
-form button[type="submit"] {
-  background-color: #007bff;
-  color: #fff;
+.submit-button {
+  background-color: #326DE7;
 }
 
-form button[type="submit"]:disabled {
-  background-color: #ccc;
+.submit-button:disabled {
+  background-color: #a5bdf7;
   cursor: not-allowed;
 }
 
-form button[type="submit"]:hover:not(:disabled) {
-  background-color: #0056b3;
+.cancel-button {
+  background-color: #dc3545;
 }
 
-form button[type="button"] {
-  background-color: #6c757d;
-  color: #fff;
+.submit-button:hover {
+  background-color: #2857c0;
 }
 
-form button[type="button"]:hover {
-  background-color: #5a6268;
+.cancel-button:hover {
+  background-color: #c82333;
+}
+
+/* Estilo para el input de tipo file */
+.form-group input[type="file"] {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+/* Sobreescribir estilos de diálogo si están interfiriendo */
+.modal-body .form-container,
+.dialog-body .form-container,
+.mat-dialog-container .form-container {
+  box-shadow: none;
+  margin: 0;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+/* Asegurar que la fuente se aplica incluso con alta especificidad */
+.modal .form-container *,
+.dialog .form-container *,
+.mat-dialog-content .form-container * {
+  font-family: sans-serif !important;
+}
+
+/* Estilos mejorados para el botón de cierre (x) */
+.close-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: #326DE7;
+  border: 1px solid #e1e4e8;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  height: 28px;
+  width: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  outline: none;
+  padding: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.image-preview img {
+  max-width: 100%;
+  max-height: 150px;
+  object-fit: contain;
 }
