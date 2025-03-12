@@ -44,7 +44,8 @@ export class EditRepuestoComponent implements OnInit {
       stock_minimo: [0, [Validators.required]],
       stock_maximo: [0, [Validators.required]],
       peso: [0, [Validators.required]],
-      imagen_url: [null]
+      imagen_url: [null],
+      precio: [0, [Validators.required]],
     });
   }
 
@@ -71,7 +72,8 @@ export class EditRepuestoComponent implements OnInit {
         nombre_comercial: this.data.nombre_comercial,
         stock_minimo: this.data.stock_minimo,
         stock_maximo: this.data.stock_maximo,
-        peso: this.data.peso
+        peso: this.data.peso,
+        precio: this.data.precio
       });
 
       // Muestra la imagen actual si está disponible
@@ -115,6 +117,7 @@ export class EditRepuestoComponent implements OnInit {
       formData.append('stock_minimo', this.formP.get('stock_minimo')?.value || '');
       formData.append('stock_maximo', this.formP.get('stock_maximo')?.value || '');
       formData.append('peso', this.formP.get('peso')?.value || '');
+      formData.append('precio', this.formP.get('precio')?.value || '');
 
       // Solo adjunta el archivo si se seleccionó uno nuevo
       if (this.selectedFile) {

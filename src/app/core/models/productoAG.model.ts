@@ -12,5 +12,6 @@ export interface IProductoAG {
   stock_maximo: number;
   peso: number;
   imagen_url?: string;
+  precio: number;
 }
 

@@ -26,6 +26,7 @@
       <th>Stock Max.</th>
       <th>Peso</th>
       <th>Imagen</th>
+      <th>Precio</th>
       <th>Acciones</th>
     </tr>
   </thead>
@@ -68,6 +69,9 @@
         </td>
         <td data-label="Imagen">
           <img class="img-tabla" [src]="repuesto.imagen_url" alt="Imagen del producto">
+        </td>
+        <td data-label="Precio">
+          <div class="subtitle">{{repuesto.precio}}</div>
         </td>
         <td data-label="Acciones">
           <div style="display: flex; justify-content: center; gap: 15px; align-items: center;">

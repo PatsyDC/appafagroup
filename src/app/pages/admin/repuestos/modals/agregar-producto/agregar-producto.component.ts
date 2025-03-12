@@ -41,7 +41,8 @@ export class AgregarProductoComponent {
         stock_minimo: [0, [Validators.required]],
         stock_maximo: [0, [Validators.required]],
         peso: [0, [Validators.required]],
-        imagen_url: [null]
+        imagen_url: [null],
+        precio: [0, [Validators.required]]
       });
     }
 
@@ -72,8 +73,8 @@ export class AgregarProductoComponent {
         formData.append('stock_minimo', this.formP.get('stock_minimo')?.value || '');
         formData.append('stock_maximo', this.formP.get('stock_maximo')?.value || '');
         formData.append('peso', this.formP.get('peso')?.value || '');
-
         formData.append('imagen_url', this.selectedFile, this.selectedFile.name);
+        formData.append('precio', this.formP.get('precio')?.value || '');
 
         formData.forEach((value, key) => {
           console.log(`${key}:`, value);
@@ -84,7 +85,7 @@ export class AgregarProductoComponent {
             console.log("Producto creado correctamente:", res);
             this.formP.reset();
             this.selectedFile = null;
-            this.dialogRef.close(res); 
+            this.dialogRef.close(res);
           },
           error => {
             console.error('Error al crear el producto:', error);
