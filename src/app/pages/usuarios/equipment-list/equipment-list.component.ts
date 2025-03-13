@@ -1,31 +1,48 @@
-import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
-// import { IProducto } from 'app/core/models/producto.model';
-// import { ProductosService } from 'app/core/services/productos.service';
+import { ICategoriaP } from 'app/core/models/categoria.model';
+import { IProductoAG } from 'app/core/models/productoAG.model';
+import { CategoriaService } from 'app/core/services/categoria.service';
+import { ProductoAGService } from 'app/core/services/productoAG.service';
 
 @Component({
   selector: 'app-equipment-list',
   standalone: true,
-  imports: [RouterLink, NgFor],
+  imports: [],
   templateUrl: './equipment-list.component.html',
   styleUrls: ['./equipment-list.component.css']
 })
 export class EquipmentListComponent {
-  // productosFiltradosCategoria1?: IProducto[] = [];
-  // productosFiltradosCategoria2?: IProducto[] = [];
-  // productosFiltradosCategoria3?: IProducto[] = [];
 
-  // public listaProductos: IProducto[] = [];
+  producto: IProductoAG[] = [];
+  categorias: ICategoriaP[] = [];
 
-  // constructor(private productoService: ProductosService) {}
+  constructor(
+      private service: ProductoAGService,
+      private serviceCategoria: CategoriaService) {}
 
-  // ngOnInit(): void {
-  //   this.productoService.allProductosWithCategories().subscribe((productosConCategorias) => {
-  //     this.productosFiltradosCategoria1 = productosConCategorias.filter(producto => producto.categoria_id === 1);
-  //     this.productosFiltradosCategoria2 = productosConCategorias.filter(producto => producto.categoria_id === 2);
-  //     this.productosFiltradosCategoria3 = productosConCategorias.filter(producto => producto.categoria_id === 3);
+  ngOnInit(): void {
+    this.loadProductos();
+    this.loadCategorias();
+  }
 
-  //   });
-  // }
+  loadProductos(): void {
+    this.service.allProductos().subscribe((data) => {
+      console.log('data :' ,data);
+      this.producto = data;
+    });
+  }
+
+  loadCategorias(): void {
+    this.serviceCategoria.allCategorias().subscribe((data) => {
+      console.log('Categorías:', data);
+      this.categorias = data;
+    });
+  }
+
+  getCategoriaNombre(categoria_id: number): IProductoAG[] {
+    return this.producto.filter(producto =>
+      producto.categoria_id === categoria_id
+    )
+  }
+
 }

@@ -1,153 +1,14 @@
 body {
+  font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #f0f2f5, #cfd8dc);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Roboto', sans-serif;
 }
 
-.container {
-  max-width: 1400px;
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Columnas flexibles */
-  grid-gap: 20px;
-  padding: 20px;
-}
-
-.category-title {
-  grid-column: 1 / -1;
-  font-size: 2rem;
-  font-weight: bold;
-  color: #444;
-  text-align: center;
-  padding: 20px 0;
-  margin: 40px 0 20px 0;
-  border-bottom: 2px solid #ccc;
-  position: relative;
-  font-family: "Poppins", sans-serif;
-}
-
-.category-title::after {
-  content: "";
-  width: 100px;
-  height: 3px;
-  background-color: #326DE7;
-  position: absolute;
-  bottom: -2px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.card {
-  background: #ffffff;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-}
-
-.content {
-  position: relative;
-  height: 180px; /* Mantén la altura del contenedor de la imagen */
-}
-
-.content img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ajusta las imágenes para que cubran todo el contenedor */
-  display: block;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-
-.text {
-  padding: 15px;
-  text-align: center;
-}
-
-.text h3 {
-  margin: 10px 0;
-  font-size: 1.3rem;
-  color: #444;
-  font-weight: 500;
-  font-family: "Poppins", sans-serif;
-}
-
-.text p {
-  margin: 10px 0;
-  color: #777;
-  font-size: 0.95rem;
-  line-height: 1.4;
-  font-family: "Poppins", sans-serif;
-}
-
-.btn-group {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: "Poppins", sans-serif;
-}
-
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  margin: 10px;
-  font-size: 0.9rem;
-  color: #ffffff;
-  background-color: #326DE7;
-  border-radius: 25px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background-color: #244dbb;
-}
-
-@media (max-width: 1200px) {
-  .container {
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas grandes */
-  }
-}
-
-@media (max-width: 992px) {
-  .container {
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas medianas */
-  }
-}
-
-@media (max-width: 768px) {
-  .container {
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas pequeñas */
-  }
-}
-
-@media (max-width: 576px) {
-  .container {
-    grid-template-columns: 1fr; /* 1 columna en pantallas extra pequeñas */
-  }
-}
-
-
-/*header*/
+/* Encabezado */
 .header-container {
   text-align: center;
   padding: 20px;
   background-color: #fff;
-  position: relative;
 }
 
 .header-content {
@@ -156,7 +17,7 @@ body {
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  flex-wrap: wrap; /* Ensures content wraps on smaller screens */
+  flex-wrap: wrap;
 }
 
 .header-title {
@@ -165,14 +26,14 @@ body {
 
 .linea {
   color: #0056D2;
+  font-size: 2em;
   margin: 0;
-  font-size: 2em; /* Larger font size for emphasis */
 }
 
 .subtitle {
   color: #5A5A5A;
+  font-size: 1.2em;
   margin: 0;
-  font-size: 1.2em; /* Slightly larger subtitle */
 }
 
 .header-logo {
@@ -183,7 +44,6 @@ body {
 
 .header-logo img {
   width: 100px;
-  height: auto;
 }
 
 .catalog-link {
@@ -201,60 +61,134 @@ body {
   background-color: #e6821a;
 }
 
+/* Línea separadora */
 .header-line {
   width: 100%;
   height: 2px;
   background-color: #0056D2;
-  position: absolute;
-  bottom: 0;
-  left: 0;
 }
 
-/* Media Queries for Responsiveness */
+/* Categorías */
+.categoria-separador {
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+
+.categoria-separador h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #326DE7;
+  font-family: sans-serif !important;
+}
+
+.categoria-separador p {
+  color: #6c757d;
+  font-family: sans-serif;
+  font-family: sans-serif !important;
+}
+
+/* Tarjetas de productos */
+.producto-card {
+  border: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.producto-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #212529;
+  text-align: center;
+}
+
+/* Botón "Ver Detalles" */
+.btn-detalles {
+  background: white;
+  color: #326DE7;
+  border: 2px solid #326DE7;
+  padding: 8px 12px;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.btn-detalles:hover {
+  background: #326DE7;
+  color: white;
+}
+
+/* Botón "Carrito" */
+.btn-carrito {
+  background: #FFC107;
+  color: #212529;
+  border: none;
+  padding: 8px 12px;
+  font-size: 18px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.btn-carrito:hover {
+  background: #E0A800;
+  color: white;
+}
+
+/* Responsividad */
 @media (max-width: 768px) {
   .header-content {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
+    flex-direction: column;
+    text-align: center;
   }
 
   .header-title {
-      text-align: center;
+    text-align: center;
   }
 
   .header-logo img {
-      width: 80px;
+    width: 80px;
   }
 
   .catalog-link {
-      padding: 8px 16px;
-      font-size: 14px;
+    padding: 8px 16px;
+    font-size: 14px;
   }
 
   .linea {
-      font-size: 1.8em;
+    font-size: 1.8em;
   }
 
   .subtitle {
-      font-size: 1em;
+    font-size: 1em;
   }
 }
 
 @media (max-width: 480px) {
   .header-logo img {
-      width: 60px;
+    width: 60px;
   }
 
   .catalog-link {
-      padding: 6px 12px;
-      font-size: 12px;
+    padding: 6px 12px;
+    font-size: 12px;
   }
 
   .linea {
-      font-size: 1.5em;
+    font-size: 1.5em;
   }
 
   .subtitle {
-      font-size: 0.9em;
+    font-size: 0.9em;
   }
 }

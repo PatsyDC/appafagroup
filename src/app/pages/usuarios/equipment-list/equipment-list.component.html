@@ -1,8 +1,8 @@
-<!-- <header class="header-container">
+<header class="header-container">
   <div class="header-content">
       <div class="header-title">
           <h1 class="linea">LINEA AFA TRAC</h1>
-          <p class="subtitle">REPUESTOS PARA MAQUINARIA AGRÍCOLA</p>
+          <p class="subtitle">LOS MEJORES PRODUCTOS PARA EL SECTOR AGRÍCOLA</p>
       </div>
       <div class="header-logo">
           <img src="/img/afa_trac.png" alt="AFA Trac Logo">
@@ -12,56 +12,33 @@
   <div class="header-line"></div>
 </header>
 
-
-
-
-
-
-<div class="container">
-  <h1 class="category-title">ATOMIZADORES</h1>
-  <div *ngFor="let producto of productosFiltradosCategoria1" class="card">
-    <div class="content">
-      <img src="http://localhost:3000{{producto.img}}" alt="Imagen de {{producto.nombre}}" class="small-img">
+<div class="container my-4">
+  @for (categoria of categorias; track $index) {
+    <!-- Separador de categoría -->
+    <div class="categoria-separador">
+      <br>
+      <h2>{{categoria.categoria_name}}</h2>
+      <p>{{categoria.description}}</p>
     </div>
-    <div class="text">
-      <h3>{{ producto.nombre }}</h3>
-      <p>{{ producto.descripcion }}</p>
-      <div class="btn-group">
-        <a [routerLink]="['/detalle', producto.id]" class="btn btn-info">Ver Detalle</a>
 
-        <a href="{{ producto?.pdf }}" class="btn btn-info"> Ver PDF</a>
-      </div>
-    </div>
-  </div>
+    <!-- Contenedor de productos -->
+    <div class="row">
+      @for (producto of getCategoriaNombre(categoria.categoria_id); track $index) {
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="card producto-card">
+            <img src="{{producto.imagen_url}}" alt="{{producto.nombre_producto}}" class="card-img-top">
+            <div class="card-body text-center">
+              <h5 class="card-title">{{producto.nombre_comercial}}</h5>
 
-  <h1 class="category-title">PULVERIZADORES</h1>
-  <div *ngFor="let producto of productosFiltradosCategoria2" class="card">
-    <div class="content">
-      <img src="http://localhost:3000{{producto.img}}" alt="Imagen de {{producto.nombre}}" class="small-img">
+              <!-- Botones -->
+              <div class="d-flex justify-content-between mt-3">
+                <button class="btn btn-detalles">🔍 Ver Detalles</button>
+                <button class="btn btn-carrito"><i class="fas fa-shopping-cart"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
     </div>
-    <div class="text">
-      <h3>{{ producto.nombre }}</h3>
-      <p>{{ producto.descripcion }}</p>
-      <div class="btn-group">
-        <a [routerLink]="['/detalle', producto.id]" class="btn btn-info">Ver Detalle</a>
-        <a href="{{ producto?.pdf }}" class="btn btn-info"> Ver PDF</a>
-      </div>
-    </div>
-  </div>
-
-  <h1 class="category-title">NEBULIZADORES</h1>
-  <div *ngFor="let producto of productosFiltradosCategoria3" class="card">
-    <div class="content">
-      <img src="http://localhost:3000{{producto.img}}" alt="Imagen de {{producto.nombre}}" class="small-img">
-    </div>
-    <div class="text">
-      <h3>{{ producto.nombre }}</h3>
-      <p>{{ producto.descripcion }}</p>
-      <div class="btn-group">
-        <a [routerLink]="['/detalle', producto.id]" class="btn btn-info">Ver Detalle</a>
-        <a href="{{ producto?.pdf }}" class="btn btn-info"> Ver PDF</a>
-      </div>
-    </div>
-  </div>
-
-</div> -->
+  }
+</div>

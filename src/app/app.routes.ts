@@ -8,7 +8,6 @@ import { DetalleRComponent } from '@pages/usuarios/detalle-r/detalle-r.component
 import { EquipmentListComponent } from '@pages/usuarios/equipment-list/equipment-list.component';
 import { FabricacionComponent } from '@pages/usuarios/fabricacion/fabricacion.component';
 import { HomePageComponent } from '@pages/usuarios/home-page/home-page.component';
-import { PartsListComponent } from '@pages/usuarios/parts-list/parts-list.component';
 import { ServicesComponent } from '@pages/usuarios/services/services.component';
 import { UsuariosComponent } from '@pages/usuarios/usuarios.component';
 import { InicioComponent } from '@pages/admin/inicio/inicio.component';
@@ -19,6 +18,8 @@ import { ContactoComponent } from '@pages/admin/contacto/contacto.component';
 import { NoticiaComponent } from '@pages/admin/noticia/noticia.component';
 import { AuthGuard } from './auth.guard';
 import { CotizacionComponent } from '@pages/admin/cotizacion/cotizacion.component';
+import { ClienteComponent } from '@pages/admin/cliente/cliente.component';
+import { TiendaComponent } from '@pages/usuarios/tienda/tienda.component';
 
 export const routes: Routes = [
   {
@@ -27,7 +28,6 @@ export const routes: Routes = [
     children: [
       { path: '', component: HomePageComponent },
       { path: 'about-us', component: AboutPageComponent },
-      { path: 'parts-list', component: PartsListComponent },
       { path: 'equipment-list', component: EquipmentListComponent },
       { path: 'services', component: ServicesComponent },
       { path: 'articulo', component: BlogComponent },
@@ -35,6 +35,7 @@ export const routes: Routes = [
       { path: 'fabricacion', component: FabricacionComponent}, // Asegúrate de tener el componente correcto aquí
       { path: 'detalleRepuesto/:id', component: DetalleRComponent},
       { path: 'blog', component: ArticuloComponent},
+      { path: 'tienda', component: TiendaComponent}
     ],
   },
 
@@ -49,7 +50,8 @@ export const routes: Routes = [
       { path: 'repuestosA', component: RepuestosComponent },
       { path: 'contactoA', component: ContactoComponent },
       { path: 'noticiaA', component: NoticiaComponent },
-      {path: 'cotizacion', component: CotizacionComponent}
+      {path: 'cotizacion', component: CotizacionComponent},
+      { path: 'cliente', component: ClienteComponent}
     ]
   },
   { path: 'login', component: LoginComponent },
