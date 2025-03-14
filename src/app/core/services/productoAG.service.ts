@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { forkJoin, map, Observable, Subject, tap } from 'rxjs';
+import { map, Observable, Subject, tap } from 'rxjs';
 import { IProductoAG } from '../models/productoAG.model';
 
 @Injectable({
@@ -39,4 +39,5 @@ export class ProductoAGService {
   putRepuesto( producto_id: number, formData: FormData): Observable<IProductoAG> {
     return this.http.put<IProductoAG>(`${this.url}${producto_id}/`, formData);
   }
+
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ICategoriaP } from 'app/core/models/categoria.model';
 import { IProductoAG } from 'app/core/models/productoAG.model';
+import { CarritoService } from 'app/core/services/carrito.service';
 import { CategoriaService } from 'app/core/services/categoria.service';
 import { ProductoAGService } from 'app/core/services/productoAG.service';
 
@@ -17,8 +18,10 @@ export class EquipmentListComponent {
   categorias: ICategoriaP[] = [];
 
   constructor(
-      private service: ProductoAGService,
-      private serviceCategoria: CategoriaService) {}
+    private service: ProductoAGService,
+    private serviceCategoria: CategoriaService,
+    private carritoService: CarritoService
+    ) {}
 
   ngOnInit(): void {
     this.loadProductos();
@@ -43,6 +46,10 @@ export class EquipmentListComponent {
     return this.producto.filter(producto =>
       producto.categoria_id === categoria_id
     )
+  }
+
+  agregarAlCarrito(producto: IProductoAG): void {
+    this.carritoService.agregarProducto(producto, 1);
   }
 
 }

@@ -1,1 +1,172 @@
-<p>tienda works!</p>
+<!-- carrito.component.html -->
+<div class="container mt-4">
+  <h2>Carrito de Compras</h2>
+
+  <div *ngIf="carrito.items.length === 0" class="text-center my-5">
+    <p>Tu carrito está vacío</p>
+    <button class="btn btn-primary" (click)="seguirComprando()">Ver Productos</button>
+  </div>
+
+  <div *ngIf="carrito.items.length > 0 && !ordenCompletada">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <!-- <th>Precio</th> -->
+            <th>Cantidad</th>
+            <!-- <th>Subtotal</th> -->
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of carrito.items">
+            <td>
+              <div class="d-flex align-items-center">
+                <img *ngIf="item.producto.imagen_url" [src]="item.producto.imagen_url"
+                     alt="{{ item.producto.nombre_producto }}" class="img-thumbnail me-2"
+                     style="max-width: 50px;">
+                <span>{{ item.producto.nombre_producto }}</span>
+              </div>
+            </td>
+            <!-- <td>S/ {{ item.producto.precio | number:'1.2-2' }}</td> -->
+            <td>
+              <div class="input-group" style="max-width: 120px;">
+                <button class="btn btn-outline-secondary btn-sm" type="button"
+                        (click)="actualizarCantidad(item, item.cantidad - 1)">-</button>
+                <input type="number" class="form-control text-center"
+                       [(ngModel)]="item.cantidad"
+                       (change)="actualizarCantidad(item, item.cantidad)">
+                <button class="btn btn-outline-secondary btn-sm" type="button"
+                        (click)="actualizarCantidad(item, item.cantidad + 1)">+</button>
+              </div>
+            </td>
+            <!-- <td>S/ {{ item.subtotal | number:'1.2-2' }}</td> -->
+            <td>
+              <button class="btn btn-danger btn-sm"
+                      (click)="eliminarProducto(item.producto.producto_id)">
+                <i class="fas fa-trash"></i> Eliminar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <!-- <tr>
+            <td colspan="3" class="text-end fw-bold">Total:</td>
+            <td colspan="2" class="fw-bold">S/ {{ carrito.total | number:'1.2-2' }}</td>
+          </tr> -->
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="d-flex justify-content-between mb-4">
+      <button class="btn btn-outline-secondary" (click)="seguirComprando()">
+        Seguir Comprando
+      </button>
+      <button class="btn btn-outline-danger" (click)="vaciarCarrito()">
+        Vaciar Carrito
+      </button>
+    </div>
+
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <h5 class="mb-0">Datos para solicitar la cotización</h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="checkoutForm">
+            <div class="row">
+              <!-- Columna 1 -->
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="nombre" class="form-label">Nombre completo</label>
+                  <input type="text" class="form-control" id="nombre" formControlName="nombre">
+                  <div *ngIf="checkoutForm.get('nombre')?.invalid && checkoutForm.get('nombre')?.touched" class="text-danger">
+                    El nombre es requerido
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="dni" class="form-label">DNI</label>
+                  <input type="text" class="form-control" id="dni" formControlName="dni">
+                  <div *ngIf="checkoutForm.get('dni')?.invalid && checkoutForm.get('dni')?.touched" class="text-danger">
+                    DNI de la persona
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" formControlName="email">
+                  <div *ngIf="checkoutForm.get('email')?.invalid && checkoutForm.get('email')?.touched" class="text-danger">
+                    Email inválido
+                  </div>
+                </div>
+              </div>
+
+              <!-- Columna 2 -->
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="ruc" class="form-label">RUC</label>
+                  <input type="text" class="form-control" id="ruc" formControlName="ruc">
+                  <div *ngIf="checkoutForm.get('ruc')?.invalid && checkoutForm.get('ruc')?.touched" class="text-danger">
+                    RUC de la persona
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="ocupacion" class="form-label">Ocupación</label>
+                  <input type="text" class="form-control" id="ocupacion" formControlName="ocupacion">
+                  <div *ngIf="checkoutForm.get('ocupacion')?.invalid && checkoutForm.get('ocupacion')?.touched" class="text-danger">
+                    Ocupación de la persona
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="telefono" class="form-label">Teléfono</label>
+                  <input type="tel" class="form-control" id="telefono" formControlName="telefono">
+                  <div *ngIf="checkoutForm.get('telefono')?.invalid && checkoutForm.get('telefono')?.touched" class="text-danger">
+                    El teléfono es requerido
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="direccion" class="form-label">Dirección de envío</label>
+                  <textarea class="form-control" id="direccion" rows="3" formControlName="direccion"></textarea>
+                  <div *ngIf="checkoutForm.get('direccion')?.invalid && checkoutForm.get('direccion')?.touched" class="text-danger">
+                    La dirección es requerida
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botón Solicitar Citación -->
+            <div class="mt-3">
+              <button (click)="finalizarCompra()" [disabled]="procesandoOrden">
+                Finalizar Compra
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+      <!-- <div class="col-md-6">
+        <div class="card">
+          <div class="card-header bg-success text-white">
+            <h5 class="mb-0">Resumen del pedido</h5>
+          </div>
+          <div class="card-body">
+            <ul class="list-group mb-3">
+              <li class="list-group-item d-flex justify-content-between">
+                <span>Productos ({{ carrito.cantidadTotal }})</span>
+                <span>S/ {{ carrito.total | number:'1.2-2' }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between">
+                <span>Envío</span>
+                <span>Gratis</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between fw-bold">
+                <span>Total</span>
+                <span>S/ {{ carrito.total | number:'1.2-2' }}</span> -->
