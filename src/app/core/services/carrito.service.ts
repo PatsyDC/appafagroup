@@ -4,6 +4,7 @@ import { ICarrito } from '../models/carrito.model';
 import { HttpClient } from '@angular/common/http';
 import { IProductoAG } from '../models/productoAG.model';
 import { CarritoWeb } from '../models/carritoWeb.model';
+import { CotizacionWeb } from '../models/cotizacionWeb.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class CarritoService {
   private carritoKey = 'carrito_data';
   private carritoSubject = new BehaviorSubject<ICarrito>(this.initCarrito());
   private apiUrl = 'http://localhost:3000/api/v1/carrito/';
+  private apiCotizacion = 'http://localhost:3000/api/v1/cotizacionw/'
 
   constructor(private http: HttpClient) {
     this.cargarCarritoLocalStorage();
@@ -118,10 +120,8 @@ export class CarritoService {
       );
   }
 
-  // Método para guardar una cotización basada en un carrito
-  guardarCotizacion(cotizacion: any) {
-    // Asumiendo que tienes un endpoint para guardar cotizaciones
-    return this.http.post('http://localhost:3000/api/v1/cotizacion/', cotizacion);
+  guardarCotizacion(cotizacion: CotizacionWeb): Observable<any> {
+    return this.http.post(this.apiCotizacion, cotizacion);
   }
 
 }

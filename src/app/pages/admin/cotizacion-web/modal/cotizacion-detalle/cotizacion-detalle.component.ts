@@ -39,7 +39,7 @@ export class CotizacionDetalleComponent implements OnInit {
       fecha: [new Date().toISOString().substring(0, 10), Validators.required],
       tipo_cambio: [3.75, [Validators.required, Validators.min(0.01)]],
       punto_venta: ['Lima', Validators.required],
-      razon_social: ['', Validators.required],
+      razon_social: [''],
       ruc: [''],
       nombre_contacto: ['', Validators.required],
       dni_persona: ['', Validators.required],
@@ -49,7 +49,7 @@ export class CotizacionDetalleComponent implements OnInit {
       dias_ofertas: ['', Validators.required],
       moneda: ['PEN', Validators.required],
       vendedor_trabajador: [this.vendedores[0], Validators.required],
-      observaciones: ['', Validators.required],
+      observaciones: [''],
     });
   }
 
@@ -176,11 +176,15 @@ export class CotizacionDetalleComponent implements OnInit {
       carrito_id: this.carrito?.carrito_id
     };
 
-    // Aquí deberías implementar el servicio para guardar la cotización
-    console.log('Guardando cotización:', cotizacion);
-
-    // Mock de envío exitoso
-    alert('Cotización guardada con éxito');
-    this.router.navigate(['/admin/cotizaciones']);
+    this.carritoService.guardarCotizacion(cotizacion).subscribe(
+      (response) => {
+        alert('Cotización guardada con éxito');
+        this.router.navigate(['cotizaciones']);
+      },
+      (error) => {
+        console.error('Error al guardar la cotización:', error);
+        alert('Error al guardar la cotización. Por favor, intente nuevamente.');
+      }
+    );
   }
 }
