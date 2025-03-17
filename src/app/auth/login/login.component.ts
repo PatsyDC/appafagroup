@@ -13,22 +13,22 @@ import { FormsModule } from '@angular/forms';
 })
 export class LoginComponent {
 
-  username: string = '';
-  password: string = '';
+  // username: string = '';
+  // password: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  // constructor(private authService: AuthService, private router: Router) {}
 
-  login(): void {
-    if (this.authService.login(this.username, this.password)) {
-      const formElement = document.querySelector('.login-form');
-      if (formElement) {
-        formElement.classList.add('success');
-        setTimeout(() => {
-          this.router.navigate(['/admin/inicio']);
-        }, 1000);
-      }
-    } else {
-      alert('Invalid credentials');
-    }
-  }
+  // login(): void {
+  //   if (this.authService.login(this.username, this.password)) {
+  //     const formElement = document.querySelector('.login-form');
+  //     if (formElement) {
+  //       formElement.classList.add('success');
+  //       setTimeout(() => {
+  //         this.router.navigate(['/admin/inicio']);
+  //       }, 1000);
+  //     }
+  //   } else {
+  //     alert('Invalid credentials');
+  //   }
+  // }
 }

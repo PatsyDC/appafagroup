@@ -27,6 +27,7 @@ export class TiendaComponent implements OnInit {
   ) {
     this.carrito = this.carritoService.getCarritoValue();
     this.checkoutForm = this.fb.group({
+      empresa: [''],
       nombre: ['', Validators.required],
       dni: ['', Validators.required],
       ruc : ['', Validators.required],
@@ -106,7 +107,5 @@ export class TiendaComponent implements OnInit {
       }
     });
   }
-
-
 
 }

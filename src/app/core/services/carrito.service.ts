@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { ICarrito } from '../models/carrito.model';
 import { HttpClient } from '@angular/common/http';
 import { IProductoAG } from '../models/productoAG.model';
+import { CarritoWeb } from '../models/carritoWeb.model';
 
 @Injectable({
   providedIn: 'root'
@@ -100,4 +101,27 @@ export class CarritoService {
   guardarCarrito(carrito: any) {
     return this.http.post(this.apiUrl, carrito);
   }
+
+  allCarritoWeb(): Observable<CarritoWeb[]> {
+      return this.http.get<{ ok: boolean, status: number, body: CarritoWeb[] }>(this.apiUrl)
+            .pipe(
+              tap(response => console.log("Respuesta de API:", response)),
+              map(response => response.body || [])
+            );
+  }
+
+  getCarritoById(carritoId: string): Observable<CarritoWeb> {
+    return this.http.get<{ ok: boolean, status: number, body: CarritoWeb }>(`${this.apiUrl}${carritoId}`)
+      .pipe(
+        tap(response => console.log("Respuesta de API para carrito específico:", response)),
+        map(response => response.body)
+      );
+  }
+
+  // Método para guardar una cotización basada en un carrito
+  guardarCotizacion(cotizacion: any) {
+    // Asumiendo que tienes un endpoint para guardar cotizaciones
+    return this.http.post('http://localhost:3000/api/v1/cotizacion/', cotizacion);
+  }
+
 }

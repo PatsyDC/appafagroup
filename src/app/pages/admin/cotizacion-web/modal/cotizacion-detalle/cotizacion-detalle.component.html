@@ -1,0 +1,175 @@
+<div class="hero-section">
+  <h1>Detalles de Cotización</h1>
+</div>
+
+<div class="cotizacion-container">
+  <form [formGroup]="cotizacionForm" (ngSubmit)="guardarCotizacion()">
+    <div class="form-grid">
+      <!-- Primera fila -->
+      <div class="form-group">
+        <label for="periodo">Periodo</label>
+        <input type="month" id="periodo" formControlName="periodo" class="form-control">
+        <div class="error-message" *ngIf="cotizacionForm.get('periodo')?.invalid && cotizacionForm.get('periodo')?.touched">
+          Periodo es requerido
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="fecha">Fecha</label>
+        <input type="date" id="fecha" formControlName="fecha" class="form-control">
+        <div class="error-message" *ngIf="cotizacionForm.get('fecha')?.invalid && cotizacionForm.get('fecha')?.touched">
+          Fecha es requerida
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="tipo_cambio">Tipo de Cambio</label>
+        <input type="number" id="tipo_cambio" formControlName="tipo_cambio" step="0.01" class="form-control">
+        <div class="error-message" *ngIf="cotizacionForm.get('tipo_cambio')?.invalid && cotizacionForm.get('tipo_cambio')?.touched">
+          Tipo de cambio válido es requerido
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="punto_venta">Punto de Venta</label>
+        <input type="text" id="punto_venta" formControlName="punto_venta" class="form-control">
+        <div class="error-message" *ngIf="cotizacionForm.get('punto_venta')?.invalid && cotizacionForm.get('punto_venta')?.touched">
+          Punto de venta es requerido
+        </div>
+      </div>
+
+      <!-- Segunda fila -->
+
+      <div class="form-group">
+        <label for="razon_social">Empresa / Razón Social</label>
+        <input type="text" id="razon_social" formControlName="razon_social" class="form-control">
+      </div>
+
+
+      <div class="form-group">
+        <label for="ruc">RUC</label>
+        <input type="text" id="ruc" formControlName="ruc" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="nombre_contacto">Nombre de Contacto</label>
+        <input type="text" id="nombre_contacto" formControlName="nombre_contacto" class="form-control">
+        <div class="error-message" *ngIf="cotizacionForm.get('nombre_contacto')?.invalid && cotizacionForm.get('nombre_contacto')?.touched">
+          Nombre de contacto es requerido
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="dni_persona">DNI de Contacto</label>
+        <input type="text" id="dni_persona" formControlName="dni_persona" class="form-control">
+        <div class="error-message" *ngIf="cotizacionForm.get('dni_persona')?.invalid && cotizacionForm.get('dni_persona')?.touched">
+          Nombre de contacto es requerido
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" formControlName="email" class="form-control">
+        <div class="error-message" *ngIf="cotizacionForm.get('email')?.invalid && cotizacionForm.get('email')?.touched">
+          Email válido es requerido
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="telefono">Teléfono</label>
+        <input type="text" id="telefono" formControlName="telefono" class="form-control">
+        <div class="error-message" *ngIf="cotizacionForm.get('telefono')?.invalid && cotizacionForm.get('telefono')?.touched">
+          Teléfono es requerido
+        </div>
+      </div>
+
+      <!-- Tercera fila -->
+      <div class="form-group">
+        <label for="forma_pago">Forma de Pago</label>
+        <select id="forma_pago" formControlName="forma_pago" class="form-control">
+          <option *ngFor="let forma of formasPago" [value]="forma">{{ forma }}</option>
+        </select>
+        <div class="error-message" *ngIf="cotizacionForm.get('forma_pago')?.invalid && cotizacionForm.get('forma_pago')?.touched">
+          Forma de pago es requerida
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="dias_ofertas">Días de ofertas</label>
+        <input type="text" id="dias_ofertas" formControlName="dias_ofertas" class="form-control">
+        <div class="error-message" *ngIf="cotizacionForm.get('dias_ofertas')?.invalid && cotizacionForm.get('dias_ofertas')?.touched">
+          N° de días de oferta
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="moneda">Moneda</label>
+        <select id="moneda" formControlName="moneda" class="form-control">
+          <option *ngFor="let moneda of monedas" [value]="moneda">{{ moneda }}</option>
+        </select>
+        <div class="error-message" *ngIf="cotizacionForm.get('moneda')?.invalid && cotizacionForm.get('moneda')?.touched">
+          Moneda es requerida
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="vendedor_trabajador">Vendedor</label>
+        <select id="vendedor_trabajador" formControlName="vendedor_trabajador" class="form-control">
+          <option *ngFor="let vendedor of vendedores" [value]="vendedor">{{ vendedor }}</option>
+        </select>
+        <div class="error-message" *ngIf="cotizacionForm.get('vendedor_trabajador')?.invalid && cotizacionForm.get('vendedor_trabajador')?.touched">
+          Vendedor es requerido
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="observaciones">Observaciones</label>
+        <textarea id="observaciones" formControlName="observaciones" class="form-control" rows="3"></textarea>
+      </div>
+    </div>
+
+    <!-- Tabla de productos -->
+    <div class="productos-section">
+      <h2>Productos</h2>
+      <table class="productos-table">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Descuento (%)</th>
+            <th>Precio con Descuento</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let producto of productos; let i = index">
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.cantidad }}</td>
+            <td>
+              <input type="number" [value]="producto.precio" min="0" step="0.01"
+                    (change)="actualizarPrecio(i, $event)" class="form-control-sm">
+            </td>
+            <td>
+              <input type="number" [value]="producto.descuento" min="0" max="100"
+                    (change)="actualizarDescuento(i, $event)" class="form-control-sm">
+            </td>
+            <td>{{ producto.precio_descuento | number:'1.2-2' }}</td>
+            <td>{{ producto.sub_total | number:'1.2-2' }}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="5" class="text-right"><strong>Total:</strong></td>
+            <td><strong>{{ totalPrecioProductos | number:'1.2-2' }}</strong></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="button-container">
+      <button type="button" class="btn btn-secondary" routerLink="cotizacionWeb">Cancelar</button>
+      <button type="submit" class="btn btn-primary">Guardar Cotización</button>
+    </div>
+  </form>
+</div>

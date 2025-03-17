@@ -1,0 +1,31 @@
+<div class="hero-section">
+  <h1>Cotizaciones de la web</h1>
+</div>
+
+<table class="task-table">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>RUC</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  @for (categorias of cotizacionWeb; track $index){
+  <tbody>
+    <tr>
+      <td data-label="Nombre">
+        <div class="title">{{categorias.nombre}}</div>
+      </td>
+      <td data-label="Descripción">
+        <div class="title">{{categorias.ruc}}</div>
+      </td>
+      <td data-label="Acciones">
+        <div class="action-icons">
+          <i class="fas fa-eye" style="color: #326DE7; font-size: 20px; cursor: pointer;"
+            (click)="verDetalle(categorias.carrito_id)"></i>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+  }
+</table>
