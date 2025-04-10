@@ -5,26 +5,32 @@
 <table class="task-table">
   <thead>
     <tr>
+      <th>Razón social</th>
       <th>Nombre</th>
       <th>RUC</th>
-      <th>Acciones</th>
+      <th>Ver detalles</th>
+      <th>Estado</th>
     </tr>
   </thead>
   @for (categorias of cotizacionWeb; track $index){
   <tbody>
     <tr>
+      <td data-label="Razón social">
+        <div class="title">{{categorias.empresa}}</div>
+      </td>
       <td data-label="Nombre">
         <div class="title">{{categorias.nombre}}</div>
       </td>
-      <td data-label="Descripción">
+      <td data-label="RUC">
         <div class="title">{{categorias.ruc}}</div>
       </td>
-      <td data-label="Acciones">
+      <td data-label="Ver detalles">
         <div class="action-icons">
           <i class="fas fa-eye" style="color: #326DE7; font-size: 20px; cursor: pointer;"
             (click)="verDetalle(categorias.carrito_id)"></i>
         </div>
       </td>
+      <td></td>
     </tr>
   </tbody>
   }

@@ -1,10 +1,10 @@
 <!-- carrito.component.html -->
 <div class="container mt-4">
-  <h2>Carrito de Compras</h2>
+  <h2>Productos para cotización</h2>
 
   <div *ngIf="carrito.items.length === 0" class="text-center my-5">
     <p>Tu carrito está vacío</p>
-    <button class="btn btn-primary" (click)="seguirComprando()">Ver Productos</button>
+    <button class="btn btn-primary" routerLink="/equipment-list">Ver Productos</button>
   </div>
 
   <div *ngIf="carrito.items.length > 0 && !ordenCompletada">
@@ -35,8 +35,8 @@
                 <button class="btn btn-outline-secondary btn-sm" type="button"
                         (click)="actualizarCantidad(item, item.cantidad - 1)">-</button>
                 <input type="number" class="form-control text-center"
-                       [(ngModel)]="item.cantidad"
-                       (change)="actualizarCantidad(item, item.cantidad)">
+                      [(ngModel)]="item.cantidad"
+                      (change)="actualizarCantidad(item, item.cantidad)">
                 <button class="btn btn-outline-secondary btn-sm" type="button"
                         (click)="actualizarCantidad(item, item.cantidad + 1)">+</button>
               </div>
@@ -60,11 +60,11 @@
     </div>
 
     <div class="d-flex justify-content-between mb-4">
-      <button class="btn btn-outline-secondary" (click)="seguirComprando()">
-        Seguir Comprando
+      <button class="btn btn-outline-secondary" routerLink="/equipment-list">
+        Seguir viendo
       </button>
       <button class="btn btn-outline-danger" (click)="vaciarCarrito()">
-        Vaciar Carrito
+        Vaciar
       </button>
     </div>
 

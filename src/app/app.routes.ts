@@ -17,7 +17,6 @@ import { LoginComponent } from './auth/login/login.component';
 import { ContactoComponent } from '@pages/admin/contacto/contacto.component';
 import { NoticiaComponent } from '@pages/admin/noticia/noticia.component';
 import { AuthGuard } from './auth.guard';
-import { CotizacionComponent } from '@pages/admin/cotizacion/cotizacion.component';
 import { ClienteComponent } from '@pages/admin/cliente/cliente.component';
 import { TiendaComponent } from '@pages/usuarios/tienda/tienda.component';
 import { CotizacionWebComponent } from '@pages/admin/cotizacion-web/cotizacion-web.component';
@@ -51,7 +50,6 @@ export const routes: Routes = [
       { path: 'repuestosA', component: RepuestosComponent },
       { path: 'contactoA', component: ContactoComponent },
       { path: 'noticiaA', component: NoticiaComponent },
-      { path: 'cotizacion', component: CotizacionComponent},
       { path: 'cliente', component: ClienteComponent},
       { path: 'cotizacionWeb', component: CotizacionWebComponent},
       {

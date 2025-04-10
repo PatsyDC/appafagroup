@@ -9,6 +9,11 @@
       <i class="fas fa-plus"></i>
     </button>
   </div>
+
+  <div class="search-container">
+    <input type="text" class="search-input" placeholder="Buscar repuesto..." [(ngModel)]="searchTerm" (input)="applyFilter()">
+    <i class="fas fa-search search-icon"></i>
+  </div>
 </div>
 
 <table class="task-table">
@@ -31,7 +36,7 @@
     </tr>
   </thead>
 
-  @for (repuesto of producto; track $index){
+  @for (repuesto of filteredProducto | slice: (currentPage-1) * pageSize : currentPage * pageSize; track $index){
     <tbody>
       <tr>
         <td data-label="Producto">
@@ -83,3 +88,19 @@
     </tbody>
     }
 </table>
+
+<div class="pagination">
+  <button class="page-link" [disabled]="currentPage === 1" (click)="changePage(currentPage - 1)">
+    <i class="fas fa-chevron-left"></i>
+  </button>
+
+  <button class="page-link" *ngFor="let page of getPaginationArray()"
+          [class.active]="page === currentPage"
+          (click)="changePage(page)">
+    {{ page }}
+  </button>
+
+  <button class="page-link" [disabled]="currentPage === totalPages" (click)="changePage(currentPage + 1)">
+    <i class="fas fa-chevron-right"></i>
+  </button>
+</div>

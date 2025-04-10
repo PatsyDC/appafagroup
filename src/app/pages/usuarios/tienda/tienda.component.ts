@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ICarrito, IItemCarrito } from 'app/core/models/carrito.model';
 import { CarritoService } from 'app/core/services/carrito.service';
 
@@ -9,7 +9,7 @@ import { CarritoService } from 'app/core/services/carrito.service';
 @Component({
   selector: 'app-tienda',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterLink],
   templateUrl: './tienda.component.html',
   styleUrl: './tienda.component.css'
 })
@@ -54,10 +54,6 @@ export class TiendaComponent implements OnInit {
 
   vaciarCarrito(): void {
     this.carritoService.vaciarCarrito();
-  }
-
-  seguirComprando(): void {
-    this.router.navigate(['tienda']);
   }
 
   finalizarCompra(): void {
