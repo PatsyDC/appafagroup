@@ -16,11 +16,11 @@ import { CategoriasComponent } from '@pages/admin/categorias/categorias.componen
 import { LoginComponent } from './auth/login/login.component';
 import { ContactoComponent } from '@pages/admin/contacto/contacto.component';
 import { NoticiaComponent } from '@pages/admin/noticia/noticia.component';
-import { AuthGuard } from './auth.guard';
 import { ClienteComponent } from '@pages/admin/cliente/cliente.component';
 import { TiendaComponent } from '@pages/usuarios/tienda/tienda.component';
 import { CotizacionWebComponent } from '@pages/admin/cotizacion-web/cotizacion-web.component';
 import { CotizacionDetalleComponent } from '@pages/admin/cotizacion-web/modal/cotizacion-detalle/cotizacion-detalle.component';
+import { AuthGuard } from './auth/auth.guard';
 
 export const routes: Routes = [
   {
@@ -43,6 +43,7 @@ export const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'inicio', pathMatch: 'full' },
       { path: 'inicio', component: InicioComponent },
@@ -52,13 +53,10 @@ export const routes: Routes = [
       { path: 'noticiaA', component: NoticiaComponent },
       { path: 'cliente', component: ClienteComponent},
       { path: 'cotizacionWeb', component: CotizacionWebComponent},
-      {
-        path: 'cotizacion-detalle/:id',
-        component: CotizacionDetalleComponent
-      }
+      { path: 'cotizacion-detalle/:id', component: CotizacionDetalleComponent},
     ]
   },
-  // { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
 
   { path: '**', redirectTo: '/login', pathMatch: 'full' }, // Redirige al login si la ruta no es válida
 ];
