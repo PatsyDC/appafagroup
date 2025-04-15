@@ -45,9 +45,9 @@
           </li>
       </ul>
   </div>
-  <button class="logout-btn" [class.hidden]="!isSidebarOpen" routerLink="/login">
+  <button class="logout-btn" [class.hidden]="!isSidebarOpen" (click)="logout()">
     <i class="fas fa-sign-out-alt"></i>
-    <span span class="menu-text" [class.hidden]="!isSidebarOpen">Cerrar sesión</span>
+    <span class="menu-text" [class.hidden]="!isSidebarOpen">Cerrar sesión</span>
   </button>
 
   <!-- <div class="user-profile">

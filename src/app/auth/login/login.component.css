@@ -1,0 +1,19 @@
+body {
+  font-family: sans-serif;
+  background: linear-gradient(to right, #4C83F3, #1E5AD0);
+}
+
+.card {
+  background-color: #fff;
+  border: none;
+}
+
+.btn.btn-primary {
+  background-color: #326DE7 !important;
+  border: none;
+  color: white;
+}
+
+.btn.btn-primary:hover {
+  background-color: #1E5AD0 !important;
+}
