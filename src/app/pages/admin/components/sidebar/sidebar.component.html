@@ -3,6 +3,15 @@
       <img src="/img/lg.png" width="40px" alt="Logo" class="icon-md" (click)="toggleSidebar()">
       <span class="logo-text" [class.hidden]="!isSidebarOpen">AFA GROUP</span>
   </div>
+  
+  <div class="user-info" [class.collapsed]="!isSidebarOpen">
+    <i class="fas fa-user-circle"></i>
+    <div class="user-details" *ngIf="isSidebarOpen">
+      <span class="user-name">{{ userName }}</span>
+      <span class="user-role">{{ role }}</span> <!-- o cualquier rol que desees -->
+    </div>
+  </div>
+
   <div class="menu-section">
       <h3 [class.hidden]="!isSidebarOpen">HOME</h3>
       <ul>
@@ -49,12 +58,4 @@
     <i class="fas fa-sign-out-alt"></i>
     <span class="menu-text" [class.hidden]="!isSidebarOpen">Cerrar sesión</span>
   </button>
-
-  <!-- <div class="user-profile">
-      <img src="img/lg.png" width="40px" alt="User" class="avatar-md">
-      <div [class.hidden]="!isSidebarOpen">
-          <span class="user-name">Afa Group</span>
-          <span class="user-role">Admin</span>
-      </div>
-  </div> -->
 </nav>

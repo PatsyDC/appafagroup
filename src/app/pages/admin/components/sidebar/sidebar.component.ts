@@ -1,4 +1,4 @@
-import { NgClass } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { UserService } from 'app/core/services/user.service';
@@ -12,13 +12,15 @@ interface menuSidebar{
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, NgClass],
+  imports: [RouterLink, RouterLinkActive, NgClass, CommonModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
 
   isSidebarOpen = true;
+  userName: string = '';
+  role: string = '';
 
   @Output() sidebarToggled = new EventEmitter<boolean>();
 
@@ -27,10 +29,13 @@ export class SidebarComponent {
     private router: Router
   ){}
 
-  menu: menuSidebar[] = [
-    { url: '/admin/inicio', title: 'Inicio', icon: "fas fa-home" },
-    { url: '/admin/equiposA', title: 'Equipos', icon: "fas fa-truck-monster" }
-  ]
+  ngOnInit(): void {
+    const user = this.userService.getCurrentUser();
+    if (user) {
+      this.userName = user.user_name;
+      this.role = user.role;
+    }
+  }
 
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
@@ -41,6 +46,5 @@ export class SidebarComponent {
     this.userService.logout();
     this.router.navigate(['/login']);
   }
-
 
 }
