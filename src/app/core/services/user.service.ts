@@ -41,4 +41,20 @@ export class UserService {
     return !!this.getToken();
   }
 
+  getCurrentUserId(): number | null {
+    const token = this.getToken();
+    if (token) {
+      try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        console.log('Token payload:', payload); //verificar estructura del token
+        return payload.user_id || payload.id || null; // Ajusta según tu backend
+      } catch (error) {
+        console.error('Error al decodificar el token:', error);
+        return null;
+      }
+    }
+    return null;
+  }
+
+
 }

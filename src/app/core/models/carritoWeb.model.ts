@@ -9,4 +9,5 @@ export interface CarritoWeb {
   email: string;
   telefono: string;
   direccion: string;
+  estado?: string;
 }

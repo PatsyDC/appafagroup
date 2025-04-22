@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ICarrito, IItemCarrito } from 'app/core/models/carrito.model';
 import { CarritoService } from 'app/core/services/carrito.service';
@@ -23,14 +23,13 @@ export class TiendaComponent implements OnInit {
   constructor(
     private carritoService: CarritoService,
     private fb: FormBuilder,
-    private router: Router
   ) {
     this.carrito = this.carritoService.getCarritoValue();
     this.checkoutForm = this.fb.group({
       empresa: [''],
       nombre: ['', Validators.required],
       dni: ['', Validators.required],
-      ruc : ['', Validators.required],
+      ruc : [''],
       ocupacion: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       telefono: ['', Validators.required],
@@ -76,6 +75,7 @@ export class TiendaComponent implements OnInit {
       total: this.carrito.total,
       nombre: this.checkoutForm.value.nombre,
       dni: this.checkoutForm.value.dni,
+      empresa: this.checkoutForm.value.empresa,
       ruc: this.checkoutForm.value.ruc,
       ocupacion: this.checkoutForm.value.ocupacion,
       email: this.checkoutForm.value.email,

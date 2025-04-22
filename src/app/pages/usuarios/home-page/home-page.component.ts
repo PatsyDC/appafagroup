@@ -1,29 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component } from '@angular/core';
 import { ISlider } from 'app/core/models/slider.model';
-import { SliderService } from 'app/core/services/slider.service';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [RouterLink, CommonModule ],
+  imports: [CommonModule ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css'
 })
-export class HomePageComponent implements OnInit, OnDestroy {
+export class HomePageComponent {
   sliders: ISlider[] = [];
   currentSlide: number = 0;
   slideInterval: any;
-
-  constructor(private sliderService: SliderService) {}
-
-  ngOnInit(): void {
-    this.sliderService.allSlider().subscribe((data) => {
-      this.sliders = data;
-      this.startSlideInterval();
-    });
-  }
 
   ngOnDestroy(): void {
     this.stopSlideInterval();

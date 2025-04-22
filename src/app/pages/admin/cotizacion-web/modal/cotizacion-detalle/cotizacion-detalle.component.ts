@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';;
 import { CarritoWeb } from 'app/core/models/carritoWeb.model';
 import { CarritoService } from 'app/core/services/carrito.service';
+import { UserService } from 'app/core/services/user.service';
 
 @Component({
   selector: 'app-cotizacion-detalle',
@@ -32,7 +33,8 @@ export class CotizacionDetalleComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private carritoService: CarritoService
+    private carritoService: CarritoService,
+    private authService: UserService,
   ) {
     this.cotizacionForm = this.fb.group({
       periodo: [new Date().toISOString().substring(0, 7), Validators.required],
@@ -161,7 +163,6 @@ export class CotizacionDetalleComponent implements OnInit {
 
   guardarCotizacion(): void {
     if (this.cotizacionForm.invalid) {
-      // Marcar todos los campos como tocados para mostrar errores
       Object.keys(this.cotizacionForm.controls).forEach(key => {
         const control = this.cotizacionForm.get(key);
         control?.markAsTouched();
@@ -169,11 +170,19 @@ export class CotizacionDetalleComponent implements OnInit {
       return;
     }
 
+    const vendedorId = this.authService.getCurrentUserId();
+
+    if (!vendedorId) {
+      alert('No se pudo obtener el ID del usuario. Inicie sesión nuevamente.');
+      return;
+    }
+
     const cotizacion = {
       ...this.cotizacionForm.value,
       productos: this.productos,
       total_precio_productos: this.totalPrecioProductos,
-      carrito_id: this.carrito?.carrito_id
+      carrito_id: this.carrito?.carrito_id,
+      vendedor_asignado_id: vendedorId
     };
 
     this.carritoService.guardarCotizacion(cotizacion).subscribe(
