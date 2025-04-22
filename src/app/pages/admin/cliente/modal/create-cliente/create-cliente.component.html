@@ -1,1 +1,52 @@
-<p>create-cliente works!</p>
+<div class="form-container">
+  <h2>Agregue una nuevo cliente</h2>
+  <button class="close-button" (click)="closeDialog()">×</button>
+  <form class="ticket-form" [formGroup]="formCliente" (ngSubmit)="save()">
+    <div class="form-group">
+      <label for="title">Ruc</label>
+      <input type="text" formControlName="codigo_ruc" id="codigo_ruc" name="codigo_ruc" required>
+    </div>
+    <div class="form-group">
+      <label for="title">Tipo de persona</label>
+      <input type="text" id="tipo_persona" formControlName="tipo_persona" name="tipo_persona" required>
+    </div>
+    <div class="form-group">
+      <label for="title">Razón Social</label>
+      <input type="text" formControlName="razon_social" id="razon_social" name="razon_social" required>
+    </div>
+    <div class="form-group">
+      <label for="title">Tipo Empleador</label>
+      <input type="text" formControlName="tipo_empleador" id="tipo_empleador" name="tipo_empleador" required>
+    </div>
+    <div class="form-group">
+      <label for="title">Ruc</label>
+      <input type="text" formControlName="documento_ruc" id="documento_ruc" name="documento_ruc" required>
+    </div>
+    <div class="form-group">
+      <label for="title">DNI</label>
+      <input type="text" formControlName="nro_dni" id="nro_dni" name="nro_dni" required>
+    </div>
+    <div class="form-group">
+      <label for="title">Nombre de persona</label>
+      <input type="text" formControlName="nombre_persona" id="nombre_persona" name="nombre_persona" required>
+    </div>
+    <div class="form-group">
+      <label for="title">País</label>
+      <input type="text" formControlName="pais" id="pais" name="pais" required>
+    </div>
+    <div class="form-group">
+      <label for="title">Dirección</label>
+      <input type="text" formControlName="direccion" id="direccion" name="direccion" required>
+    </div>
+    <div class="form-group">
+      <label for="title">Teléfono</label>
+      <input type="text" formControlName="telefono" id="telefono" name="telefono" required>
+    </div>
+    <div class="form-group">
+      <label for="title">Correo</label>
+      <input type="text" formControlName="correo" id="correo" name="correo" required>
+    </div>
+    <button type="submit"  class="submit-button" cdkFocusInitial type="submit" [disabled]="!formCliente.valid">Agregar cliente</button>
+  </form>
+</div>
+

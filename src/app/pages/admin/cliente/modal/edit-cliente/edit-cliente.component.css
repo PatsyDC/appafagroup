@@ -1,1 +1,143 @@
+/* Estilo para el formulario de categorías en un diálogo */
+.form-container {
+  padding: 1rem;
+  font-family: sans-serif;
+}
 
+.form-container h2 {
+  color: #326DE7;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  font-size: 1.5rem;
+  border-bottom: 2px solid rgba(50, 109, 231, 0.2);
+  padding-bottom: 0.5rem;
+  font-family: sans-serif;
+}
+
+.ticket-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.form-group {
+  flex: 1 1 calc(50% - 1rem);
+  min-width: 250px;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #444;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  font-family: sans-serif;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 0.7rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: sans-serif;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #326DE7;
+  box-shadow: 0 0 0 3px rgba(50, 109, 231, 0.2);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.submit-button {
+  background-color: #326DE7;
+  color: white;
+  border: none;
+  padding: 0.7rem 1rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-family: sans-serif;
+  align-self: flex-end;
+}
+
+.submit-button:hover {
+  background-color: #2857c0;
+}
+
+.submit-button:disabled {
+  background-color: #a5bdf7;
+  cursor: not-allowed;
+}
+
+/* Sobreescribir estilos de diálogo si están interfiriendo */
+.modal-body .form-container,
+.dialog-body .form-container,
+.mat-dialog-container .form-container {
+  box-shadow: none;
+  margin: 0;
+  width: 100%;
+}
+
+/* Asegurar que la fuente se aplica incluso con alta especificidad */
+.modal .form-container *,
+.dialog .form-container *,
+.mat-dialog-content .form-container * {
+  font-family: sans-serif !important;
+}
+
+/* Estilos mejorados para el botón de cierre (x) */
+.close-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: #326DE7;
+  border: 1px solid #e1e4e8;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  height: 28px;
+  width: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  outline: none;
+  padding: 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+
+/* Agregar espacio adicional al título para que no se superponga con el botón */
+.form-container h2 {
+  color: #326DE7;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  font-size: 1.5rem;
+  border-bottom: 2px solid rgba(50, 109, 231, 0.2);
+  padding-bottom: 0.5rem;
+  padding-right: 40px; /* Añadir espacio a la derecha */
+  font-family: sans-serif;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .form-container {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+}

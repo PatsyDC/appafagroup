@@ -9,6 +9,11 @@
       <i class="fas fa-plus"></i>
     </button>
   </div>
+
+  <div class="search-container">
+    <input type="text" class="search-input" placeholder="Buscar cliente..." [(ngModel)]="searchTerm" (input)="applyFilter()">
+    <i class="fas fa-search search-icon"></i>
+  </div>
 </div>
 
 <!--TABLA DE BD-->
@@ -26,9 +31,10 @@
       <th>Dirección</th>
       <th>Teléfono</th>
       <th>Correo</th>
+      <th>Acciones</th>
     </tr>
   </thead>
-  @for (cliente of clientes; track $index){
+  @for (cliente of filteredClientes | slice: (currentPage-1) * pageSize : currentPage * pageSize; track $index){
   <tbody>
     <tr>
       <td data-label="RUC">
@@ -74,3 +80,19 @@
   </tbody>
   }
 </table>
+
+<div class="pagination">
+  <button class="page-link" [disabled]="currentPage === 1" (click)="changePage(currentPage - 1)">
+    <i class="fas fa-chevron-left"></i>
+  </button>
+
+  <button class="page-link" *ngFor="let page of getPaginationArray()"
+          [class.active]="page === currentPage"
+          (click)="changePage(page)">
+    {{ page }}
+  </button>
+
+  <button class="page-link" [disabled]="currentPage === totalPages" (click)="changePage(currentPage + 1)">
+    <i class="fas fa-chevron-right"></i>
+  </button>
+</div>
