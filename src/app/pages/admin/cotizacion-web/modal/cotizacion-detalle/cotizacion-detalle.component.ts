@@ -36,7 +36,7 @@ export class CotizacionDetalleComponent implements OnInit {
     private router: Router,
     private carritoService: CarritoService,
     private authService: UserService,
-    private pdfService: CotizacionPdfService 
+    private pdfService: CotizacionPdfService
   ) {
     this.cotizacionForm = this.fb.group({
       periodo: [new Date().toISOString().substring(0, 7), Validators.required],
@@ -190,7 +190,7 @@ export class CotizacionDetalleComponent implements OnInit {
     this.carritoService.guardarCotizacion(cotizacion).subscribe(
       (response) => {
         alert('Cotización guardada con éxito');
-        this.router.navigate(['cotizaciones']);
+        this.router.navigate(['/admin/cotizacionWeb']);
       },
       (error) => {
         console.error('Error al guardar la cotización:', error);
@@ -205,12 +205,12 @@ export class CotizacionDetalleComponent implements OnInit {
       alert('Por favor complete todos los campos requeridos antes de generar el PDF.');
       return;
     }
-    
+
     if (this.productos.length === 0) {
       alert('No hay productos para incluir en la cotización.');
       return;
     }
-    
+
     // Usar el servicio para generar el PDF
     this.pdfService.generarPDF(this.cotizacionForm, this.productos, this.totalPrecioProductos);
   }
