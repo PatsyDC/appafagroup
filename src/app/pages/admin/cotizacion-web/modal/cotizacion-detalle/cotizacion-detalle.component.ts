@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';;
 import { CarritoWeb } from 'app/core/models/carritoWeb.model';
 import { CarritoService } from 'app/core/services/carrito.service';
 import { UserService } from 'app/core/services/user.service';
+import { CotizacionPdfService } from 'app/core/services/cotizacion-pdf.service';
 
 @Component({
   selector: 'app-cotizacion-detalle',
@@ -35,6 +36,7 @@ export class CotizacionDetalleComponent implements OnInit {
     private router: Router,
     private carritoService: CarritoService,
     private authService: UserService,
+    private pdfService: CotizacionPdfService 
   ) {
     this.cotizacionForm = this.fb.group({
       periodo: [new Date().toISOString().substring(0, 7), Validators.required],
@@ -195,5 +197,21 @@ export class CotizacionDetalleComponent implements OnInit {
         alert('Error al guardar la cotización. Por favor, intente nuevamente.');
       }
     );
+  }
+
+  generarPDF(): void {
+    // Lógica básica de validación
+    if (this.cotizacionForm.invalid) {
+      alert('Por favor complete todos los campos requeridos antes de generar el PDF.');
+      return;
+    }
+    
+    if (this.productos.length === 0) {
+      alert('No hay productos para incluir en la cotización.');
+      return;
+    }
+    
+    // Usar el servicio para generar el PDF
+    this.pdfService.generarPDF(this.cotizacionForm, this.productos, this.totalPrecioProductos);
   }
 }
