@@ -124,4 +124,9 @@ export class CarritoService {
     return this.http.post(this.apiCotizacion, cotizacion);
   }
 
+  contarCotizaciones(): Observable<CotizacionWeb[]> {
+    return this.http.get<{ ok: boolean, body: CotizacionWeb[] }>(this.apiCotizacion)
+      .pipe(map(res => res.body || []));
+  }
+
 }

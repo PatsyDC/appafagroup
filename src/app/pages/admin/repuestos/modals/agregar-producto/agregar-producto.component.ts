@@ -6,6 +6,7 @@ import { ICategoriaP } from 'app/core/models/categoria.model';
 import { IProductoAG } from 'app/core/models/productoAG.model';
 import { CategoriaService } from 'app/core/services/categoria.service';
 import { ProductoAGService } from 'app/core/services/productoAG.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-agregar-producto',
@@ -86,9 +87,19 @@ export class AgregarProductoComponent {
             this.formP.reset();
             this.selectedFile = null;
             this.dialogRef.close(res);
+            Swal.fire(
+              'Éxito!',
+              'El producto se guardó correctamente.',
+              'success'
+            );
           },
           error => {
             console.error('Error al crear el producto:', error);
+            Swal.fire(
+              'Error!',
+              'Hubo un problema al guardar el producto.',
+              'error'
+            );
           }
         );
       } else {

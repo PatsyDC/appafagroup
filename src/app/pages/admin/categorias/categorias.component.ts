@@ -6,6 +6,7 @@ import { EditCategoriaComponent } from './modal/edit-categoria/edit-categoria.co
 import { CreateCategoriaComponent } from './modal/create-categoria/create-categoria.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-categorias',
@@ -120,17 +121,26 @@ export class CategoriasComponent {
   }
 
   deleteCategoria(id: number) {
-    if (confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
-      this.categoriaService.deleteCategoria(id).subscribe(
-        () => {
-          console.log('Usuario eliminado correctamente');
-          this.getCategorias();
-        },
-        error => {
-          console.error('Error al eliminar el usuario:', error);
-        }
-      );
-    }
+    Swal.fire({
+      title: '¿Estás seguro de que quieres eliminar esta categoría?',
+      text: "Una vez eliminada, no podrás recuperarla.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.categoriaService.deleteCategoria(id).subscribe(
+          () => {
+            console.log('Categoría eliminado correctamente');
+            this.getCategorias();
+          },
+          error => {
+            console.error('Error al eliminar el sondeo:', error);
+          }
+        );
+      }
+    });
   }
 
 }

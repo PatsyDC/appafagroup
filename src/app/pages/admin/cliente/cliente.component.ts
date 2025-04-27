@@ -6,6 +6,7 @@ import { CreateClienteComponent } from './modal/create-cliente/create-cliente.co
 import { EditClienteComponent } from './modal/edit-cliente/edit-cliente.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cliente',
@@ -119,18 +120,26 @@ export class ClienteComponent {
     });
   }
 
-  deleteCliente(id: number) {
-    if (confirm('¿Estás seguro de que quieres eliminar este cliente?')) {
-      this.clienteService.deleteCliente(id).subscribe(
-        () => {
-          console.log('cliente eliminado correctamente');
-          this.ngOnInit(); // Recargar la lista después de eliminar
-        },
-        error => {
-          console.error('Error al eliminar el cliente:', error);
-        }
-      );
+      deleteCliente(id: number) {
+        Swal.fire({
+          title: '¿Estás seguro de que quieres eliminar este cliente?',
+          text: "Una vez eliminada, no podrás recuperarla.",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Eliminar',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.clienteService.deleteCliente(id).subscribe(
+              () => {
+                console.log('Cliente eliminado correctamente');
+                this.ngOnInit(); // Recargar la lista después de eliminar
+              },
+              error => {
+                console.error('Error al eliminar el sondeo:', error);
+              }
+            );
+          }
+        });
+      }
     }
-  }
-
-}

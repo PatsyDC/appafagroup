@@ -8,6 +8,7 @@ import { AgregarProductoComponent } from './modals/agregar-producto/agregar-prod
 import { CategoriaService } from 'app/core/services/categoria.service';
 import { EditRepuestoComponent } from './modals/edit-repuesto/edit-repuesto.component';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-repuestos',
@@ -114,12 +115,23 @@ export class RepuestosComponent {
   }
 
   onDelete(producto_id: number): void {
-    this.service.deleteProducto(producto_id).subscribe({
-      next: () => {
-        this.ngOnInit(); // Recarga los datos después de eliminar
-      },
-      error: (err) => {
-        console.error('Error al eliminar el producto:', err);
+    Swal.fire({
+      title: '¿Estás seguro de que quieres eliminar esta categoría?',
+      text: "Una vez eliminada, no podrás recuperarla.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.service.deleteProducto(producto_id).subscribe({
+          next: () => {
+            this.ngOnInit(); // Recarga los datos después de eliminar
+          },
+          error: (error) => {
+            console.error('Error al eliminar el producto:', error);
+          }
+        });
       }
     });
   }

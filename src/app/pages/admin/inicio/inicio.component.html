@@ -6,13 +6,13 @@
       <input type="text" placeholder="Search...">
     </div>
   </div>
-  <nav class="main-nav">
+  <!-- <nav class="main-nav">
     <a href="#" class="nav-item">Apps <i class="fas fa-chevron-down"></i></a>
     <a href="#" class="nav-item">Chat</a>
     <a href="#" class="nav-item">Calendar</a>
     <a href="#" class="nav-item">Email</a>
-  </nav>
-  
+  </nav> -->
+
 </header>
 
     <div class="dashboard-content">
@@ -20,7 +20,17 @@
           <div class="stat-card">
               <i class="fas fa-user-tie icon-stat icon-employees"></i>
               <h3>Trabajadores</h3>
-              <p>39</p>
+              <p>{{ totalTrabajadores }}</p>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-tractor icon-stat icon-events"></i>
+              <h3>Productos</h3>
+              <p>{{ totalProductos }}</p>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-file-alt icon-stat icon-reports"></i>
+            <h3>Cotizaciones</h3>
+            <p>{{totalCotizaciones}}</p>
           </div>
           <div class="stat-card">
               <i class="fas fa-users icon-stat icon-clients"></i>
@@ -28,21 +38,9 @@
               <p>234</p>
           </div>
           <div class="stat-card">
-              <i class="fas fa-file-alt icon-stat icon-reports"></i>
-              <h3>Reportes</h3>
-              <p>59</p>
-          </div>
-          <div class="stat-card">
-              <i class="fas fa-calendar-alt icon-stat icon-events"></i>
-              <h3>Años</h3>
-              <p>12</p>
-          </div>
-          <div class="stat-card">
               <i class="fas fa-dollar-sign icon-stat icon-payroll"></i>
               <h3>Facturación</h3>
               <p>$96k</p>
           </div>
       </div>
-
-
-      <img src="/img/grafico.png"  width="1300px" alt="">
+      <!-- <img src="/img/grafico.png"  width="1300px" alt=""> -->

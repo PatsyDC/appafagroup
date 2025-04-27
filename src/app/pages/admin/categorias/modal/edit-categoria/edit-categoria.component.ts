@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { ICategoriaP } from 'app/core/models/categoria.model';
 import { CategoriaService } from 'app/core/services/categoria.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-categoria',
@@ -39,16 +40,26 @@ export class EditCategoriaComponent {
         (res) => {
           console.log("Categoria actualizada:", res);
           this.dialogRef.close(res);
+          Swal.fire(
+            'Éxito!',
+            'La categoría se edito correctamente.',
+            'success'
+          );
         },
         (error) => {
           console.error("Error al actualizar categoria:", error);
+          Swal.fire(
+            'Error!',
+            'Hubo un problema al editar la categoría.',
+            'error'
+          );
         }
       );
     }
   }
 
   closeDialog() {
-    this.dialogRef.close(); // Asegúrate de inyectar MatDialogRef en el constructor
+    this.dialogRef.close();
   }
 
 }

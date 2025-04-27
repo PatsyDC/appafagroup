@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { ICategoriaP } from 'app/core/models/categoria.model';
 import { CategoriaService } from 'app/core/services/categoria.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-categoria',
@@ -37,14 +37,25 @@ export class CreateCategoriaComponent {
           if (res) {
             console.log("Categoria guardada: ", res);
             this.dialogRef.close(res);
+            Swal.fire( // Muestra la alerta
+              'Éxito!',
+              'El registro se guardó correctamente.',
+              'success'
+            );
           }
         }, error => {
           console.error("Error al guardar categoria:", error);
+          Swal.fire( // Muestra la alerta
+            'Error!',
+            'Hubo un problema al guardar el registro.',
+            'error'
+          );
         });
       }
     }
 
   closeDialog() {
-    this.dialogRef.close(); // Asegúrate de inyectar MatDialogRef en el constructor
+    this.dialogRef.close();
   }
+
 }

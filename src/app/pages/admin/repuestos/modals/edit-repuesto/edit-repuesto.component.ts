@@ -6,7 +6,7 @@ import { ICategoriaP } from 'app/core/models/categoria.model';
 import { IProductoAG } from 'app/core/models/productoAG.model';
 import { CategoriaService } from 'app/core/services/categoria.service';
 import { ProductoAGService } from 'app/core/services/productoAG.service';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-repuesto',
@@ -129,9 +129,19 @@ export class EditRepuestoComponent implements OnInit {
         res => {
           console.log("Producto actualizado correctamente:", res);
           this.dialogRef.close(res);
+          Swal.fire(
+            'Éxito!',
+            'El producto se edito correctamente.',
+            'success'
+          );
         },
         error => {
           console.error('Error al actualizar el producto:', error);
+          Swal.fire(
+            'Error!',
+            'Hubo un problema al editar el producto.',
+            'error'
+          );
         }
       );
     } else {

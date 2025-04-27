@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { LoginResponse } from '../models/login.model';
 
 @Injectable({
@@ -54,6 +54,19 @@ export class UserService {
       }
     }
     return null;
+  }
+
+  getAllUsers(): Observable<any[]> {
+    const token = this.getToken();
+
+    const headers = {
+      Authorization: `Bearer ${token}`
+    };
+
+    return this.http.get<any>(`${this.apiUrl}usuarios`, { headers }).pipe(
+      tap((res) => console.log('Usuarios recibidos:', res)),
+      map(res => res.body)
+    );
   }
 
 

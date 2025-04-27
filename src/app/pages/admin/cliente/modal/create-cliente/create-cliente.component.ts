@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ICliente } from 'app/core/models/cliente.model';
 import { ClienteService } from 'app/core/services/cliente.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-cliente',
@@ -45,9 +46,19 @@ export class CreateClienteComponent {
         if(res){
           console.log("Cliente guardado: ", res);
           this.dialogRef.close(res);
+          Swal.fire(
+            'Éxito!',
+            'El cliente se guardó correctamente.',
+            'success'
+          );
         }
       }, error => {
         console.error("Error al guardar cliente:", error);
+        Swal.fire(
+          'Error!',
+          'Hubo un problema al guardar el cliente.',
+          'error'
+        );
       });
     }
   }

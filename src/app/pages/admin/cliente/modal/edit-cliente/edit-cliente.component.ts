@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ICliente } from 'app/core/models/cliente.model';
 import { ClienteService } from 'app/core/services/cliente.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-cliente',
@@ -47,9 +48,19 @@ export class EditClienteComponent {
           (res) => {
             console.log("Cliente actualizada:", res);
             this.dialogRef.close(res);
+            Swal.fire(
+              'Éxito!',
+              'El cliente se edito correctamente.',
+              'success'
+            );
           },
           (error) => {
             console.error("Error al actualizar cliente:", error);
+            Swal.fire(
+              'Error!',
+              'Hubo un problema al guardar el cliente.',
+              'error'
+            );
           }
         );
       }
