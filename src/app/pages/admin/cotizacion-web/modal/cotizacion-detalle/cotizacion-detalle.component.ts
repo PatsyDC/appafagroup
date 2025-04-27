@@ -6,6 +6,7 @@ import { CarritoWeb } from 'app/core/models/carritoWeb.model';
 import { CarritoService } from 'app/core/services/carrito.service';
 import { UserService } from 'app/core/services/user.service';
 import { CotizacionPdfService } from 'app/core/services/cotizacion-pdf.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cotizacion-detalle',
@@ -20,9 +21,8 @@ export class CotizacionDetalleComponent implements OnInit {
   carrito: CarritoWeb | null = null;
   productos: any[] = [];
   totalPrecioProductos: number = 0;
-
-  // Lista de vendedores (puedes cargarla desde una API)
-  vendedores: string[] = ['Juan Pérez', 'María López', 'Carlos Rodríguez'];
+  carritoId: string = '';
+  cotizacionExistente: boolean = false;
 
   // Opciones para formas de pago
   formasPago: string[] = ['Contado', 'Crédito 30 días', 'Crédito 60 días', 'Leasing'];
@@ -39,6 +39,7 @@ export class CotizacionDetalleComponent implements OnInit {
     private pdfService: CotizacionPdfService
   ) {
     this.cotizacionForm = this.fb.group({
+      carrito_id: ['', Validators.required],
       periodo: [new Date().toISOString().substring(0, 7), Validators.required],
       fecha: [new Date().toISOString().substring(0, 10), Validators.required],
       tipo_cambio: [3.75, [Validators.required, Validators.min(0.01)]],
@@ -52,18 +53,94 @@ export class CotizacionDetalleComponent implements OnInit {
       forma_pago: ['Contado', Validators.required],
       dias_ofertas: ['', Validators.required],
       moneda: ['PEN', Validators.required],
-      vendedor_trabajador: [this.vendedores[0], Validators.required],
+      user_id: ['', Validators.required],
       observaciones: [''],
     });
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      const carritoId = params['id'];
-      if (carritoId) {
-        this.cargarDatosCarrito(carritoId);
+    this.carritoId = this.route.snapshot.paramMap.get('id') || '';
+
+    // Primero verificamos si ya existe una cotización para este carrito
+    this.carritoService.contarCotizaciones().subscribe((cotizaciones) => {
+      console.log('Cotizaciones disponibles:', cotizaciones);
+      // Buscar cotización por carrito_id (asegurando que ambos sean del mismo tipo)
+      const cotizacionExistente = cotizaciones.find(c => String(c.carrito_id) === this.carritoId);
+
+      if (cotizacionExistente) {
+        console.log('Cotización existente encontrada:', cotizacionExistente);
+        this.cotizacionExistente = true;
+        this.cargarCotizacion(cotizacionExistente);
+      } else {
+        console.log('No se encontró cotización para el carrito:', this.carritoId);
+        // Solo cargamos datos del carrito si no existe cotización
+        this.cargarDatosCarrito(this.carritoId);
       }
+    }, error => {
+      console.error('Error al buscar cotizaciones:', error);
+      // En caso de error, mostramos el carrito
+      this.cargarDatosCarrito(this.carritoId);
     });
+  }
+
+  cargarCotizacion(cotizacion: any): void {
+    if (!cotizacion) return;
+    console.log('Cargando cotización:', cotizacion);
+
+    // Actualiza el formulario con los datos de la cotización
+    this.cotizacionForm.patchValue({
+      carrito_id: cotizacion.carrito_id,
+      periodo: cotizacion.periodo,
+      fecha: cotizacion.fecha ? cotizacion.fecha.substring(0, 10) : new Date().toISOString().substring(0, 10),
+      tipo_cambio: cotizacion.tipo_cambio || 3.75,
+      punto_venta: cotizacion.punto_venta || 'Lima',
+      razon_social: cotizacion.razon_social || '',
+      ruc: cotizacion.ruc || '',
+      nombre_contacto: cotizacion.nombre_contacto || '',
+      dni_persona: cotizacion.dni_persona || '',
+      email: cotizacion.email || '',
+      telefono: cotizacion.telefono || '',
+      forma_pago: cotizacion.forma_pago || 'Contado',
+      dias_ofertas: cotizacion.dias_ofertas || '',
+      moneda: cotizacion.moneda || 'PEN',
+      user_id: cotizacion.user_id || this.authService.getCurrentUserId(),
+      observaciones: cotizacion.observaciones || '',
+    });
+
+    // Cargar productos
+    try {
+      if (cotizacion.productos) {
+        let productosArray;
+
+        if (typeof cotizacion.productos === 'string') {
+          productosArray = JSON.parse(cotizacion.productos);
+        } else {
+          productosArray = cotizacion.productos;
+        }
+
+        if (Array.isArray(productosArray)) {
+          this.productos = productosArray.map((prod: any) => ({
+            ...prod,
+            descuento: prod.descuento || 0,
+            precio_descuento: prod.precio_descuento || prod.precio,
+            sub_total: (prod.precio_descuento || prod.precio) * prod.cantidad,
+          }));
+        } else {
+          console.error('Formato de productos no válido:', productosArray);
+          this.productos = [];
+        }
+      } else {
+        this.productos = [];
+      }
+
+      console.log('Productos cargados en cotización:', this.productos);
+
+      // Calcular el total
+      this.calcularTotales();
+    } catch (error) {
+      console.error('Error al procesar los productos de la cotización:', error);
+      this.productos = [];
+    }
   }
 
   cargarDatosCarrito(carritoId: string): void {
@@ -71,33 +148,42 @@ export class CotizacionDetalleComponent implements OnInit {
       (carrito: CarritoWeb) => {
         this.carrito = carrito;
 
-        // Parsear productos del carrito (que viene como string JSON)
-        if (typeof carrito.productos === 'string') {
-          this.productos = JSON.parse(carrito.productos);
-        } else {
-          this.productos = carrito.productos as any[];
+        // Asegúrate de que productos se parse correctamente
+        try {
+          if (typeof carrito.productos === 'string') {
+            this.productos = JSON.parse(carrito.productos);
+            console.log('Productos parseados:', this.productos);
+          } else {
+            this.productos = carrito.productos as any[];
+            console.log('Productos como array:', this.productos);
+          }
+
+          // Agregar campos adicionales a cada producto
+          this.productos = this.productos.map(prod => {
+            return {
+              ...prod,
+              descuento: 0,
+              precio_descuento: prod.precio,
+              sub_total: prod.precio * prod.cantidad
+            };
+          });
+
+          this.calcularTotales();
+        } catch (error) {
+          console.error('Error al procesar productos:', error);
+          this.productos = [];
         }
-
-        // Agregar campos adicionales a cada producto
-        this.productos = this.productos.map(prod => {
-          return {
-            ...prod,
-            descuento: 0,
-            precio_descuento: prod.precio,
-            sub_total: prod.precio * prod.cantidad
-          };
-        });
-
-        this.calcularTotales();
 
         // Actualizar el formulario con los datos del carrito
         this.cotizacionForm.patchValue({
+          carrito_id: carritoId,  // Asegúrate de establecer el ID del carrito
           razon_social: carrito.empresa || '',
           ruc: carrito.ruc || '',
           dni_persona: carrito.dni || '',
           nombre_contacto: carrito.nombre || '',
           email: carrito.email || '',
-          telefono: carrito.telefono || ''
+          telefono: carrito.telefono || '',
+          user_id: this.authService.getCurrentUserId() // Asegúrate de que este campo se establezca
         });
       },
       error => {
@@ -189,12 +275,20 @@ export class CotizacionDetalleComponent implements OnInit {
 
     this.carritoService.guardarCotizacion(cotizacion).subscribe(
       (response) => {
-        alert('Cotización guardada con éxito');
+        Swal.fire(
+          'Éxito!',
+          'La cotización se creo correctamente.',
+          'success'
+          );
         this.router.navigate(['/admin/cotizacionWeb']);
       },
       (error) => {
         console.error('Error al guardar la cotización:', error);
-        alert('Error al guardar la cotización. Por favor, intente nuevamente.');
+        Swal.fire(
+          'Error!',
+          'Hubo un problema al crear la cotización',
+          'error'
+        );
       }
     );
   }

@@ -12,25 +12,29 @@
       <th>Estado</th>
     </tr>
   </thead>
-  @for (categorias of cotizacionWeb; track $index){
+  @for (carrito of cotizacionWeb; track $index) {
   <tbody>
     <tr>
       <td data-label="Razón social">
-        <div class="title">{{categorias.empresa}}</div>
+        <div class="title">{{carrito.empresa}}</div>
       </td>
       <td data-label="Nombre">
-        <div class="title">{{categorias.nombre}}</div>
+        <div class="title">{{carrito.nombre}}</div>
       </td>
       <td data-label="RUC">
-        <div class="title">{{categorias.ruc}}</div>
+        <div class="title">{{carrito.ruc}}</div>
       </td>
       <td data-label="Ver detalles">
         <div class="action-icons">
           <i class="fas fa-eye" style="color: #326DE7; font-size: 20px; cursor: pointer;"
-            (click)="verDetalle(categorias.carrito_id)"></i>
+            (click)="verDetalle(carrito.carrito_id)"></i>
         </div>
       </td>
-      <td></td>
+      <td data-label="Estado">
+        <span [class]="getEstadoClass(carrito.carrito_id)">
+          {{getEstadoText(carrito.carrito_id)}}
+        </span>
+      </td>
     </tr>
   </tbody>
   }

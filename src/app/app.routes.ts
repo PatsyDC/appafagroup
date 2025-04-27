@@ -58,5 +58,5 @@ export const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
 
-  { path: '**', redirectTo: '/login', pathMatch: 'full' }, // Redirige al login si la ruta no es válida
+  { path: '**', redirectTo: '/login', pathMatch: 'full' },
 ];

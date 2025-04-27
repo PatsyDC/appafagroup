@@ -113,16 +113,6 @@
       </div>
 
       <div class="form-group">
-        <label for="vendedor_trabajador">Vendedor</label>
-        <select id="vendedor_trabajador" formControlName="vendedor_trabajador" class="form-control">
-          <option *ngFor="let vendedor of vendedores" [value]="vendedor">{{ vendedor }}</option>
-        </select>
-        <div class="error-message" *ngIf="cotizacionForm.get('vendedor_trabajador')?.invalid && cotizacionForm.get('vendedor_trabajador')?.touched">
-          Vendedor es requerido
-        </div>
-      </div>
-
-      <div class="form-group">
         <label for="observaciones">Observaciones</label>
         <textarea id="observaciones" formControlName="observaciones" class="form-control" rows="3"></textarea>
       </div>
