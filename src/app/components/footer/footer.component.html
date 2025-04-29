@@ -1,75 +1,139 @@
-<footer class="footer">
+<!-- Compact Footer -->
+<footer class="footer py-4">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-4 col-md-6 mb-4 mr-auto"> <!-- Añade mr-auto para mover hacia la izquierda -->
-        <div class="footer-logo">
-          <img src="img/logo-f.png" alt="Logo" class="img-fluid">
-        </div>
-        <div class="section-titleEnc"><i class='bx bx-map icon-wrapper'></i>Encuéntranos en</div>
-        <div style="margin: 0; padding: 0;">
-          <p style="margin: 0;"><strong>Oficina Principal</strong></p>
-          <p style="margin: 0;">Calle Dinamarca 109 Urb. Monserrate - Trujillo - La Libertad</p>
-        </div>
-        <div style="margin: 0; padding: 0; margin-top: 15px;">
-            <div style="margin: 0;">
-                <p style="margin: 0;"><strong>Sede Moche - La Libertad</strong></p>
-                <p style="margin: 0;">Bar. El Rosario 110 - Moche</p>
-            </div>
-            <div style="margin: 0;">
-                <p style="margin: 0; margin-top: 15px;"><strong>Sede Lima</strong></p>
-                <p style="margin: 0;">Av. Arenales Num. 773 Dpto. 803 Urb. Santa Beatriz - Lima</p>
-            </div>
-            <div style="margin: 0;">
-                <p style="margin: 0; margin-top: 15px;"><strong>Sede Ica</strong></p>
-                <p style="margin: 0;">Parcela Nº 205 Sub Lote A (Carr. Panamericana Sur Km. 298.2) - Subtanjalla Ica</p>
-            </div>
-            <div style="margin: 0;">
-                <p style="margin: 0; margin-top: 15px;"><strong>Sede Chiclayo</strong></p>
-                <p style="margin: 0;">Av. Ampliacion Urbana La Victoria - Chosica Del Norte Mz 20 Lt 03 Chiclayo</p>
-            </div>
-        </div>
-
-        <div class="social-icons mt-3">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
-        </div>
+    <!-- Top section with logo and contact tabs -->
+    <div class="row mb-3">
+      <div class="col-lg-3 col-md-4 mb-3">
+        <img src="img/logo-f.png" alt="Afa Group Logo" class="footer-logo">
       </div>
-      <div class="col-lg-3 col-md-6 mb-4 mx-auto">
-
-        <div class="section-title"><i class='bx bx-phone icon-wrapper'></i>Comunícate al</div>
-
-        <p style="margin: 0; margin-top: 15px;"><strong>Ventas</strong></p><br>
-        <p>+51 944 691 667</p>
-        <p>+51 915 230 052</p>
-        <p>+51 944 964 799</p>
-        <br> <br>
-        <p style="margin: 0; margin-top: 15px;"><strong>Asistencia técnica</strong></p><br>
-        <p>+51 982 557 415</p>
-        <p>+51 946 860 365</p>
-
-
-        <div class="section-title-Tc with-margin"><i class='bx bx-user icon-wrapper'></i>Trabaja con nosotros</div>
-        <a href="#">Libro de reclamaciones</a>
-      </div>
-
-      <div class="col-lg-3 col-md-6 mb-4 mx-auto">
-
-        <div class="section-title"><i class='bx bx-envelope icon-wrapper'></i>Escríbenos</div>
-        <p>jefe.comercial&#64;afagroupperu.pe</p>
-        <p>comercial3&#64;afagroupperu.pe</p>
-        <p>comercial6&#64;afagroupperu.pe</p>
-        <div class="section-title-At with-margin"><i class='bx bx-user-circle icon-wrapper'></i>Atención al cliente y reclamos</div>
-        <p>+51  944 691 667</p>
+      <div class="col-lg-9 col-md-8">
+        <ul class="nav nav-tabs footer-tabs" id="footerTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button">
+              <i class="bx bx-phone-call"></i> Contacto
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="locations-tab" data-bs-toggle="tab" data-bs-target="#locations" type="button">
+              <i class="bx bx-map"></i> Sedes
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="resources-tab" data-bs-toggle="tab" data-bs-target="#resources" type="button">
+              <i class="bx bx-link"></i> Enlaces
+            </button>
+          </li>
+        </ul>
       </div>
     </div>
-    <div class="text-center mt-4">
-      <p>Afa Group</p>
-      <p> &copy; Todos los derechos reservados 2024</p>
+
+    <!-- Tab content -->
+    <div class="tab-content" id="footerTabContent">
+      <!-- Contact Tab -->
+      <div class="tab-pane fade show active" id="contact" role="tabpanel">
+        <div class="row">
+          <!-- Sales Contact -->
+          <div class="col-md-4 mb-3">
+            <div class="contact-group">
+              <h6><i class="bx bx-store"></i> Ventas</h6>
+              <div class="d-flex flex-wrap">
+                <a href="tel:+51944691667" class="contact-badge">+51 944 691 667</a>
+                <a href="tel:+51915230052" class="contact-badge">+51 915 230 052</a>
+                <a href="tel:+51944964799" class="contact-badge">+51 944 964 799</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Technical Support -->
+          <div class="col-md-4 mb-3">
+            <div class="contact-group">
+              <h6><i class="bx bx-wrench"></i> Asistencia Técnica</h6>
+              <div class="d-flex flex-wrap">
+                <a href="tel:+51982557415" class="contact-badge">+51 982 557 415</a>
+                <a href="tel:+51946860365" class="contact-badge">+51 946 860 365</a>
+              </div>
+              <h6 class="mt-2"><i class="bx bx-user-circle"></i> Atención al Cliente</h6>
+              <div class="d-flex flex-wrap">
+                <a href="tel:+51944691667" class="contact-badge">+51 944 691 667</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Email Contact -->
+          <div class="col-md-4 mb-3">
+            <div class="contact-group">
+              <h6><i class="bx bx-envelope"></i> Escríbenos</h6>
+              <a href="mailto:jefe.comercial@afagroupperu.pe" class="contact-link">jefe.comercialafagroupperu.pe</a>
+              <a href="mailto:comercial3@afagroupperu.pe" class="contact-link">comercial3afagroupperu.pe</a>
+              <a href="mailto:comercial6@afagroupperu.pe" class="contact-link">comercial6afagroupperu.pe</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Locations Tab -->
+      <div class="tab-pane fade" id="locations" role="tabpanel">
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <div class="location-card">
+              <h6>Oficina Principal - Trujillo</h6>
+              <p>Calle Dinamarca 109 Urb. Monserrate - La Libertad</p>
+            </div>
+            <div class="location-card">
+              <h6>Sede Moche - La Libertad</h6>
+              <p>Bar. El Rosario 110 - Moche</p>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="location-card">
+              <h6>Sede Lima</h6>
+              <p>Av. Arenales Num. 773 Dpto. 803 Urb. Santa Beatriz</p>
+            </div>
+            <div class="location-card">
+              <h6>Sede Ica</h6>
+              <p>Parcela N° 205 Sub Lote A (Carr. Panamericana Sur Km. 298.2) - Subtanjalla</p>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="location-card">
+              <h6>Sede Chiclayo</h6>
+              <p>Av. Ampliacion Urbana La Victoria - Chosica Del Norte Mz 20 Lt 03</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resources Tab -->
+      <div class="tab-pane fade" id="resources" role="tabpanel">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <div class="d-flex flex-wrap">
+              <a href="#" class="resource-link">
+                <i class="bx bx-book-alt"></i> Libro de reclamaciones
+              </a>
+              <a href="#" class="resource-link">
+                <i class="bx bx-briefcase"></i> Trabaja con nosotros
+              </a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="social-icons">
+              <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="row mt-3">
+      <div class="col-12">
+        <hr class="footer-divider">
+        <p class="copyright text-center">Afa Group &copy; Todos los derechos reservados 2024</p>
+      </div>
     </div>
   </div>
-
-
 </footer>
-

@@ -1,148 +1,187 @@
-.content {
-  flex: 1;
-}
-
-footer.footer {
-  background-color: #2c7bfe;
-  color: white;
-  padding: 40px 0;
-}
-
+/* Compact Footer Styles */
 .footer {
-  background-color: #2c7bfe;
+  background-color: #2565d8;
   color: white;
-  padding: 40px 0;
+  font-family: 'Poppins', sans-serif;
 }
-.footer a {
+
+.footer-logo {
+  width: 120px;
+  height: auto;
+}
+
+/* Tabs styling */
+.footer-tabs {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-tabs .nav-link {
+  color: rgba(255, 255, 255, 0.7);
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  border-bottom: 2px solid transparent;
+  background-color: transparent;
+}
+
+.footer-tabs .nav-link i {
+  margin-right: 5px;
+}
+
+.footer-tabs .nav-link:hover {
   color: white;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.footer-tabs .nav-link.active {
+  color: white;
+  background-color: transparent;
+  border-bottom: 2px solid white;
+  font-weight: 500;
+}
+
+/* Contact section styling */
+.contact-group h6 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.contact-badge {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 30px;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
   text-decoration: none;
-}
-.footer a:hover {
-  color: #d1d1d1;
-}
-.footer .icon-wrapper {
-  font-size: 1.5rem;
-  margin-right: 10px;
-}
-.footer .social-icons a {
-  font-size: 1.5rem;
-  margin-right: 15px;
-}
-.footer .social-icons a:hover {
-  color: #d1d1d1;
-}
-.footer .section-title {
-  font-size: 1.25rem;
-  margin-bottom: 15px;
-  margin-top: 140px;
+  transition: all 0.2s;
 }
 
-.footer .section-titleEnc {
-  font-size: 1.25rem;
-  margin-bottom: 15px;
-  margin-top: 71px;
-}
-.footer .section-title-Tc {
-  font-size: 1.25rem;
-  margin-bottom: 15px;
-}
-.footer .section-title-Tc.with-margin {
-  margin-top: 140px; /* Ajusta este valor según sea necesario */
+.contact-badge:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
 }
 
-.footer .section-title-At {
-  font-size: 1.25rem;
-  margin-bottom: 15px;
-}
-.footer .section-title-At.with-margin {
-  margin-top: 140px; /* Ajusta este valor según sea necesario */
-}
-.footer-logo{
-  width: 170px;
-  height: 70px;
+.contact-link {
+  display: block;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.85rem;
+  margin-bottom: 0.35rem;
+  text-decoration: none;
+  transition: all 0.2s;
 }
 
+.contact-link:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+/* Location cards */
+.location-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  padding: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.location-card h6 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.location-card p {
+  font-size: 0.8rem;
+  margin-bottom: 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Resource links */
+.resource-link {
+  display: inline-flex;
+  align-items: center;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.resource-link i {
+  margin-right: 6px;
+  font-size: 1rem;
+}
+
+.resource-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+/* Social icons */
+.social-icons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.social-icons a {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.social-icons i {
+  font-size: 0.9rem;
+}
+
+/* Footer divider and copyright */
+.footer-divider {
+  margin: 1rem 0;
+  opacity: 0.1;
+}
+
+.copyright {
+  font-size: 0.75rem;
+  opacity: 0.7;
+  margin-bottom: 0;
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
-  .footer .section-title {
-    margin-top: 40px;
-  }
-  .footer .section-titleEnc {
-    margin-top: 40px;
-  }
-  .footer .section-title-Tc.with-margin {
-    margin-top: 40px;
-  }
-  .footer .section-title-At.with-margin {
-    margin-top: 40px;
+  .footer-tabs .nav-link {
+    padding: 0.5rem;
+    font-size: 0.8rem;
   }
 
-  .footer .footer-logo {
-      margin: 0 auto; /* Esto centrará la imagen horizontalmente */
-      display: block; /* Esto asegura que la imagen ocupe todo el ancho disponible */
-    }
-}
+  .social-icons {
+    justify-content: center;
+    margin-top: 1rem;
+  }
 
-.footer .section-title {
-  font-size: 1.25rem;
-  margin-bottom: 15px;
-  position: relative;
+  .footer-logo {
+    display: block;
+    margin: 0 auto 1rem;
+  }
 }
-
-.footer .section-title:after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -5px; /* Ajusta este valor según sea necesario para el grosor de la línea */
-  width: 170px;
-  height: 2px; /* Grosor de la línea */
-  background-color: white; /* Color de la línea */
-}
-
-.footer .section-titleEnc {
-  font-size: 1.25rem;
-  margin-bottom: 15px;
-  position: relative;
-}
-
-.footer .section-titleEnc:after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -5px; /* Ajusta este valor según sea necesario para el grosor de la línea */
-  width: 200px;
-  height: 2px; /* Grosor de la línea */
-  background-color: white; /* Color de la línea */
-}
-
-.footer .section-title-Tc {
-  font-size: 1.25rem;
-  margin-bottom: 15px;
-  position: relative;
-}
-
-.footer .section-title-Tc:after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -5px; /* Ajusta este valor según sea necesario para el grosor de la línea */
-  width: 230px;
-  height: 2px; /* Grosor de la línea */
-  background-color: white; /* Color de la línea */
-}
-
-.footer .section-title-At {
-  font-size: 1.25rem;
-  margin-bottom: 15px;
-  position: relative;
-}
-
-.footer .section-title-At:after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -5px; /* Ajusta este valor según sea necesario para el grosor de la línea */
-  width: 320px;
-  height: 2px; /* Grosor de la línea */
-  background-color: white; /* Color de la línea */
-}
-

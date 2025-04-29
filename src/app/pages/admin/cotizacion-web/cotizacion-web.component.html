@@ -2,6 +2,13 @@
   <h1>Cotizaciones de la web</h1>
 </div>
 
+<div class="agregar">
+  <div class="search-container">
+    <input type="text" class="search-input" placeholder="Buscar..." [(ngModel)]="searchTerm" (input)="applyFilter()">
+    <i class="fas fa-search search-icon"></i>
+  </div>
+</div>
+
 <table class="task-table">
   <thead>
     <tr>
@@ -12,8 +19,7 @@
       <th>Estado</th>
     </tr>
   </thead>
-  @for (carrito of cotizacionWeb; track $index) {
-  <tbody>
+  <tbody *ngFor="let carrito of paginatedCarrito; let i = index; trackBy: trackByIndex">
     <tr>
       <td data-label="Razón social">
         <div class="title">{{carrito.empresa}}</div>
@@ -37,5 +43,21 @@
       </td>
     </tr>
   </tbody>
-  }
 </table>
+
+
+<div class="pagination">
+  <button class="page-link" [disabled]="currentPage === 1" (click)="changePage(currentPage - 1)">
+    <i class="fas fa-chevron-left"></i>
+  </button>
+
+  <button class="page-link" *ngFor="let page of getPaginationArray()"
+          [class.active]="page === currentPage"
+          (click)="changePage(page)">
+    {{ page }}
+  </button>
+
+  <button class="page-link" [disabled]="currentPage === totalPages" (click)="changePage(currentPage + 1)">
+    <i class="fas fa-chevron-right"></i>
+  </button>
+</div>

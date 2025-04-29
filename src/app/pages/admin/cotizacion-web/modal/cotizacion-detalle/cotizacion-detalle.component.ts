@@ -20,14 +20,14 @@ export class CotizacionDetalleComponent implements OnInit {
   cotizacionForm: FormGroup;
   carrito: CarritoWeb | null = null;
   productos: any[] = [];
+  preciosOriginales: number[] = [];
   totalPrecioProductos: number = 0;
   carritoId: string = '';
   cotizacionExistente: boolean = false;
+  estadoCotizacion: string = '';
 
-  // Opciones para formas de pago
-  formasPago: string[] = ['Contado', 'Crédito 30 días', 'Crédito 60 días', 'Leasing'];
+  formasPago: string[] = ['Contado', 'Crédito 30 días', 'Crédito 60 días'];
 
-  // Monedas disponibles
   monedas: string[] = ['PEN', 'USD'];
 
   constructor(
@@ -41,6 +41,8 @@ export class CotizacionDetalleComponent implements OnInit {
     this.cotizacionForm = this.fb.group({
       carrito_id: ['', Validators.required],
       periodo: [new Date().toISOString().substring(0, 7), Validators.required],
+      serie: [''],
+      numero: [null],
       fecha: [new Date().toISOString().substring(0, 10), Validators.required],
       tipo_cambio: [3.75, [Validators.required, Validators.min(0.01)]],
       punto_venta: ['Lima', Validators.required],
@@ -81,15 +83,26 @@ export class CotizacionDetalleComponent implements OnInit {
       // En caso de error, mostramos el carrito
       this.cargarDatosCarrito(this.carritoId);
     });
+
+    this.cotizacionForm.get('moneda')?.valueChanges.subscribe((nuevaMoneda) => {
+      this.convertirPrecios(nuevaMoneda);
+    });
+
   }
 
   cargarCotizacion(cotizacion: any): void {
     if (!cotizacion) return;
+    this.estadoCotizacion = cotizacion.estado || '';
+    if (this.estadoCotizacion === 'COTIZADO') {
+      this.cotizacionForm.disable();
+    }
+
     console.log('Cargando cotización:', cotizacion);
 
-    // Actualiza el formulario con los datos de la cotización
     this.cotizacionForm.patchValue({
       carrito_id: cotizacion.carrito_id,
+      serie: cotizacion.serie,
+      numero: cotizacion.numero,
       periodo: cotizacion.periodo,
       fecha: cotizacion.fecha ? cotizacion.fecha.substring(0, 10) : new Date().toISOString().substring(0, 10),
       tipo_cambio: cotizacion.tipo_cambio || 3.75,
@@ -147,8 +160,6 @@ export class CotizacionDetalleComponent implements OnInit {
     this.carritoService.getCarritoById(carritoId).subscribe(
       (carrito: CarritoWeb) => {
         this.carrito = carrito;
-
-        // Asegúrate de que productos se parse correctamente
         try {
           if (typeof carrito.productos === 'string') {
             this.productos = JSON.parse(carrito.productos);
@@ -158,7 +169,6 @@ export class CotizacionDetalleComponent implements OnInit {
             console.log('Productos como array:', this.productos);
           }
 
-          // Agregar campos adicionales a cada producto
           this.productos = this.productos.map(prod => {
             return {
               ...prod,
@@ -174,7 +184,6 @@ export class CotizacionDetalleComponent implements OnInit {
           this.productos = [];
         }
 
-        // Actualizar el formulario con los datos del carrito
         this.cotizacionForm.patchValue({
           carrito_id: carritoId,  // Asegúrate de establecer el ID del carrito
           razon_social: carrito.empresa || '',
@@ -216,7 +225,6 @@ export class CotizacionDetalleComponent implements OnInit {
     const producto = this.productos[index];
     producto.precio = nuevoPrecio;
 
-    // Si hay descuento aplicado, actualizamos el precio con descuento
     if (producto.descuento > 0) {
       const descuentoDecimal = producto.descuento / 100;
       producto.precio_descuento = nuevoPrecio * (1 - descuentoDecimal);
@@ -237,7 +245,6 @@ export class CotizacionDetalleComponent implements OnInit {
     const producto = this.productos[index];
     producto.cantidad = cantidad;
 
-    // Recalcular subtotal
     producto.sub_total = producto.precio_descuento * cantidad;
 
     this.calcularTotales();
@@ -247,6 +254,41 @@ export class CotizacionDetalleComponent implements OnInit {
     this.totalPrecioProductos = this.productos.reduce((total, producto) => {
       return total + producto.sub_total;
     }, 0);
+  }
+
+  convertirPrecios(nuevaMoneda: string): void {
+    const tipoCambio = this.cotizacionForm.get('tipo_cambio')?.value || 1;
+
+    if (this.preciosOriginales.length === 0) {
+      // Guardamos los precios originales solo una vez
+      this.preciosOriginales = this.productos.map(p => p.precio);
+    }
+
+    if (nuevaMoneda === 'USD') {
+      this.productos = this.productos.map((producto, i) => {
+        const precioUSD = this.preciosOriginales[i] * tipoCambio;
+        const precio_descuento = precioUSD * (1 - producto.descuento / 100);
+        return {
+          ...producto,
+          precio: parseFloat(precioUSD.toFixed(2)),
+          precio_descuento: parseFloat(precio_descuento.toFixed(2)),
+          sub_total: parseFloat((precio_descuento * producto.cantidad).toFixed(2))
+        };
+      });
+    } else {
+      this.productos = this.productos.map((producto, i) => {
+        const precioPEN = this.preciosOriginales[i];
+        const precio_descuento = precioPEN * (1 - producto.descuento / 100);
+        return {
+          ...producto,
+          precio: parseFloat(precioPEN.toFixed(2)),
+          precio_descuento: parseFloat(precio_descuento.toFixed(2)),
+          sub_total: parseFloat((precio_descuento * producto.cantidad).toFixed(2))
+        };
+      });
+    }
+
+    this.calcularTotales();
   }
 
   guardarCotizacion(): void {
@@ -294,7 +336,6 @@ export class CotizacionDetalleComponent implements OnInit {
   }
 
   generarPDF(): void {
-    // Lógica básica de validación
     if (this.cotizacionForm.invalid) {
       alert('Por favor complete todos los campos requeridos antes de generar el PDF.');
       return;
@@ -305,7 +346,6 @@ export class CotizacionDetalleComponent implements OnInit {
       return;
     }
 
-    // Usar el servicio para generar el PDF
     this.pdfService.generarPDF(this.cotizacionForm, this.productos, this.totalPrecioProductos);
   }
 }

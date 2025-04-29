@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { ICarrito, IItemCarrito } from 'app/core/models/carrito.model';
 import { CarritoService } from 'app/core/services/carrito.service';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-tienda',
@@ -91,12 +91,22 @@ export class TiendaComponent implements OnInit {
       next: response => {
         console.log('Orden guardada:', response);
         this.ordenCompletada = true;
+        Swal.fire( // Muestra la alerta
+          'Éxito!',
+          'La cotización se envió correctamente, nos pondremos en contacto con usted!',
+          'success'
+        );
         this.carritoService.vaciarCarrito(); // Vaciar el carrito después de guardar
         this.checkoutForm.reset();
       },
       error: error => {
         console.error('Error al guardar la orden:', error);
         this.errorOrden = 'Hubo un error al procesar la orden.';
+        Swal.fire( // Muestra la alerta
+          'Error!',
+          'Hubo un error al enviar la cotización.',
+          'error'
+        );
       },
       complete: () => {
         this.procesandoOrden = false;

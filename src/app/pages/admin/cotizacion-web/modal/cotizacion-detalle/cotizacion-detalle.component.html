@@ -14,6 +14,19 @@
         </div>
       </div>
 
+      <!-- Mostrar Serie y Número solo si está COTIZADO -->
+      <div class="form-grid" *ngIf="estadoCotizacion === 'COTIZADO'">
+        <div class="form-group">
+          <label for="serie">Serie</label>
+          <input type="text" id="serie" formControlName="serie" class="form-control" readonly>
+        </div>
+
+        <div class="form-group">
+          <label for="numero">Número</label>
+          <input type="text" id="numero" formControlName="numero" class="form-control" readonly>
+        </div>
+      </div>
+
       <div class="form-group">
         <label for="fecha">Fecha</label>
         <input type="date" id="fecha" formControlName="fecha" class="form-control">
@@ -38,13 +51,10 @@
         </div>
       </div>
 
-      <!-- Segunda fila -->
-
       <div class="form-group">
         <label for="razon_social">Empresa / Razón Social</label>
         <input type="text" id="razon_social" formControlName="razon_social" class="form-control">
       </div>
-
 
       <div class="form-group">
         <label for="ruc">RUC</label>
@@ -83,7 +93,6 @@
         </div>
       </div>
 
-      <!-- Tercera fila -->
       <div class="form-group">
         <label for="forma_pago">Forma de Pago</label>
         <select id="forma_pago" formControlName="forma_pago" class="form-control">
@@ -159,7 +168,9 @@
 
     <div class="button-container">
       <button type="button" class="btn btn-secondary" routerLink="/admin/cotizacionWeb">Cancelar</button>
-      <button type="submit" class="btn btn-primary">Guardar Cotización</button>
+      <button type="submit" class="btn btn-primary" *ngIf="estadoCotizacion !== 'COTIZADO'">
+        Guardar Cotización
+      </button>
       <button type="button" class="btn btn-success" (click)="generarPDF()">Generar PDF</button>
     </div>
   </form>

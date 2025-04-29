@@ -8,17 +8,14 @@ import { IMAGENES_BASE64 } from 'app/shared/imagenes-base64'
 })
 export class CotizacionPdfService {
 
-  
   constructor() { }
-
-  
 
   generarPDF(cotizacionForm: FormGroup, productos: any[], totalPrecioProductos: number) {
     const pdf = new jsPDF('p', 'mm', 'a4');
     const pageWidth = 210; // A4 width in mm
     const margin = 10; // Margins
     const contentWidth = pageWidth - margin * 2;
-    
+
     // Agregar logo (aquí deberías tener una imagen base64 del logo AFA GROUP)
     // Para un caso de prueba, usaremos un rectángulo simple
     // const imgUrl = 'public/img/afa_group.png'; // URL del logo AFA GROUP
@@ -34,7 +31,7 @@ export class CotizacionPdfService {
     pdf.text('Calle Dinamarca N° 109 Urb. Monserrate', margin + 35, 20); // Cambiado de margin + 20 a margin + 50
     pdf.text('- Trujillo - La Libertad -', margin + 35, 24); // Cambiado de margin + 20 a margin + 50
     pdf.text('Perú : 949700724', margin + 35, 28); // Cambiado de margin + 20 a margin + 50
-    
+
     // Recuadro para Cotización
     pdf.setDrawColor(0);
     pdf.setFillColor(220, 220, 220); // Color gris claro
@@ -43,8 +40,9 @@ export class CotizacionPdfService {
     pdf.setFont('helvetica', 'bold');
     pdf.text('COTIZACIÓN', 167, 15);
     pdf.setFontSize(8);
-    pdf.text('N°: 0017441', 167, 20);
-    
+    const numero = cotizacionForm.get('numero')?.value || '';
+    pdf.text(`N°: ${numero}`, 167, 20);
+
     // Iconos servicios (simularemos con rectángulos)
     const iconWidth = 30; // Ancho de cada imagen
     const iconHeight = 13; // Alto de cada imagen
@@ -63,14 +61,11 @@ export class CotizacionPdfService {
       pdf.addImage(imagenes[i], 'PNG', startX + (i * (iconWidth + 13)), iconY, iconWidth, iconHeight);
     }
 
-
-
-    
     // Recuadro principal de la cotización
     pdf.setDrawColor(0);
     pdf.setFillColor(255, 255, 255);
     pdf.rect(margin, 55, contentWidth, 80, 'D');
-    
+
     // Información del cliente (dentro del recuadro)
     pdf.setFontSize(9);
     pdf.setFont('helvetica', 'bold');
@@ -78,34 +73,37 @@ export class CotizacionPdfService {
     pdf.text('CLIENTE:', margin + 5, 65);
     pdf.setFont('helvetica', 'normal');
     pdf.text(cotizacionForm.get('razon_social')?.value || '', margin + 40, 65);
-    
+
     pdf.setFont('helvetica', 'bold');
     pdf.text('RUC:', margin + 5, 75);
     pdf.setFont('helvetica', 'normal');
     pdf.text(cotizacionForm.get('ruc')?.value || '', margin + 40, 75);
-    
+
     pdf.setFont('helvetica', 'bold');
     pdf.text('CONTACTO:', margin + 5, 85);
     pdf.setFont('helvetica', 'normal');
     const contactoInfo = `${cotizacionForm.get('nombre_contacto')?.value || ''} / ${cotizacionForm.get('email')?.value || ''} / ${cotizacionForm.get('telefono')?.value || ''}`;
     pdf.text(contactoInfo, margin + 40, 85);
-    
+
     pdf.setFont('helvetica', 'bold');
     pdf.text('LUGAR ENTREGA:', margin + 5, 95);
     pdf.setFont('helvetica', 'normal');
     pdf.text(cotizacionForm.get('punto_venta')?.value || '', margin + 40, 95);
-    
+
     pdf.setFont('helvetica', 'bold');
     pdf.text('FECHA:', margin + 110, 95);
     pdf.setFont('helvetica', 'normal');
     const fechaFormateada = this.formatearFecha(cotizacionForm.get('fecha')?.value);
     pdf.text(fechaFormateada, margin + 140, 95);
-    
+
     pdf.setFont('helvetica', 'bold');
     pdf.text('VENDEDOR:', margin + 5, 105);
     pdf.setFont('helvetica', 'normal');
-    pdf.text(cotizacionForm.get('vendedor_trabajador')?.value || '', margin + 40, 105);
-    
+    const usuario = JSON.parse(localStorage.getItem('user') || '{}');
+    const nombreVendedor = usuario?.user_name || '';
+    pdf.text(nombreVendedor, margin + 40, 105);
+
+
     // Tabla de productos
     pdf.setFillColor(220, 220, 220);
     pdf.rect(margin, 140, contentWidth, 8, 'FD');
@@ -148,39 +146,39 @@ export class CotizacionPdfService {
       pdf.text(producto.sub_total.toFixed(2), margin + 178, startY);
       startY += 8;
     }
-    
+
     // Tabla de condiciones y totales
     const yCondiciones = 235;
     pdf.rect(margin, yCondiciones, contentWidth * 0.6, 40, 'D');
     pdf.rect(margin + contentWidth * 0.6, yCondiciones, contentWidth * 0.4, 40, 'D');
-    
+
     // Título de condiciones
     pdf.setFillColor(255, 255, 255);
     pdf.rect(margin, yCondiciones, contentWidth * 0.6, 8, 'FD');
     pdf.setFont('helvetica', 'bold');
     pdf.setFontSize(9);
     pdf.text('Condiciones :', margin + 5, yCondiciones + 6);
-    
+
     // Detalle de condiciones
     pdf.setFont('helvetica', 'normal');
     pdf.setFontSize(8);
     pdf.text('Los precios NO incluyen IGV', margin + 50, yCondiciones + 6);
-    
+
     pdf.setFont('helvetica', 'bold');
     pdf.text('Forma de Pago:', margin + 5, yCondiciones + 15);
     pdf.setFont('helvetica', 'normal');
     pdf.text(cotizacionForm.get('forma_pago')?.value || '', margin + 50, yCondiciones + 15);
-    
+
     pdf.setFont('helvetica', 'bold');
     pdf.text('Tiempo de entrega:', margin + 5, yCondiciones + 23);
     pdf.setFont('helvetica', 'normal');
     pdf.text(cotizacionForm.get('dias_ofertas')?.value + ' días hábiles' || '0 días hábiles', margin + 50, yCondiciones + 23);
-    
+
     pdf.setFont('helvetica', 'bold');
     pdf.text('Validez de la oferta:', margin + 5, yCondiciones + 31);
     pdf.setFont('helvetica', 'normal');
     pdf.text(cotizacionForm.get('dias_ofertas')?.value + ' días' || '0 días', margin + 50, yCondiciones + 31);
-    
+
     // Totales en la tabla derecha
     // Encabezados
     pdf.setFillColor(220, 220, 220);
@@ -188,52 +186,52 @@ export class CotizacionPdfService {
     pdf.setFont('helvetica', 'bold');
     pdf.text('DESCUENTO', margin + contentWidth * 0.6 + 5, yCondiciones + 6);
     pdf.text(cotizacionForm.get('moneda')?.value || 'USD', margin + contentWidth - 15, yCondiciones + 6);
-    
+
     // Líneas para dividir las secciones de totales
     pdf.line(margin + contentWidth * 0.6, yCondiciones + 16, margin + contentWidth, yCondiciones + 16);
     pdf.line(margin + contentWidth * 0.6, yCondiciones + 24, margin + contentWidth, yCondiciones + 24);
     pdf.line(margin + contentWidth * 0.6, yCondiciones + 32, margin + contentWidth, yCondiciones + 32);
-    
+
     // Valores
     pdf.setFont('helvetica', 'normal');
     pdf.text('SUBTOTAL', margin + contentWidth * 0.6 + 5, yCondiciones + 14);
     pdf.text(cotizacionForm.get('moneda')?.value || 'USD', margin + contentWidth - 15, yCondiciones + 14);
-    
+
     pdf.text('IGV (18%)', margin + contentWidth * 0.6 + 5, yCondiciones + 22);
     pdf.text(cotizacionForm.get('moneda')?.value || 'USD', margin + contentWidth - 15, yCondiciones + 22);
-    
+
     pdf.setFont('helvetica', 'bold');
     pdf.text('TOTAL', margin + contentWidth * 0.6 + 5, yCondiciones + 30);
     pdf.text(cotizacionForm.get('moneda')?.value || 'USD', margin + contentWidth - 30, yCondiciones + 30);
     pdf.text(totalPrecioProductos.toFixed(2), margin + contentWidth - 15, yCondiciones + 30);
-    
+
     // Guardar PDF
     pdf.save('cotizacion.pdf');
   }
-  
+
   private formatearFecha(fecha: string): string {
     if (!fecha) return '';
     const date = new Date(fecha);
     return `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
   }
-  
+
   private limitarTexto(texto: string, longitud: number): string {
     if (!texto) return '';
     return texto.length > longitud ? texto.substring(0, longitud) + '...' : texto;
   }
-  
+
   private calcularDescuento(productos: any[]): number {
     return productos.reduce((total, producto) => {
       return total + (producto.precio - producto.precio_descuento) * producto.cantidad;
     }, 0);
   }
-  
+
   private calcularSubtotal(productos: any[]): number {
     return productos.reduce((total, producto) => {
       return total + producto.precio_descuento * producto.cantidad;
     }, 0);
   }
-  
+
   private calcularIGV(subtotal: number): number {
     return subtotal * 0.18;
   }

@@ -135,7 +135,7 @@
                 </div>
 
                 <div class="mb-3">
-                  <label for="direccion" class="form-label">Dirección de envío</label>
+                  <label for="direccion" class="form-label">Dirección</label>
                   <textarea class="form-control" id="direccion" rows="3" formControlName="direccion" placeholder="Empresa"></textarea>
                   <div *ngIf="checkoutForm.get('direccion')?.invalid && checkoutForm.get('direccion')?.touched" class="text-danger">
                     La dirección es requerida
@@ -147,7 +147,7 @@
             <!-- Botón Solicitar Citación -->
             <div class="mt-3">
               <button (click)="finalizarCompra()" [disabled]="procesandoOrden">
-                Finalizar Compra
+                Enviar cotización
               </button>
             </div>
           </form>

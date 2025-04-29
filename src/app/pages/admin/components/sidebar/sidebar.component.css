@@ -1,4 +1,4 @@
-/* Estilos base de la barra lateral */
+
 .sidebar {
   width: 270px;
   background-color: #f8f9fa;
@@ -209,6 +209,7 @@
   white-space: nowrap;
   font-weight: 500;
   transition: opacity 0.3s ease, width 0.2s ease;
+  font-family: sans-serif;
 }
 
 /* Botón de cierre de sesión */

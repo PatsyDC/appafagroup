@@ -18,8 +18,8 @@ export interface CotizacionWeb {
   moneda: string,
   observaciones: string
   productos: any[];
-  total_precio_productos: number; // Total del precio de los productos
-  estado?: string, // PENDIENTE, EN_PROCESO, FINALIZADO
+  total_precio_productos: number;
+  estado?: string,
   user_id?: string,
   fecha_asignacion?: Date,
   fecha_finalizacion?: Date
