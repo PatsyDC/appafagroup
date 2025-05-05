@@ -4,7 +4,6 @@ import { AdminComponent } from '@pages/admin/admin.component';
 import { ArticuloComponent } from '@pages/usuarios/articulo/articulo.component';
 import { BlogComponent } from '@pages/usuarios/blog/blog.component';
 import { ContactComponent } from '@pages/usuarios/contact/contact.component';
-import { DetalleRComponent } from '@pages/usuarios/detalle-r/detalle-r.component';
 import { EquipmentListComponent } from '@pages/usuarios/equipment-list/equipment-list.component';
 import { FabricacionComponent } from '@pages/usuarios/fabricacion/fabricacion.component';
 import { HomePageComponent } from '@pages/usuarios/home-page/home-page.component';
@@ -21,6 +20,7 @@ import { TiendaComponent } from '@pages/usuarios/tienda/tienda.component';
 import { CotizacionWebComponent } from '@pages/admin/cotizacion-web/cotizacion-web.component';
 import { CotizacionDetalleComponent } from '@pages/admin/cotizacion-web/modal/cotizacion-detalle/cotizacion-detalle.component';
 import { AuthGuard } from './auth/auth.guard';
+import { EquipmentDetalleComponent } from '@pages/usuarios/equipment-detalle/equipment-detalle.component';
 
 export const routes: Routes = [
   {
@@ -33,10 +33,10 @@ export const routes: Routes = [
       { path: 'services', component: ServicesComponent },
       { path: 'articulo', component: BlogComponent },
       { path: 'contact', component: ContactComponent },
-      { path: 'fabricacion', component: FabricacionComponent}, // Asegúrate de tener el componente correcto aquí
-      { path: 'detalleRepuesto/:id', component: DetalleRComponent},
+      { path: 'fabricacion', component: FabricacionComponent},
       { path: 'blog', component: ArticuloComponent},
-      { path: 'tienda', component: TiendaComponent}
+      { path: 'tienda', component: TiendaComponent},
+      { path: 'equipment/:id', component: EquipmentDetalleComponent}
     ],
   },
 

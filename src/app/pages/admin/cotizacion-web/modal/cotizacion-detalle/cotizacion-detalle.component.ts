@@ -41,8 +41,8 @@ export class CotizacionDetalleComponent implements OnInit {
     this.cotizacionForm = this.fb.group({
       carrito_id: ['', Validators.required],
       periodo: [new Date().toISOString().substring(0, 7), Validators.required],
-      serie: [''],
-      numero: [null],
+      serie: ['001', Validators.required], // Valor por defecto '001'
+      numero: [1],
       fecha: [new Date().toISOString().substring(0, 10), Validators.required],
       tipo_cambio: [3.75, [Validators.required, Validators.min(0.01)]],
       punto_venta: ['Lima', Validators.required],
@@ -101,8 +101,8 @@ export class CotizacionDetalleComponent implements OnInit {
 
     this.cotizacionForm.patchValue({
       carrito_id: cotizacion.carrito_id,
-      serie: cotizacion.serie,
-      numero: cotizacion.numero,
+      serie: cotizacion.serie || '001',
+      numero: cotizacion.numero || 1,
       periodo: cotizacion.periodo,
       fecha: cotizacion.fecha ? cotizacion.fecha.substring(0, 10) : new Date().toISOString().substring(0, 10),
       tipo_cambio: cotizacion.tipo_cambio || 3.75,
@@ -125,8 +125,17 @@ export class CotizacionDetalleComponent implements OnInit {
       if (cotizacion.productos) {
         let productosArray;
 
+        // El problema está aquí - productos viene como string con doble escape
         if (typeof cotizacion.productos === 'string') {
-          productosArray = JSON.parse(cotizacion.productos);
+          // Primero parseamos el string exterior
+          const productosParsed = JSON.parse(cotizacion.productos);
+
+          // Si el resultado sigue siendo un string (caso de doble escape), lo parseamos de nuevo
+          if (typeof productosParsed === 'string') {
+            productosArray = JSON.parse(productosParsed);
+          } else {
+            productosArray = productosParsed;
+          }
         } else {
           productosArray = cotizacion.productos;
         }
@@ -138,6 +147,7 @@ export class CotizacionDetalleComponent implements OnInit {
             precio_descuento: prod.precio_descuento || prod.precio,
             sub_total: (prod.precio_descuento || prod.precio) * prod.cantidad,
           }));
+          console.log('Productos procesados correctamente:', this.productos);
         } else {
           console.error('Formato de productos no válido:', productosArray);
           this.productos = [];
@@ -145,8 +155,6 @@ export class CotizacionDetalleComponent implements OnInit {
       } else {
         this.productos = [];
       }
-
-      console.log('Productos cargados en cotización:', this.productos);
 
       // Calcular el total
       this.calcularTotales();
@@ -307,28 +315,39 @@ export class CotizacionDetalleComponent implements OnInit {
       return;
     }
 
+    // Asegurarnos de usar el ID del carrito correcto
+    const carritoId = this.carritoId || this.carrito?.carrito_id;
+
+    if (!carritoId) {
+      alert('No se pudo obtener el ID del carrito.');
+      return;
+    }
+
     const cotizacion = {
       ...this.cotizacionForm.value,
-      productos: this.productos,
+      productos: JSON.stringify(this.productos), // Asegurarnos de enviar productos como cadena JSON
       total_precio_productos: this.totalPrecioProductos,
-      carrito_id: this.carrito?.carrito_id,
+      carrito_id: carritoId,
       vendedor_asignado_id: vendedorId
     };
+
+    console.log('Datos de cotización a enviar:', cotizacion);
 
     this.carritoService.guardarCotizacion(cotizacion).subscribe(
       (response) => {
         Swal.fire(
           'Éxito!',
-          'La cotización se creo correctamente.',
+          'La cotización se creó correctamente.',
           'success'
-          );
+        );
         this.router.navigate(['/admin/cotizacionWeb']);
       },
       (error) => {
         console.error('Error al guardar la cotización:', error);
         Swal.fire(
           'Error!',
-          'Hubo un problema al crear la cotización',
+          'Hubo un problema al crear la cotización: ' +
+          (error.error?.message || error.message || 'Error desconocido'),
           'error'
         );
       }

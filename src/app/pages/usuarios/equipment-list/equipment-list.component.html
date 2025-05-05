@@ -32,7 +32,8 @@
 
               <!-- Botones -->
               <div class="d-flex justify-content-between mt-3">
-                <button class="btn btn-detalles">🔍 Ver Detalles</button>
+                <button class="btn btn-detalles" [routerLink]="['/equipment', producto.producto_id]">🔍 Ver Detalles</button>
+
                 <button class="btn btn-carrito" (click)="agregarAlCarrito(producto)"
                   [disabled]="producto.stock_minimo <= 0">
                   <i class="fas fa-shopping-cart"></i>

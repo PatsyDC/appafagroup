@@ -47,7 +47,7 @@ export class TiendaComponent implements OnInit {
     this.carritoService.actualizarCantidad(item.producto.producto_id, cantidad);
   }
 
-  eliminarProducto(productoId: number): void {
+  eliminarProducto(productoId: string): void {
     this.carritoService.eliminarProducto(productoId);
   }
 

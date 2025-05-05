@@ -114,7 +114,7 @@ export class RepuestosComponent {
     });
   }
 
-  onDelete(producto_id: number): void {
+  onDelete(producto_id: string): void {
     Swal.fire({
       title: '¿Estás seguro de que quieres eliminar esta categoría?',
       text: "Una vez eliminada, no podrás recuperarla.",

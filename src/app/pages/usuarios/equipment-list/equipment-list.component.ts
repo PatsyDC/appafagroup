@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { ICategoriaP } from 'app/core/models/categoria.model';
 import { IProductoAG } from 'app/core/models/productoAG.model';
 import { CarritoService } from 'app/core/services/carrito.service';
@@ -8,7 +9,7 @@ import { ProductoAGService } from 'app/core/services/productoAG.service';
 @Component({
   selector: 'app-equipment-list',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './equipment-list.component.html',
   styleUrls: ['./equipment-list.component.css']
 })
@@ -20,7 +21,7 @@ export class EquipmentListComponent {
   constructor(
     private service: ProductoAGService,
     private serviceCategoria: CategoriaService,
-    private carritoService: CarritoService
+    private carritoService: CarritoService,
     ) {}
 
   ngOnInit(): void {
@@ -51,5 +52,4 @@ export class EquipmentListComponent {
   agregarAlCarrito(producto: IProductoAG): void {
     this.carritoService.agregarProducto(producto, 1);
   }
-
 }

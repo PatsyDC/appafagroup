@@ -62,7 +62,7 @@ export class CarritoService {
     this.guardarCarritoLocalStorage();
   }
 
-  eliminarProducto(productoId: number): void {
+  eliminarProducto(productoId: string): void {
     const carrito = this.carritoSubject.value;
     carrito.items = carrito.items.filter(item => item.producto.producto_id !== productoId);
 
@@ -71,7 +71,7 @@ export class CarritoService {
     this.guardarCarritoLocalStorage();
   }
 
-  actualizarCantidad(productoId: number, cantidad: number): void {
+  actualizarCantidad(productoId: string, cantidad: number): void {
     if (cantidad <= 0) {
       this.eliminarProducto(productoId);
       return;

@@ -16,15 +16,16 @@ export class AuthGuard implements CanActivate {
       return false;
     }
 
-    // Extraemos el payload del token
     try {
+      // Puedes usar esto para verificar que el token no esté corrupto
       const payload = JSON.parse(atob(token.split('.')[1]));
       const role = payload?.role;
 
-      if (role === 'user') {
-        return true; // Solo deja pasar si es admin
+      // Aquí simplemente permitimos el acceso si hay un rol válido
+      if (role === 'admin' || role === 'user') {
+        return true;
       } else {
-        this.router.navigate(['/unauthorized']); // o donde quieras enviar a no-admins
+        this.router.navigate(['/unauthorized']);
         return false;
       }
 

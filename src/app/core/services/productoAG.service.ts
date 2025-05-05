@@ -28,15 +28,19 @@ export class ProductoAGService {
     return this.http.post<IProductoAG>(`${this.url}`, formData);
   }
 
-  getProductoById(producto_id: number): Observable<IProductoAG> {
-    return this.http.get<IProductoAG>(`${this.url}${producto_id}/`);
+  getProductoById(producto_id: string): Observable<IProductoAG> {
+    return this.http.get<{ ok: boolean, status: number, body: IProductoAG }>(`${this.url}${producto_id}`)
+      .pipe(
+        tap(response => console.log("Respuesta detalle:", response)), // Para depuración
+        map(response => response.body)
+      );
   }
 
-  deleteProducto(producto_id: number): Observable<any> {
-    return this.http.delete<number>(`${this.url}${producto_id}/`)
+  deleteProducto(producto_id: string): Observable<any> {
+    return this.http.delete<string>(`${this.url}${producto_id}/`)
   }
 
-  putRepuesto( producto_id: number, formData: FormData): Observable<IProductoAG> {
+  putRepuesto( producto_id: string, formData: FormData): Observable<IProductoAG> {
     return this.http.put<IProductoAG>(`${this.url}${producto_id}/`, formData);
   }
 

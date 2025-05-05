@@ -17,7 +17,7 @@ export interface CotizacionWeb {
   dias_ofertas: string,
   moneda: string,
   observaciones: string
-  productos: any[];
+  productos: string | any[];
   total_precio_productos: number;
   estado?: string,
   user_id?: string,
