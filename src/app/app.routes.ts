@@ -1,13 +1,11 @@
 import { Routes } from '@angular/router';
 import { AboutPageComponent } from '@pages/usuarios/about-page/about-page.component';
 import { AdminComponent } from '@pages/admin/admin.component';
-import { ArticuloComponent } from '@pages/usuarios/articulo/articulo.component';
 import { BlogComponent } from '@pages/usuarios/blog/blog.component';
 import { ContactComponent } from '@pages/usuarios/contact/contact.component';
 import { EquipmentListComponent } from '@pages/usuarios/equipment-list/equipment-list.component';
 import { FabricacionComponent } from '@pages/usuarios/fabricacion/fabricacion.component';
 import { HomePageComponent } from '@pages/usuarios/home-page/home-page.component';
-import { ServicesComponent } from '@pages/usuarios/services/services.component';
 import { UsuariosComponent } from '@pages/usuarios/usuarios.component';
 import { InicioComponent } from '@pages/admin/inicio/inicio.component';
 import { RepuestosComponent } from '@pages/admin/repuestos/repuestos.component';
@@ -21,6 +19,7 @@ import { CotizacionWebComponent } from '@pages/admin/cotizacion-web/cotizacion-w
 import { CotizacionDetalleComponent } from '@pages/admin/cotizacion-web/modal/cotizacion-detalle/cotizacion-detalle.component';
 import { AuthGuard } from './auth/auth.guard';
 import { EquipmentDetalleComponent } from '@pages/usuarios/equipment-detalle/equipment-detalle.component';
+import { ServiceHomeComponent } from '@pages/usuarios/service-home/service-home.component';
 
 export const routes: Routes = [
   {
@@ -30,11 +29,10 @@ export const routes: Routes = [
       { path: '', component: HomePageComponent },
       { path: 'about-us', component: AboutPageComponent },
       { path: 'equipment-list', component: EquipmentListComponent },
-      { path: 'services', component: ServicesComponent },
-      { path: 'articulo', component: BlogComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'fabricacion', component: FabricacionComponent},
-      { path: 'blog', component: ArticuloComponent},
+      { path: 'service-home', component: ServiceHomeComponent},
+      { path: 'blog', component: BlogComponent},
       { path: 'tienda', component: TiendaComponent},
       { path: 'equipment/:id', component: EquipmentDetalleComponent}
     ],

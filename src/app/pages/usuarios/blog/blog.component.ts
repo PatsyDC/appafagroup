@@ -11,17 +11,5 @@ import { NoticiaService } from 'app/core/services/noticia.service';
 })
 export class BlogComponent {
 
-  noticia: Inoticia[] = [];
-
-  constructor(
-    private serviceNoticia: NoticiaService
-  ){}
-
-  ngOnInit(): void{
-    this.serviceNoticia.allNoticias().subscribe((data) => {
-      console.log('data :' ,data);
-      this.noticia = data;
-    })
-  }
 
 }

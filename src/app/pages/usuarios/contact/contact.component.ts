@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { GoogleMap, MapHeatmapLayer } from '@angular/google-maps';
-import { Router } from '@angular/router';
 import { IContacto } from 'app/core/models/contacto.model';
 import { ContactoService } from 'app/core/services/contacto.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-contact',
@@ -53,9 +53,19 @@ export class ContactComponent {
         if (res) {
           console.log("Categoria guardada: ", res);
           this.formContacto.reset();
+           Swal.fire( // Muestra la alerta
+              'Éxito!',
+              'Se envió el mensaje correctamente',
+              'success'
+            );
         }
       }, error => {
         console.error("Error al guardar categoria:", error);
+        Swal.fire( // Muestra la alerta
+          'Error!',
+          'Hubo un problema al enviar mensaje',
+          'error'
+        );
       });
     }
   }

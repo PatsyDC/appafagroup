@@ -5,6 +5,7 @@ import { IProductoAG } from 'app/core/models/productoAG.model';
 import { CarritoService } from 'app/core/services/carrito.service';
 import { CategoriaService } from 'app/core/services/categoria.service';
 import { ProductoAGService } from 'app/core/services/productoAG.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-equipment-list',
@@ -50,6 +51,21 @@ export class EquipmentListComponent {
   }
 
   agregarAlCarrito(producto: IProductoAG): void {
-    this.carritoService.agregarProducto(producto, 1);
-  }
+      try {
+        this.carritoService.agregarProducto(producto, 1); // Método sincrónico
+
+        Swal.fire(
+          '¡Éxito!',
+          'El producto se añadió al carrito correctamente.',
+          'success'
+        );
+      } catch (error) {
+        console.error("Error al agregar producto al carrito:", error);
+        Swal.fire(
+          '¡Error!',
+          'Hubo un problema al añadir el producto al carrito.',
+          'error'
+        );
+      }
+    }
 }

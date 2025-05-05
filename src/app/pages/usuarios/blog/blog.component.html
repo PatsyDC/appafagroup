@@ -1,22 +1,178 @@
-
-  <div class="news-container">
-    <!-- Blog Grid Start -->
-    @for (noticias of noticia; track $index) {
-      <div class="news-item">
-        <div class="news-content">
-          <div class="news-image">
-            <img src="http://localhost:3000{{noticias.img}}" alt="Imagen de {{noticias.titulo}}" class="news-img" >
-          </div>
-          <div class="news-overlay">
-            <a href="{{ noticias.link }}" class="news-link" target="_blank">
-              <h4 class="news-title">{{ noticias.titulo }}</h4>
-            </a>
-          </div>
-          <p class="news-description">{{ noticias.texto_corto }}</p>
-        </div>
+<body>
+  <div class="container">
+      <!-- Header Section -->
+      <div class="news-header">
+          <h2>Noticias Destacadas</h2>
+          <p>Mantente al día con las últimas actualizaciones y tendencias en nuestra sección de noticias.</p>
       </div>
-    }
-    <!-- Blog Grid End -->
+
+      <!-- Featured News -->
+      <div class="featured-news">
+          <div class="featured-news-img">
+              <img src="/api/placeholder/800/500" alt="Noticia principal">
+          </div>
+          <div class="featured-news-content">
+              <span class="featured-tag">DESTACADO</span>
+              <h3 class="featured-title">El impacto de la inteligencia artificial en la sociedad moderna</h3>
+              <p class="featured-excerpt">Un análisis profundo sobre cómo la IA está transformando nuestra forma de vivir, trabajar y relacionarnos en el siglo XXI.</p>
+              <a href="#" class="featured-link">
+                  <span>Leer artículo completo</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+              </a>
+          </div>
+      </div>
+
+      <!-- News Grid -->
+      <div class="news-grid">
+          <!-- News Card 1 -->
+          <div class="news-card">
+              <div class="news-card-img">
+                  <img src="/api/placeholder/400/300" alt="Noticia 1">
+              </div>
+              <div class="news-card-content">
+                  <span class="news-card-tag">TECNOLOGÍA</span>
+                  <h3 class="news-card-title">Nuevas tendencias en desarrollo web para 2025</h3>
+                  <p class="news-card-excerpt">Descubre las tecnologías y frameworks que dominarán el panorama del desarrollo web este año.</p>
+                  <div class="news-card-footer">
+                      <span class="news-card-date">3 mayo, 2025</span>
+                      <a href="#" class="news-card-link">
+                          <span>Leer más</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <line x1="5" y1="12" x2="19" y2="12"></line>
+                              <polyline points="12 5 19 12 12 19"></polyline>
+                          </svg>
+                      </a>
+                  </div>
+              </div>
+          </div>
+
+          <!-- News Card 2 -->
+          <div class="news-card">
+              <div class="news-card-img">
+                  <img src="/api/placeholder/400/300" alt="Noticia 2">
+              </div>
+              <div class="news-card-content">
+                  <span class="news-card-tag">NEGOCIOS</span>
+                  <h3 class="news-card-title">Estrategias de marketing digital para pequeñas empresas</h3>
+                  <p class="news-card-excerpt">Guía práctica para implementar campañas efectivas con presupuestos limitados.</p>
+                  <div class="news-card-footer">
+                      <span class="news-card-date">1 mayo, 2025</span>
+                      <a href="#" class="news-card-link">
+                          <span>Leer más</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <line x1="5" y1="12" x2="19" y2="12"></line>
+                              <polyline points="12 5 19 12 12 19"></polyline>
+                          </svg>
+                      </a>
+                  </div>
+              </div>
+          </div>
+
+          <!-- News Card 3 -->
+          <div class="news-card">
+              <div class="news-card-img">
+                  <img src="/api/placeholder/400/300" alt="Noticia 3">
+              </div>
+              <div class="news-card-content">
+                  <span class="news-card-tag">EDUCACIÓN</span>
+                  <h3 class="news-card-title">El futuro del aprendizaje en línea post-pandemia</h3>
+                  <p class="news-card-excerpt">Análisis de cómo las instituciones educativas están adaptando sus modelos de enseñanza.</p>
+                  <div class="news-card-footer">
+                      <span class="news-card-date">29 abril, 2025</span>
+                      <a href="#" class="news-card-link">
+                          <span>Leer más</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <line x1="5" y1="12" x2="19" y2="12"></line>
+                              <polyline points="12 5 19 12 12 19"></polyline>
+                          </svg>
+                      </a>
+                  </div>
+              </div>
+          </div>
+
+          <!-- News Card 4 -->
+          <div class="news-card">
+              <div class="news-card-img">
+                  <img src="/api/placeholder/400/300" alt="Noticia 4">
+              </div>
+              <div class="news-card-content">
+                  <span class="news-card-tag">SALUD</span>
+                  <h3 class="news-card-title">Avances en la investigación de enfermedades neurodegenerativas</h3>
+                  <p class="news-card-excerpt">Nuevos descubrimientos que ofrecen esperanza para tratamientos más efectivos.</p>
+                  <div class="news-card-footer">
+                      <span class="news-card-date">27 abril, 2025</span>
+                      <a href="#" class="news-card-link">
+                          <span>Leer más</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <line x1="5" y1="12" x2="19" y2="12"></line>
+                              <polyline points="12 5 19 12 12 19"></polyline>
+                          </svg>
+                      </a>
+                  </div>
+              </div>
+          </div>
+
+          <!-- News Card 5 -->
+          <div class="news-card">
+              <div class="news-card-img">
+                  <img src="/api/placeholder/400/300" alt="Noticia 5">
+              </div>
+              <div class="news-card-content">
+                  <span class="news-card-tag">SOSTENIBILIDAD</span>
+                  <h3 class="news-card-title">Innovaciones en energía renovable para hogares</h3>
+                  <p class="news-card-excerpt">Soluciones accesibles para reducir la huella de carbono en viviendas residenciales.</p>
+                  <div class="news-card-footer">
+                      <span class="news-card-date">25 abril, 2025</span>
+                      <a href="#" class="news-card-link">
+                          <span>Leer más</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <line x1="5" y1="12" x2="19" y2="12"></line>
+                              <polyline points="12 5 19 12 12 19"></polyline>
+                          </svg>
+                      </a>
+                  </div>
+              </div>
+          </div>
+
+          <!-- News Card 6 -->
+          <div class="news-card">
+              <div class="news-card-img">
+                  <img src="/api/placeholder/400/300" alt="Noticia 6">
+              </div>
+              <div class="news-card-content">
+                  <span class="news-card-tag">CULTURA</span>
+                  <h3 class="news-card-title">El resurgimiento de los espacios culturales comunitarios</h3>
+                  <p class="news-card-excerpt">Cómo las iniciativas locales están revitalizando el arte y la cultura en las ciudades.</p>
+                  <div class="news-card-footer">
+                      <span class="news-card-date">22 abril, 2025</span>
+                      <a href="#" class="news-card-link">
+                          <span>Leer más</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <line x1="5" y1="12" x2="19" y2="12"></line>
+                              <polyline points="12 5 19 12 12 19"></polyline>
+                          </svg>
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- View All Button -->
+      <div class="view-all-container">
+          <a href="#" class="view-all-btn">Ver todas las noticias</a>
+      </div>
+
+      <!-- Newsletter Section -->
+      <div class="newsletter">
+          <h3>Suscríbete a nuestro boletín</h3>
+          <p>Recibe las últimas noticias y actualizaciones directamente en tu bandeja de entrada.</p>
+          <form class="newsletter-form">
+              <input type="email" class="newsletter-input" placeholder="Tu correo electrónico" required>
+              <button type="submit" class="newsletter-btn">Suscribirse</button>
+          </form>
+      </div>
   </div>
-
-
+</body>
