@@ -77,15 +77,14 @@ body {
 
 .categoria-separador h2 {
   font-size: 24px;
-  font-weight: bold;
   color: #326DE7;
-  font-family: sans-serif !important;
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
 }
 
 .categoria-separador p {
   color: #6c757d;
-  font-family: sans-serif;
-  font-family: sans-serif !important;
+  font-family: "Poppins", sans-serif;
 }
 
 /* Tarjetas de productos */

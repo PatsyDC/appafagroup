@@ -16,7 +16,7 @@
   </div>
 </div>
 
-<!--TABLA DE BD-->
+<div class="table-container">
 <table class="task-table">
   <thead>
     <tr>
@@ -34,52 +34,53 @@
       <th>Acciones</th>
     </tr>
   </thead>
-  @for (cliente of filteredClientes | slice: (currentPage-1) * pageSize : currentPage * pageSize; track $index){
   <tbody>
-    <tr>
-      <td data-label="RUC">
-        <div class="title">{{cliente.codigo_ruc}}</div>
-      </td>
-      <td data-label="Tipo de persona">
-        <div class="title">{{cliente.tipo_persona}}</div>
-      </td>
-      <td data-label="Razón social">
-        <div class="title">{{cliente.razon_social}}</div>
-      </td>
-      <td data-label="Tipo">
-        <div class="title">{{cliente.tipo_empleador}}</div>
-      </td>
-      <td data-label="Documento">
-        <div class="title">{{cliente.documento_ruc}}</div>
-      </td>
-      <td data-label="DNI">
-        <div class="title">{{cliente.nro_dni}}</div>
-      </td>
-      <td data-label="Nombre">
-        <div class="title">{{cliente.nombre_persona}}</div>
-      </td>
-      <td data-label="País">
-        <div class="title">{{cliente.pais}}</div>
-      </td>
-      <td data-label="Dirección">
-        <div class="title">{{cliente.direccion}}</div>
-      </td>
-      <td data-label="Teléfono">
-        <div class="title">{{cliente.telefono}}</div>
-      </td>
-      <td data-label="Correo">
-        <div class="title">{{cliente.correo}}</div>
-      </td>
-      <td data-label="Acciones">
-        <div class="action-icons">
-          <i class="fas fa-edit" style="color: #326DE7; font-size: 20px; cursor: pointer;" (click)="openDialogEdit(cliente)"></i>
-          <i class="fas fa-trash" style="color: red; font-size: 20px; cursor: pointer;" (click)="deleteCliente(cliente.cliente_id)"></i>
-        </div>
-      </td>
-    </tr>
+    @for (cliente of filteredClientes | slice: (currentPage-1) * pageSize : currentPage * pageSize; track $index){
+      <tr>
+        <td data-label="RUC">
+          <div class="title">{{cliente.codigo_ruc}}</div>
+        </td>
+        <td data-label="Tipo de persona">
+          <div class="title">{{cliente.tipo_persona}}</div>
+        </td>
+        <td data-label="Razón social">
+          <div class="title">{{cliente.razon_social}}</div>
+        </td>
+        <td data-label="Tipo">
+          <div class="title">{{cliente.tipo_empleador}}</div>
+        </td>
+        <td data-label="Documento">
+          <div class="title">{{cliente.documento_ruc}}</div>
+        </td>
+        <td data-label="DNI">
+          <div class="title">{{cliente.nro_dni}}</div>
+        </td>
+        <td data-label="Nombre">
+          <div class="title">{{cliente.nombre_persona}}</div>
+        </td>
+        <td data-label="País">
+          <div class="title">{{cliente.pais}}</div>
+        </td>
+        <td data-label="Dirección">
+          <div class="title">{{cliente.direccion}}</div>
+        </td>
+        <td data-label="Teléfono">
+          <div class="title">{{cliente.telefono}}</div>
+        </td>
+        <td data-label="Correo">
+          <div class="title">{{cliente.correo}}</div>
+        </td>
+        <td data-label="Acciones">
+          <div class="action-icons">
+            <i class="fas fa-edit" style="color: #326DE7; font-size: 20px; cursor: pointer;" (click)="openDialogEdit(cliente)"></i>
+            <i class="fas fa-trash" style="color: red; font-size: 20px; cursor: pointer;" (click)="deleteCliente(cliente.cliente_id)"></i>
+          </div>
+        </td>
+      </tr>
+    }
   </tbody>
-  }
 </table>
+</div>
 
 <div class="pagination">
   <button class="page-link" [disabled]="currentPage === 1" (click)="changePage(currentPage - 1)">

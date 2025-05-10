@@ -1,7 +1,6 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <body>
-<!-- Features Start -->
 <div class="container-fluid py-5">
 <div class="container">
     <div class="row">
@@ -98,9 +97,6 @@
 </div>
 </section>
 
-
-
-
 <div class="custom-slider">
 
   <h3 class="subtitle">CONFÍAN EN NOSOTROS</h3> <br>
@@ -145,21 +141,48 @@
   </div>
 </div>
 
-
 <br><br><br> <br>
 <h3 class="subtitle">NUESTRO EQUIPO</h3>
-
-
-<div class="card-container" style="margin-bottom: 30px;">
-  @for (trabajador of trabajadores; track $index){
-    <div class="card">
-      <img [src]="trabajador.img" alt="">
-      <div class="card-content">
-        <h3>{{ trabajador.nombre}}</h3>
-        <p>{{trabajador.cargo}}</p>
-      </div>
+<div class="card-container">
+  <div class="card">
+    <img src="/img/equipo1.jpg">
+    <div class="card-content">
+      <h3>Tonny Rodriguez Pascual</h3>
+      <p>CEO & FOUNDER en AFA GROUP</p>
     </div>
-  }
+  </div>
+
+  <div class="card">
+    <img src="/img/equipo1.png">
+    <div class="card-content">
+      <h3>Randy Urquiaga Castillo</h3>
+      <p>JEFE DE PRODUCCIÓN</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="/img/equipo2.png">
+    <div class="card-content">
+      <h3>Yvan Romero Acosta</h3>
+      <p>JEFE DE MANTENIMIENTO</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="/img/equipo4.png">
+    <div class="card-content">
+      <h3>Darwin Mendoza Pascual</h3>
+      <p>JEFE COMERCIAL</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="/img/equipo5.png">
+    <div class="card-content">
+      <h3>Felix Torres Gilmer</h3>
+      <p>ASISTENCIA MECÁNICA</p>
+    </div>
+  </div>
 </div>
 
 </body>

@@ -16,6 +16,7 @@
   </div>
 </div>
 
+<div class="table-container">
 <table class="task-table">
   <thead>
     <tr>
@@ -37,9 +38,8 @@
       <th>Acciones</th>
     </tr>
   </thead>
-
-  @for (repuesto of filteredProducto | slice: (currentPage-1) * pageSize : currentPage * pageSize; track $index){
-    <tbody>
+  <tbody>
+    @for (repuesto of filteredProducto | slice: (currentPage-1) * pageSize : currentPage * pageSize; track $index){
       <tr>
         <td data-label="Producto">
           <div class="subtitle">{{repuesto.nombre_producto}}</div>
@@ -93,9 +93,10 @@
           </div>
         </td>
       </tr>
-    </tbody>
     }
+  </tbody>
 </table>
+</div>
 
 <div class="pagination">
   <button class="page-link" [disabled]="currentPage === 1" (click)="changePage(currentPage - 1)">

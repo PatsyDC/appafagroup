@@ -1,6 +1,6 @@
-<!-- carrito.component.html -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <div class="container mt-4">
-  <h2>Productos para cotización</h2>
+  <h3>Productos para cotización</h3>
 
   <div *ngIf="carrito.items.length === 0" class="text-center my-5">
     <p>Tu carrito está vacío</p>
@@ -9,7 +9,7 @@
 
   <div *ngIf="carrito.items.length > 0 && !ordenCompletada">
     <div class="table-responsive">
-      <table class="table table-hover">
+      <table class="table table-hover no-bold">
         <thead>
           <tr>
             <th>Producto</th>
@@ -43,10 +43,10 @@
             </td>
             <!-- <td>S/ {{ item.subtotal | number:'1.2-2' }}</td> -->
             <td>
-              <button class="btn btn-danger btn-sm"
-                      (click)="eliminarProducto(item.producto.producto_id)">
-                <i class="fas fa-trash"></i> Eliminar
+              <button class="btn btn-danger btn-sm" (click)="eliminarProducto(item.producto.producto_id)">
+                <i class="fas fa-trash" style="color: white;"></i> Eliminar
               </button>
+
             </td>
           </tr>
         </tbody>
@@ -84,7 +84,6 @@
                   <input type="text" class="form-control" id="empresa" formControlName="empresa" placeholder="Razón social">
                 </div>
 
-
                 <div class="mb-3">
                   <label for="nombre" class="form-label">Nombre completo (Contacto)</label>
                   <input type="text" class="form-control" id="nombre" formControlName="nombre" placeholder="Persona">
@@ -94,10 +93,20 @@
                 </div>
 
                 <div class="mb-3">
-                  <label for="dni" class="form-label">DNI (Contacto)</label>
-                  <input type="text" class="form-control" id="dni" formControlName="dni" placeholder="Persona">
-                  <div *ngIf="checkoutForm.get('dni')?.invalid && checkoutForm.get('dni')?.touched" class="text-danger">
-                    DNI de la persona
+                  <label for="dni" class="form-label">DNI <span class="text-muted">(Contacto)</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="dni"
+                    formControlName="dni"
+                    placeholder="Persona"
+                    maxlength="8"
+                    (keypress)="soloNumeros($event)"
+                    (input)="validarLongitudDni($event)">
+                  <div *ngIf="checkoutForm.get('dni')?.invalid && (checkoutForm.get('dni')?.dirty || checkoutForm.get('dni')?.touched)" class="text-danger mt-1">
+                    <small *ngIf="checkoutForm.get('dni')?.errors?.['pattern']">El DNI debe contener solo números</small>
+                    <small *ngIf="checkoutForm.get('dni')?.errors?.['minlength']">El DNI debe tener exactamente 8 dígitos</small>
+                    <small *ngIf="checkoutForm.get('dni')?.errors?.['maxlength']">El DNI debe tener exactamente 8 dígitos</small>
                   </div>
                 </div>
 
@@ -114,9 +123,21 @@
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="ruc" class="form-label">RUC <span class="text-muted">(Opcional)</span></label>
-                  <input type="text" class="form-control" id="ruc" formControlName="ruc" placeholder="Empresa o persona">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="ruc"
+                    formControlName="ruc"
+                    placeholder="Empresa o persona"
+                    maxlength="11"
+                    (keypress)="soloNumeros($event)"
+                    (input)="validarLongitudRuc($event)">
+                  <div *ngIf="checkoutForm.get('ruc')?.invalid && (checkoutForm.get('ruc')?.dirty || checkoutForm.get('ruc')?.touched)" class="text-danger mt-1">
+                    <small *ngIf="checkoutForm.get('ruc')?.errors?.['pattern']">El RUC debe contener solo números</small>
+                    <small *ngIf="checkoutForm.get('ruc')?.errors?.['minlength']">El RUC debe tener exactamente 11 dígitos</small>
+                    <small *ngIf="checkoutForm.get('ruc')?.errors?.['maxlength']">El RUC debe tener exactamente 11 dígitos</small>
+                  </div>
                 </div>
-
 
                 <div class="mb-3">
                   <label for="ocupacion" class="form-label">Ocupación</label>
@@ -136,7 +157,7 @@
 
                 <div class="mb-3">
                   <label for="direccion" class="form-label">Dirección</label>
-                  <textarea class="form-control" id="direccion" rows="3" formControlName="direccion" placeholder="Empresa"></textarea>
+                  <input type="tel" class="form-control" id="direccion" formControlName="direccion" placeholder="Empresa">
                   <div *ngIf="checkoutForm.get('direccion')?.invalid && checkoutForm.get('direccion')?.touched" class="text-danger">
                     La dirección es requerida
                   </div>
@@ -146,17 +167,15 @@
 
             <!-- Botón Solicitar Citación -->
             <div class="mt-3">
-              <button (click)="finalizarCompra()" [disabled]="procesandoOrden">
+              <button class="btn-enviar" (click)="finalizarCompra()" [disabled]="procesandoOrden">
                 Enviar cotización
               </button>
             </div>
           </form>
         </div>
       </div>
+      <br>
     </div>
-
-
-
       <!-- <div class="col-md-6">
         <div class="card">
           <div class="card-header bg-success text-white">

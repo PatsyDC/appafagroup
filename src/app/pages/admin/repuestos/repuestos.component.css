@@ -13,6 +13,12 @@ body {
   --hover-color: #F8FAFF;
 }
 
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .task-table {
   width: 100%;
   border-collapse: separate;
@@ -293,7 +299,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
 .page-link:hover:not(:disabled) {
@@ -317,7 +322,6 @@ body {
 .page-link i {
   font-size: 14px;
 }
-
 
 .img-tabla {
   width: 90px;

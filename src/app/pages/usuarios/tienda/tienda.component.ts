@@ -28,8 +28,16 @@ export class TiendaComponent implements OnInit {
     this.checkoutForm = this.fb.group({
       empresa: [''],
       nombre: ['', Validators.required],
-      dni: ['', Validators.required],
-      ruc : [''],
+      dni: ['', [
+        Validators.pattern('^[0-9]*$'),
+        Validators.minLength(8),
+        Validators.maxLength(8)
+      ]],
+      ruc: ['', [
+        Validators.pattern('^[0-9]*$'),
+        Validators.minLength(11),
+        Validators.maxLength(11)
+      ]],
       ocupacion: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       telefono: ['', Validators.required],
@@ -41,6 +49,33 @@ export class TiendaComponent implements OnInit {
     this.carritoService.getCarrito().subscribe(carrito => {
       this.carrito = carrito;
     });
+  }
+
+  soloNumeros(event: KeyboardEvent): boolean {
+    const charCode = event.which || event.keyCode;
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault();
+      return false;
+    }
+    return true;
+  }
+
+  validarLongitudRuc(event: any): void {
+    const valor = event.target.value;
+    if (valor.length > 11) {
+      event.target.value = valor.slice(0, 11);
+      // También actualizamos el valor en el formulario
+      this.checkoutForm.get('ruc')?.setValue(valor.slice(0, 11));
+    }
+  }
+
+  validarLongitudDni(event: any): void {
+    const valor = event.target.value;
+    if (valor.length > 8) {
+      event.target.value = valor.slice(0, 8);
+      // También actualizamos el valor en el formulario
+      this.checkoutForm.get('dni')?.setValue(valor.slice(0, 11));
+    }
   }
 
   actualizarCantidad(item: IItemCarrito, cantidad: number): void {

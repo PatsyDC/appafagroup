@@ -1,3 +1,27 @@
 * {
-  font-family: sans-serif;
+  font-family: "Poppins", sans-serif;
+}
+
+.no-bold th {
+  font-weight: normal;
+}
+
+.btn-enviar {
+  background-color: #0056D2;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-enviar:hover {
+  background-color: #0041a8; /* un tono más oscuro al hacer hover */
+}
+
+.btn-enviar:disabled {
+  background-color: #b0c4de;
+  cursor: not-allowed;
 }

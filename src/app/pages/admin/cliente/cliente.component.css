@@ -13,6 +13,12 @@ body {
   --hover-color: #F8FAFF;
 }
 
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .task-table {
   width: 100%;
   border-collapse: separate;
@@ -157,7 +163,7 @@ body {
   position: relative;
   width: 100%;
   height: 200px; /* Ajusta la altura según tus necesidades */
-  background-image: url(../../../../../public/img/noticia3.jpg);
+  background-image: url(../../../../../public/img/banner_producto.jpg);
   background-size: cover;
   background-position: center;
   display: flex;
@@ -293,7 +299,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
 .page-link:hover:not(:disabled) {
@@ -326,7 +331,13 @@ body {
   border: 1px solid #ddd;
   padding: 2px;
 }
-
+@media (max-width: 1245px) {
+  .task-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
 /* Vista móvil para task-table - con sección de Acciones */
 @media (max-width: 768px) {
   .task-table {
@@ -373,7 +384,17 @@ body {
     color: var(--text-dark);
   }
 
-  .task-table .title {
+  .task-table  .subtitle {
+    margin-bottom: 0;
+    font-weight: normal;
+    flex: 1;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal; /* Permite que el texto se divida en varias líneas */
+    width: calc(100% - 120px); /* Ajuste del ancho */
+  }
+
+  .task-table tbody td{
     margin-bottom: 0;
     font-weight: normal;
     flex: 1;

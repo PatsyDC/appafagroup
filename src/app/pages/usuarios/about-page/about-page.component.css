@@ -1,23 +1,7 @@
 :root {
     --blue: #007bff;
-    --indigo: #6610f2;
-    --purple: #6f42c1;
-    --pink: #e83e8c;
-    --red: #dc3545;
-    --orange: #fd7e14;
-    --yellow: #ffc107;
-    --green: #28a745;
-    --teal: #20c997;
-    --cyan: #17a2b8;
-    --white: #fff;
-    --gray: #6c757d;
-    --gray-dark: #343a40;
     --primary: #326DE7;
     --secondary: #F2F1F8;
-    --success: #28a745;
-    --info: #17a2b8;
-    --warning: #ffc107;
-    --danger: #dc3545;
     --light: #FFFFFF;
     --dark: #44425A;
     --breakpoint-xs: 0;
@@ -134,7 +118,9 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 23px;
+    gap: 20px;
+    margin: 30px auto;
+    max-width: 1200px;
   }
 
   .card {
@@ -143,7 +129,6 @@
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-    margin: 10px;
   }
 
   .card img {
@@ -250,56 +235,6 @@
     }
   }
 
-
-
-  @media (max-width: 768px) {
-    .subtitle {
-      font-family: poppins;
-      font-size: 14px;
-      font-weight: 300;
-      color: #757474;
-      text-align: center;
-      position: relative;
-      padding-bottom: 10px;
-      margin-bottom: 30px;
-    }
-
-    .subtitle::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 70px;
-      height: 3px;
-      background-color: #4285f4;
-    }
-    .about-item {
-        padding: 20px;
-    }
-    .about-item h3 {
-        font-size: 18px;
-    }
-    .icon {
-        font-size: 24px;
-    }
-  }
-
-  @media (max-width: 576px) {
-    .about-item {
-        padding: 15px;
-    }
-    .about-item h3 {
-        font-size: 16px;
-    }
-    .icon {
-        font-size: 20px;
-    }
-  }
-
-
-
-
   .team-section {
     text-align: center;
     margin: 20px;
@@ -346,104 +281,7 @@
     color: #fff;
   }
 
-  .about-item {
-    margin-bottom: 20px;
-    margin-top: 20px;
-    background-color: white;
-    padding: 30px;
-    box-shadow: 0 0 9px rgba(0, 0, 0, 0.6);
-  }
 
-  .about-item h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-
-  .about-item hr {
-    width: 46px;
-    height: 3px;
-    background-color: #003eb9;
-    margin: 0 auto;
-
-    border: none;
-  }
-
-  .about-item p {
-    margin-top: 20px;
-  }
-
-  .about-item:hover {
-    background-color: #326DE7;
-    color: white;
-  }
-
-  .about-item:hover i,
-  .about-item:hover h3,
-  .about-item:hover p {
-    color: #fff;
-  }
-
-  .about-item:hover hr {
-    background-color: #fff;
-  }
-
-  .about-item:hover i {
-    transform: translateY(-20px);
-  }
-
-  .about-item:hover i,
-  .about-item:hover h3,
-  .about-item:hover hr {
-    transition: all 600ms ease-in-out;
-  }
-
-
-
-  .icon {
-    font-size: 30px;
-    color: #326DE7;
-    padding-bottom: 1.5rem;
-  }
-
-  .card-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 23px;
-  }
-
-  .card {
-    width: 270px;
-    background-color: white;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-    margin: 10px;
-  }
-
-  .card img {
-    width: 100%;
-    height: 300px;
-  }
-
-  .card-content {
-    padding: 20px;
-  }
-
-  .card-content h3 {
-    font-size: 18px;
-    margin-bottom: 8px;
-
-    text-align: center;
-    font-family: 'Poppins', sans-serif;
-  }
-
-  .card-content p {
-    color: #666;
-    font-size: 12px;
-    text-align: center;
-    font-family: 'Poppins', sans-serif;
-  }
   /* Media query para tabletas */
   @media (max-width: 768px) {
     .card {
@@ -483,32 +321,6 @@
     }
   }
 
-
-
-  @media (max-width: 768px) {
-    .about-item {
-        padding: 20px;
-    }
-    .about-item h3 {
-        font-size: 18px;
-    }
-    .icon {
-        font-size: 24px;
-    }
-  }
-
-  @media (max-width: 576px) {
-    .about-item {
-        padding: 15px;
-    }
-    .about-item h3 {
-        font-size: 16px;
-    }
-    .icon {
-        font-size: 20px;
-    }
-  }
-  
 /*Imagenes*/
 
 .custom-slider {
