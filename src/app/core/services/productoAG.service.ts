@@ -12,7 +12,8 @@ export class ProductoAGService {
     return this._refresh$;
   }
 
-  private url: string = 'http://localhost:3000/api/v1/productoAG/';
+  private url: string = 'https://afagroup-api.onrender.com/api/v1/productoAG/'
+  //private url: string = 'http://localhost:3000/api/v1/productoAG/';
 
   constructor(private http: HttpClient) { }
 

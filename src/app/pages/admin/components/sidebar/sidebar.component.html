@@ -3,7 +3,7 @@
       <img src="/img/lg.png" width="40px" alt="Logo" class="icon-md" (click)="toggleSidebar()">
       <span class="logo-text" [class.hidden]="!isSidebarOpen">AFA GROUP</span>
   </div>
-  
+
   <div class="user-info" [class.collapsed]="!isSidebarOpen">
     <i class="fas fa-user-circle"></i>
     <div class="user-details" *ngIf="isSidebarOpen">
@@ -15,10 +15,10 @@
   <div class="menu-section">
       <h3 [class.hidden]="!isSidebarOpen">HOME</h3>
       <ul>
-          <li routerLink="/admin/inicio" routerLinkActive="active">
+          <!-- <li routerLink="/admin/inicio" routerLinkActive="active">
               <i class="fas fa-chart-line"></i>
               <span class="menu-text" [class.hidden]="!isSidebarOpen">Analítica</span>
-          </li>
+          </li> -->
           <li routerLink="" routerLinkActive="active">
               <i class="fas fa-globe custom-icon"></i>
               <span class="menu-text" [class.hidden]="!isSidebarOpen">Página Web</span>
@@ -44,10 +44,10 @@
             <i class="fas fa-shopping-cart"></i>
             <span class="menu-text" [class.hidden]="!isSidebarOpen">Cotizaciones web</span>
           </li>
-          <li routerLink="/admin/noticiaA" routerLinkActive="active">
+          <!-- <li routerLink="/admin/noticiaA" routerLinkActive="active">
               <i class="fas fa-newspaper"></i>
               <span class="menu-text" [class.hidden]="!isSidebarOpen">Noticia</span>
-          </li>
+          </li> -->
           <li routerLink="/admin/contactoA" routerLinkActive="active">
               <i class="fas fa-envelope"></i>
               <span class="menu-text" [class.hidden]="!isSidebarOpen">Contactos</span>

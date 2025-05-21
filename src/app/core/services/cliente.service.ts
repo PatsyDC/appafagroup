@@ -13,7 +13,8 @@ export class ClienteService {
     return this._refresh$;
   }
 
-  private url: string = 'http://localhost:3000/api/v1/cliente/'
+  //private url: string = 'http://localhost:3000/api/v1/cliente/'
+  private url: string = 'https://afagroup-api.onrender.com/api/v1/cliente/'
 
   constructor(private http: HttpClient) {}
 

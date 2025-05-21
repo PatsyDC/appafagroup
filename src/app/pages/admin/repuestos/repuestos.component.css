@@ -163,7 +163,7 @@ body {
   position: relative;
   width: 100%;
   height: 200px; /* Ajusta la altura según tus necesidades */
-  background-image: url(../../../../../public/img/banner_producto.jpg);
+  background-image: url(../../../../../public/img/imagen_b2.png);
   background-size: cover;
   background-position: center;
   display: flex;

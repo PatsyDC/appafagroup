@@ -12,8 +12,10 @@ import { CotizacionWeb } from '../models/cotizacionWeb.model';
 export class CarritoService {
   private carritoKey = 'carrito_data';
   private carritoSubject = new BehaviorSubject<ICarrito>(this.initCarrito());
-  private apiUrl = 'http://localhost:3000/api/v1/carrito/';
-  private apiCotizacion = 'http://localhost:3000/api/v1/cotizacionw/'
+  //private apiUrl = 'http://localhost:3000/api/v1/carrito/';
+  private apiUrl = 'https://afagroup-api.onrender.com/api/v1/carrito/';
+  //private apiCotizacion = 'http://localhost:3000/api/v1/cotizacionw/'
+  private apiCotizacion = 'https://afagroup-api.onrender.com/api/v1/cotizacionw/'
 
   constructor(private http: HttpClient) {
     this.cargarCarritoLocalStorage();
