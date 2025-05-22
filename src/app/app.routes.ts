@@ -12,7 +12,6 @@ import { RepuestosComponent } from '@pages/admin/repuestos/repuestos.component';
 import { CategoriasComponent } from '@pages/admin/categorias/categorias.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ContactoComponent } from '@pages/admin/contacto/contacto.component';
-import { NoticiaComponent } from '@pages/admin/noticia/noticia.component';
 import { ClienteComponent } from '@pages/admin/cliente/cliente.component';
 import { TiendaComponent } from '@pages/usuarios/tienda/tienda.component';
 import { CotizacionWebComponent } from '@pages/admin/cotizacion-web/cotizacion-web.component';
@@ -20,6 +19,7 @@ import { CotizacionDetalleComponent } from '@pages/admin/cotizacion-web/modal/co
 import { AuthGuard } from './auth/auth.guard';
 import { EquipmentDetalleComponent } from '@pages/usuarios/equipment-detalle/equipment-detalle.component';
 import { ServiceHomeComponent } from '@pages/usuarios/service-home/service-home.component';
+import { ErrorComponent } from '@pages/error/error.component';
 
 export const routes: Routes = [
   {
@@ -48,13 +48,11 @@ export const routes: Routes = [
       { path: 'categoriasA', component: CategoriasComponent },
       { path: 'repuestosA', component: RepuestosComponent },
       { path: 'contactoA', component: ContactoComponent },
-      { path: 'noticiaA', component: NoticiaComponent },
       { path: 'cliente', component: ClienteComponent},
       { path: 'cotizacionWeb', component: CotizacionWebComponent},
       { path: 'cotizacion-detalle/:id', component: CotizacionDetalleComponent},
     ]
   },
   { path: 'login', component: LoginComponent },
-
-  { path: '**', redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', component: ErrorComponent },
 ];

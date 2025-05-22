@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditNoticiaComponent } from './edit-noticia.component';
+import { ErrorComponent } from './error.component';
 
-describe('EditNoticiaComponent', () => {
-  let component: EditNoticiaComponent;
-  let fixture: ComponentFixture<EditNoticiaComponent>;
+describe('ErrorComponent', () => {
+  let component: ErrorComponent;
+  let fixture: ComponentFixture<ErrorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EditNoticiaComponent]
+      imports: [ErrorComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(EditNoticiaComponent);
+    fixture = TestBed.createComponent(ErrorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
