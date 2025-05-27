@@ -33,7 +33,7 @@ export class HomePageComponent {
   startSlideInterval(): void {
     this.slideInterval = setInterval(() => {
       this.nextSlide();
-    }, 5000); // Cambia el slide cada 5 segundos
+    }, 5000); 
   }
 
   stopSlideInterval(): void {

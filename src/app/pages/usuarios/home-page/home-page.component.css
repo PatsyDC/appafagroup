@@ -68,7 +68,7 @@ p {
 
   .slider {
   display: flex;
-  transition: transform 0.5s ease; /* Transición suave para desplazamientos */
+  transition: transform 0.5s ease;
   height: 100%;
   width: 100%;
   }
