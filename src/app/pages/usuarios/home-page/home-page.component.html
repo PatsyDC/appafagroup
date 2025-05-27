@@ -1,47 +1,4 @@
 <style>
-.slide-text {
-  right: 0; /* Alinear el texto a la derecha en dispositivos más pequeños */
-  left: 5%; /* Dar un pequeño espacio a la izquierda para el texto */
-  text-align: left; /* Alinear el texto a la izquierda */
-  padding-right: 10px; /* Reducir el padding derecho del texto */
-}
-
-.slide-text h2 {
-  font-size: 4vw; /* Tamaño del título proporcional al tamaño de la pantalla */
-}
-
-.slide-text h2 span {
-  font-size: 6vw; /* Tamaño del span proporcional al tamaño de la pantalla */
-  padding: 1.5vw 3vw; /* Padding proporcional */
-  border-radius: 2vw; /* Radio de borde proporcional */
-}
-
-@media (max-width: 575.98px) {
-.slider-container {
-  height: 60vh; /* Altura reducida del slider en smartphones */
-}
-
-.slide-text {
-  padding-right: 5px; /* Reducir aún más el padding derecho del texto */
-  right: 0; /* Alinear el texto completamente a la derecha */
-  left: 5%; /* Dar espacio a la izquierda del texto */
-}
-
-.slide-text h2 {
-  font-size: 6vw; /* Tamaño del título proporcional al tamaño de la pantalla */
-}
-
-.slide-text h2 span {
-  font-size: 10vw; /* Tamaño del span proporcional al tamaño de la pantalla */
-  padding: 1.5vw 3vw; /* Padding proporcional */
-  border-radius: 2vw; /* Radio de borde proporcional */
-}
-
-.controls {
-  top: 50%; /* Alinear los controles más en el centro */
-}
-}
-/* MODIFICACIONES ADICIONALES */
 .bg-custom-gray {
   background-color: #F3F3F3;
 }
@@ -394,7 +351,6 @@ span.text {
       width: calc(50% - 20px); /* Dos cartas por fila en dispositivos más pequeños */
   }
 
-
 }
 
 /* Visita */
@@ -661,312 +617,319 @@ a {
 }
 
 a:hover {
-  color: #0C3FAB
-  ;
+  color: #0C3FAB;
   text-decoration: underline;
 }
-
 </style>
 
 <body>
-    <!-- Carousel Start -->
-    <div class="slider-container">
-      <div class="slider">
-          <div class="slide">
-              <img src="/img/slider1.jpg" alt="Slide 1">
-          </div>
-          <div class="slide">
-              <img src="/img/slider2.jpg" alt="Slide 2">
-          </div>
-          <div class="slide">
-              <img src="/img/slider3.png" alt="Slide 3">
+  <!-- Carousel Start -->
+  <div class="slider-container">
+    <div class="slider" id="slider">
+      <div class="slide active">
+        <img src="/img/slider1.jpg" alt="Equipo profesional">
+        <div class="slide-content">
+            <h2 class="slide-title">Soluciones Profesionales</h2>
+            <p class="slide-subtitle">10 años de experiencia trabajando contigo</p>
+            <a routerLink="/contact" class="btn-slider">Cotiza Aquí</a>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="/img/slider2.jpg" alt="Oficina moderna">
+        <div class="slide-content">
+          <h2 class="slide-title">Innovación y Calidad</h2>
+          <p class="slide-subtitle">Transformamos tus ideas en realidad</p>
+          <a routerLink="/contact" class="btn-slider">Cotiza Aquí</a>
+      </div>
+      </div>
+      <div class="slide">
+          <img src="/img/slider3.png" alt="Trabajo en equipo">
+          <div class="slide-content">
+              <h2 class="slide-title">Compromiso Total</h2>
+              <p class="slide-subtitle">Tu éxito es nuestro objetivo</p>
+              <a routerLink="/contact" class="btn-slider">Cotiza Aquí</a>
           </div>
       </div>
-      <div class="controls">
-          <button class="prev-btn">&lt;</button>
-          <button class="next-btn">&gt;</button>
-      </div>
+    </div>
+    <div class="controls">
+        <button class="prev-btn" onclick="prevSlide()">‹</button>
+        <button class="next-btn" onclick="nextSlide()">›</button>
+    </div>
   </div>
+  <!-- Carousel End -->
 
-    <!-- Carousel End -->
+  <!-- empresas -->
+  <div class="container-fluid py-3">
+    <div class="container py-5">
+        <div class="row align-items-center">
 
-    <!-- empresas -->
-    <div class="container-fluid py-3" style="margin-top: 1rem;">
-        <div class="container py-5">
-            <div class="row align-items-center">
+          <h3 class="subtitle">NUESTRAS MARCAS REGISTRADAS</h3>
 
-              <h3 class="subtitle">NUESTRAS MARCAS REGISTRADAS</h3>
-
-                <div class="container-lineas">
-                    <div class="row">
-                        <div class="col-md-6 col-lg-3">
-                            <img class="img-lineas" src="/img/afa_group.png">
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <img class="img-lineas" src="/img/afa_parts.png">
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <img class="img-lineas" src="/img/afa_sprayers.png">
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <img class="img-lineas" src="/img/afa_trac.png">
-                        </div>
+            <div class="container-lineas">
+                <div class="row">
+                    <div class="col-md-6 col-lg-3">
+                        <img class="img-lineas" src="/img/afa_group.png">
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <img class="img-lineas" src="/img/afa_parts.png">
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <img class="img-lineas" src="/img/afa_sprayers.png">
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <img class="img-lineas" src="/img/afa_trac.png">
                     </div>
                 </div>
             </div>
-            <br>
-            <br>
-        </div>
-
-        <h3 class="subtitle">PORQUE ELEGIRNOS</h3>
-
-        <div class="container-caja">
-
-            <div class="row-caja">
-                <div class="caja">
-                    <i class="fa fa-2x fa-clock"></i>
-                    <p class="p-caja">Servicio post venta 24/7</p>
-                </div>
-                <div class="caja">
-                  <i class="fa fa-2x fa-calendar"></i>
-                    <p class="p-caja">Vistas en fundo para asesorías gratuitas</p>
-                </div>
-                <div class="caja">
-                    <i class="fa fa-2x fa-cogs"></i>
-                    <p class="p-caja">Repuestos con garantía</p>
-                </div>
-                <div class="caja">
-                  <i class="fa fa-2x fa-award"></i>
-                    <p class="p-caja">Tenemos certificado de Homologacion</p>
-                </div>
-                <div class="caja">
-                    <i class="fa fa-2x fa-tractor"></i>
-                    <p class="p-caja">Pruebas gratuitas de nuestros equipos en fundo</p>
-                </div>
-                <div class="caja">
-                    <i class="fa fa-2x fa-leaf"></i>
-                    <p class="p-caja">Somos fabricantes de maquinaria agrícola
-                    </p>
-                </div>
-            </div>
         </div>
     </div>
-    <!-- empresas -->
-    <br><br><br><br>
 
-    <!-- Te ofrecemos -->
-    <div class="wrapper-o">
-      <h3 class="subtitle">TE OFRECEMOS</h3>
+  <h3 class="subtitle">PORQUE ELEGIRNOS</h3>
 
-        <div class="content-box">
-            <div class="card-o">
-                <i class="bx bx-bar-chart-alt bx-md"></i>
-                <h3>Fabricación Personalizada</h3>
-                <p>Fabricamos equipos de
-                  aplicación de agroquímicos,
-                  diseñados y simulados con
-                  software de vanguardia para
-                  garantizar un rendimiento
-                  óptimo.
-                  </p>
+  <div class="container-caja">
 
-            </div>
-            <div class="card-o">
-              <i class="bx bx-wrench bx-md"></i>
-                <h3>Servicio Mecánico</h3>
-                <p>Mantenimiento preventivo y
-                  correctivo, así como
-                  repotenciamiento y
-                  renovación de equipos
-                  agrícolas garantizando su
-                  eficiencia y durabilidad.</p>
+  <div class="row-caja">
+      <div class="caja">
+          <i class="fa fa-2x fa-clock"></i>
+          <p class="p-caja">Servicio post venta 24/7</p>
+      </div>
+      <div class="caja">
+        <i class="fa fa-2x fa-calendar"></i>
+          <p class="p-caja">Vistas en fundo para asesorías gratuitas</p>
+      </div>
+      <div class="caja">
+          <i class="fa fa-2x fa-cogs"></i>
+          <p class="p-caja">Repuestos con garantía</p>
+      </div>
+      <div class="caja">
+        <i class="fa fa-2x fa-award"></i>
+          <p class="p-caja">Tenemos certificado de Homologacion</p>
+      </div>
+      <div class="caja">
+          <i class="fa fa-2x fa-tractor"></i>
+          <p class="p-caja">Pruebas gratuitas de nuestros equipos en fundo</p>
+      </div>
+      <div class="caja">
+          <i class="fa fa-2x fa-leaf"></i>
+          <p class="p-caja">Somos fabricantes de maquinaria agrícola
+          </p>
+      </div>
+  </div>
+  </div>
+  </div>
+  <!-- empresas -->
+  <br><br>
 
-            </div>
-            <div class="card-o">
-                <i class="bx bx-user bx-md"></i>
-                <h3>AFA Rental</h3>
-                <p>Equipos de aplicación en
-                  alquiler de alta calidad, con
-                  asesoramiento y pruebas
-                  gratuitas en fundo para
-                  selecciones la opción ideal
-                  para tu cultivo.</p>
+  <!-- Te ofrecemos -->
+  <div class="wrapper-o">
+    <h3 class="subtitle">TE OFRECEMOS</h3>
 
-            </div>
-            <div class="card-o">
-                <i class="bx bx-mail-send bx-md"></i>
-                <h3>AFA Consultoria</h3>
-                <p> Asesoría personalizada en
-                  fundo para que elijas los
-                  equipos y repuestos que
-                  mejor se adapten a tu
-                  cultivo, clima y presupuesto.</p>
-
-            </div>
-            <div class="card-o">
-              <i class="bx bx-headphone bx-md"></i>
-                <h3>Servicio Post Venta</h3>
-                <p> Asistencia técnica
-                  especializa y oportuna, con
-                  soporte telefónico, correos,
-                  visitas en fundo y
-                  capacitación.</p>
-
-            </div>
-            <div class="card-o">
-              <i class="bx bx-grid-alt bx-md"></i>
-                <h3>Repuestos Multimarca</h3>
-                <p> Diversidad de repuestos de
-                  las mejores marcas
-                  internacionales. Con
-                  garantía de fábrica, para
-                  asegurar el funcionamiento
-                  óptimo de sus equipos.</p>
-
-            </div>
-        </div>
-    </div>
-    <!-- Te ofrecemos  -->
-    <br><br><br><br>
-    <!-- Visita -->
-    <div class="container-visita">
-        <div class="cont-all-visita">
-            <div class="container-texto-visita">
-              <h3 class="subtitle" style="color: rgb(66, 66, 66);">Agenda tu visita a fundo</h3>
-
-                <p class="p-visita">Ponemos a tu disposición la
-                  posibilidad de agendar una
-                  visita gratuita en tu fundo.
-                  Contáctanos e indícanos la
-                  fecha y hora que te
-                  convenga, así como su
-                  requerimiento: asesoría
-                  personalizada, realizar
-                  pruebas de equipos o
-                  realizar mantenimientos
+      <div class="content-box">
+          <div class="card-o">
+              <i class="bx bx-bar-chart-alt bx-md"></i>
+              <h3>Fabricación Personalizada</h3>
+              <p>Fabricamos equipos de
+                aplicación de agroquímicos,
+                diseñados y simulados con
+                software de vanguardia para
+                garantizar un rendimiento
+                óptimo.
                 </p>
-                <a target="_blank" href="https://wa.me/+51944691667?text=¡Hola%20AFA%20Group!%20Me%20gustaría%20obtener%20más%20información%20sobre%20sus%20servicios.%20¿Podrían%20ponerse%20en%20contacto%20conmigo?%20¡Gracias! "><button class="boton-visita">Contactáctanos</button></a>
-            </div>
-        </div>
-        <img src="/img/pulverizador.png" alt="" class="pulverizador-img">
-    </div>
-    <!-- Visita -->
 
-    <br><br><br><br>
+          </div>
+          <div class="card-o">
+            <i class="bx bx-wrench bx-md"></i>
+              <h3>Servicio Mecánico</h3>
+              <p>Mantenimiento preventivo y
+                correctivo, así como
+                repotenciamiento y
+                renovación de equipos
+                agrícolas garantizando su
+                eficiencia y durabilidad.</p>
 
-    <!-- Cartas -->
-    <!-- Cartas -->
-    <div id="cards-section" class="wrapper">
-        <div class="container-k" style="margin-top: 50px; margin-bottom: 50px;">
-          <i class="fas fa-spray-can"></i>
+          </div>
+          <div class="card-o">
+              <i class="bx bx-user bx-md"></i>
+              <h3>AFA Rental</h3>
+              <p>Equipos de aplicación en
+                alquiler de alta calidad, con
+                asesoramiento y pruebas
+                gratuitas en fundo para
+                selecciones la opción ideal
+                para tu cultivo.</p>
 
-            <span class="num" data-val="50">50</span>
-            <span class="text">Maquinarias trabajando</span>
-        </div>
+          </div>
+          <div class="card-o">
+              <i class="bx bx-mail-send bx-md"></i>
+              <h3>AFA Consultoria</h3>
+              <p> Asesoría personalizada en
+                fundo para que elijas los
+                equipos y repuestos que
+                mejor se adapten a tu
+                cultivo, clima y presupuesto.</p>
 
-        <div class="container-k" style="margin-top: 50px; margin-bottom: 50px;">
-          <i class="fas fa-vector-square"></i>
-            <span class="num" data-val="10">10</span>
-            <span class="text">Diseños propios</span>
-        </div>
+          </div>
+          <div class="card-o">
+            <i class="bx bx-headphone bx-md"></i>
+              <h3>Servicio Post Venta</h3>
+              <p> Asistencia técnica
+                especializa y oportuna, con
+                soporte telefónico, correos,
+                visitas en fundo y
+                capacitación.</p>
 
-        <div class="container-k" style="margin-top: 50px; margin-bottom: 50px;">
-          <i class="fas fa-smile-beam"></i>
-            <span class="num" data-val="234">234</span>
-            <span class="text">Clientes atendidos</span>
-        </div>
+          </div>
+          <div class="card-o">
+            <i class="bx bx-grid-alt bx-md"></i>
+              <h3>Repuestos Multimarca</h3>
+              <p> Diversidad de repuestos de
+                las mejores marcas
+                internacionales. Con
+                garantía de fábrica, para
+                asegurar el funcionamiento
+                óptimo de sus equipos.</p>
 
-        <div class="container-k" style="margin-top: 50px; margin-bottom: 50px;">
-            <i class="fas fa-calendar-alt"></i>
-            <span class="num" data-val="12">12</span>
-            <span class="text">Años de experiencia</span>
-        </div>
-    </div>
-    <!-- cartas -->
+          </div>
+      </div>
+  </div>
+  <!-- Te ofrecemos  -->
+  <br><br><br><br>
+  <!-- Visita -->
+  <div class="container-visita">
+      <div class="cont-all-visita">
+          <div class="container-texto-visita">
+            <h3 class="subtitle" style="color: rgb(66, 66, 66);">Agenda tu visita a fundo</h3>
 
-    <!-- cartas -->
+              <p class="p-visita">Ponemos a tu disposición la
+                posibilidad de agendar una
+                visita gratuita en tu fundo.
+                Contáctanos e indícanos la
+                fecha y hora que te
+                convenga, así como su
+                requerimiento: asesoría
+                personalizada, realizar
+                pruebas de equipos o
+                realizar mantenimientos
+              </p>
+              <a target="_blank" href="https://wa.me/+51944691667?text=¡Hola%20AFA%20Group!%20Me%20gustaría%20obtener%20más%20información%20sobre%20sus%20servicios.%20¿Podrían%20ponerse%20en%20contacto%20conmigo?%20¡Gracias! "><button class="boton-visita">Contactáctanos</button></a>
+          </div>
+      </div>
+      <img src="/img/pulverizador.png" alt="" class="pulverizador-img">
+  </div>
+  <!-- Visita -->
 
-    <!-- Certificados -->
-    <br><br><br><br>
-    <h3 class="subtitle">CERTIFICADOS Y RECONOCIMIENTOS</h3>
+  <br><br><br><br>
 
-    <div class="allcertificado">
-        <div class="containercerti">
-            <h3 class="h3-certi">Certificado de Homologación</h3>
-            <img class="img-certi" src="/img/certi2.png" alt="">
-            <p class="p-certi">En AFA GROUP, nos enorgullece ser un Proveedor Homologado bajo los más altos estándares
-                de calidad.
-                Este reconocimiento avala nuestro compromiso con la excelencia en todo lo que hacemos. Esto se traduce
-                en: la entrega de productos y servicios de primer nivel,
-                minimización de riesgos con problemas de calidad, retrasos o incumplimientos, así como una mayor
-                productividad de nuestros clientes al proporcionarles soluciones innovadoras y de ultima vanguradia
-                tecnológica.
+  <!-- Cartas -->
+  <div id="cards-section" class="wrapper">
+      <div class="container-k" style="margin-top: 50px; margin-bottom: 50px;">
+        <i class="fas fa-spray-can"></i>
 
-                En AFA GROUP, su éxito es nuestra prioridad.</p>
-        </div>
+          <span class="num" data-val="50">50</span>
+          <span class="text">Maquinarias trabajando</span>
+      </div>
 
-        <div class="containercerti">
-            <h3 class="h3-certi">Reconocimiento empresa del año 2022</h3>
-            <img class="img-certi" src="/img/certi.png" alt="">
-            <p class="p-certi">Nos llena de orgullo anunciar que hemos sido galardonados con el prestigioso premio
-                Empresa del Año 2022 en la industria de maquinaria, repuestos y servicios para la agroindustria. Este
-                reconocimiento representa un hito importante en nuestra trayectoria y es un homenaje a la dedicación y
-                el trabajo duro de todo nuestro equipo. A lo largo de los años, nos hemos consolidado como un socio
-                estratégico para las empresas agroindustriales, brindándoles las herramientas y el soporte que necesitan
-                para optimizar sus operaciones, aumentar su productividad y alcanzar sus metas de negocio.
-                Queremos expresar nuestro más profundo agradecimiento a nuestros clientes por su confianza y continuo
-                apoyo. Su satisfacción es nuestra principal prioridad y nos motiva a seguir mejorando cada día.</p>
-        </div>
+      <div class="container-k" style="margin-top: 50px; margin-bottom: 50px;">
+        <i class="fas fa-vector-square"></i>
+          <span class="num" data-val="10">10</span>
+          <span class="text">Diseños propios</span>
+      </div>
 
-    </div><br><br><br><br>
-    <!-- certificados -->
+      <div class="container-k" style="margin-top: 50px; margin-bottom: 50px;">
+        <i class="fas fa-smile-beam"></i>
+          <span class="num" data-val="234">234</span>
+          <span class="text">Clientes atendidos</span>
+      </div>
 
-    <!-- Noticias -->
-    <h3 class="subtitle">NUESTRAS ÚLTIMAS NOTICIAS</h3>
+      <div class="container-k" style="margin-top: 50px; margin-bottom: 50px;">
+          <i class="fas fa-calendar-alt"></i>
+          <span class="num" data-val="12">12</span>
+          <span class="text">Años de experiencia</span>
+      </div>
+  </div>
+  <!-- cartas -->
 
-    <div class="containernoticia">
+  <!-- Certificados -->
+  <br><br><br><br>
+  <h3 class="subtitle">CERTIFICADOS Y RECONOCIMIENTOS</h3>
+
+  <div class="allcertificado">
+      <div class="containercerti">
+          <h3 class="h3-certi">Certificado de Homologación</h3>
+          <img class="img-certi" src="/img/certi2.png" alt="">
+          <p class="p-certi">En AFA GROUP, nos enorgullece ser un Proveedor Homologado bajo los más altos estándares
+              de calidad.
+              Este reconocimiento avala nuestro compromiso con la excelencia en todo lo que hacemos. Esto se traduce
+              en: la entrega de productos y servicios de primer nivel,
+              minimización de riesgos con problemas de calidad, retrasos o incumplimientos, así como una mayor
+              productividad de nuestros clientes al proporcionarles soluciones innovadoras y de ultima vanguradia
+              tecnológica.
+
+              En AFA GROUP, su éxito es nuestra prioridad.</p>
+      </div>
+
+      <div class="containercerti">
+          <h3 class="h3-certi">Reconocimiento empresa del año 2022</h3>
+          <img class="img-certi" src="/img/certi.png" alt="">
+          <p class="p-certi">Nos llena de orgullo anunciar que hemos sido galardonados con el prestigioso premio
+              Empresa del Año 2022 en la industria de maquinaria, repuestos y servicios para la agroindustria. Este
+              reconocimiento representa un hito importante en nuestra trayectoria y es un homenaje a la dedicación y
+              el trabajo duro de todo nuestro equipo. A lo largo de los años, nos hemos consolidado como un socio
+              estratégico para las empresas agroindustriales, brindándoles las herramientas y el soporte que necesitan
+              para optimizar sus operaciones, aumentar su productividad y alcanzar sus metas de negocio.
+              Queremos expresar nuestro más profundo agradecimiento a nuestros clientes por su confianza y continuo
+              apoyo. Su satisfacción es nuestra principal prioridad y nos motiva a seguir mejorando cada día.</p>
+      </div>
+
+  </div><br><br><br><br>
+  <!-- certificados -->
+
+  <!-- Noticias -->
+  <h3 class="subtitle">NUESTRAS ÚLTIMAS NOTICIAS</h3>
+
+  <div class="containernoticia">
+    <a  href="/blog">
+      <div class="noticia">
+        <img class="img-noticia" src="/img/noticia_1.webp" alt="">
+        <h4 class="h4-noticia">Entrega de 02 Nebulizadoras de
+          arrastre, modelo Blue-B 2000L a la
+          empresa AGRICOLA ANDREA SAC
+          </h4>
+        <p class="p-noticia">AFA Group, 30 mayo 2024</p>
+      </div>
+    </a>
+
+    <a  href="/blog">
+      <div class="noticia">
+          <img class="img-noticia" src="/img/noticia2.jpg" alt="">
+          <h4 class="h4-noticia">Entrega de 01 Atomizador de
+            arrastre, modelo Geral 2000L a la
+            empresa VIVERO LOS VIÑEDOS SAC</h4>
+          <p class="p-noticia">AFA Group, 21 mayo 2024
+          </p>
+      </div>
+    </a>
+
       <a  href="/blog">
-        <div class="noticia">
-          <img class="img-noticia" src="/img/noticia_1.webp" alt="">
-          <h4 class="h4-noticia">Entrega de 02 Nebulizadoras de
-            arrastre, modelo Blue-B 2000L a la
-            empresa AGRICOLA ANDREA SAC
+      <div class="noticia">
+          <img class="img-noticia" src="/img/noticia3.jpg" alt="">
+          <h4 class="h4-noticia">Entrega de 01 Nebulizadoras de
+            arrastre, modelo Teo 2000L a la
+            empresa NEWTERRA SAC
             </h4>
-          <p class="p-noticia">AFA Group, 30 mayo 2024</p>
-        </div>
+          <p class="p-noticia">AFA Group, 20 marzo 2024</p>
+      </div>
       </a>
 
       <a  href="/blog">
-        <div class="noticia">
-            <img class="img-noticia" src="/img/noticia2.jpg" alt="">
-            <h4 class="h4-noticia">Entrega de 01 Atomizador de
-              arrastre, modelo Geral 2000L a la
-              empresa VIVERO LOS VIÑEDOS SAC</h4>
-            <p class="p-noticia">AFA Group, 21 mayo 2024
-            </p>
-        </div>
+      <div class="noticia">
+          <img class="img-noticia" src="/img/noticia4.avif" alt="">
+          <h4 class="h4-noticia">Junín: Agricultura facilita maquinaria agrícola para apoyar a los agricultores de la
+              selva central</h4>
+          <p class="p-noticia">BY KOLOBI ORBEGOSO | 01 ENERO 2024</p>
+      </div>
       </a>
 
-        <a  href="/blog">
-        <div class="noticia">
-            <img class="img-noticia" src="/img/noticia3.jpg" alt="">
-            <h4 class="h4-noticia">Entrega de 01 Nebulizadoras de
-              arrastre, modelo Teo 2000L a la
-              empresa NEWTERRA SAC
-              </h4>
-            <p class="p-noticia">AFA Group, 20 marzo 2024</p>
-        </div>
-        </a>
-
-        <a  href="/blog">
-        <div class="noticia">
-            <img class="img-noticia" src="/img/noticia4.avif" alt="">
-            <h4 class="h4-noticia">Junín: Agricultura facilita maquinaria agrícola para apoyar a los agricultores de la
-                selva central</h4>
-            <p class="p-noticia">BY KOLOBI ORBEGOSO | 01 ENERO 2024</p>
-        </div>
-        </a>
-
-    </div>
+  </div>
 
 </body>

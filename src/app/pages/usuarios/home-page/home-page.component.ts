@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { ISlider } from 'app/core/models/slider.model';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [CommonModule ],
+  imports: [CommonModule, RouterLink ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css'
 })
@@ -33,7 +34,7 @@ export class HomePageComponent {
   startSlideInterval(): void {
     this.slideInterval = setInterval(() => {
       this.nextSlide();
-    }, 5000); 
+    }, 5000);
   }
 
   stopSlideInterval(): void {
