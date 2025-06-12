@@ -1,13 +1,9 @@
-<div class="ccontainer-contact">
-  <!-- Contenido -->
-  <!-- Imagen a la izquierda en pantallas grandes -->
-  <img class="img-contact" src="img/1.1.png" alt="Contact Image">
-  <!-- Formulario -->
+<div class="ccontainer-contact flex-column flex-lg-row">
+  <img class="img-contact mb-3 mb-lg-0" src="img/1.1.png" alt="Contact Image">
+  <div class="form-container p-4 bg-white rounded-end shadow">
   <div class="d-flex flex-wrap align-items-center justify-content-center rounded-end bg-white p-4 form-container">
     <div class="w-100">
-      <!-- Encabezado -->
       <h1 class="h5 font-weight-semibold">Contáctenos</h1>
-      <!-- Formulario -->
       <form [formGroup]="formContacto" (ngSubmit)="save()" class="mt-2">
         <div class="row mb-2">
           <div class="col-md-6 mb-2">
@@ -38,20 +34,28 @@
         </div>
       </form>
     </div>
+    </div>
   </div>
 
-  <!-- Contenedor para botones y mapa -->
   <div class="container">
     <div class="d-flex flex-column align-items-center">
-      <div class="tt mb-3 d-flex">
-        <button class="btn-contact " (click)="setCenter(-8.1215553, -79.028494)">Sede Trujillo</button>
-        <button class="btn-contact " (click)="setCenter(-8.157510, -79.011420)">Sede Moche</button>
-        <button class="btn-contact " (click)="setCenter(-6.827070, -79.829150)">Sede Chiclayo</button>
-        <button class="btn-contact " (click)="setCenter(-14.025890, -75.760060)">Sede Subtanjalla</button>
-        <button class="btn-contact " (click)="setCenter(-12.07138, -77.03713)">Sede Lima</button>
+      <div class="button-group mb-3">
+        <button class="btn-contact" (click)="setCenter(-8.1215553, -79.028494)">Sede Trujillo</button>
+        <button class="btn-contact" (click)="setCenter(-8.157510, -79.011420)">Sede Moche</button>
+        <button class="btn-contact" (click)="setCenter(-6.827070, -79.829150)">Sede Chiclayo</button>
+        <button class="btn-contact" (click)="setCenter(-14.025890, -75.760060)">Sede Subtanjalla</button>
+        <button class="btn-contact" (click)="setCenter(-12.07138, -77.03713)">Sede Lima</button>
       </div>
-      <google-map height="400px" width="800px" [center]="center" [zoom]="zoom" style="margin-bottom: 20px;">
-        <map-heatmap-layer [data]="heatmapData" [options]="heatmapOptions"></map-heatmap-layer>
+      <google-map
+        class="google-map"
+        [center]="center"
+        [zoom]="zoom"
+        [width]="mapWidth"
+        [height]="mapHeight">
+        <map-heatmap-layer
+          [data]="heatmapData"
+          [options]="heatmapOptions">
+        </map-heatmap-layer>
       </google-map>
     </div>
   </div>

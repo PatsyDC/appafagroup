@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { GoogleMap, MapHeatmapLayer } from '@angular/google-maps';
 import { IContacto } from 'app/core/models/contacto.model';
@@ -16,6 +16,9 @@ export class ContactComponent {
 
   contacto: IContacto[] = [];
   formContacto: FormGroup;
+  // Dimensiones responsive del mapa
+  mapWidth: string = '800px';
+  mapHeight: string = '400px';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -43,6 +46,41 @@ export class ContactComponent {
 
   setCenter(lat: number, lng: number) {
     this.center = {lat, lng};
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.updateMapDimensions();
+  }
+
+  updateMapDimensions() {
+    const screenWidth = window.innerWidth;
+
+    if (screenWidth <= 420) {
+      // Móviles muy pequeños
+      this.mapWidth = '100%';
+      this.mapHeight = '200px';
+    } else if (screenWidth <= 576) {
+      // Móviles
+      this.mapWidth = '100%';
+      this.mapHeight = '250px';
+    } else if (screenWidth <= 768) {
+      // Tablets pequeñas
+      this.mapWidth = '100%';
+      this.mapHeight = '280px';
+    } else if (screenWidth <= 992) {
+      // Tablets
+      this.mapWidth = '100%';
+      this.mapHeight = '300px';
+    } else if (screenWidth <= 1024) {
+      // Tablets grandes
+      this.mapWidth = '100%';
+      this.mapHeight = '350px';
+    } else {
+      // Desktop
+      this.mapWidth = '800px';
+      this.mapHeight = '400px';
+    }
   }
 
   save() {
