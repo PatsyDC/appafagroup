@@ -13,7 +13,7 @@ export class ContactoService {
     return this._refresh$;
   }
 
-  private url: string = 'https://afagroup-api.onrender.com/api/v1/contacto/'
+  private url: string = 'https://afagroup-api-1cml.onrender.com/api/v1/contacto/'
   //private url: string = 'http://localhost:3000/api/v1/contacto/'
   constructor(private http: HttpClient) { }
 
