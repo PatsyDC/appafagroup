@@ -1,24 +1,27 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { IProductoAG } from 'app/core/models/productoAG.model';
 import { CarritoService } from 'app/core/services/carrito.service';
 import { ProductoAGService } from 'app/core/services/productoAG.service';
-import { finalize } from 'rxjs';
+import { finalize, Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
+import { DetalleTarjetaComponent } from "./detalle/detalle-tarjeta/detalle-tarjeta.component";
 
 @Component({
   selector: 'app-equipment-detalle',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, DetalleTarjetaComponent],
   templateUrl: './equipment-detalle.component.html',
-  styleUrl: './equipment-detalle.component.css'
+  styleUrl: './equipment-detalle.component.css',
 })
-export class EquipmentDetalleComponent implements OnInit {
+export class EquipmentDetalleComponent implements OnInit, OnDestroy {
 
-  producto?: IProductoAG;
-  cargando: boolean = false;
-  error: boolean = false;
+  productoIdActual?: string;
+  productosSimilares: IProductoAG[] = [];
+  cargandoSimilares: boolean = false;
+
+  private routeSubscription?: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,35 +30,61 @@ export class EquipmentDetalleComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.cargarProducto();
+    // Suscribirse a los cambios de parámetros de la ruta
+    this.routeSubscription = this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      if (id) {
+        this.productoIdActual = id;
+        this.cargarProductosSimilares(id);
+      }
+    });
   }
 
-  cargarProducto(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.cargando = true;
-      this.error = false;
+  ngOnDestroy(): void {
+    if (this.routeSubscription) {
+      this.routeSubscription.unsubscribe();
+    }
+  }
 
-      this.productoService.getProductoById(id)
-        .pipe(
-          finalize(() => this.cargando = false)
-        )
-        .subscribe({
-          next: (data) => {
-            console.log('Producto recibido:', data);
-            this.producto = data;
+  cargarProductosSimilares(productoId: string): void {
+    this.cargandoSimilares = true;
+
+    // Primero obtener el producto actual para conocer su categoría
+    this.productoService.getProductoById(productoId).subscribe({
+      next: (producto) => {
+        // Luego cargar productos similares
+        this.productoService.allProductos().subscribe({
+          next: (productos) => {
+            this.productosSimilares = productos.filter(
+              p => p.categoria_id === producto.categoria_id && p.producto_id !== productoId
+            );
+            this.cargandoSimilares = false;
           },
           error: (err) => {
-            console.error('Error al obtener el detalle del producto:', err);
-            this.error = true;
+            console.error('Error al cargar productos similares:', err);
+            this.cargandoSimilares = false;
           }
         });
-    }
+      },
+      error: (err) => {
+        console.error('Error al obtener producto principal:', err);
+        this.cargandoSimilares = false;
+      }
+    });
+  }
+
+  // Método para cambiar el producto sin recargar la página
+  seleccionarProducto(productoId: string): void {
+    this.productoIdActual = productoId;
+    this.cargarProductosSimilares(productoId);
+
+    // Opcional: scroll hacia arriba para mostrar el nuevo producto
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   agregarAlCarrito(producto: IProductoAG): void {
     try {
-      this.carritoService.agregarProducto(producto, 1); // Método sincrónico
+      this.carritoService.agregarProducto(producto, 1);
 
       Swal.fire(
         '¡Éxito!',

@@ -1,69 +1,58 @@
 <div class="container my-4">
-  <!-- Estado de carga -->
-  <div *ngIf="cargando" class="text-center p-5">
+  <!-- Componente para mostrar el detalle del producto -->
+  <app-detalle-tarjeta [productoId]="productoIdActual"></app-detalle-tarjeta>
+</div>
+
+<!-- Sección de productos similares -->
+<div *ngIf="productosSimilares.length > 0" class="mt-5 container">
+  <div class="categoria-separador text-center mb-4">
+    <h2 class="titulo">Más productos similares</h2>
+    <p class="nombre-comercial">Basado en la misma categoría del producto</p>
+  </div>
+
+  <div *ngIf="cargandoSimilares" class="text-center p-3">
     <div class="spinner-border text-primary" role="status">
-      <span class="visually-hidden">Cargando...</span>
+      <span class="visually-hidden">Cargando productos similares...</span>
     </div>
-    <p class="mt-2">Cargando detalles del producto...</p>
   </div>
 
-  <!-- Estado de error -->
-  <div *ngIf="error" class="alert alert-danger" role="alert">
-    <h4 class="alert-heading">¡Error al cargar el producto!</h4>
-    <p>No se pudo obtener la información del producto. Por favor, intente de nuevo más tarde.</p>
-    <button class="btn btn-outline-danger" (click)="cargarProducto()">Reintentar</button>
-  </div>
+  <div class="row" *ngIf="!cargandoSimilares">
+    @for (producto of productosSimilares; track producto.producto_id) {
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+        <div class="detalle-container producto-card h-100 text-center p-3">
+          <img
+            *ngIf="producto.imagen_url; else sinImagen"
+            [src]="producto.imagen_url"
+            alt="{{ producto.nombre_producto }}"
+            class="imagen-producto mb-3"
+          />
+          <ng-template #sinImagen>
+            <div class="sin-imagen mb-3">Sin imagen disponible</div>
+          </ng-template>
 
-  <!-- Detalle del producto -->
-  <div class="detalle-container" *ngIf="!cargando && !error && producto">
-    <h2 class="titulo">{{ producto.nombre_producto }}</h2>
-    <h3 class="nombre-comercial">{{ producto.nombre_comercial }}</h3>
+          <h5 class="card-title">{{ producto.nombre_comercial }}</h5>
+          <p class="text-muted mb-2" style="font-size: 14px;">{{ producto.tipo_producto }}</p>
 
-    <div class="contenido">
-      <img
-        *ngIf="producto.imagen_url; else sinImagen"
-        [src]="producto.imagen_url"
-        alt="Imagen del producto"
-        class="imagen-producto"
-      />
-      <ng-template #sinImagen>
-        <div class="sin-imagen">Sin imagen disponible</div>
-      </ng-template>
+          <div class="botones-accion mt-3">
+            <!-- Botón que actualiza el componente sin navegación -->
+            <button
+              class="btn btn-ficha-tecnica"
+              (click)="seleccionarProducto(producto.producto_id)"
+            >
+              🔍 Ver Detalles
+            </button>
 
-      <div class="descripcion">
-        <h3>Descripción</h3>
-        <p>{{ producto.descripcion_producto }}</p>
-
-        <div class="detalles-adicionales">
-          <div class="detalle-item">
-            <strong>Tipo de producto:</strong> {{ producto.tipo_producto }}
-          </div>
-          <div class="detalle-item">
-            <strong>Peso:</strong> {{ producto.peso }} kg
+            <button
+              class="btn btn-agregar-carrito"
+              (click)="agregarAlCarrito(producto)"
+              [disabled]="producto.stock_minimo <= 0"
+            >
+              <i class="fas fa-shopping-cart"></i>
+            </button>
           </div>
         </div>
-
-        <div class="botones-accion mt-4">
-          <button class="btn btn-ficha-tecnica">
-            <i class="fas fa-file-pdf"></i> Ficha Técnica
-          </button>
-
-          <button class="btn btn-agregar-carrito"
-                (click)="agregarAlCarrito(producto)"
-                [disabled]="producto.stock_minimo <= 0">
-            <i class="fas fa-shopping-cart"></i> Añadir al Carrito
-          </button>
-        </div>
-
-        <button class="btn btn-volver mt-3" routerLink="/equipment-list">
-          <i class="fas fa-arrow-left"></i> Volver a productos
-        </button>
       </div>
-    </div>
-  </div>
-
-  <!-- Mensaje cuando no hay producto -->
-  <div *ngIf="!cargando && !error && !producto" class="alert alert-warning">
-    No se encontró información del producto solicitado.
+    }
   </div>
 </div>
+
