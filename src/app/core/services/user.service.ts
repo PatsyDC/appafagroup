@@ -8,8 +8,8 @@ import { LoginResponse } from '../models/login.model';
 })
 export class UserService {
 
-  //private apiUrl = 'http://localhost:3000/api/v1/';
-  private apiUrl: string = 'https://afagroup-api-1cml.onrender.com/api/v1/'
+  private apiUrl = 'http://localhost:3000/api/v1/';
+  //private apiUrl: string = 'https://afagroup-api-1cml.onrender.com/api/v1/'
 
   constructor(private http: HttpClient) { }
 
