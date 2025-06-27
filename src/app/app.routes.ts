@@ -20,6 +20,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { EquipmentDetalleComponent } from '@pages/usuarios/equipment-detalle/equipment-detalle.component';
 import { ServiceHomeComponent } from '@pages/usuarios/service-home/service-home.component';
 import { ErrorComponent } from '@pages/error/error.component';
+import { CotizacionManualComponent } from '@pages/admin/cotizacion-manual/cotizacion-manual.component';
 
 export const routes: Routes = [
   {
@@ -51,6 +52,7 @@ export const routes: Routes = [
       { path: 'cliente', component: ClienteComponent},
       { path: 'cotizacionWeb', component: CotizacionWebComponent},
       { path: 'cotizacion-detalle/:id', component: CotizacionDetalleComponent},
+      { path: 'cotizacionManual', component: CotizacionManualComponent}
     ]
   },
   { path: 'login', component: LoginComponent },
