@@ -1,0 +1,127 @@
+<div class="cotizacion-container">
+  <form [formGroup]="cotizacionForm" (ngSubmit)="guardarCotizacion()">
+    <div class="form-grid">
+      <!-- PERIODO -->
+      <div class="form-group">
+        <label for="periodo">Periodo</label>
+        <input type="month" id="periodo" formControlName="periodo" class="form-control">
+      </div>
+
+      <!-- SERIE & NUMERO (si está cotizado) -->
+      <div class="form-grid" *ngIf="estadoCotizacion === 'COTIZADO'">
+        <div class="form-group">
+          <label for="serie">Serie</label>
+          <input type="text" id="serie" formControlName="serie" class="form-control" readonly>
+        </div>
+        <div class="form-group">
+          <label for="numero">Número</label>
+          <input type="text" id="numero" formControlName="numero" class="form-control" readonly>
+        </div>
+      </div>
+
+      <!-- CAMPOS DE COTIZACION -->
+      <div class="form-group"><label>Fecha</label><input type="date" formControlName="fecha" class="form-control"></div>
+      <div class="form-group"><label>Tipo de Cambio</label><input type="number" formControlName="tipo_cambio" class="form-control"></div>
+      <div class="form-group"><label>Punto de Venta</label><input type="text" formControlName="punto_venta" class="form-control"></div>
+
+      <div class="form-group"><label>Razón Social</label><input type="text" formControlName="razon_social" class="form-control"></div>
+      <div class="form-group"><label>RUC</label><input type="text" formControlName="ruc" class="form-control"></div>
+      <div class="form-group"><label>Nombre Contacto</label><input type="text" formControlName="nombre_contacto" class="form-control"></div>
+      <div class="form-group"><label>DNI Contacto</label><input type="text" formControlName="dni_persona" class="form-control"></div>
+      <div class="form-group"><label>Email</label><input type="email" formControlName="email" class="form-control"></div>
+      <div class="form-group"><label>Teléfono</label><input type="text" formControlName="telefono" class="form-control"></div>
+
+      <div class="form-group">
+        <label>Forma de Pago</label>
+        <select formControlName="forma_pago" class="form-control">
+          <option *ngFor="let forma of formasPago" [value]="forma">{{ forma }}</option>
+        </select>
+      </div>
+
+      <div class="form-group"><label>Días de Oferta</label><input type="text" formControlName="dias_ofertas" class="form-control"></div>
+      <div class="form-group">
+        <label>Moneda</label>
+        <select formControlName="moneda" class="form-control">
+          <option *ngFor="let moneda of monedas" [value]="moneda">{{ moneda }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Observaciones</label>
+        <textarea formControlName="observaciones" rows="3" class="form-control"></textarea>
+      </div>
+    </div>
+
+    <!-- TABLA DE PRODUCTOS -->
+    <!-- Buscador de productos -->
+<div class="form-group">
+  <label for="busqueda">Buscar producto</label>
+  <input
+    type="text"
+    id="busqueda"
+    [(ngModel)]="productoBuscado"
+    (input)="buscarProductos()"
+    class="form-control"
+    placeholder="Escribe el nombre del producto"
+  />
+</div>
+
+<!-- Resultados de búsqueda -->
+<ul *ngIf="productosFiltrados.length > 0" class="busqueda-lista">
+  <li *ngFor="let producto of productosFiltrados" (click)="agregarProducto(producto)">
+    {{ producto.nombre }}
+  </li>
+</ul>
+
+<!-- Tabla de productos añadidos -->
+<div class="productos-section" *ngIf="productos.length > 0">
+  <h2>Productos añadidos</h2>
+  <table class="productos-table">
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+        <th>Descuento (%)</th>
+        <th>Precio con Descuento</th>
+        <th>Subtotal</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let producto of productos; let i = index">
+        <td>{{ producto.nombre }}</td>
+        <td>
+          <input type="number" [(ngModel)]="producto.cantidad" (change)="actualizarSubtotal(i)" />
+        </td>
+        <td>
+          <input type="number" [(ngModel)]="producto.precio" (change)="actualizarSubtotal(i)" />
+        </td>
+        <td>
+          <input type="number" [(ngModel)]="producto.descuento" (change)="actualizarSubtotal(i)" />
+        </td>
+        <td>{{ producto.precio_descuento | number:'1.2-2' }}</td>
+        <td>{{ producto.sub_total | number:'1.2-2' }}</td>
+        <td>
+          <button (click)="eliminarProducto(i)">🗑️</button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="5" style="text-align: right;"><strong>Total:</strong></td>
+        <td><strong>{{ totalPrecioProductos | number:'1.2-2' }}</strong></td>
+        <td></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+    <!-- BOTONES -->
+    <div class="button-container">
+      <button type="button" class="btn btn-secondary" routerLink="/admin/cotizacionManual">Cancelar</button>
+      <button type="submit" class="btn btn-primary" *ngIf="estadoCotizacion !== 'COTIZADO'">Guardar Cotización</button>
+      <!-- <button type="button" class="btn btn-success" (click)="generarPDF()">Generar PDF</button> -->
+    </div>
+  </form>
+</div>

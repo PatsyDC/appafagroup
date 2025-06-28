@@ -310,9 +310,10 @@
 <div class="agregar">
   <div class="titulo-boton">
     <h1>Crear nueva cotización</h1>
-    <button class="btn-celeste">
-      <i class="fas fa-plus"></i>
-    </button>
+    <button class="btn-celeste" [routerLink]="['/admin/cotizacionManual/crear']">
+  <i class="fas fa-plus"></i>
+</button>
+
   </div>
 
   <div class="search-container">
@@ -342,11 +343,11 @@
       <td data-label="Fecha">
         <div class="title">{{cotizacion.fecha}}</div>
       </td>
-      <td data-label="Acciones">
+      <!-- <td data-label="Acciones">
         <div class="action-icons">
-          <i class="fas fa-edit" style="color: #326DE7; font-size: 20px; cursor: pointer;"></i>
+          <i class="fas fa-edit" style="color: #326DE7; font-size: 20px; cursor: pointer;" (click)="editarCotizacion(cotizacion.id)"></i>
         </div>
-      </td>
+      </td> -->
     </tr>
   </tbody>
   }

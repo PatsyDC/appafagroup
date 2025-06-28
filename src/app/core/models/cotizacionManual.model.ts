@@ -1,3 +1,5 @@
+import { CotizacionProducto } from "./prodCM.model";
+
 export interface CotizacionManual {
   id?: string;
   periodo: string;
@@ -20,4 +22,5 @@ export interface CotizacionManual {
   total_precio_productos: number;
   estado?: string;
   user_id: string;
+  productos?: CotizacionProducto[];
 }

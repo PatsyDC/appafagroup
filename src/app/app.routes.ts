@@ -21,6 +21,7 @@ import { EquipmentDetalleComponent } from '@pages/usuarios/equipment-detalle/equ
 import { ServiceHomeComponent } from '@pages/usuarios/service-home/service-home.component';
 import { ErrorComponent } from '@pages/error/error.component';
 import { CotizacionManualComponent } from '@pages/admin/cotizacion-manual/cotizacion-manual.component';
+import { CreateCotizacionComponent } from '@pages/admin/cotizacion-manual/modal/create-cotizacion/create-cotizacion.component';
 
 export const routes: Routes = [
   {
@@ -52,7 +53,9 @@ export const routes: Routes = [
       { path: 'cliente', component: ClienteComponent},
       { path: 'cotizacionWeb', component: CotizacionWebComponent},
       { path: 'cotizacion-detalle/:id', component: CotizacionDetalleComponent},
-      { path: 'cotizacionManual', component: CotizacionManualComponent}
+      { path: 'cotizacionManual', component: CotizacionManualComponent},
+      {path: 'cotizacionManual/crear', component: CreateCotizacionComponent},
+      {path: 'cotizacionManual/detalle/:id',component: CreateCotizacionComponent}
     ]
   },
   { path: 'login', component: LoginComponent },

@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 import { CotizacionManual } from 'app/core/models/cotizacionManual.model';
 import { CotizacionManualService } from 'app/core/services/cotizacion-manual.service';
 
 @Component({
   selector: 'app-cotizacion-manual',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './cotizacion-manual.component.html',
   styleUrl: './cotizacion-manual.component.css'
 })
@@ -24,16 +25,17 @@ export class CotizacionManualComponent {
 
   constructor(
     private cotizacionMService: CotizacionManualService,
+    private router: Router,
   ){}
 
-  ngOnInit(): void{
-    this.cotizacionMService.getCotizaciones().subscribe((data) => {
-      console.log('data :' ,data);
-      this.cotizacionM = data;
-      this.filteredCotizacion = [...this.cotizacionM];
-      this.calculateTotalPages();
-    })
-  }
+  ngOnInit(): void {
+  this.cotizacionMService.getCotizaciones().subscribe((data: any) => {
+    console.log('data :', data);
+    this.cotizacionM = data.body;
+    this.filteredCotizacion = [...this.cotizacionM];
+    this.calculateTotalPages();
+  });
+}
 
   getCategorias() {
     this.cotizacionMService.getCotizaciones().subscribe(cotizacionM => {
@@ -92,5 +94,10 @@ export class CotizacionManualComponent {
     }
     return pages;
   }
+
+  editarCotizacion(id: string): void {
+  this.router.navigate(['/admin/cotizacionManual/detalle', id]);
+}
+
 
 }
