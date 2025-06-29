@@ -1,15 +1,15 @@
 export interface ICliente {
-  cliente_id: number;  // UUID
-  codigo_ruc: string;  // Asegura que sea un string numérico entre 8 y 11 caracteres
+  cliente_id: number;
+  codigo_ruc: string;
   tipo_persona: string;
   razon_social: string;
   tipo_empleador: string;
-  documento_ruc: string;  // Asegura que sea un string numérico entre 8 y 11 caracteres
-  nro_dni?: string;  // Permite que sea opcional (puede ser null o un string numérico de 8 caracteres)
-  nombre_persona?: string;  // Opcional, puede ser null
+  documento_ruc: string;
+  nro_dni?: string;
+  nombre_persona?: string;
   pais: string;
   direccion: string;
-  telefono?: string;  // Opcional, solo numérico con 9 caracteres
-  correo: string;  // Validación de email
+  telefono?: string;
+  correo: string;
 }
 

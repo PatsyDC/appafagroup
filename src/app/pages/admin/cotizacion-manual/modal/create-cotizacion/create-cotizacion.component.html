@@ -1,14 +1,25 @@
+<body>
+<div class="hero-section">
+  <h1>{{ cotizacionId ? 'Detalle' : 'Crear' }} Cotización</h1>
+</div>
 <div class="cotizacion-container">
   <form [formGroup]="cotizacionForm" (ngSubmit)="guardarCotizacion()">
     <div class="form-grid">
       <!-- PERIODO -->
       <div class="form-group">
-        <label for="periodo">Periodo</label>
-        <input type="month" id="periodo" formControlName="periodo" class="form-control">
+        <label for="periodo">Periodo *</label>
+        <input
+          type="month"
+          id="periodo"
+          formControlName="periodo"
+          class="form-control"
+          [class.is-invalid]="cotizacionForm.get('periodo')?.invalid && cotizacionForm.get('periodo')?.touched">
+        <div class="invalid-feedback" *ngIf="cotizacionForm.get('periodo')?.invalid && cotizacionForm.get('periodo')?.touched">
+          El periodo es obligatorio
+        </div>
       </div>
 
-      <!-- SERIE & NUMERO (si está cotizado) -->
-      <div class="form-grid" *ngIf="estadoCotizacion === 'COTIZADO'">
+      <div class="form-grid-inline" *ngIf="estadoCotizacion === 'COTIZADO'">
         <div class="form-group">
           <label for="serie">Serie</label>
           <input type="text" id="serie" formControlName="serie" class="form-control" readonly>
@@ -19,109 +30,384 @@
         </div>
       </div>
 
-      <!-- CAMPOS DE COTIZACION -->
-      <div class="form-group"><label>Fecha</label><input type="date" formControlName="fecha" class="form-control"></div>
-      <div class="form-group"><label>Tipo de Cambio</label><input type="number" formControlName="tipo_cambio" class="form-control"></div>
-      <div class="form-group"><label>Punto de Venta</label><input type="text" formControlName="punto_venta" class="form-control"></div>
-
-      <div class="form-group"><label>Razón Social</label><input type="text" formControlName="razon_social" class="form-control"></div>
-      <div class="form-group"><label>RUC</label><input type="text" formControlName="ruc" class="form-control"></div>
-      <div class="form-group"><label>Nombre Contacto</label><input type="text" formControlName="nombre_contacto" class="form-control"></div>
-      <div class="form-group"><label>DNI Contacto</label><input type="text" formControlName="dni_persona" class="form-control"></div>
-      <div class="form-group"><label>Email</label><input type="email" formControlName="email" class="form-control"></div>
-      <div class="form-group"><label>Teléfono</label><input type="text" formControlName="telefono" class="form-control"></div>
+      <!-- INFORMACIÓN BÁSICA -->
+      <div class="form-group">
+        <label>Fecha *</label>
+        <input
+          type="date"
+          formControlName="fecha"
+          class="form-control"
+          [class.is-invalid]="cotizacionForm.get('fecha')?.invalid && cotizacionForm.get('fecha')?.touched">
+        <div class="invalid-feedback" *ngIf="cotizacionForm.get('fecha')?.invalid && cotizacionForm.get('fecha')?.touched">
+          La fecha es obligatoria
+        </div>
+      </div>
 
       <div class="form-group">
-        <label>Forma de Pago</label>
-        <select formControlName="forma_pago" class="form-control">
+        <label>Tipo de Cambio *</label>
+        <input
+          type="number"
+          step="0.01"
+          formControlName="tipo_cambio"
+          class="form-control"
+          [class.is-invalid]="cotizacionForm.get('tipo_cambio')?.invalid && cotizacionForm.get('tipo_cambio')?.touched">
+        <div class="invalid-feedback" *ngIf="cotizacionForm.get('tipo_cambio')?.invalid && cotizacionForm.get('tipo_cambio')?.touched">
+          El tipo de cambio es obligatorio
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Punto de Venta *</label>
+        <input
+          type="text"
+          formControlName="punto_venta"
+          class="form-control"
+          [class.is-invalid]="cotizacionForm.get('punto_venta')?.invalid && cotizacionForm.get('punto_venta')?.touched">
+        <div class="invalid-feedback" *ngIf="cotizacionForm.get('punto_venta')?.invalid && cotizacionForm.get('punto_venta')?.touched">
+          El punto de venta es obligatorio
+        </div>
+      </div>
+
+      <!-- INFORMACIÓN DEL CLIENTE CON AUTOCOMPLETADO -->
+      <div class="form-group cliente-autocomplete">
+        <label>Razón Social *</label>
+        <div class="autocomplete-container">
+          <input
+            type="text"
+            formControlName="razon_social"
+            class="form-control"
+            placeholder="Escriba la razón social del cliente"
+            (focus)="mostrarListaClientes = clientesBuscados.length > 0"
+            (blur)="ocultarListaClientes()"
+            [class.is-invalid]="cotizacionForm.get('razon_social')?.invalid && cotizacionForm.get('razon_social')?.touched">
+
+          <!-- Lista de clientes encontrados -->
+          <ul class="autocomplete-list" *ngIf="mostrarListaClientes && clientesBuscados.length > 0">
+            <li *ngFor="let cliente of clientesBuscados"
+                (mousedown)="seleccionarCliente(cliente)"
+                class="autocomplete-item">
+              <strong>{{ cliente.razon_social }}</strong>
+              <small>{{ cliente.codigo_ruc }}</small>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Botón para limpiar selección de cliente -->
+        <button
+          type="button"
+          *ngIf="clienteSeleccionado"
+          (click)="limpiarSeleccionCliente()"
+          class="btn btn-sm btn-outline-secondary mt-1">
+          Limpiar y llenar manualmente
+        </button>
+
+        <div class="invalid-feedback" *ngIf="cotizacionForm.get('razon_social')?.invalid && cotizacionForm.get('razon_social')?.touched">
+          La razón social es obligatoria
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>RUC</label>
+        <input
+          type="text"
+          formControlName="ruc"
+          class="form-control"
+          [readonly]="!!clienteSeleccionado">
+      </div>
+
+      <div class="form-group">
+        <label>Nombre Contacto *</label>
+        <input
+          type="text"
+          formControlName="nombre_contacto"
+          class="form-control"
+          [class.is-invalid]="cotizacionForm.get('nombre_contacto')?.invalid && cotizacionForm.get('nombre_contacto')?.touched">
+        <div class="invalid-feedback" *ngIf="cotizacionForm.get('nombre_contacto')?.invalid && cotizacionForm.get('nombre_contacto')?.touched">
+          El nombre del contacto es obligatorio
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>DNI Contacto *</label>
+        <input
+          type="text"
+          formControlName="dni_persona"
+          class="form-control"
+          [class.is-invalid]="cotizacionForm.get('dni_persona')?.invalid && cotizacionForm.get('dni_persona')?.touched">
+        <div class="invalid-feedback" *ngIf="cotizacionForm.get('dni_persona')?.invalid && cotizacionForm.get('dni_persona')?.touched">
+          El DNI del contacto es obligatorio
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Email *</label>
+        <input
+          type="email"
+          formControlName="email"
+          class="form-control"
+          [class.is-invalid]="cotizacionForm.get('email')?.invalid && cotizacionForm.get('email')?.touched">
+        <div class="invalid-feedback" *ngIf="cotizacionForm.get('email')?.invalid && cotizacionForm.get('email')?.touched">
+          <span *ngIf="cotizacionForm.get('email')?.errors?.['required']">El email es obligatorio</span>
+          <span *ngIf="cotizacionForm.get('email')?.errors?.['email']">El formato del email no es válido</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Teléfono *</label>
+        <input
+          type="text"
+          formControlName="telefono"
+          class="form-control"
+          [class.is-invalid]="cotizacionForm.get('telefono')?.invalid && cotizacionForm.get('telefono')?.touched">
+        <div class="invalid-feedback" *ngIf="cotizacionForm.get('telefono')?.invalid && cotizacionForm.get('telefono')?.touched">
+          El teléfono es obligatorio
+        </div>
+      </div>
+
+      <!-- TÉRMINOS COMERCIALES -->
+      <div class="form-group">
+        <label>Forma de Pago *</label>
+        <select
+          formControlName="forma_pago"
+          class="form-control"
+          [class.is-invalid]="cotizacionForm.get('forma_pago')?.invalid && cotizacionForm.get('forma_pago')?.touched">
+          <option value="">Seleccione una forma de pago</option>
           <option *ngFor="let forma of formasPago" [value]="forma">{{ forma }}</option>
         </select>
+        <div class="invalid-feedback" *ngIf="cotizacionForm.get('forma_pago')?.invalid && cotizacionForm.get('forma_pago')?.touched">
+          La forma de pago es obligatoria
+        </div>
       </div>
 
-      <div class="form-group"><label>Días de Oferta</label><input type="text" formControlName="dias_ofertas" class="form-control"></div>
       <div class="form-group">
-        <label>Moneda</label>
-        <select formControlName="moneda" class="form-control">
+        <label>Días de Oferta *</label>
+        <input
+          type="number"
+          formControlName="dias_ofertas"
+          class="form-control"
+          min="1"
+          [class.is-invalid]="cotizacionForm.get('dias_ofertas')?.invalid && cotizacionForm.get('dias_ofertas')?.touched">
+        <div class="invalid-feedback" *ngIf="cotizacionForm.get('dias_ofertas')?.invalid && cotizacionForm.get('dias_ofertas')?.touched">
+          Los días de oferta son obligatorios
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Moneda *</label>
+        <select
+          formControlName="moneda"
+          class="form-control"
+          [class.is-invalid]="cotizacionForm.get('moneda')?.invalid && cotizacionForm.get('moneda')?.touched">
+          <option value="">Seleccione una moneda</option>
           <option *ngFor="let moneda of monedas" [value]="moneda">{{ moneda }}</option>
         </select>
+        <div class="invalid-feedback" *ngIf="cotizacionForm.get('moneda')?.invalid && cotizacionForm.get('moneda')?.touched">
+          La moneda es obligatoria
+        </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group full-width">
         <label>Observaciones</label>
-        <textarea formControlName="observaciones" rows="3" class="form-control"></textarea>
+        <textarea
+          formControlName="observaciones"
+          rows="3"
+          class="form-control"
+          placeholder="Observaciones adicionales"></textarea>
       </div>
     </div>
 
-    <!-- TABLA DE PRODUCTOS -->
-    <!-- Buscador de productos -->
-<div class="form-group">
-  <label for="busqueda">Buscar producto</label>
-  <input
-    type="text"
-    id="busqueda"
-    [(ngModel)]="productoBuscado"
-    (input)="buscarProductos()"
-    class="form-control"
-    placeholder="Escribe el nombre del producto"
-  />
-</div>
+    <!-- SECCIÓN DE PRODUCTOS MEJORADA -->
+    <div class="productos-section">
+      <h2>Productos</h2>
 
-<!-- Resultados de búsqueda -->
-<ul *ngIf="productosFiltrados.length > 0" class="busqueda-lista">
-  <li *ngFor="let producto of productosFiltrados" (click)="agregarProducto(producto)">
-    {{ producto.nombre }}
-  </li>
-</ul>
+      <!-- Tabla de productos con fila para agregar nuevos -->
+      <div class="table-responsive">
+        <table class="table table-striped productos-table">
+          <thead>
+            <tr>
+              <th style="width: 30%;">Producto</th>
+              <th style="width: 12%;">Cantidad</th>
+              <th style="width: 15%;">Precio Unit.</th>
+              <th style="width: 13%;">Descuento (%)</th>
+              <th style="width: 15%;">Precio c/Desc.</th>
+              <th style="width: 15%;">Subtotal</th>
+              <th style="width: 10%;">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Fila para agregar nuevos productos -->
+            <tr class="nueva-fila-producto" *ngIf="!modoSoloLectura">
+              <td>
+                <div class="autocomplete-container">
+                  <input
+                    type="text"
+                    [(ngModel)]="nuevoProducto.nombre"
+                    [ngModelOptions]="{standalone: true}"
+                    (input)="buscarProductosEnTabla($event)"
+                    (focus)="mostrarSugerenciasProducto = true"
+                    class="form-control form-control-sm"
+                    placeholder="Escriba el nombre del producto"
+                  />
 
-<!-- Tabla de productos añadidos -->
-<div class="productos-section" *ngIf="productos.length > 0">
-  <h2>Productos añadidos</h2>
-  <table class="productos-table">
-    <thead>
-      <tr>
-        <th>Producto</th>
-        <th>Cantidad</th>
-        <th>Precio</th>
-        <th>Descuento (%)</th>
-        <th>Precio con Descuento</th>
-        <th>Subtotal</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let producto of productos; let i = index">
-        <td>{{ producto.nombre }}</td>
-        <td>
-          <input type="number" [(ngModel)]="producto.cantidad" (change)="actualizarSubtotal(i)" />
-        </td>
-        <td>
-          <input type="number" [(ngModel)]="producto.precio" (change)="actualizarSubtotal(i)" />
-        </td>
-        <td>
-          <input type="number" [(ngModel)]="producto.descuento" (change)="actualizarSubtotal(i)" />
-        </td>
-        <td>{{ producto.precio_descuento | number:'1.2-2' }}</td>
-        <td>{{ producto.sub_total | number:'1.2-2' }}</td>
-        <td>
-          <button (click)="eliminarProducto(i)">🗑️</button>
-        </td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="5" style="text-align: right;"><strong>Total:</strong></td>
-        <td><strong>{{ totalPrecioProductos | number:'1.2-2' }}</strong></td>
-        <td></td>
-      </tr>
-    </tfoot>
-  </table>
-</div>
+                  <!-- Lista de sugerencias -->
+                  <ul class="autocomplete-list autocomplete-table"
+                      *ngIf="mostrarSugerenciasProducto && productosSugeridos.length > 0">
+                    <li *ngFor="let producto of productosSugeridos"
+                        (mousedown)="seleccionarProductoEnTabla(producto)"
+                        class="autocomplete-item">
+                      <strong>{{ producto.nombre_producto }}</strong>
+                      <small class="text-muted d-block">{{ producto.codigo_sunat }}</small>
+                      <span class="price">S/ {{ producto.precio | number:'1.2-2' }}</span>
+                    </li>
+                  </ul>
+                </div>
+              </td>
+              <td>
+                <input
+                  type="number"
+                  [(ngModel)]="nuevoProducto.cantidad"
+                  [ngModelOptions]="{standalone: true}"
+                  (input)="calcularSubtotalNuevo()"
+                  class="form-control form-control-sm"
+                  min="1"
+                  value="1"
+                />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  [(ngModel)]="nuevoProducto.precio"
+                  [ngModelOptions]="{standalone: true}"
+                  (input)="calcularSubtotalNuevo()"
+                  class="form-control form-control-sm"
+                  step="0.01"
+                  min="0"
+                />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  [(ngModel)]="nuevoProducto.descuento"
+                  [ngModelOptions]="{standalone: true}"
+                  (input)="calcularSubtotalNuevo()"
+                  class="form-control form-control-sm"
+                  min="0"
+                  max="100"
+                  value="0"
+                />
+              </td>
+              <td class="text-end">
+                <span class="precio-calculado">
+                  S/ {{ nuevoProducto.precio_descuento | number:'1.2-2' }}
+                </span>
+              </td>
+              <td class="text-end">
+                <strong class="subtotal-calculado">
+                  S/ {{ nuevoProducto.sub_total | number:'1.2-2' }}
+                </strong>
+              </td>
+              <td>
+                <button
+                  type="button"
+                  (click)="agregarProductoATabla()"
+                  [disabled]="!esProductoValidoParaAgregar()"
+                  class="btn btn-sm btn-success"
+                  title="Agregar producto"
+                  *ngIf="!modoSoloLectura">
+                  ➕
+                </button>
+              </td>
+            </tr>
+
+            <!-- Productos ya agregados -->
+            <tr *ngFor="let producto of productos; let i = index" class="producto-existente">
+              <td>
+                <strong>{{ producto.nombre }}</strong>
+                <small class="text-muted d-block" *ngIf="producto.codigo">{{ producto.codigo }}</small>
+                <small class="text-muted d-block">{{ producto.unidad }}</small>
+              </td>
+              <td>
+                <input
+                  type="number"
+                  [value]="producto.cantidad"
+                  (input)="actualizarCantidad(i, $event)"
+                  class="form-control form-control-sm"
+                  min="1"
+                  [disabled]="modoSoloLectura"
+                />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  [value]="producto.precio"
+                  (input)="actualizarPrecio(i, $event)"
+                  class="form-control form-control-sm"
+                  step="0.01"
+                  min="0"
+                  [disabled]="modoSoloLectura"
+                />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  [value]="producto.descuento"
+                  (input)="actualizarDescuento(i, $event)"
+                  class="form-control form-control-sm"
+                  min="0"
+                  max="100"
+                  [disabled]="modoSoloLectura"
+                />
+              </td>
+              <td class="text-end">
+                S/ {{ producto.precio_descuento | number:'1.2-2' }}
+              </td>
+              <td class="text-end">
+                <strong>S/ {{ producto.sub_total | number:'1.2-2' }}</strong>
+              </td>
+              <td>
+                <button
+                  type="button"
+                  (click)="eliminarProducto(i)"
+                  class="btn btn-sm btn-outline-danger"
+                  title="Eliminar producto"
+                  *ngIf="!modoSoloLectura">
+                  🗑️
+                </button>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot *ngIf="productos.length > 0">
+            <tr class="table-info">
+              <td colspan="5" class="text-end"><strong>Total:</strong></td>
+              <td class="text-end">
+                <strong>S/ {{ totalPrecioProductos | number:'1.2-2' }}</strong>
+              </td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <!-- Mensaje cuando no hay productos -->
+      <div *ngIf="productos.length === 0 && !modoSoloLectura" class="alert alert-info mt-3">
+        <i class="fas fa-info-circle"></i>
+        No hay productos agregados. Use la fila superior de la tabla para agregar productos.
+      </div>
+
+    </div>
 
     <!-- BOTONES -->
     <div class="button-container">
       <button type="button" class="btn btn-secondary" routerLink="/admin/cotizacionManual">Cancelar</button>
-      <button type="submit" class="btn btn-primary" *ngIf="estadoCotizacion !== 'COTIZADO'">Guardar Cotización</button>
-      <!-- <button type="button" class="btn btn-success" (click)="generarPDF()">Generar PDF</button> -->
+      <button
+        type="submit"
+        class="btn btn-primary"
+        *ngIf="estadoCotizacion !== 'COTIZADO'">
+        {{ cotizacionId ? 'Actualizar' : 'Guardar' }} Cotización
+      </button>
+            <button type="button" class="btn btn-success" (click)="generarPDF()">Generar PDF</button>
     </div>
   </form>
 </div>
+</body>
+

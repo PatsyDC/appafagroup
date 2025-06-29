@@ -111,6 +111,8 @@ export class CotizacionWebComponent {
         const tieneCotizacion = cotizaciones.some(c => String(c.carrito_id) === String(carrito.carrito_id));
         this.estadosCotizacion[carrito.carrito_id] = tieneCotizacion;
       });
+
+      this.ordenarCarritos();
     });
   }
 
@@ -125,5 +127,26 @@ export class CotizacionWebComponent {
   verDetalle(carritoId: string): void {
     this.router.navigate(['/admin/cotizacion-detalle', carritoId]);
   }
+
+  ordenarCarritos(): void {
+  this.cotizacionWeb.sort((a, b) => {
+    const estadoA = this.estadosCotizacion[a.carrito_id] ? 1 : 0;
+    const estadoB = this.estadosCotizacion[b.carrito_id] ? 1 : 0;
+
+    if (estadoA !== estadoB) {
+      return estadoA - estadoB; // Pendiente (0) primero
+    }
+
+    // Asegúrate de que ambas fechas existan antes de comparar
+    const fechaA = new Date(a.createdAt || 0).getTime();
+    const fechaB = new Date(b.createdAt || 0).getTime();
+    return fechaB - fechaA; // Más recientes primero
+  });
+
+  this.filteredCarrito = [...this.cotizacionWeb];
+  this.calculateTotalPages();
+  this.currentPage = 1;
+}
+
 
 }

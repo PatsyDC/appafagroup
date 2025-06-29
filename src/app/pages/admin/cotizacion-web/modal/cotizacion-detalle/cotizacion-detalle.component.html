@@ -136,9 +136,9 @@
           <tr>
             <th>Producto</th>
             <th>Cantidad</th>
-            <th>Precio</th>
+            <th>Precio Unit.</th>
             <th>Descuento (%)</th>
-            <th>Precio con Descuento</th>
+            <th>Precio c/Desc.</th>
             <th>Subtotal</th>
           </tr>
         </thead>
@@ -148,11 +148,11 @@
             <td>{{ producto.cantidad }}</td>
             <td>
               <input type="number" [value]="producto.precio" min="0" step="0.01"
-                    (change)="actualizarPrecio(i, $event)" class="form-control-sm">
+                    (change)="actualizarPrecio(i, $event)" class="form-control-sm" readonly>
             </td>
             <td>
               <input type="number" [value]="producto.descuento" min="0" max="100"
-                    (change)="actualizarDescuento(i, $event)" class="form-control-sm">
+                    (change)="actualizarDescuento(i, $event)" class="form-control-sm" readonly>
             </td>
             <td>{{ producto.precio_descuento | number:'1.2-2' }}</td>
             <td>{{ producto.sub_total | number:'1.2-2' }}</td>

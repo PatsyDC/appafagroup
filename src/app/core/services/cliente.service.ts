@@ -46,4 +46,41 @@ export class ClienteService {
     return this.http.put<ICliente>(`${this.url}${cliente_id}/`, cliente);
   }
 
+    buscarClientesPorRazonSocial(termino: string): Observable<ICliente[]> {
+    if (!termino || termino.trim().length === 0) {
+      return new Observable(observer => {
+        observer.next([]);
+        observer.complete();
+      });
+    }
+
+    // Opción 1: Si tu API tiene un endpoint específico para búsqueda
+    // return this.http.get<{ ok: boolean, status: number, body: ICliente[] }>(`${this.url}buscar?razon_social=${encodeURIComponent(termino)}`)
+    //   .pipe(
+    //     map(response => response.body || [])
+    //   );
+
+    // Opción 2: Filtrar del lado del cliente (si no tienes endpoint de búsqueda)
+    return this.allClientes().pipe(
+      map(clientes => {
+        const terminoLower = termino.toLowerCase().trim();
+        return clientes.filter(cliente =>
+          cliente.razon_social.toLowerCase().includes(terminoLower) ||
+          cliente.codigo_ruc.includes(terminoLower) ||
+          (cliente.nombre_persona && cliente.nombre_persona.toLowerCase().includes(terminoLower))
+        ).slice(0, 10); // Limitar a 10 resultados
+      })
+    );
+  }
+
+  // Método adicional para buscar cliente por RUC exacto
+  buscarClientePorRuc(ruc: string): Observable<ICliente | null> {
+    return this.allClientes().pipe(
+      map(clientes => {
+        const cliente = clientes.find(c => c.codigo_ruc === ruc);
+        return cliente || null;
+      })
+    );
+  }
+
 }

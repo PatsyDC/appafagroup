@@ -96,8 +96,6 @@ export class CotizacionManualComponent {
   }
 
   editarCotizacion(id: string): void {
-  this.router.navigate(['/admin/cotizacionManual/detalle', id]);
-}
-
-
+    this.router.navigate(['admin/cotizacionManual/detalle', id]);
+  }
 }

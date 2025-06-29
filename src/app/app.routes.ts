@@ -54,8 +54,8 @@ export const routes: Routes = [
       { path: 'cotizacionWeb', component: CotizacionWebComponent},
       { path: 'cotizacion-detalle/:id', component: CotizacionDetalleComponent},
       { path: 'cotizacionManual', component: CotizacionManualComponent},
-      {path: 'cotizacionManual/crear', component: CreateCotizacionComponent},
-      {path: 'cotizacionManual/detalle/:id',component: CreateCotizacionComponent}
+      { path: 'cotizacionManual/crear', component: CreateCotizacionComponent},
+      { path: 'cotizacionManual/detalle/:id',component: CreateCotizacionComponent}
     ]
   },
   { path: 'login', component: LoginComponent },

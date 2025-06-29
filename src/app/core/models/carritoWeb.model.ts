@@ -10,4 +10,5 @@ export interface CarritoWeb {
   telefono: string;
   direccion: string;
   estado?: string;
+  createdAt?: Date
 }
