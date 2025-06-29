@@ -14,8 +14,8 @@ export class CotizacionManualService {
       return this._refresh$;
     }
 
-  private url: string = 'http://localhost:3000/api/v1/'
-  //private url: string = 'https://afagroup-api-1cml.onrender.com/api/v1/'
+  //private url: string = 'http://localhost:3000/api/v1/'
+  private url: string = 'https://afagroup-api-1cml.onrender.com/api/v1/'
 
   constructor(private http: HttpClient) { }
 

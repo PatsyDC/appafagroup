@@ -27,6 +27,7 @@ export class CreateCotizacionComponent implements OnInit {
   estadoCotizacion: string = '';
   formasPago = ['Contado', 'Crédito'];
   monedas = ['PEN', 'USD'];
+  sucursales = ['Trujillo', 'Moche', 'Chiclayo', 'Ica', 'Lima']
   userId: number | null = null;
   modoSoloLectura: boolean = false;
 

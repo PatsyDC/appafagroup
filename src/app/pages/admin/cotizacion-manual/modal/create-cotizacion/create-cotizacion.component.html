@@ -58,11 +58,13 @@
 
       <div class="form-group">
         <label>Punto de Venta *</label>
-        <input
-          type="text"
-          formControlName="punto_venta"
+        <select
+          formControlName="sucursales"
           class="form-control"
-          [class.is-invalid]="cotizacionForm.get('punto_venta')?.invalid && cotizacionForm.get('punto_venta')?.touched">
+          [class.is-invalid]="cotizacionForm.get('sucursales')?.invalid && cotizacionForm.get('sucursales')?.touched">
+          <option value="">Seleccione la sede</option>
+          <option *ngFor="let punto_venta of sucursales" [value]="punto_venta">{{ punto_venta }}</option>
+        </select>
         <div class="invalid-feedback" *ngIf="cotizacionForm.get('punto_venta')?.invalid && cotizacionForm.get('punto_venta')?.touched">
           El punto de venta es obligatorio
         </div>
