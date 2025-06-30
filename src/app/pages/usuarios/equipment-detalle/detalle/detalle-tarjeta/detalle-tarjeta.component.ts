@@ -87,4 +87,17 @@ export class DetalleTarjetaComponent implements OnInit, OnChanges{
       this.cargarProducto(this.productoId);
     }
   }
+
+  abrirFichaTecnica(): void {
+  if (this.producto?.ficha_tecnica) {
+    window.open(this.producto.ficha_tecnica, '_blank');
+  } else {
+    Swal.fire(
+      'Ficha técnica no disponible',
+      'Este producto no tiene una ficha técnica asociada.',
+      'info'
+    );
+  }
+}
+
 }

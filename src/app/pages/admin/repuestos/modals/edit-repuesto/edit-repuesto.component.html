@@ -91,6 +91,26 @@
         <input type="number" formControlName="precio" id="precio" required>
       </div>
 
+      <label>Ficha Técnica (PDF o Imagen)</label>
+        <input type="file" accept=".pdf,.jpg,.jpeg,.png" (change)="onFichaTecnicaSelected($event)" />
+
+      <div *ngIf="fichaTecnicaPreview">
+        <p>Vista previa de la ficha técnica:</p>
+
+        <!-- Mostrar imagen si es imagen -->
+        <img *ngIf="fichaTecnicaPreview?.includes('data:image')"
+            [src]="fichaTecnicaPreview"
+            alt="Ficha Técnica"
+            width="200" />
+
+        <!-- Mostrar link si es PDF -->
+        <a *ngIf="!fichaTecnicaPreview?.includes('data:image')"
+          [href]="fichaTecnicaPreview"
+          target="_blank">
+          Ver PDF
+        </a>
+      </div>
+
     </div>
 
     <div class="button-group">

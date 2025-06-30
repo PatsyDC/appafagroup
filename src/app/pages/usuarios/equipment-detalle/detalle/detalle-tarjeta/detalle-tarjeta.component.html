@@ -43,10 +43,12 @@
       </div>
 
       <div class="botones-accion mt-4">
-        <button class="btn btn-ficha-tecnica">
+        <button
+          class="btn btn-ficha-tecnica"
+          *ngIf="producto?.ficha_tecnica"
+          (click)="abrirFichaTecnica()">
           <i class="fas fa-file-pdf"></i> Ficha Técnica
         </button>
-
         <button class="btn btn-agregar-carrito"
               (click)="agregarAlCarrito(producto)"
               [disabled]="producto.stock_minimo <= 0">

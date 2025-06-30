@@ -24,6 +24,8 @@ export class EditRepuestoComponent implements OnInit {
   formP: FormGroup;
   selectedFile: File | null = null;
   imagePreview: string | null = null;
+  fichaTecnicaFile: File | null = null;
+  fichaTecnicaPreview: string | null = null;
 
   constructor(
     private service: ProductoAGService,
@@ -48,6 +50,7 @@ export class EditRepuestoComponent implements OnInit {
       peso: [0, [Validators.required]],
       imagen_url: [null],
       precio: [0, [Validators.required]],
+      ficha_tecnica: [null]
     });
   }
 
@@ -84,6 +87,9 @@ export class EditRepuestoComponent implements OnInit {
       if (this.data.imagen_url) {
         this.imagePreview = this.data.imagen_url;
       }
+      if (this.data.ficha_tecnica) {
+        this.fichaTecnicaPreview = this.data.ficha_tecnica;
+      }
     } else {
       console.error('No se recibieron datos del producto');
     }
@@ -101,6 +107,19 @@ export class EditRepuestoComponent implements OnInit {
       reader.readAsDataURL(this.selectedFile);
     }
   }
+
+  onFichaTecnicaSelected(event: any) {
+    this.fichaTecnicaFile = event.target.files[0] as File;
+
+    if (this.fichaTecnicaFile) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.fichaTecnicaPreview = e.target.result;
+      };
+      reader.readAsDataURL(this.fichaTecnicaFile);
+    }
+  }
+
 
   isFormValid(): boolean {
     return this.formP.valid;
@@ -129,6 +148,11 @@ export class EditRepuestoComponent implements OnInit {
       if (this.selectedFile) {
         formData.append('imagen_url', this.selectedFile, this.selectedFile.name);
       }
+
+      if (this.fichaTecnicaFile) {
+        formData.append('ficha_tecnica', this.fichaTecnicaFile, this.fichaTecnicaFile.name);
+      }
+
 
       // Usa el ID correcto del producto
       this.service.putRepuesto(this.producto.producto_id, formData).subscribe(
