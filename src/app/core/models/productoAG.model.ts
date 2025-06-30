@@ -15,5 +15,6 @@ export interface IProductoAG {
   peso: number;
   imagen_url: string;
   precio: number;
+  ficha_tecnica: string;
 }
 

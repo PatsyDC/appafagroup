@@ -23,6 +23,7 @@ export class AgregarProductoComponent {
   categorias: ICategoriaP[] = [];
   formP: FormGroup;
   selectedFile: File | null = null;
+  selectedFicha: File | null = null;
 
     constructor(
       private service: ProductoAGService,
@@ -45,7 +46,8 @@ export class AgregarProductoComponent {
         stock_maximo: [0, [Validators.required]],
         peso: [0, [Validators.required]],
         imagen_url: [null],
-        precio: [0, [Validators.required]]
+        precio: [0, [Validators.required]],
+        ficha_tecnica: [null]
       });
     }
 
@@ -53,8 +55,12 @@ export class AgregarProductoComponent {
       this.cargarCategorias();
     }
 
-    onFileSelected(event: any) {
+    onImageSelected(event: any) {
       this.selectedFile = event.target.files[0] as File;
+    }
+
+    onFichaSelected(event: any) {
+      this.selectedFicha = event.target.files[0] as File;
     }
 
     isFormValid(): boolean {
@@ -80,6 +86,9 @@ export class AgregarProductoComponent {
         formData.append('peso', this.formP.get('peso')?.value || '');
         formData.append('imagen_url', this.selectedFile, this.selectedFile.name);
         formData.append('precio', this.formP.get('precio')?.value || '');
+        if (this.selectedFicha) {
+          formData.append('ficha_tecnica', this.selectedFicha, this.selectedFicha.name);
+        }
 
         formData.forEach((value, key) => {
           console.log(`${key}:`, value);

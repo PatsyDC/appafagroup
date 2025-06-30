@@ -84,13 +84,19 @@
       </div>
 
       <div class="form-group">
-        <label for="imagen_url">Imagen</label>
-        <input type="file" id="imagen_url" (change)="onFileSelected($event)" accept="image/*" required>
+        <label for="imagen">Imagen del producto:</label>
+        <input type="file" id="imagen" (change)="onImageSelected($event)" accept="image/*" />
       </div>
 
       <div class="form-group">
         <label for="precio">Precio</label>
         <input type="number" formControlName="precio" id="precio" required>
+      </div>
+
+      <div class="form-group">
+        <label for="ficha_tecnica">Ficha tecnica</label>
+        <label for="ficha">Ficha técnica:</label>
+        <input type="file" id="ficha" (change)="onFichaSelected($event)" accept=".pdf,image/*" />
       </div>
     </div>
 
