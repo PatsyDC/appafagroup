@@ -104,15 +104,18 @@ export class RepuestosComponent {
     return categoria ? categoria.categoria_name : 'Desconocido';
   }
 
-  openDialogAdd(): void{
-    const dialogReAdd = this.dialog.open(AgregarProductoComponent);
+  openDialogAdd(): void {
+    const dialogReAdd = this.dialog.open(AgregarProductoComponent, {
+      disableClose: true
+    });
 
     dialogReAdd.afterClosed().subscribe(result => {
-      if(result){
+      if (result) {
         this.ngOnInit();
       }
     });
-  }
+}
+
 
   onDelete(producto_id: string): void {
     Swal.fire({
@@ -138,7 +141,8 @@ export class RepuestosComponent {
 
   openDialogEdit(repuesto: IProductoAG) {
     const dialogRefEdit = this.dialog.open(EditRepuestoComponent, {
-      data: repuesto
+      data: repuesto,
+      disableClose: true
     });
 
     dialogRefEdit.afterClosed().subscribe(result => {

@@ -1,8 +1,7 @@
-/* Contenedor del formulario */
 .form-container {
   padding: 1rem;
   font-family: sans-serif;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   background: #ffffff;
   border-radius: 10px;
@@ -10,12 +9,11 @@
   width: 100%;
   box-sizing: border-box;
   /* Añadir scroll si es necesario */
-  max-height: 85vh; /* Altura máxima relativa a la ventana */
-  overflow-y: auto; /* Scroll vertical */
+  max-height: 85vh;
+  overflow-y: auto;
   position: relative;
 }
 
-/* Añadir estilo de scroll personalizado */
 .form-container::-webkit-scrollbar {
   width: 8px;
 }
@@ -45,12 +43,25 @@
   padding-right: 40px;
   font-family: sans-serif;
   position: relative;
-  /* Mantener el título visible al hacer scroll */
   position: sticky;
   top: 0;
   background: #ffffff;
   z-index: 5;
   padding-top: 0.5rem;
+}
+
+.col-span-full {
+  grid-column: span 3;
+}
+
+.col-span-2 {
+  grid-column: span 2;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+  font-family: sans-serif;
 }
 
 .ticket-form {
@@ -59,7 +70,6 @@
   width: 100%;
 }
 
-/* Mantener el diseño en 3 columnas */
 .form-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -150,10 +160,8 @@
     padding: 0.6rem;
   }
 
-  /* Ajustar botones en móvil */
   .button-group {
     flex-direction: column;
-    /* Hacer que los botones se queden fijos en la parte inferior */
     position: sticky;
     bottom: 0;
     background: white;
@@ -183,7 +191,6 @@
   }
 }
 
-/* Botones */
 .button-group {
   display: flex;
   justify-content: space-between;
@@ -227,13 +234,11 @@
   background-color: #c82333;
 }
 
-/* Estilo para el input de tipo file */
 .form-group input[type="file"] {
   padding: 0.5rem;
   cursor: pointer;
 }
 
-/* Sobreescribir estilos de diálogo si están interfiriendo */
 .modal-body .form-container,
 .dialog-body .form-container,
 .mat-dialog-container .form-container {
@@ -244,7 +249,6 @@
   overflow-y: auto;
 }
 
-/* Asegurar que la fuente se aplica incluso con alta especificidad */
 .modal .form-container *,
 .dialog .form-container *,
 .mat-dialog-content .form-container * {
@@ -279,4 +283,26 @@
   max-width: 100%;
   max-height: 150px;
   object-fit: contain;
+}
+
+/* Asegurar que col-span funcione correctamente en 1, 2 o 3 columnas */
+@media (max-width: 600px) {
+  .col-span-2,
+  .col-span-full {
+    grid-column: span 1 !important;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .col-span-full {
+    grid-column: span 2;
+  }
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  min-width: 0;
+  word-wrap: break-word;
+  word-break: break-word;
 }

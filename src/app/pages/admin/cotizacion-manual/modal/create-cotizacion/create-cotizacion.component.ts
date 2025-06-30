@@ -12,6 +12,7 @@ import { CotizacionPdfService } from 'app/core/services/cotizacion-pdf.service';
 import { ProductoAGService } from 'app/core/services/productoAG.service';
 import { UserService } from 'app/core/services/user.service';
 import { debounceTime, distinctUntilChanged, forkJoin, Observable, switchMap } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-cotizacion',
@@ -24,6 +25,7 @@ export class CreateCotizacionComponent implements OnInit {
   cotizacionForm!: FormGroup;
   productos: any[] = [];
   totalPrecioProductos = 0;
+  preciosOriginales: number[] = [];
   estadoCotizacion: string = '';
   formasPago = ['Contado', 'Crédito'];
   monedas = ['PEN', 'USD'];
@@ -285,7 +287,43 @@ export class CreateCotizacionComponent implements OnInit {
     this.totalPrecioProductos = this.productos.reduce((total, p) => total + (p.sub_total || 0), 0);
   }
 
-cargarCotizacionExistente(id: string): void {
+  onMonedaChange(): void {
+  const nuevaMoneda = this.cotizacionForm.get('moneda')?.value;
+  if (nuevaMoneda) {
+    this.convertirPrecios(nuevaMoneda);
+  }
+}
+
+  convertirPrecios(nuevaMoneda: string): void {
+  if (!nuevaMoneda) return;
+
+  const tipoCambio = parseFloat(this.cotizacionForm.get('tipo_cambio')?.value) || 1;
+
+  if (this.preciosOriginales.length === 0 && this.productos.length > 0) {
+    this.preciosOriginales = this.productos.map(p => p.precio);
+  }
+
+  this.productos = this.productos.map((producto, i) => {
+    const precioBase = this.preciosOriginales[i] || producto.precio;
+    const precioConvertido = nuevaMoneda === 'USD'
+      ? precioBase * tipoCambio
+      : precioBase;
+
+    const precio_descuento = precioConvertido * (1 - producto.descuento / 100);
+    const sub_total = precio_descuento * producto.cantidad;
+
+    return {
+      ...producto,
+      precio: parseFloat(precioConvertido.toFixed(2)),
+      precio_descuento: parseFloat(precio_descuento.toFixed(2)),
+      sub_total: parseFloat(sub_total.toFixed(2))
+    };
+  });
+
+  this.recalcularTotal();
+}
+
+  cargarCotizacionExistente(id: string): void {
   console.log('🆔 INICIO - ID de cotización a cargar:', id);
   console.log('🆔 INICIO - Tipo del ID:', typeof id);
 
@@ -371,9 +409,9 @@ cargarCotizacionExistente(id: string): void {
       alert('Error al cargar la cotización: ' + (error.message || 'Error desconocido'));
     }
   });
-}
+  }
 
-guardarCotizacion(): void {
+  guardarCotizacion(): void {
   if (this.cotizacionForm.invalid) {
     this.marcarCamposComoTocados();
     return;
@@ -396,6 +434,8 @@ guardarCotizacion(): void {
     precio: p.precio,
     cantidad: p.cantidad,
     unidad: p.unidad,
+    descuento: p.descuento, // <-- AGREGADO
+    precio_descuento: p.precio_descuento,
     subtotal: p.sub_total
   }));
 
@@ -410,12 +450,20 @@ guardarCotizacion(): void {
     this.cotizacionService.crearCotizacionConProductos(cotizacion, productos).subscribe({
       next: (resultado) => {
         console.log('✅ Cotización y productos guardados exitosamente:', resultado);
-        alert('Cotización creada exitosamente');
+        Swal.fire(
+          'Éxito!',
+          'El cotización se genero correctamente.',
+          'success'
+        );
         this.router.navigate(['/admin/cotizacionManual']);
       },
       error: (err) => {
-        console.error('❌ Error detallado al guardar:', err);
         console.error('❌ Error del servidor:', err.error);
+        Swal.fire(
+          'Error!',
+          'Hubo un problema al guardar la cotización.',
+          'error'
+        );
 
         let mensajeError = 'Hubo un error al guardar la cotización';
         if (err.error?.message) {
@@ -426,7 +474,7 @@ guardarCotizacion(): void {
       }
     });
   }
-}
+  }
 
   marcarCamposComoTocados(): void {
     Object.keys(this.cotizacionForm.controls).forEach(key => {

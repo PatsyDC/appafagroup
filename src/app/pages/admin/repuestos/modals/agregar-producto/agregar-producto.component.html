@@ -4,7 +4,7 @@
   <form class="ticket-form" [formGroup]="formP" (ngSubmit)="save()" enctype="multipart/form-data">
 
     <div class="form-grid">
-      <div class="form-group">
+      <div class="form-group col-span-full">
         <label for="nombre_producto">Nombre del producto</label>
         <input type="text" formControlName="nombre_producto" id="nombre_producto" required>
       </div>
@@ -18,14 +18,14 @@
         </select>
       </div>
 
-      <div class="form-group">
+      <div class="form-group col-span-2">
         <label for="nombre_comercial">Nombre Comercial</label>
         <input type="text" formControlName="nombre_comercial" id="nombre_comercial">
       </div>
 
-      <div class="form-group">
+      <div class="form-group col-span-full">
         <label for="descripcion_producto">Descripción</label>
-        <input type="text" formControlName="descripcion_producto" id="descripcion_producto" required>
+        <textarea formControlName="descripcion_producto" id="descripcion_producto" rows="4" required></textarea>
       </div>
 
       <div class="form-group">
@@ -97,6 +97,5 @@
     <div class="button-group">
       <button type="submit" class="submit-button" cdkFocusInitial [disabled]="!isFormValid()">Agregar repuesto</button>
     </div>
-
   </form>
 </div>

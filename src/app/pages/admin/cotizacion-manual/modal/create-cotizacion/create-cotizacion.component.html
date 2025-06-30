@@ -199,6 +199,7 @@
         <select
           formControlName="moneda"
           class="form-control"
+          (change)="onMonedaChange()"
           [class.is-invalid]="cotizacionForm.get('moneda')?.invalid && cotizacionForm.get('moneda')?.touched">
           <option value="">Seleccione una moneda</option>
           <option *ngFor="let moneda of monedas" [value]="moneda">{{ moneda }}</option>

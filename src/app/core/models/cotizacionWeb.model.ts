@@ -4,7 +4,7 @@ export interface CotizacionWeb {
   periodo: string;
   serie: string;
   numero: number;
-  fecha: string;
+  fecha: Date;
   tipo_cambio: number;
   punto_venta: string;
   razon_social?: string;
@@ -22,5 +22,6 @@ export interface CotizacionWeb {
   estado?: string,
   user_id?: string,
   fecha_asignacion?: Date,
-  fecha_finalizacion?: Date
+  fecha_finalizacion?: Date,
+  createdAt?: Date
 }

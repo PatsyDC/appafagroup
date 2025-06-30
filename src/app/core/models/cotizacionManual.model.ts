@@ -5,7 +5,7 @@ export interface CotizacionManual {
   periodo: string;
   serie?: string;
   numero?: number;
-  fecha: string;
+  fecha: Date;
   tipo_cambio: string;
   cliente_id?: string | null;
   punto_venta: string;
@@ -23,4 +23,5 @@ export interface CotizacionManual {
   estado?: string;
   user_id: string;
   productos?: CotizacionProducto[];
+  createdAt?: Date
 }

@@ -100,6 +100,9 @@
     overflow-x: auto;
     white-space: nowrap;
   }
+  .search-container {
+    align-self: center;
+  }
 }
 
 .task-table tbody tr:nth-child(even) {
@@ -326,7 +329,7 @@
   <thead>
     <tr>
       <th>Razón social</th>
-      <th>Nombre de contacto</th>
+      <th>Contacto</th>
       <th>Fecha</th>
       <th>Detalle</th>
     </tr>
@@ -337,13 +340,13 @@
       <td data-label="Razón Social">
         <div class="title">{{cotizacion.razon_social}}</div>
       </td>
-      <td data-label="Nombre del contacto">
+      <td data-label="Contacto">
         <div class="title">{{cotizacion.nombre_contacto}}</div>
       </td>
       <td data-label="Fecha">
         <div class="title">{{cotizacion.fecha}}</div>
       </td>
-      <td data-label="Acciones">
+      <td data-label="Detalle">
         <div class="action-icons" style="display: flex; justify-content: center; align-items: center;">
           <i class="fas fa-eye" style="color: #326DE7; font-size: 20px; cursor: pointer;" (click)="editarCotizacion(cotizacion.id!)"></i>
         </div>

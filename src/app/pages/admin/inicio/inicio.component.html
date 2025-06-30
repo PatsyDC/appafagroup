@@ -1,45 +1,58 @@
-<header class="main-header">
-  <div class="left-header">
-    <button class="menu-toggle"><i class="fas fa-bars"></i></button>
-    <div class="search-bar">
-      <i class="fas fa-search"></i>
-      <input type="text" placeholder="Search...">
+
+  <div class="dashboard-content">
+    <div class="stats-grid">
+        <div class="stat-card">
+          <i class="fas fa-tractor icon-stat icon-events"></i>
+            <h3>Productos</h3>
+            <p>{{ totalProductos }}</p>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-file-alt icon-stat icon-reports"></i>
+          <h3>Cotizaciones</h3>
+          <p>{{ totalCotizacionesCombinadas }}</p>
+
+        </div>
+
+        <div class="stat-card">
+            <i class="fas fa-shopping-cart icon-stat icon-clients"></i>
+            <h3>Cotizaciones web</h3>
+            <p>{{ totalCotizacionesWeb }}</p>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-file-invoice-dollar icon-stat icon-payroll"></i>
+            <h3>Cotizaciones manuales</h3>
+            <p>{{ totalCotizacionesManuales }}</p>
+        </div>
     </div>
   </div>
-  <!-- <nav class="main-nav">
-    <a href="#" class="nav-item">Apps <i class="fas fa-chevron-down"></i></a>
-    <a href="#" class="nav-item">Chat</a>
-    <a href="#" class="nav-item">Calendar</a>
-    <a href="#" class="nav-item">Email</a>
-  </nav> -->
-
-</header>
-
-    <div class="dashboard-content">
-      <div class="stats-grid">
-          <div class="stat-card">
-              <i class="fas fa-user-tie icon-stat icon-employees"></i>
-              <h3>Trabajadores</h3>
-              <p>{{ totalTrabajadores }}</p>
-          </div>
-          <div class="stat-card">
-            <i class="fas fa-tractor icon-stat icon-events"></i>
-              <h3>Productos</h3>
-              <p>{{ totalProductos }}</p>
-          </div>
-          <div class="stat-card">
-            <i class="fas fa-file-alt icon-stat icon-reports"></i>
-            <h3>Cotizaciones</h3>
-            <p>{{totalCotizaciones}}</p>
-          </div>
-          <div class="stat-card">
-              <i class="fas fa-users icon-stat icon-clients"></i>
-              <h3>Clientes</h3>
-              <p>234</p>
-          </div>
-          <div class="stat-card">
-              <i class="fas fa-dollar-sign icon-stat icon-payroll"></i>
-              <h3>Facturación</h3>
-              <p>$96k</p>
-          </div>
+<div class="dashboard-container">
+  <div class="charts-grid">
+    <!-- Gráfica de Cotizaciones Web -->
+    <div class="chart-container">
+      <div class="chart-wrapper">
+        <canvas #cotizacionesWebChart width="400" height="200"></canvas>
       </div>
+    </div>
+
+    <!-- Gráfica de Cotizaciones Manuales -->
+    <div class="chart-container">
+      <div class="chart-wrapper">
+        <canvas #cotizacionesManualesChart width="400" height="200"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-wrapper">
+        <canvas #cotizacionesTotalesChart width="400" height="200"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-wrapper">
+        <canvas #productosMasCotizadosChart></canvas>
+      </div>
+    </div>
+
+  </div>
+</div>
+

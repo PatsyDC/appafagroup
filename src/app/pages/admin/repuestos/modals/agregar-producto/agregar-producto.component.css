@@ -1,8 +1,7 @@
-/* Contenedor del formulario */
 .form-container {
   padding: 1rem;
   font-family: sans-serif;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   background: #ffffff;
   border-radius: 10px;
@@ -53,13 +52,26 @@
   padding-top: 0.5rem;
 }
 
+.col-span-full {
+  grid-column: span 3;
+}
+
+.col-span-2 {
+  grid-column: span 2;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+  font-family: sans-serif;
+}
+
 .ticket-form {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-/* Mantener el diseño en 3 columnas */
 .form-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -150,10 +162,8 @@
     padding: 0.6rem;
   }
 
-  /* Ajustar botones en móvil */
   .button-group {
     flex-direction: column;
-    /* Hacer que los botones se queden fijos en la parte inferior */
     position: sticky;
     bottom: 0;
     background: white;
@@ -183,7 +193,13 @@
   }
 }
 
-/* Botones */
+@media (min-width: 601px) {
+  .col-span-2 {
+    grid-column: span 2;
+  }
+}
+
+
 .button-group {
   display: flex;
   justify-content: space-between;
@@ -227,13 +243,11 @@
   background-color: #c82333;
 }
 
-/* Estilo para el input de tipo file */
 .form-group input[type="file"] {
   padding: 0.5rem;
   cursor: pointer;
 }
 
-/* Sobreescribir estilos de diálogo si están interfiriendo */
 .modal-body .form-container,
 .dialog-body .form-container,
 .mat-dialog-container .form-container {
@@ -244,14 +258,12 @@
   overflow-y: auto;
 }
 
-/* Asegurar que la fuente se aplica incluso con alta especificidad */
 .modal .form-container *,
 .dialog .form-container *,
 .mat-dialog-content .form-container * {
   font-family: sans-serif !important;
 }
 
-/* Estilos mejorados para el botón de cierre (x) */
 .close-button {
   position: absolute;
   top: 8px;
@@ -274,3 +286,27 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   z-index: 10;
 }
+
+/* Asegurar que col-span funcione correctamente en 1, 2 o 3 columnas */
+@media (max-width: 600px) {
+  .col-span-2,
+  .col-span-full {
+    grid-column: span 1 !important;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .col-span-full {
+    grid-column: span 2;
+  }
+}
+
+/* Ajustar espaciado para campos input muy largos en móviles */
+.form-group input,
+.form-group textarea,
+.form-group select {
+  min-width: 0;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+

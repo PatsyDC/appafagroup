@@ -1,12 +1,29 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { forkJoin, Observable, Subject, switchMap, tap } from 'rxjs';
+import { catchError, forkJoin, map, Observable, of, Subject, switchMap, tap } from 'rxjs';
 import { CotizacionManual } from '../models/cotizacionManual.model';
 import { CotizacionProducto } from '../models/prodCM.model';
+
+interface CotizacionesPorMes {
+  [mes: string]: number;
+}
+
+interface DatosMes {
+  mes: string;
+  cantidad: number;
+}
+
+function formatMonth(fecha: Date | string): string {
+  const date = new Date(fecha);
+  const mes = date.toLocaleDateString('es-ES', { month: 'long' });
+  const anio = date.getFullYear();
+  return `${mes} ${anio}`.toUpperCase(); // Ej: "JUNIO 2025"
+}
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class CotizacionManualService {
 
   private _refresh$ = new Subject<void>();
@@ -22,6 +39,13 @@ export class CotizacionManualService {
   getCotizaciones(): Observable<CotizacionManual[]> {
     return this.http.get<CotizacionManual[]>(`${this.url}cotizaciones/`);
   }
+
+  getCotizacionesGrafica(): Observable<CotizacionManual[]> {
+  return this.http.get<{ ok: boolean, status: number, body: CotizacionManual[] }>(`${this.url}cotizaciones/`)
+    .pipe(
+      map(res => res.body || [])
+    );
+}
 
   getCotizacionById(id: string): Observable<{ body: CotizacionManual }> {
     return this.http.get<{ body: CotizacionManual }>(`${this.url}cotizaciones/${id}`);
@@ -118,5 +142,80 @@ getProductosByCotizacionDebug(cotizacion_id: string): Observable<any> {
       })
     );
   }
+
+  getCotizacionesManualesPorMes(): Observable<DatosMes[]> {
+    return this.getCotizacionesGrafica().pipe(
+      map(cotizaciones => {
+        console.log('📊 Datos recibidos para agrupar por mes:', cotizaciones);
+
+        // Verificar que cotizaciones sea un array
+        if (!Array.isArray(cotizaciones)) {
+          console.error('getCotizaciones() no devolvió un array:', cotizaciones);
+          return [];
+        }
+
+        // Usar la interfaz tipada para el acumulador
+        const cotizacionesPorMes: CotizacionesPorMes = cotizaciones.reduce((acc: CotizacionesPorMes, cotizacion) => {
+          // Asegurar que la cotización tenga fecha
+          if (!cotizacion.fecha) {
+            return acc;
+          }
+
+          // Manejar diferentes formatos de fecha
+          let fecha: Date;
+          if (typeof cotizacion.fecha === 'string') {
+            fecha = new Date(cotizacion.fecha);
+          } else {
+            fecha = cotizacion.fecha;
+          }
+
+          // Verificar que la fecha sea válida
+          if (isNaN(fecha.getTime())) {
+            console.warn('Fecha inválida encontrada:', cotizacion.fecha);
+            return acc;
+          }
+
+          const mes = formatMonth(fecha);
+
+          if (!acc[mes]) {
+            acc[mes] = 0;
+          }
+          acc[mes]++;
+
+          return acc;
+        }, {} as CotizacionesPorMes);
+
+        console.log('📊 Cotizaciones agrupadas por mes:', cotizacionesPorMes);
+
+        // Convertir a array de objetos y ordenar por fecha
+        const resultado: DatosMes[] = Object.entries(cotizacionesPorMes)
+          .map(([mes, cantidad]) => ({
+            mes: mes,
+            cantidad: cantidad
+          }))
+          .sort((a, b) => {
+            // Ordenar por fecha (más reciente primero)
+            const fechaA = new Date(a.mes);
+            const fechaB = new Date(b.mes);
+            return fechaB.getTime() - fechaA.getTime();
+          });
+
+        console.log('📊 Resultado final:', resultado);
+        return resultado;
+      }),
+      catchError(error => {
+        console.error('Error en getCotizacionesManualesPorMes:', error);
+        return of([]); // Devolver array vacío en caso de error
+      })
+    );
+  }
+
+  getTodosLosProductosManuales(): Observable<any[]> {
+  return this.http.get<{ ok: boolean, status: number, body: any[] }>(
+    `${this.url}cotizacion-productos/`
+  ).pipe(
+    map(res => res.body || [])
+  );
+}
 
 }
